@@ -30,8 +30,14 @@ set hlsearch
 set cursorline
 " set spell spelllang=en_us
 
+" Hold visual mode after indent
 vnoremap > >gv
 vnoremap < <gv
+" Maps Alt-[h,j,k,l] to resizing a window split
+map <silent> <A-h> <C-w><
+map <silent> <A-j> <C-W>-
+map <silent> <A-k> <C-W>+
+map <silent> <A-l> <C-w>>
 
 " Autostart colorizer
 " let g:colorizer_auto_color=1
