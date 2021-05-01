@@ -1,5 +1,3 @@
-so ~/.config/nvim/plug.vim
-so ~/.config/nvim/theme.vim
 set number
 set wrap
 set encoding=utf-8
@@ -39,5 +37,11 @@ map <silent> <A-j> <C-W>-
 map <silent> <A-k> <C-W>+
 map <silent> <A-l> <C-w>>
 
+" use system clipboard
+set clipboard=unnamedplus
+
 " Autostart colorizer
 " let g:colorizer_auto_color=1
+
+so ~/.config/nvim/plug.vim
+so ~/.config/nvim/theme.vim
