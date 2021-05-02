@@ -40,6 +40,9 @@ map <silent> <A-j> <C-W>-
 map <silent> <A-k> <C-W>+
 map <silent> <A-l> <C-w>>
 
+" use system clipboard
+set clipboard=unnamedplus
+
 " Autostart colorizer
 " let g:colorizer_auto_color=1
 

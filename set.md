@@ -36,3 +36,11 @@
 6. Workspace Indicator
 7. Zoom workspaces
 
+# Dev
+1. Node, npm, nvm, node-gyp
+2. Rust, cargo
+3. gcc, g++, clang, clang++
+4. python3, pip3
+5. sqlite3
+
+
