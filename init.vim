@@ -1,5 +1,3 @@
-so ~/.config/nvim/plug.vim
-so ~/.config/nvim/theme.vim
 set number
 set wrap
 set encoding=utf-8
@@ -14,9 +12,11 @@ set ruler
 nmap j gj
 nmap k gk
 
+" enable syntax and filetype detection
 syntax enable
 filetype plugin indent on
 
+" set tabs to 4 spaces
 set tabstop=4
 set expandtab
 set shiftwidth=4
@@ -25,6 +25,7 @@ set softtabstop=4
 set autoindent
 set smartindent
 
+" highlight all search pattern matches
 set hlsearch
 
 set cursorline
@@ -41,3 +42,9 @@ map <silent> <A-l> <C-w>>
 
 " Autostart colorizer
 " let g:colorizer_auto_color=1
+
+so ~/.config/nvim/plug.vim
+so ~/.config/nvim/theme.vim
+
+" use system clipboard
+set clipboard=unnamed
