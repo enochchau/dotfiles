@@ -19,4 +19,6 @@ source $ZSH/oh-my-zsh.sh
 # set editor to nvim
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+alias vi="nvim"
+alias vim="nvim"
 
