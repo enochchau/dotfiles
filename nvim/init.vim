@@ -46,8 +46,8 @@ set clipboard=unnamedplus
 " Autostart colorizer
 " let g:colorizer_auto_color=1
 
-so ~/.config/nvim/plug.vim
-so ~/.config/nvim/theme.vim
+if !exists('g:vscode')
+    so ~/.config/nvim/plug.vim
+    so ~/.config/nvim/theme.vim
+endif
 
-" use system clipboard
-set clipboard=unnamed
