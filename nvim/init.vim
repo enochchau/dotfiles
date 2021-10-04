@@ -16,11 +16,11 @@ nmap k gk
 syntax enable
 filetype plugin indent on
 
-" set tabs to 4 spaces
-set tabstop=4
+" set tabs to 2 spaces
+set tabstop=2
 set expandtab
-set shiftwidth=4
-set softtabstop=4
+set shiftwidth=2
+set softtabstop=2
 
 set autoindent
 set smartindent
@@ -39,6 +39,12 @@ map <silent> <A-h> <C-w><
 map <silent> <A-j> <C-W>-
 map <silent> <A-k> <C-W>+
 map <silent> <A-l> <C-w>>
+" Mac specific alt
+" https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
+map <silent> ˙ <C-w><
+map <silent> ∆ <C-W>-
+map <silent> ˚ <C-W>+
+map <silent> ¬ <C-w>>
 
 " use system clipboard
 set clipboard=unnamedplus
@@ -46,8 +52,9 @@ set clipboard=unnamedplus
 " Autostart colorizer
 " let g:colorizer_auto_color=1
 
-if !exists('g:vscode')
-    so ~/.config/nvim/plug.vim
-    so ~/.config/nvim/theme.vim
-endif
-
+so ~/.config/nvim/plug.vim
+so ~/.config/nvim/theme.vim
+so ~/.config/nvim/modern.vim
+so ~/.config/nvim/treesitter.vim
+so ~/.config/nvim/filetree.vim
+so ~/.config/nvim/telescope.vim
