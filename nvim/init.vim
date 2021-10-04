@@ -21,6 +21,8 @@ Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'lukas-reineke/indent-blankline.nvim'
 " COC
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Startify
+Plug 'mhinz/vim-startify'
 call plug#end()
 
 source ~/.config/nvim/settings.vim
