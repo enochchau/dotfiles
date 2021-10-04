@@ -10,7 +10,7 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(git npm)
+plugins=(git npm yarn)
 
 source $ZSH/oh-my-zsh.sh
 
@@ -23,7 +23,7 @@ export EDITOR="$VISUAL"
 alias vi="nvim"
 alias vim="nvim"
 
-cdg() {
-  cd "$(git rev-parse --show-toplevel)/$1"
-}
+# go to git root directory
+cdg() { cd "$(git rev-parse --show-toplevel)/$1" }
+complete -W "$(ls $(git rev-parse --show-toplevel))" cdg
 

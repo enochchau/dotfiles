@@ -46,6 +46,8 @@ map <silent> ˙ <C-w><
 map <silent> ∆ <C-W>-
 map <silent> ˚ <C-W>+
 map <silent> ¬ <C-w>>
+" auto resize
+autocmd VimResized * wincmd =
 
 " use system clipboard
 set clipboard=unnamedplus
