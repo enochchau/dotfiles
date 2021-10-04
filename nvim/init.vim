@@ -1,6 +1,7 @@
 call plug#begin('~/.config/plugged')
-" Fuzzy finer
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+" Fuzzy finder
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
 " Commenting
 Plug 'tpope/vim-commentary'
 " Themes
