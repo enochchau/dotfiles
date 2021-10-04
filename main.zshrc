@@ -1,3 +1,4 @@
+#!/bin/zsh
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
@@ -21,4 +22,8 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 alias vi="nvim"
 alias vim="nvim"
+
+cdg() {
+  cd "$(git rev-parse --show-toplevel)/$1"
+}
 
