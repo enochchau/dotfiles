@@ -1,4 +1,5 @@
 {
   "eslint.autoFixOnSave": true,
-  "coc.preferences.jumpCommand": "vsplit"
+  "coc.preferences.jumpCommand": "vsplit",
+  "git.untrackedDecorator": ""
 }
