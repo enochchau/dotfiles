@@ -52,6 +52,3 @@ autocmd VimResized * wincmd =
 
 " use system clipboard
 set clipboard=unnamedplus
-
-" Autostart colorizer
-" let g:colorizer_auto_color=1
