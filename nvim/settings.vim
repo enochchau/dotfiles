@@ -51,4 +51,4 @@ map <silent> ¬ <C-w>>
 autocmd VimResized * wincmd =
 
 " use system clipboard
-set clipboard=unnamedplus
+set clipboard+=unnamedplus

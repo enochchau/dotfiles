@@ -4,7 +4,9 @@ require('lualine').setup{
     lualine_b = {'g:coc_git_status', 'b:coc_git_status', 'b:coc_git_blame', 'g:coc_status' }
   },
   options = {
-    theme = 'solarized'
+    theme = 'solarized',
+    section_separators = '',
+    component_separators = '│',
   }
 }
 EOF
