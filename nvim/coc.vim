@@ -1,3 +1,19 @@
+" Extensions
+let g:coc_global_extensions = [
+      \'coc-json', 
+      \'coc-snippets',  
+      \'coc-pairs',
+      \'coc-html',
+      \'coc-highlight',
+      \'coc-git',
+      \'coc-eslint',
+      \'coc-emmet',
+      \'coc-yaml',
+      \'coc-tsserver',
+      \'coc-styled-components',
+      \'coc-css'
+      \]
+
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
 " unicode characters in the file autoload/float.vim
 set encoding=utf-8
@@ -154,3 +170,5 @@ nnoremap <silent><nowait> <space>j  :<C-u>CocNext<CR>
 nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 " Resume latest coc list.
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
+
+autocmd CursorHold * silent call CocActionAsync('highlight')

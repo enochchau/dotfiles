@@ -25,5 +25,8 @@ alias vim="nvim"
 
 # go to git root directory
 cdg() { cd "$(git rev-parse --show-toplevel)/$1" }
-complete -W "$(ls $(git rev-parse --show-toplevel))" cdg
+_cdg_completion()
+{
+  COMPREPLY += "$(ls $(git rev-parse --show-toplevel || echo '')/)" 
+}
 

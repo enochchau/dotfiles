@@ -9,6 +9,7 @@ Plug 'kaicataldo/material.vim', {'branch':'main'}
 Plug 'morhetz/gruvbox'
 Plug 'overcache/NeoSolarized'
 Plug 'ayu-theme/ayu-vim'
+Plug 'rakr/vim-one'
 " Airline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -23,6 +24,8 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Startify
 Plug 'mhinz/vim-startify'
+" Git
+Plug 'tpope/vim-fugitive'
 call plug#end()
 
 source ~/.config/nvim/settings.vim
