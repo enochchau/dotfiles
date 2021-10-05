@@ -10,9 +10,8 @@ Plug 'morhetz/gruvbox'
 Plug 'overcache/NeoSolarized'
 Plug 'ayu-theme/ayu-vim'
 Plug 'rakr/vim-one'
-" Airline
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+" Statusline
+Plug 'hoob3rt/lualine.nvim'
 " File Tree
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
@@ -34,4 +33,4 @@ source ~/.config/nvim/treesitter.vim
 source ~/.config/nvim/tree.vim
 source ~/.config/nvim/coc.vim
 source ~/.config/nvim/fuzzy.vim
-source ~/.config/nvim/airline.vim
+source ~/.config/nvim/lualine.vim
