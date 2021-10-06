@@ -1,6 +1,6 @@
-let g:material_theme_style = 'palenight'
+let g:material_theme_style = 'lighter'
 let g:gruvbox_contrast_dark = 'hard'
-let g:gruvbox_contrast_light = 'light'
+let g:gruvbox_contrast_light = 'hard'
 let g:neosolarized_contrast = 'normal'
 let ayucolor = 'light'
 
@@ -12,6 +12,7 @@ endif
 
 " colorscheme material
 " colorscheme gruvbox
-colorscheme NeoSolarized
+" colorscheme NeoSolarized
 " colorscheme one
 " colorscheme ayu
+colorscheme PaperColor

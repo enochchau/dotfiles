@@ -36,19 +36,19 @@ set cursorline
 " Hold visual mode after indent
 vnoremap > >gv
 vnoremap < <gv
+
 " Maps Alt-[h,j,k,l] to resizing a window split
-map <silent> <A-h> <C-w><
-map <silent> <A-j> <C-W>-
-map <silent> <A-k> <C-W>+
-map <silent> <A-l> <C-w>>
-" Mac specific alt
-" https://stackoverflow.com/questions/7501092/can-i-map-alt-key-in-vim
-map <silent> ˙ <C-w><
-map <silent> ∆ <C-W>-
-map <silent> ˚ <C-W>+
-map <silent> ¬ <C-w>>
+noremap <silent> <A-h> <C-w><
+noremap <silent> <A-j> <C-W>-
+noremap <silent> <A-k> <C-W>+
+noremap <silent> <A-l> <C-w>>
+
 " auto resize
 autocmd VimResized * wincmd =
 
 " use system clipboard
 set clipboard+=unnamedplus
+
+" traverse buffers
+noremap <silent> ]b :bnext<CR>
+noremap <silent> [b :bprevious<CR>

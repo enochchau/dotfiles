@@ -10,6 +10,7 @@ Plug 'morhetz/gruvbox'
 Plug 'overcache/NeoSolarized'
 Plug 'ayu-theme/ayu-vim'
 Plug 'rakr/vim-one'
+Plug 'NLKNguyen/papercolor-theme'
 " Statusline
 Plug 'hoob3rt/lualine.nvim'
 " File Tree
@@ -17,6 +18,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 " Syntax Highlighting
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+Plug 'mtdl9/vim-log-highlighting'
 " blank lines
 Plug 'lukas-reineke/indent-blankline.nvim'
 " COC
