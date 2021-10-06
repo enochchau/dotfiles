@@ -11,7 +11,8 @@ let g:coc_global_extensions = [
       \'coc-yaml',
       \'coc-tsserver',
       \'coc-styled-components',
-      \'coc-css'
+      \'coc-css',
+      \'coc-docthis'
       \]
 
 " Set internal encoding of vim, not needed on neovim, since coc.nvim using some
@@ -172,3 +173,6 @@ nnoremap <silent><nowait> <space>k  :<C-u>CocPrev<CR>
 nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
+
+" Generate jsdoc
+nnoremap <leader>d :CocCommand docthis.documentThis<CR>
