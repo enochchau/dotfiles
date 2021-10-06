@@ -12,7 +12,6 @@ let g:coc_global_extensions = [
       \'coc-tsserver',
       \'coc-styled-components',
       \'coc-css',
-      \'coc-docthis',
       \'coc-prettier'
       \]
 
@@ -175,7 +174,5 @@ nnoremap <silent><nowait> <space>p  :<C-u>CocListResume<CR>
 
 autocmd CursorHold * silent call CocActionAsync('highlight')
 
-" Generate jsdoc
-nnoremap <leader>d :CocCommand docthis.documentThis<CR>
 " Pettier Format command
 command! -nargs=0 Prettier :CocCommand prettier.formatFile

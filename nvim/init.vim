@@ -17,6 +17,7 @@ Plug 'suy/vim-context-commentstring'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
+Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 if has('nvim')
   Plug 'nvim-lua/plenary.nvim'
@@ -24,15 +25,19 @@ if has('nvim')
   Plug 'hoob3rt/lualine.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua'
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " treesitter
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'windwp/nvim-ts-autotag'
 endif
 call plug#end()
 
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/theme.vim
-source ~/.config/nvim/treesitter.vim
-source ~/.config/nvim/tree.vim
-source ~/.config/nvim/coc.vim
-source ~/.config/nvim/fuzzy.vim
-source ~/.config/nvim/lualine.vim
+if has('nvim')
+  source ~/.config/nvim/treesitter.vim
+  source ~/.config/nvim/tree.vim
+  source ~/.config/nvim/coc.vim
+  source ~/.config/nvim/fuzzy.vim
+  source ~/.config/nvim/lualine.vim
+endif
