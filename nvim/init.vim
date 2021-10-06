@@ -1,13 +1,19 @@
 call plug#begin('~/.config/plugged')
+" themes
 Plug 'morhetz/gruvbox'
 Plug 'overcache/NeoSolarized'
 Plug 'ayu-theme/ayu-vim'
 Plug 'rakr/vim-one'
 Plug 'NLKNguyen/papercolor-theme'
+" syntax
+Plug 'mtdl9/vim-log-highlighting'
+Plug 'yuezk/vim-js'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'HerringtonDarkholme/yats.vim' " for tsx
 
 Plug 'tpope/vim-commentary'
+Plug 'suy/vim-context-commentstring'
 Plug 'kaicataldo/material.vim', {'branch':'main'}
-Plug 'mtdl9/vim-log-highlighting'
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
