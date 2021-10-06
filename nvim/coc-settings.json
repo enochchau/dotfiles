@@ -1,16 +1,6 @@
 {
   "eslint.autoFixOnSave": true,
   "coc.preferences.jumpCommand": "vsplit",
-  "coc.preferences.formatOnSaveFiletypes": [
-    "css",
-    "markdown",
-    "json",
-    "javascript",
-    "javascriptreact",
-    "typescript",
-    "typescriptreact"
-  ],
-  "prettier.printWidth": 120,
-  "prettier.singleQuote": true,
-  "prettier.trailingComma": "none"
+  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "json"],
+  "prettier.printWidth": 120
 }
