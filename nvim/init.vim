@@ -20,9 +20,12 @@ Plug 'tpope/vim-fugitive'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 
 if has('nvim')
+  " telescope
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
+  Plug 'fannheyward/telescope-coc.nvim'
+
   Plug 'hoob3rt/lualine.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua'
