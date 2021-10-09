@@ -85,3 +85,13 @@ format = 	'[$symbol$account(@$domain)(\($region\))]($style) '
 
 [git_status]
 format = '([$all_status$ahead_behind]($style) )'
+
+[directory]
+style = 'blue'
+
+[character]
+success_symbol = '[\$](bold green)'
+error_symbol = '[\$](bold red)'
+
+[nodejs]
+format = '[$symbol($version )]($style)'

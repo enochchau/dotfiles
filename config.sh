@@ -2,16 +2,22 @@
 
 OS=$(uname)
 
+# zsh
+if [[ "$OS" == "Linux" ]]; then
+    sudo apt install zsh
+fi
+
+# oh-my-zsh
+sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+ln -s $PWD/main.zshrc $HOME/.main.zshrc
+echo "#!/bin/zsh" > $HOME/.zshrc
+echo 'source $HOME/.main.zshrc' >> $HOME/.zshrc
+
+
 # symlink .config files
-[ ! -d "$HOME/.config" ] && mkdir $HOME/.config
+mkdir -p $HOME/.config
 ln -s $PWD/nvim $HOME/.config/nvim
 ln -s $PWD/starship.toml $HOME/.config/starship.toml
-
-# neovim plugged
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-# install neovim plugins
-nvim +'PlugInstall --sync' +qa
 
 if [[ "$OS" == "Darwin" ]]; then
     cp vscode-settings.json $HOME/Library/Application Support/Code/User/settings.json

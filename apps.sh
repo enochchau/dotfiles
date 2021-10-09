@@ -1,4 +1,4 @@
-#!/bin/bash
+!/bin/bash
 
 OS=$(uname) # Linux or Darwin (MacOS)
 
@@ -10,13 +10,17 @@ if [[ "$OS" == "Darwin" ]]; then
     brew install neovim
     brew install --cask google-chrome
     brew install --cask visual-studio-code
-    brew install --cask figma
     brew install --cask docker
-    brew install --cask karabiner-elements
+    brew install --cask discord
     brew install --cask spotify
+    brew install --cask karabiner-elements
+    brew install --cask figma
     brew install --cask rectangle
     brew install --cask slack
     brew install --cask notion
+    brew install --cask qbittorrent
+    brew install fd ripgrep bat sd
+    brew install node
 fi
 
 # linux apps
@@ -41,10 +45,43 @@ rm -f packages.microsoft.gpg
     curl -sS https://download.spotify.com/debian/pubkey_0D811D58.gpg | sudo apt-key add - 
     echo "deb http://repository.spotify.com stable non-free" | sudo tee /etc/apt/sources.list.d/spotify.list
 
+    # qbittorrent
+    sudo add-apt-repository ppa:qbittorrent-team/qbittorrent-stable
+    # pinta
+    sudo add-apt-repository ppa:pinta-maintainers/pinta-stable
+
+
     sudo apt update
+
+    # discord
+    wget -O ~/discord.deb "https://discordapp.com/api/download?platform=linux&format=deb"
+    sudo apt install ~/discord.deb 
+    rm ~/discord.deb
+
+    # chrome
+    wget -O ~/google-chrome.deb https://dl.google.com/linux/direct/google-chrome-stable_current_amd64.deb
+    sudo apt install ~/google-chrome.dev
+    rm ~/google-chrome.deb
+
     sudo apt install neovim
+    sudo apt install pinta
     sudo apt install docker-ce docker-ce-cli containerd.io
     sudo apt install code
     sudo apt install spotify-client
+    sudo apt install qbittorrent
+    sudo apt isntall dconf-editor
+    sudo apt install gnome-tweaks
+    sudo apt install fd-find bat ripgrep
+    mkdir -p ~/.local/bin
+    ln -s /usr/bin/batcat ~/.local/bin/bat
+    ln -s /usr/bin/fdfind ~/.local/bin/fd
+    sudo apt install nodejs
 fi
 
+npm install -g yarn n
+
+# neovim plugged
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+# install neovim plugins
+nvim +'PlugInstall --sync' +qa
