@@ -4,33 +4,32 @@ OS=$(uname) # Linux or Darwin (MacOS)
 
 # mac apps
 if [[ "$OS" == "Darwin" ]]; then
-    # homebrew
-    /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
-    brew install --cask iterm2
-    brew install neovim
-    brew install --cask google-chrome
-    brew install --cask visual-studio-code
-    brew install --cask docker
-    brew install --cask discord
-    brew install --cask spotify
-    brew install --cask karabiner-elements
-    brew install --cask figma
-    brew install --cask rectangle
-    brew install --cask slack
-    brew install --cask notion
-    brew install --cask qbittorrent
-    brew install fd ripgrep bat sd tealdeer
-    brew install node
-    brew install fzf
+  # homebrew
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+  brew install --cask iterm2
+  brew install neovim
+  brew install --cask google-chrome
+  brew install --cask visual-studio-code
+  brew install --cask docker
+  brew install --cask discord
+  brew install --cask spotify
+  brew install --cask karabiner-elements
+  brew install --cask figma
+  brew install --cask rectangle
+  brew install --cask slack
+  brew install --cask notion
+  brew install --cask qbittorrent
+  brew install fd ripgrep bat sd tealdeer
+  brew install node
+  brew install fzf
 fi
 
 # linux apps
 if [[ "$OS" == "Linux" ]]; then
-    sudo apt update
-    sudo apt upgrade -y
+  sudo apt update && sudo apt upgrade -y
 
     # docker
-     curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /usr/share/keyrings/docker-archive-keyring.gpg
     echo \
       "deb [arch=amd64 signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu \
       $(lsb_release -cs) stable" | sudo tee /etc/apt/sources.list.d/docker.list > /dev/null
@@ -39,7 +38,7 @@ if [[ "$OS" == "Linux" ]]; then
     wget -qO- https://packages.microsoft.com/keys/microsoft.asc | gpg --dearmor > packages.microsoft.gpg
     sudo install -o root -g root -m 644 packages.microsoft.gpg /etc/apt/trusted.gpg.d/
     sudo sh -c 'echo "deb [arch=amd64,arm64,armhf signed-by=/etc/apt/trusted.gpg.d/packages.microsoft.gpg] https://packages.microsoft.com/repos/code stable main" > /etc/apt/sources.list.d/vscode.list'
-rm -f packages.microsoft.gpg
+    rm -f packages.microsoft.gpg
     sudo apt install apt-transport-https
 
     # spotify
@@ -77,14 +76,14 @@ rm -f packages.microsoft.gpg
     mkdir -p ~/.local/bin
     ln -s /usr/bin/batcat ~/.local/bin/bat
     ln -s /usr/bin/fdfind ~/.local/bin/fd
-    sudo apt install nodejs
     sudo apt install fzf
+    sudo apt install nodejs
 fi
 
 npm install -g yarn n
 
 # neovim plugged
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-# install neovim plugins
-nvim +'PlugInstall --sync' +qa
+  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  # install neovim plugins
+  nvim +'PlugInstall --sync' +qa
