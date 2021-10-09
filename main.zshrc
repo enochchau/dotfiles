@@ -17,6 +17,9 @@ source $ZSH/oh-my-zsh.sh
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
 [[ ! -f ~/.p10k.zsh ]] || source ~/.p10k.zsh
 
+# Starship prompt
+eval "$(starship init zsh)"
+
 # set editor to nvim
 export VISUAL=nvim
 export EDITOR="$VISUAL"
@@ -29,4 +32,3 @@ _cdg_completion()
 {
   COMPREPLY += "$(ls $(git rev-parse --show-toplevel || echo '')/)" 
 }
-

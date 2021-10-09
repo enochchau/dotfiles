@@ -5,6 +5,8 @@ OS=$(uname)
 # symlink .config files
 [ ! -d "$HOME/.config" ] && mkdir $HOME/.config
 ln -s $PWD/nvim $HOME/.config/nvim
+ln -s $PWD/starship.toml $HOME/.config/starship.toml
+
 # neovim plugged
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
