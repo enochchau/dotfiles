@@ -22,6 +22,7 @@ if [[ "$OS" == "Darwin" ]]; then
   brew install fd ripgrep bat sd tealdeer
   brew install node
   brew install fzf
+  brew install git-delta
 fi
 
 # linux apps

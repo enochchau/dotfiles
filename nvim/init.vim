@@ -1,11 +1,12 @@
 call plug#begin('~/.config/plugged')
 " themes
-Plug 'morhetz/gruvbox'
-Plug 'overcache/NeoSolarized'
-Plug 'ayu-theme/ayu-vim'
-Plug 'rakr/vim-one'
+" Plug 'morhetz/gruvbox'
+" Plug 'overcache/NeoSolarized'
+" Plug 'ayu-theme/ayu-vim'
+" Plug 'rakr/vim-one'
 Plug 'NLKNguyen/papercolor-theme'
-Plug 'kaicataldo/material.vim', {'branch':'main'}
+" Plug 'kaicataldo/material.vim', {'branch':'main'}
+
 " syntax
 Plug 'mtdl9/vim-log-highlighting'
 Plug 'yuezk/vim-js'
@@ -14,7 +15,6 @@ Plug 'HerringtonDarkholme/yats.vim' " for tsx
 
 Plug 'tpope/vim-commentary'
 Plug 'suy/vim-context-commentstring'
-Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
@@ -27,6 +27,7 @@ if has('nvim')
   Plug 'fannheyward/telescope-coc.nvim'
 
   Plug 'hoob3rt/lualine.nvim'
+  Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}

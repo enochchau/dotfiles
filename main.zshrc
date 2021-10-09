@@ -31,3 +31,5 @@ _cdg_completion()
 }
 
 export PATH="$HOME/.local/bin:$PATH"
+export BAT_THEME="GitHub"
+export GIT_PAGER='delta --light -s -n'
