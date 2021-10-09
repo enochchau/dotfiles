@@ -34,6 +34,7 @@ call plug#end()
 
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/theme.vim
+source ~/.config/nvim/syntax.vim
 if has('nvim')
   source ~/.config/nvim/treesitter.vim
   source ~/.config/nvim/tree.vim
