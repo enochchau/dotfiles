@@ -19,8 +19,9 @@ if [[ "$OS" == "Darwin" ]]; then
     brew install --cask slack
     brew install --cask notion
     brew install --cask qbittorrent
-    brew install fd ripgrep bat sd
+    brew install fd ripgrep bat sd tealdeer
     brew install node
+    brew install fzf
 fi
 
 # linux apps
@@ -71,11 +72,13 @@ rm -f packages.microsoft.gpg
     sudo apt install qbittorrent
     sudo apt isntall dconf-editor
     sudo apt install gnome-tweaks
-    sudo apt install fd-find bat ripgrep
+    # missing sd and tealdeer
+    sudo apt install fd-find bat ripgrep 
     mkdir -p ~/.local/bin
     ln -s /usr/bin/batcat ~/.local/bin/bat
     ln -s /usr/bin/fdfind ~/.local/bin/fd
     sudo apt install nodejs
+    sudo apt install fzf
 fi
 
 npm install -g yarn n
