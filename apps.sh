@@ -72,13 +72,13 @@ if [[ "$OS" == "Linux" ]]; then
     sudo apt install qbittorrent
     sudo apt isntall dconf-editor
     sudo apt install gnome-tweaks
-    # missing sd and tealdeer
     sudo apt install fd-find bat ripgrep 
     mkdir -p ~/.local/bin
     ln -s /usr/bin/batcat ~/.local/bin/bat
     ln -s /usr/bin/fdfind ~/.local/bin/fd
     sudo apt install fzf
     sudo apt install nodejs
+    # missing sd, tealdeer, and delta
 fi
 
 npm install -g yarn n
