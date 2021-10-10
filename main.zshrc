@@ -27,7 +27,7 @@ alias vim="nvim"
 cdg() { cd "$(git rev-parse --show-toplevel)/$1" }
 _cdg_completion()
 {
-  COMPREPLY += "$(ls $(git rev-parse --show-toplevel || echo "$HOME")/)" 
+  COMPREPLY="$(ls $(git rev-parse --show-toplevel || echo "$HOME")/)" 
 }
 complete -F _cdg_completion cdg
 
