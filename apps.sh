@@ -19,7 +19,7 @@ if [[ "$OS" == "Darwin" ]]; then
   brew install --cask slack
   brew install --cask notion
   brew install --cask qbittorrent
-  brew install fd ripgrep bat sd tealdeer
+  brew install fd ripgrep bat sd tealdeer hyperfine
   brew install node
   brew install fzf
   brew install git-delta
@@ -69,6 +69,7 @@ if [[ "$OS" == "Linux" ]]; then
     sudo apt install docker-ce docker-ce-cli containerd.io
     sudo apt install code
     sudo apt install spotify-client
+<<<<<<< Updated upstream
     sudo apt install qbittorrent
     sudo apt isntall dconf-editor
     sudo apt install gnome-tweaks
@@ -79,6 +80,9 @@ if [[ "$OS" == "Linux" ]]; then
     sudo apt install fzf
     sudo apt install nodejs
     # missing sd, tealdeer, and delta
+=======
+    sudo apt install fd hyperfine ripgrep sd bat
+>>>>>>> Stashed changes
 fi
 
 npm install -g yarn n
