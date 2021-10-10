@@ -69,20 +69,16 @@ if [[ "$OS" == "Linux" ]]; then
     sudo apt install docker-ce docker-ce-cli containerd.io
     sudo apt install code
     sudo apt install spotify-client
-<<<<<<< Updated upstream
     sudo apt install qbittorrent
     sudo apt isntall dconf-editor
     sudo apt install gnome-tweaks
-    sudo apt install fd-find bat ripgrep 
+    sudo apt install fd-find bat ripgrep hyperfine
     mkdir -p ~/.local/bin
     ln -s /usr/bin/batcat ~/.local/bin/bat
     ln -s /usr/bin/fdfind ~/.local/bin/fd
     sudo apt install fzf
     sudo apt install nodejs
     # missing sd, tealdeer, and delta
-=======
-    sudo apt install fd hyperfine ripgrep sd bat
->>>>>>> Stashed changes
 fi
 
 npm install -g yarn n
