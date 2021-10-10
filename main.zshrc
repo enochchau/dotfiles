@@ -29,7 +29,9 @@ _cdg_completion()
 {
   COMPREPLY += "$(ls $(git rev-parse --show-toplevel || echo "$HOME")/)" 
 }
+complete -F _cdg_completion cdg
 
+export PATH="$(yarn global bin):$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export BAT_THEME="GitHub"
 export GIT_PAGER='delta --light -s -n'
