@@ -4,7 +4,7 @@ let g:gruvbox_contrast_light = 'hard'
 let g:neosolarized_contrast = 'normal'
 let ayucolor = 'light'
 
-set bg=light
+set bg=dark
 
 if (has('termguicolors'))
     set termguicolors
@@ -13,6 +13,6 @@ endif
 " colorscheme material
 " colorscheme gruvbox
 " colorscheme NeoSolarized
-" colorscheme one
+colorscheme one
 " colorscheme ayu
-colorscheme PaperColor
+" colorscheme PaperColor

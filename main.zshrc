@@ -33,5 +33,5 @@ complete -F _cdg_completion cdg
 
 export PATH="$(yarn global bin):$PATH"
 export PATH="$HOME/.local/bin:$PATH"
-export BAT_THEME="GitHub"
-export GIT_PAGER='delta --light -s -n'
+export BAT_THEME="one"
+export GIT_PAGER='delta --dark -s -n'

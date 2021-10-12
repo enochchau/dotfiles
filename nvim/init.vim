@@ -3,8 +3,8 @@ call plug#begin('~/.config/plugged')
 " Plug 'morhetz/gruvbox'
 " Plug 'overcache/NeoSolarized'
 " Plug 'ayu-theme/ayu-vim'
-" Plug 'rakr/vim-one'
-Plug 'NLKNguyen/papercolor-theme'
+Plug 'rakr/vim-one'
+" Plug 'NLKNguyen/papercolor-theme'
 " Plug 'kaicataldo/material.vim', {'branch':'main'}
 
 " syntax
@@ -40,6 +40,7 @@ call plug#end()
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/theme.vim
 source ~/.config/nvim/syntax.vim
+source ~/.config/nvim/doge.vim
 if has('nvim')
   source ~/.config/nvim/treesitter.vim
   source ~/.config/nvim/tree.vim

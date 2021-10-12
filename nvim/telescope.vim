@@ -6,14 +6,5 @@ lua << EOF
 local telescope  = require('telescope')
 
 telescope.load_extension('fzf')
-telescope.setup{
-  pickers = {
-    find_files = {
-      theme = "ivy"
-    },
-    buffers = {
-      theme = 'dropdown'
-    }
-  }
-}
+telescope.setup()
 EOF
