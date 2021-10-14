@@ -1,7 +1,14 @@
 {
   "eslint.autoFixOnSave": true,
-  "coc.preferences.jumpCommand": "tabe",
-  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "json", "typescript"],
+  "coc.preferences.formatOnSaveFiletypes": [
+    "css",
+    "markdown",
+    "json",
+    "javascript",
+    "typescript",
+    "javascriptreact",
+    "typescriptreact"
+  ],
   "prettier.printWidth": 120,
   "prettier.statusItemText": ""
 }
