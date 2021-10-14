@@ -50,5 +50,5 @@ autocmd VimResized * wincmd =
 set clipboard+=unnamedplus
 
 " traverse buffers
-noremap <silent> ]b :bnext<CR>
-noremap <silent> [b :bprevious<CR>
+" noremap <silent> ]b :bnext<CR>
+" noremap <silent> [b :bprevious<CR>

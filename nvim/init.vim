@@ -25,15 +25,16 @@ if has('nvim')
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   Plug 'fannheyward/telescope-coc.nvim'
+  " treesitter
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'windwp/nvim-ts-autotag'
 
   Plug 'hoob3rt/lualine.nvim'
   Plug 'lukas-reineke/indent-blankline.nvim'
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  " treesitter
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
-  Plug 'windwp/nvim-ts-autotag'
+  Plug 'akinsho/bufferline.nvim'
 endif
 call plug#end()
 
@@ -47,4 +48,5 @@ if has('nvim')
   source ~/.config/nvim/coc.vim
   source ~/.config/nvim/telescope.vim
   source ~/.config/nvim/lualine.vim
+  source ~/.config/nvim/bufferline.vim
 endif
