@@ -34,7 +34,6 @@ if has('nvim')
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua'
   Plug 'neoclide/coc.nvim', {'branch': 'release'}
-  Plug 'akinsho/bufferline.nvim'
 endif
 call plug#end()
 
@@ -48,5 +47,4 @@ if has('nvim')
   source ~/.config/nvim/coc.vim
   source ~/.config/nvim/telescope.vim
   source ~/.config/nvim/lualine.vim
-  source ~/.config/nvim/bufferline.vim
 endif
