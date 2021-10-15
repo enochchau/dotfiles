@@ -6,6 +6,11 @@ call plug#begin('~/.config/plugged')
 Plug 'rakr/vim-one'
 " Plug 'NLKNguyen/papercolor-theme'
 " Plug 'kaicataldo/material.vim', {'branch':'main'}
+" Plug 'rose-pine/neovim'
+" zenbones
+" Plug 'mcchrish/zenbones.nvim'
+" Plug 'rktjmp/lush.nvim'
+
 
 " syntax
 Plug 'mtdl9/vim-log-highlighting'

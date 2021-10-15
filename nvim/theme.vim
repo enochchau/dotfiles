@@ -16,3 +16,5 @@ endif
 colorscheme one
 " colorscheme ayu
 " colorscheme PaperColor
+" colorscheme zenflesh
+" colorscheme rose-pine
