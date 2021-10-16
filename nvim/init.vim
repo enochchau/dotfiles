@@ -52,4 +52,5 @@ if has('nvim')
   source ~/.config/nvim/coc.vim
   source ~/.config/nvim/telescope.vim
   source ~/.config/nvim/lualine.vim
+  source ~/.config/nvim/blankline.vim
 endif
