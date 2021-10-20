@@ -46,10 +46,10 @@ source ~/.config/nvim/settings.vim
 source ~/.config/nvim/theme.vim
 source ~/.config/nvim/syntax.vim
 source ~/.config/nvim/doge.vim
+source ~/.config/nvim/coc.vim
 if has('nvim')
   source ~/.config/nvim/treesitter.vim
   source ~/.config/nvim/tree.vim
-  source ~/.config/nvim/coc.vim
   source ~/.config/nvim/telescope.vim
   source ~/.config/nvim/lualine.vim
   source ~/.config/nvim/blankline.vim

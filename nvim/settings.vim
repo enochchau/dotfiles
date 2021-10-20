@@ -24,8 +24,8 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-set autoindent
-set smartindent
+" set autoindent
+" set smartindent
 
 " highlight all search pattern matches
 set hlsearch
