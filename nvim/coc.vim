@@ -67,15 +67,14 @@ inoremap <silent><expr> <cr> pumvisible() ? coc#_select_confirm()
 " Use `:CocDiagnostics` to get all diagnostics of current buffer in location list.
 nmap <silent> [g <Plug>(coc-diagnostic-prev)
 nmap <silent> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> ga :Telescope coc diagnostics<CR>
+nmap <silent> gs :Telescope coc document_symbols<CR>
 
 " GoTo code navigation.
 nmap <silent> gd <Plug>(coc-definition)
-nmap <silent> gy :Telescope coc type_definition<CR>
-"<Plug>(coc-type-definition)
-nmap <silent> gi :Telescope coc implementation<CR>
-" <Plug>(coc-implementation)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi :Telescope coc implementations<CR>
 nmap <silent> gr :Telescope coc references<CR>
-" <Plug>(coc-references)
 
 " Use K to show documentation in preview window.
 nnoremap <silent> K :call <SID>show_documentation()<CR>

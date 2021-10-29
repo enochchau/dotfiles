@@ -23,6 +23,7 @@ Plug 'suy/vim-context-commentstring'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+Plug 'lbrayner/vim-rzip'
 
 if has('nvim')
   " telescope
