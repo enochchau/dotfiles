@@ -105,10 +105,10 @@ window:
 font:
   # Normal (roman) font face
   normal:
-    family: MesloLGS NF
+    family: Hack Nerd Font # , JetBrainsMono Nerd Font, MesloLGS NF
 
   # Point size
-  size: 13
+  size: 14
 
 colors:
   # Default colors

@@ -24,6 +24,7 @@ Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'lbrayner/vim-rzip'
+Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
 if has('nvim')
   " telescope
@@ -48,6 +49,7 @@ source ~/.config/nvim/theme.vim
 source ~/.config/nvim/syntax.vim
 source ~/.config/nvim/doge.vim
 source ~/.config/nvim/coc.vim
+source ~/.config/nvim/markdown-preview.vim
 if has('nvim')
   source ~/.config/nvim/treesitter.vim
   source ~/.config/nvim/tree.vim
