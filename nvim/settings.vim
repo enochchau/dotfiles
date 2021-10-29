@@ -52,3 +52,6 @@ set clipboard+=unnamedplus
 " traverse buffers
 noremap <silent> ]b :bnext<CR>
 noremap <silent> [b :bprevious<CR>
+
+" prolog syntax highlight
+au BufRead,BufNewFile *.pro set filetype=prolog
