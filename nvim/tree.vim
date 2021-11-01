@@ -5,9 +5,11 @@ let g:nvim_tree_ignore = ['.DS_Store']
 lua <<EOF
 require'nvim-tree'.setup {
   open_on_setup = true,
+  update_cwd = true,
   view = {
     side = 'right',
-    auto_resize = true
+    auto_resize = true,
+    width = 35
   }
 }
 EOF

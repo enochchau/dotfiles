@@ -22,7 +22,8 @@ Plug 'tpope/vim-commentary'
 Plug 'suy/vim-context-commentstring'
 Plug 'mhinz/vim-startify'
 Plug 'tpope/vim-fugitive'
-Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
+Plug 'kkoomen/vim-doge', { 'do': 'npm i && npm run build' }
+" { 'do': { -> doge#install() } }
 Plug 'lbrayner/vim-rzip'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 
