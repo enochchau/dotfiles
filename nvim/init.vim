@@ -10,8 +10,11 @@ Plug 'rakr/vim-one'
 " Plug 'mcchrish/zenbones.nvim'
 " Plug 'rktjmp/lush.nvim' " for zenbones
 
-Plug 'sheerun/vim-polyglot'
+" Syntax
+Plug 'pangloss/vim-javascript'
+Plug 'HerringtonDarkholme/yats.vim'
 Plug 'styled-components/vim-styled-components'
+
 Plug 'suy/vim-context-commentstring'
 Plug 'mhinz/vim-startify'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
