@@ -14,6 +14,7 @@ Plug 'kaicataldo/material.vim', {'branch':'main'}
 Plug 'pangloss/vim-javascript'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'styled-components/vim-styled-components'
+Plug 'MaxMEllon/vim-jsx-pretty'
 
 Plug 'suy/vim-context-commentstring'
 Plug 'mhinz/vim-startify'
