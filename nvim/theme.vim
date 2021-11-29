@@ -10,10 +10,10 @@ if (has('termguicolors'))
     set termguicolors
 endif
 
-colorscheme material
+" colorscheme material
 " colorscheme gruvbox
 " colorscheme NeoSolarized
-" colorscheme one
+colorscheme one
 " colorscheme ayu
 " colorscheme PaperColor
 " colorscheme zenbones

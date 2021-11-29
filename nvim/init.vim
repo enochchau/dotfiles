@@ -1,11 +1,11 @@
 call plug#begin('~/.config/plugged')
 " themes
-" Plug 'rakr/vim-one'
+Plug 'rakr/vim-one'
 " Plug 'morhetz/gruvbox'
 " Plug 'overcache/NeoSolarized'
 " Plug 'ayu-theme/ayu-vim'
 " Plug 'NLKNguyen/papercolor-theme'
-Plug 'kaicataldo/material.vim', {'branch':'main'}
+" Plug 'kaicataldo/material.vim', {'branch':'main'}
 " Plug 'rose-pine/neovim'
 " Plug 'mcchrish/zenbones.nvim'
 " Plug 'rktjmp/lush.nvim' " for zenbones
