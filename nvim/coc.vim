@@ -11,7 +11,6 @@ let g:coc_global_extensions = [
       \'coc-prettier',
       \'coc-json', 
       \'coc-snippets',  
-      \'coc-dictionary',
       \'coc-word',
       \'coc-emoji',
       \'coc-syntax',
