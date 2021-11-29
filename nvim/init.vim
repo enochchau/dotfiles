@@ -12,7 +12,7 @@ Plug 'rakr/vim-one'
 
 " Syntax
 Plug 'pangloss/vim-javascript'
-Plug 'HerringtonDarkholme/yats.vim'
+Plug 'leafgarland/typescript-vim'
 Plug 'styled-components/vim-styled-components'
 Plug 'MaxMEllon/vim-jsx-pretty'
 
