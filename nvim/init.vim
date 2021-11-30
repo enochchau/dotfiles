@@ -16,6 +16,7 @@ Plug 'HerringtonDarkholme/yats.vim'
 Plug 'styled-components/vim-styled-components'
 Plug 'MaxMEllon/vim-jsx-pretty'
 
+Plug 'editorconfig/editorconfig-vim'
 Plug 'suy/vim-context-commentstring'
 Plug 'mhinz/vim-startify'
 Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
