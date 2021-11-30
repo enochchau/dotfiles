@@ -11,7 +11,7 @@ Plug 'rakr/vim-one'
 " Plug 'rktjmp/lush.nvim' " for zenbones
 
 " Syntax
-Plug 'pangloss/vim-javascript'
+Plug 'othree/yajs.vim'
 Plug 'HerringtonDarkholme/yats.vim'
 Plug 'styled-components/vim-styled-components'
 Plug 'MaxMEllon/vim-jsx-pretty'
