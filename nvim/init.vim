@@ -1,27 +1,16 @@
 call plug#begin('~/.config/plugged')
 " themes
-Plug 'rakr/vim-one'
+Plug 'Th3Whit3Wolf/one-nvim'
+" Plug 'mhartington/oceanic-next'
 " Plug 'morhetz/gruvbox'
-" Plug 'overcache/NeoSolarized'
-" Plug 'ayu-theme/ayu-vim'
 " Plug 'NLKNguyen/papercolor-theme'
 " Plug 'kaicataldo/material.vim', {'branch':'main'}
-" Plug 'rose-pine/neovim'
 " Plug 'mcchrish/zenbones.nvim'
 " Plug 'rktjmp/lush.nvim' " for zenbones
 
-" Syntax
-Plug 'othree/yajs.vim'
-Plug 'HerringtonDarkholme/yats.vim'
-Plug 'styled-components/vim-styled-components'
-Plug 'MaxMEllon/vim-jsx-pretty'
-
 Plug 'editorconfig/editorconfig-vim'
-Plug 'suy/vim-context-commentstring'
 Plug 'mhinz/vim-startify'
-Plug 'kkoomen/vim-doge', { 'do': { -> doge#install() } }
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
-Plug 'AndrewRadev/tagalong.vim'
 
 if has('nvim')
   " telescope
@@ -29,6 +18,10 @@ if has('nvim')
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   Plug 'fannheyward/telescope-coc.nvim'
+  " tree-sitter
+  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'windwp/nvim-ts-autotag'
+  Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
   Plug 'b3nj5m1n/kommentary'
   Plug 'hoob3rt/lualine.nvim'
@@ -41,11 +34,11 @@ call plug#end()
 
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/theme.vim
-source ~/.config/nvim/syntax.vim
-source ~/.config/nvim/doge.vim
 source ~/.config/nvim/coc.vim
 source ~/.config/nvim/markdown-preview.vim
 if has('nvim')
+  source ~/.config/nvim/treesitter.vim
+  source ~/.config/nvim/kommentary.vim
   source ~/.config/nvim/tree.vim
   source ~/.config/nvim/telescope.vim
   source ~/.config/nvim/lualine.vim

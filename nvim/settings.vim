@@ -15,8 +15,8 @@ nmap j gj
 nmap k gk
 
 " enable syntax and filetype detection
-syntax enable
-filetype plugin indent on
+" syntax enable
+" filetype plugin indent on
 
 " set tabs to 2 spaces
 set tabstop=2
