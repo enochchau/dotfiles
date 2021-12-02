@@ -1,6 +1,6 @@
 call plug#begin('~/.config/plugged')
 " themes
-Plug 'Th3Whit3Wolf/one-nvim'
+Plug 'rakr/vim-one'
 " Plug 'mhartington/oceanic-next'
 " Plug 'morhetz/gruvbox'
 " Plug 'NLKNguyen/papercolor-theme'

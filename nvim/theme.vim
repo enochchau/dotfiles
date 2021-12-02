@@ -9,7 +9,7 @@ if (has('termguicolors'))
 endif
 
 
-colorscheme one-nvim
+colorscheme one
 " colorscheme OceanicNext
 " colorscheme gruvbox
 " colorscheme PaperColor
