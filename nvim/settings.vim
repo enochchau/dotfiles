@@ -52,3 +52,6 @@ set clipboard+=unnamedplus
 " traverse buffers
 noremap <silent> ]b :bnext<CR>
 noremap <silent> [b :bprevious<CR>
+
+" terminal remap
+tnoremap <Esc> <C-\><C-n>

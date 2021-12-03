@@ -23,6 +23,7 @@ if has('nvim')
   Plug 'windwp/nvim-ts-autotag'
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
+  Plug 'akinsho/toggleterm.nvim'
   Plug 'b3nj5m1n/kommentary'
   Plug 'hoob3rt/lualine.nvim'
   Plug 'lukas-reineke/indent-blankline.nvim'
@@ -43,4 +44,5 @@ if has('nvim')
   source ~/.config/nvim/telescope.vim
   source ~/.config/nvim/lualine.vim
   source ~/.config/nvim/blankline.vim
+  source ~/.config/nvim/toggleterm.vim
 endif
