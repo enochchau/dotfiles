@@ -10,6 +10,7 @@ endif
 
 
 colorscheme one
+" colorscheme tokyonight
 " colorscheme OceanicNext
 " colorscheme gruvbox
 " colorscheme PaperColor
