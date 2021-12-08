@@ -12,6 +12,8 @@ Plug 'rakr/vim-one'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mhinz/vim-startify'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+" yarn pnp
+Plug 'lbrayner/vim-rzip'
 
 if has('nvim')
   " telescope
@@ -36,9 +38,9 @@ call plug#end()
 
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/theme.vim
-source ~/.config/nvim/coc.vim
 source ~/.config/nvim/markdown-preview.vim
 if has('nvim')
+  source ~/.config/nvim/coc.vim
   source ~/.config/nvim/treesitter.vim
   source ~/.config/nvim/kommentary.vim
   source ~/.config/nvim/tree.vim
