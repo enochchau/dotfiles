@@ -62,4 +62,10 @@ lua << EOF
 
     server:setup(opts)
   end)
+
+  -- show diagnostic on hover instead of in virtual text
+  vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+  vim.diagnostic.config{
+    virtual_text = false
+  }
 EOF
