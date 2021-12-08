@@ -8,11 +8,18 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
 Plug 'lbrayner/vim-rzip'
 
 if has('nvim')
+  " lsp
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'williamboman/nvim-lsp-installer'
+  Plug 'tami5/lspsaga.nvim'
+  Plug 'lukas-reineke/format.nvim'
+
+
   " telescope
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-  Plug 'fannheyward/telescope-coc.nvim'
+  " Plug 'fannheyward/telescope-coc.nvim'
   " tree-sitter
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'windwp/nvim-ts-autotag'
@@ -24,7 +31,7 @@ if has('nvim')
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua'
   " lsp
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
+  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'akinsho/toggleterm.nvim'
@@ -37,7 +44,8 @@ source ~/.config/nvim/settings.vim
 source ~/.config/nvim/theme.vim
 source ~/.config/nvim/markdown-preview.vim
 if has('nvim')
-  source ~/.config/nvim/coc.vim
+  " source ~/.config/nvim/coc.vim
+  source ~/.config/nvim/lsp.vim
   source ~/.config/nvim/gitsigns.vim
   source ~/.config/nvim/treesitter.vim
   source ~/.config/nvim/autopairs.vim
