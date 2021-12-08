@@ -1,13 +1,5 @@
 call plug#begin('~/.config/plugged')
-" themes
 Plug 'rakr/vim-one'
-" Plug 'folke/tokyonight.nvim'
-" Plug 'mhartington/oceanic-next'
-" Plug 'morhetz/gruvbox'
-" Plug 'NLKNguyen/papercolor-theme'
-" Plug 'kaicataldo/material.vim', {'branch':'main'}
-" Plug 'mcchrish/zenbones.nvim'
-" Plug 'rktjmp/lush.nvim' " for zenbones
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mhinz/vim-startify'
@@ -25,7 +17,9 @@ if has('nvim')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'windwp/nvim-ts-autotag'
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+  Plug 'windwp/nvim-autopairs'
 
+  Plug 'lewis6991/gitsigns.nvim'
   Plug 'akinsho/toggleterm.nvim'
   Plug 'b3nj5m1n/kommentary'
   Plug 'hoob3rt/lualine.nvim'
@@ -41,7 +35,9 @@ source ~/.config/nvim/theme.vim
 source ~/.config/nvim/markdown-preview.vim
 if has('nvim')
   source ~/.config/nvim/coc.vim
+  source ~/.config/nvim/gitsigns.vim
   source ~/.config/nvim/treesitter.vim
+  source ~/.config/nvim/autopairs.vim
   source ~/.config/nvim/kommentary.vim
   source ~/.config/nvim/tree.vim
   source ~/.config/nvim/telescope.vim

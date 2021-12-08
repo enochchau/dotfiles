@@ -1,7 +1,7 @@
-lua <<EOF
+lua << EOF
 require('lualine').setup{
   sections = {
-    lualine_b = {'g:coc_git_status', 'b:coc_git_status', 'b:coc_git_blame', 'g:coc_status' }
+    lualine_b = {'b:gitsigns_status', 'g:coc_status' }
   },
   options = {
     theme = 'onedark',

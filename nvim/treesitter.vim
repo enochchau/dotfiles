@@ -1,4 +1,4 @@
-lua <<EOF
+lua << EOF
 require'nvim-treesitter.configs'.setup {
   ensure_installed = { "javascript", "typescript", "bash", "jsdoc", "json", "julia", "lua", "scss", "svelte", "tsx", "vim", "yaml", "css"}, 
   highlight = {
