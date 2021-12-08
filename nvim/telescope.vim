@@ -6,6 +6,5 @@ lua << EOF
 local telescope = require('telescope')
 
 telescope.load_extension('fzf')
--- telescope.load_extension('coc')
 telescope.setup()
 EOF
