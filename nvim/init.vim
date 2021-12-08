@@ -16,17 +16,20 @@ if has('nvim')
   " tree-sitter
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'windwp/nvim-ts-autotag'
-  Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'windwp/nvim-autopairs'
+  " comment
+  Plug 'JoosepAlviste/nvim-ts-context-commentstring'
+  Plug 'b3nj5m1n/kommentary'
+  " file tree
+  Plug 'kyazdani42/nvim-web-devicons'
+  Plug 'kyazdani42/nvim-tree.lua'
+  " lsp
+  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'akinsho/toggleterm.nvim'
-  Plug 'b3nj5m1n/kommentary'
   Plug 'hoob3rt/lualine.nvim'
   Plug 'lukas-reineke/indent-blankline.nvim'
-  Plug 'kyazdani42/nvim-web-devicons'
-  Plug 'kyazdani42/nvim-tree.lua'
-  Plug 'neoclide/coc.nvim', {'branch': 'release'}
 endif
 call plug#end()
 
@@ -39,7 +42,7 @@ if has('nvim')
   source ~/.config/nvim/treesitter.vim
   source ~/.config/nvim/autopairs.vim
   source ~/.config/nvim/kommentary.vim
-  source ~/.config/nvim/tree.vim
+  source ~/.config/nvim/filetree.vim
   source ~/.config/nvim/telescope.vim
   source ~/.config/nvim/lualine.vim
   source ~/.config/nvim/blankline.vim

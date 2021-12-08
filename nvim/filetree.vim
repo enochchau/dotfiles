@@ -1,7 +1,7 @@
 nnoremap <C-n> :NvimTreeToggle<CR>
 nnoremap <leader>r :NvimTreeRefresh<CR>
 nnoremap <leader>n :NvimTreeFindFile<CR>
-lua <<EOF
+lua << EOF
 require'nvim-tree'.setup {
   open_on_setup = true,
   update_cwd = true,
