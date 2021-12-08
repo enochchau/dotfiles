@@ -26,7 +26,6 @@ if has('nvim')
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
-  " Plug 'fannheyward/telescope-coc.nvim'
   " tree-sitter
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'windwp/nvim-ts-autotag'
@@ -37,9 +36,7 @@ if has('nvim')
   " file tree
   Plug 'kyazdani42/nvim-web-devicons'
   Plug 'kyazdani42/nvim-tree.lua'
-  " lsp
-  " Plug 'neoclide/coc.nvim', {'branch': 'release'}
-
+  " util
   Plug 'lewis6991/gitsigns.nvim'
   Plug 'akinsho/toggleterm.nvim'
   Plug 'hoob3rt/lualine.nvim'
@@ -51,7 +48,6 @@ source ~/.config/nvim/settings.vim
 source ~/.config/nvim/theme.vim
 source ~/.config/nvim/markdown-preview.vim
 if has('nvim')
-  " source ~/.config/nvim/coc.vim
   source ~/.config/nvim/cmp.vim
   source ~/.config/nvim/lsp.vim
   source ~/.config/nvim/gitsigns.vim

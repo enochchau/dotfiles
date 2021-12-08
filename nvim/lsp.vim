@@ -18,6 +18,7 @@ lua << EOF
     local telescope = function(picker)
       return '<cmd>lua require"telescope.builtin".' .. picker .. '()<CR>'
     end
+
     local saga = function(action)
       return '<cmd>Lspsaga ' .. action .. '<CR>'
     end
@@ -44,6 +45,7 @@ lua << EOF
     }
 
     if server.name == "eslint" then
+      -- tell lsp that eslint can be used as a formatter
       opts.on_attach = function (client, bufnr)
         client.resolved_capabilities.document_formatting = true
         common_on_attach(client, bufnr)
