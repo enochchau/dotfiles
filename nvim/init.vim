@@ -12,9 +12,16 @@ if has('nvim')
   Plug 'neovim/nvim-lspconfig'
   Plug 'williamboman/nvim-lsp-installer'
   Plug 'tami5/lspsaga.nvim'
-  Plug 'lukas-reineke/format.nvim'
-
-
+  " formatting
+  Plug 'mhartington/formatter.nvim' , { 'do': 'npm install -g @fsouza/prettierd' }
+  " completion
+  Plug 'hrsh7th/cmp-nvim-lsp'
+  Plug 'hrsh7th/cmp-buffer'
+  Plug 'hrsh7th/cmp-path'
+  Plug 'hrsh7th/cmp-cmdline'
+  Plug 'hrsh7th/nvim-cmp'
+  Plug 'L3MON4D3/LuaSnip'
+  Plug 'saadparwaiz1/cmp_luasnip'
   " telescope
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'
@@ -45,6 +52,7 @@ source ~/.config/nvim/theme.vim
 source ~/.config/nvim/markdown-preview.vim
 if has('nvim')
   " source ~/.config/nvim/coc.vim
+  source ~/.config/nvim/cmp.vim
   source ~/.config/nvim/lsp.vim
   source ~/.config/nvim/gitsigns.vim
   source ~/.config/nvim/treesitter.vim
@@ -55,4 +63,5 @@ if has('nvim')
   source ~/.config/nvim/lualine.vim
   source ~/.config/nvim/blankline.vim
   source ~/.config/nvim/toggleterm.vim
+  source ~/.config/nvim/format.vim
 endif
