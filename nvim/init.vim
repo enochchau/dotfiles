@@ -60,4 +60,5 @@ if has('nvim')
   source ~/.config/nvim/blankline.vim
   source ~/.config/nvim/toggleterm.vim
   source ~/.config/nvim/format.vim
+  source ~/.config/nvim/rzip.vim
 endif
