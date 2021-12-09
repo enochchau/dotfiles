@@ -1,5 +1,6 @@
 call plug#begin('~/.config/plugged')
 Plug 'rakr/vim-one'
+Plug 'rafamadriz/neon'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mhinz/vim-startify'
