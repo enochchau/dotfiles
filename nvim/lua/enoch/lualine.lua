@@ -1,13 +1,13 @@
 require('lualine').setup{
   sections = {
     lualine_b = {
-      'branch', 
+      'branch',
       'b:gitsigns_status',
       { 'diagnostics', sources = { 'nvim_lsp', 'coc' } }
     },
   },
   options = {
-    theme = 'onedark',
+    theme = 'neon',
     section_separators = '',
     component_separators = '│',
   }

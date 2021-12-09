@@ -1,7 +1,7 @@
 lua << EOF
   local prettier = function()
     return {
-      exe = 'prettierd',
+      exe = 'PRETTIERD_DEFAULT_CONFIG=$HOME/.config/nvim/.prettierrc prettierd',
       args = {vim.api.nvim_buf_get_name(0)},
       stdin = true
     }
