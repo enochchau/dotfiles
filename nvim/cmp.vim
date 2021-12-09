@@ -43,6 +43,8 @@ lua << EOF
       { name = 'luasnip' }, 
     }, {
       { name = 'buffer' },
+    }, {
+      { name = 'path' }
     })
   })
 

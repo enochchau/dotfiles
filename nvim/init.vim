@@ -47,6 +47,7 @@ call plug#end()
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/theme.vim
 source ~/.config/nvim/markdown-preview.vim
+source ~/.config/nvim/rzip.vim
 if has('nvim')
   source ~/.config/nvim/cmp.vim
   source ~/.config/nvim/lsp.vim
