@@ -1,7 +1,11 @@
 lua << EOF
 require('lualine').setup{
   sections = {
-    lualine_b = {'b:gitsigns_status', 'g:coc_status' }
+    lualine_b = {
+      'branch', 
+      'b:gitsigns_status',
+      { 'diagnostics', sources = { 'nvim_lsp', 'coc' } }
+    },
   },
   options = {
     theme = 'onedark',

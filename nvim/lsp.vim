@@ -1,10 +1,11 @@
 lua << EOF
   local lsp_installer = require "nvim-lsp-installer"
   local lspsaga = require('lspsaga')
+  local telescope = require('telescope')
+
   lspsaga.setup()
 
   function common_on_attach(client, bufnr)
-    local telescope = require('telescope')
 
     local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
     local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -41,7 +42,7 @@ lua << EOF
 
   lsp_installer.on_server_ready(function (server)
     local opts = {
-        on_attach = common_on_attach,
+      on_attach = common_on_attach,
     }
 
     if server.name == "eslint" then
