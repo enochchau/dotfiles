@@ -1,4 +1,4 @@
-local helpers = require'enoch.helpers'
+local helpers = require 'enoch.helpers'
 
 require'nvim-tree'.setup {
   open_on_setup = true,
@@ -9,7 +9,9 @@ require'nvim-tree'.setup {
     width = 35
   },
   filters = {
-    custom = {'.DS_Store'}
+    custom = {
+      '.DS_Store'
+    }
   }
 }
 helpers.nnoremap('<leader>n', ':NvimTreeFindFile<CR>')

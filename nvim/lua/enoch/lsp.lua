@@ -8,7 +8,7 @@ lspsaga.setup()
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
-function common_on_attach(client, bufnr)
+local function common_on_attach(client, bufnr)
 
   local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
   local function buf_set_option(...) vim.api.nvim_buf_set_option(bufnr, ...) end
@@ -17,15 +17,14 @@ function common_on_attach(client, bufnr)
   buf_set_option('omnifunc', 'v:lua.vim.lsp.omnifunc')
 
   -- Mappings.
-  local opts = { noremap=true, silent=true }
+  local opts = {
+    noremap = true,
+    silent = true
+  }
 
-  local telescope = function(picker)
-    return '<cmd>lua require"telescope.builtin".' .. picker .. '()<CR>'
-  end
+  local telescope = function(picker) return '<cmd>lua require"telescope.builtin".' .. picker .. '()<CR>' end
 
-  local saga = function(action)
-    return '<cmd>Lspsaga ' .. action .. '<CR>'
-  end
+  local saga = function(action) return '<cmd>Lspsaga ' .. action .. '<CR>' end
 
   -- See `:help vim.lsp.*` for documentation on any of the below functions
   buf_set_keymap('n', 'gd', telescope('lsp_definitions'), opts)
@@ -43,25 +42,30 @@ function common_on_attach(client, bufnr)
   buf_set_keymap('n', '<leader>rn', saga('rename'), opts)
 end
 
-lsp_installer.on_server_ready(function (server)
+lsp_installer.on_server_ready(function(server)
   local opts = {
     on_attach = common_on_attach,
-    capabilities = capabilities,
+    capabilities = capabilities
   }
 
   if server.name == "eslint" then
     -- tell lsp that eslint can be used as a formatter
-    opts.on_attach = function (client, bufnr)
+    opts.on_attach = function(client, bufnr)
       client.resolved_capabilities.document_formatting = true
       common_on_attach(client, bufnr)
     end
 
     -- for yarn pnp
     local default_opts = server:get_default_options()
-    opts.cmd = vim.list_extend({"yarn", "node"}, default_opts.cmd)
+    opts.cmd = vim.list_extend({
+      "yarn",
+      "node"
+    }, default_opts.cmd)
 
     opts.settings = {
-      format = { enable = true }, -- this will enable formatting
+      format = {
+        enable = true
+      } -- this will enable formatting
     }
   end
 
@@ -70,6 +74,6 @@ end)
 
 -- show diagnostic on hover instead of in virtual text
 vim.cmd [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
-vim.diagnostic.config{
+vim.diagnostic.config {
   virtual_text = false
 }

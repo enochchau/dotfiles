@@ -1,4 +1,4 @@
-local helpers = require'enoch.helpers'
+local helpers = require 'enoch.helpers'
 local telescope = require('telescope')
 
 telescope.load_extension('fzf')

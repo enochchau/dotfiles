@@ -7,6 +7,14 @@ lua << EOF
     }
   end
 
+  local lua_format = function()
+    return {
+      exe = 'lua-format',
+      args = {vim.api.nvim_buf_get_name(0)},
+      stdin = true
+    }
+  end
+
   require("formatter").setup{
     logging = true,
     filetype = {
@@ -18,11 +26,23 @@ lua << EOF
       css = { prettier },
       scss = { prettier },
       yaml = { prettier },
-      graphql = { prettier }
+      graphql = { prettier },
+      lua = { lua_format }
     }
   }
 EOF
 
 command! -nargs=0 Prettier Format
 command! -nargs=0 TSFmt lua vim.lsp.buf.formatting_seq_sync(nil, nil, { 'tsserver' })
-command! -nargs=0 EslintFix lua vim.lsp.buf.formatting_seq_sync(nil, nil, { 'eslint' })
+
+" restart prettierd if default config is changed
+augroup prettierd_restart
+  autocmd!
+  autocmd BufWritePre ~/.config/nvim/.prettierrc !kill `pgrep prettierd`
+augroup END
+
+" auto format markdown files
+augroup md_fmt
+  autocmd!
+  autocmd BufWritePost *.md FormatWrite
+augroup END
