@@ -50,16 +50,17 @@ source ~/.config/nvim/theme.vim
 source ~/.config/nvim/markdown-preview.vim
 source ~/.config/nvim/rzip.vim
 if has('nvim')
-  source ~/.config/nvim/cmp.vim
-  source ~/.config/nvim/lsp.vim
-  source ~/.config/nvim/gitsigns.vim
-  source ~/.config/nvim/treesitter.vim
-  source ~/.config/nvim/autopairs.vim
-  source ~/.config/nvim/kommentary.vim
-  source ~/.config/nvim/filetree.vim
-  source ~/.config/nvim/telescope.vim
-  source ~/.config/nvim/lualine.vim
-  source ~/.config/nvim/blankline.vim
-  source ~/.config/nvim/toggleterm.vim
+  lua require('enoch.cmp')
+  lua require('enoch.lsp')
+  lua require('enoch.filetree')
+  lua require('enoch.gitsigns')
+  lua require('enoch.kommentary')
+  lua require('enoch.lualine')
+  lua require('enoch.blankline')
+  lua require('enoch.autopairs')
+  lua require('enoch.toggleterm')
+  lua require('enoch.telescope')
+  lua require('enoch.treesitter')
+
   source ~/.config/nvim/format.vim
 endif

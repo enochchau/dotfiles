@@ -1,4 +1,3 @@
-lua << EOF
 require('lualine').setup{
   sections = {
     lualine_b = {
@@ -13,4 +12,3 @@ require('lualine').setup{
     component_separators = '│',
   }
 }
-EOF
