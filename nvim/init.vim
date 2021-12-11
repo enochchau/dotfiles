@@ -1,6 +1,8 @@
 call plug#begin('~/.config/plugged')
 Plug 'rakr/vim-one'
 Plug 'rafamadriz/neon'
+Plug 'projekt0n/github-nvim-theme'
+Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mhinz/vim-startify'
