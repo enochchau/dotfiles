@@ -60,5 +60,3 @@ cmp.setup({
     }
   })
 })
-
-require("luasnip/loaders/from_vscode").load({ paths = { "~/.config/plugged/friendly-snippets" } })
