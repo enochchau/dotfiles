@@ -1,8 +1,0 @@
-{
-  "eslint.autoFixOnSave": true,
-  "coc.preferences.formatOnSaveFiletypes": ["css", "markdown", "json"],
-  "prettier.printWidth": 120,
-  "prettier.statusItemText": "",
-  "svelte.enable-ts-plugin": true,
-  "coc.preferences.colorSupport": true
-}

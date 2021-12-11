@@ -1,0 +1,19 @@
+local helpers = require 'enoch.helpers'
+
+require'nvim-tree'.setup {
+  open_on_setup = true,
+  update_cwd = true,
+  view = {
+    side = 'right',
+    auto_resize = true,
+    width = 35
+  },
+  filters = {
+    custom = {
+      '.DS_Store'
+    }
+  }
+}
+helpers.nnoremap('<leader>n', ':NvimTreeFindFile<CR>')
+helpers.nnoremap('<C-n>', ':NvimTreeToggle<CR>')
+helpers.nnoremap('<leader>r', ':NvimTreeRefresh<CR>')
