@@ -1,4 +1,5 @@
 let g:neon_style = 'doom'
+
 set bg=dark
 
 if (has('termguicolors'))
