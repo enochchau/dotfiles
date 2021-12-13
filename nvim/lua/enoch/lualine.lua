@@ -3,7 +3,12 @@ require('lualine').setup {
     lualine_b = {
       'branch',
       'b:gitsigns_status',
-      {'diagnostics', sources = {'nvim_diagnostic'}}
+      {
+        'diagnostics',
+        sources = {
+          'nvim_diagnostic'
+        }
+      }
     }
   },
   options = {
