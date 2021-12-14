@@ -26,6 +26,9 @@ lua << EOF
       css = { prettier },
       scss = { prettier },
       yaml = { prettier },
+      vue = { prettier },
+      html = { prettier },
+      svelte = { prettier },
       graphql = { prettier },
       lua = { lua_format }
     }
