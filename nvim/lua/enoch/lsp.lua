@@ -71,10 +71,15 @@ lsp_installer.on_server_ready(function(server)
 
     opts.on_attach = function(client, bufnr)
       local ts_utils = require("nvim-lsp-ts-utils")
-      ts_utils.setup{}
+      ts_utils.setup {
+        auto_inlay_hints = true
+      }
       ts_utils.setup_client(client)
       local function buf_set_keymap(...) vim.api.nvim_buf_set_keymap(bufnr, ...) end
-      local keymap_opts = { silent = true, noremap = true }
+      local keymap_opts = {
+        silent = true,
+        noremap = true
+      }
       buf_set_keymap('n', '<leader>o', ":TSLspOrganize<CR>", keymap_opts)
       buf_set_keymap('n', '<leader>rf', ":TSLspRenameFile<CR>", keymap_opts)
       buf_set_keymap('n', '<leader>i', ":TSLspImportAll<CR>", keymap_opts)
