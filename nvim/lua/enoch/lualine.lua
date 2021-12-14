@@ -6,8 +6,7 @@ require('lualine').setup {
       {
         'diagnostics',
         sources = {
-          'nvim_lsp',
-          'coc'
+          'nvim_diagnostic'
         }
       }
     }
