@@ -34,6 +34,7 @@ if has('nvim')
   Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
   Plug 'windwp/nvim-ts-autotag'
   Plug 'windwp/nvim-autopairs'
+  Plug 'nvim-treesitter/playground'
   " comment
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'b3nj5m1n/kommentary'

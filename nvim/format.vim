@@ -29,6 +29,7 @@ lua << EOF
       vue = { prettier },
       html = { prettier },
       svelte = { prettier },
+      json = { prettier },
       graphql = { prettier },
       lua = { lua_format }
     }
