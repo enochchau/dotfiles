@@ -10,7 +10,7 @@ fi
 export ZSH="$HOME/.oh-my-zsh"
 export ZSH_THEME="powerlevel10k/powerlevel10k"
 
-plugins=(git npm yarn)
+plugins=(git)
 
 source $ZSH/oh-my-zsh.sh
 
