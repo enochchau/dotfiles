@@ -7,4 +7,5 @@ if (has('termguicolors'))
 endif
 
 " colorscheme one
-colo neon
+" colo neon
+colo tokyonight

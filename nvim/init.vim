@@ -3,6 +3,7 @@ Plug 'rakr/vim-one'
 Plug 'rafamadriz/neon'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'rmehri01/onenord.nvim', { 'branch': 'main' }
+Plug 'folke/tokyonight.nvim'
 
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mhinz/vim-startify'
@@ -14,7 +15,6 @@ if has('nvim')
   " lsp
   Plug 'neovim/nvim-lspconfig'
   Plug 'williamboman/nvim-lsp-installer'
-  Plug 'tami5/lspsaga.nvim'
   Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
   " formatting
   Plug 'mhartington/formatter.nvim' , { 'do': 'npm install -g @fsouza/prettierd' }

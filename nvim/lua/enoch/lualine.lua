@@ -12,7 +12,7 @@ require('lualine').setup {
     }
   },
   options = {
-    theme = 'neon',
+    theme = 'tokyonight',
     section_separators = '',
     component_separators = '│'
   }
