@@ -58,3 +58,10 @@ noremap <silent> [b :bprevious<CR>
 
 " terminal remap
 tnoremap <Esc> <C-\><C-n>
+
+" relative line numbers
+augroup numbertoggle
+  autocmd!
+  autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
+  autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
+augroup END
