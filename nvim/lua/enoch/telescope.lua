@@ -1,8 +1,16 @@
 local helpers = require 'enoch.helpers'
 local telescope = require('telescope')
 
+telescope.setup({
+  extensions = {
+    fzf = {
+      fuzzy = true,
+      override_generic_sorter = true,
+      override_file_sorter = true
+    }
+  }
+})
 telescope.load_extension('fzf')
-telescope.setup()
 helpers.nnoremap('<C-p>', '<cmd>Telescope find_files<CR>')
 helpers.nnoremap('<C-f>', '<cmd>Telescope live_grep<cr>')
 helpers.nnoremap('<C-b>', '<cmd>Telescope buffers<cr>')
