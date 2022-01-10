@@ -108,7 +108,7 @@ font:
     family: Hack Nerd Font # , JetBrainsMono Nerd Font, MesloLGS NF
 
   # Point size
-  size: 14
+  size: 13
 
 colors:
   # Default colors
