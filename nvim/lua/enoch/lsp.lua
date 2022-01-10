@@ -48,18 +48,18 @@ lsp_installer.on_server_ready(function(server)
       common_on_attach(client, bufnr)
     end
 
-    -- for yarn pnp
-    local default_opts = server:get_default_options()
-    opts.cmd = vim.list_extend({
-      "yarn",
-      "node"
-    }, default_opts.cmd)
-
     opts.settings = {
       format = {
         enable = true
       } -- this will enable formatting
     }
+
+    -- for yarn pnp
+    local eslint_config = require("lspconfig.server_configurations.eslint")
+    opts.cmd = vim.list_extend({
+      "yarn",
+      "node"
+    }, eslint_config.default_config.cmd)
   end
 
   if server.name == 'tsserver' then

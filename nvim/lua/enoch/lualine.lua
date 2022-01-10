@@ -13,7 +13,7 @@ require('lualine').setup {
     lualine_c = {
       '%{ObsessionStatus(\'\', \'\')}',
       'filename'
-    },
+    }
   },
   options = {
     theme = 'tokyonight',
