@@ -14,7 +14,7 @@ Plug 'lbrayner/vim-rzip'
 if has('nvim')
   " lsp
   Plug 'neovim/nvim-lspconfig'
-  Plug 'williamboman/nvim-lsp-installer'
+  Plug 'williamboman/nvim-lsp-installer', { 'commit': '5d4195df48b7639aa1dbcf3e7d67fa9306ad0655' }
   Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
   " formatting
   Plug 'mhartington/formatter.nvim', { 'do': 'npm install -g @fsouza/prettierd' }
