@@ -1,7 +1,7 @@
 local helpers = require 'enoch.helpers'
 
 require'nvim-tree'.setup {
-  open_on_setup = true,
+  open_on_setup = false,
   update_cwd = true,
   view = {
     side = 'right',
