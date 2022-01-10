@@ -7,6 +7,7 @@ Plug 'folke/tokyonight.nvim'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'mhinz/vim-startify'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install' }
+Plug 'tpope/vim-obsession'
 " yarn pnp
 Plug 'lbrayner/vim-rzip'
 

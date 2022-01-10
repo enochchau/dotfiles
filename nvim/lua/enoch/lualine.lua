@@ -9,7 +9,11 @@ require('lualine').setup {
           'nvim_diagnostic'
         }
       }
-    }
+    },
+    lualine_c = {
+      '%{ObsessionStatus(\'\', \'\')}',
+      'filename'
+    },
   },
   options = {
     theme = 'tokyonight',
