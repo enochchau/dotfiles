@@ -1,5 +1,6 @@
 local helpers = require 'enoch.helpers'
 local telescope = require('telescope')
+local actions = require "telescope.actions"
 
 telescope.setup({
   extensions = {
@@ -13,6 +14,13 @@ telescope.setup({
     find_files = {
       hidden = true,
       no_ignore = true
+    },
+    buffers = {
+      mappings = {
+        n = {
+          ["dd"] = actions.delete_buffer + actions.move_to_top
+        }
+      }
     }
   }
 })
