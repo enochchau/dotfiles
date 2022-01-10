@@ -18,8 +18,8 @@ nmap j gj
 nmap k gk
 
 " enable syntax and filetype detection
-" syntax enable
-" filetype plugin indent on
+syntax enable
+filetype plugin indent on
 
 " set tabs to 2 spaces
 set tabstop=2
@@ -27,8 +27,8 @@ set expandtab
 set shiftwidth=2
 set softtabstop=2
 
-" set autoindent
-" set smartindent
+set autoindent
+set smartindent
 
 " highlight all search pattern matches
 set hlsearch
@@ -65,3 +65,6 @@ augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 augroup END
+
+" color column at 80
+set colorcolumn=80

@@ -17,7 +17,7 @@ if has('nvim')
   Plug 'williamboman/nvim-lsp-installer'
   Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
   " formatting
-  Plug 'mhartington/formatter.nvim' , { 'do': 'npm install -g @fsouza/prettierd' }
+  Plug 'mhartington/formatter.nvim', { 'do': 'npm install -g @fsouza/prettierd' }
   " completion
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
