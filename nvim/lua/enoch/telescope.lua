@@ -2,6 +2,11 @@ local helpers = require 'enoch.helpers'
 local telescope = require('telescope')
 local actions = require "telescope.actions"
 
+local code_actions_config = {
+  layout_strategy = 'cursor',
+  layout_config = { width = 0.45, height = 0.4 }
+}
+
 telescope.setup({
   extensions = {
     fzf = {
@@ -17,7 +22,9 @@ telescope.setup({
           ["dd"] = actions.delete_buffer
         }
       }
-    }
+    },
+    lsp_code_actions = code_actions_config,
+    lsp_range_code_actions = code_actions_config
   }
 })
 telescope.load_extension('fzf')

@@ -31,7 +31,8 @@ local function common_on_attach(client, bufnr)
   buf_set_keymap('x', '<leader>f', ':<C-U>lua vim.lsp.buf.range_formatting()<CR>', opts)
   buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   buf_set_keymap('n', 'ga', '<cmd>Telescope diagnostics bufnr=0<CR>', opts)
-  buf_set_keymap('n', '<leader>a', '<cmd>lua vim.lsp.buf.code_action()<CR>', opts)
+  buf_set_keymap('n', '<leader>a', telescope_picker('lsp_code_actions'), opts)
+  buf_set_keymap('x', '<leader>a', ':Telescope lsp_range_code_actions<CR>', opts)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 end
 
