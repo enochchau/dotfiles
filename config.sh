@@ -16,13 +16,6 @@ source $HOME/.zshrc
 git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ${ZSH_CUSTOM:-$HOME/.oh-my-zsh/custom}/themes/powerlevel10k
 
 
-# symlink .config files
-mkdir -p $HOME/.config
-ln -s $PWD/nvim $HOME/.config/nvim
-mkdir -p $HOME/.config/alacritty
-ln -s $PWD/alacritty.yml $HOME/.config/alacritty/alacritty.yml
-ln -s $PWD/tmux.conf $HOME/.tmux.conf
-
 if [[ "$OS" == "Darwin" ]]; then
   cp vscode-settings.json $HOME/Library/Application Support/Code/User/settings.json
 fi

@@ -1,0 +1,16 @@
+- link:
+    ~/.config/nvim:
+        create: true
+        path: nvim
+    ~/.config/alacritty/alacritty.yml: 
+        create: true
+        path: alacritty.yml
+    ~/.main.zshrc: main.zshrc
+    ~/.tmux.conf: tmux.conf
+    ~/Library/Application Support/Code/User/settings.json:
+        if: '[ `uname` = Darwin ]'
+        path: vscode-settings.json
+    ~/.config/Code/User/settings.json:
+        if: '[ `uname` = Linux ]'
+        create: true
+        path: vscode-settings.json
