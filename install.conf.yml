@@ -1,10 +1,10 @@
 - link:
     ~/.config/nvim:
         create: true
-        path: nvim
+        path: config/nvim
     ~/.config/alacritty/alacritty.yml: 
         create: true
-        path: alacritty.yml
+        path: config/alacritty/alacritty.yml
     ~/.main.zshrc: main.zshrc
     ~/.tmux.conf: tmux.conf
     ~/Library/Application Support/Code/User/settings.json:
