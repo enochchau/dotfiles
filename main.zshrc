@@ -1,4 +1,5 @@
 #!/bin/zsh
+
 source ~/.antigen.zsh
 antigen use oh-my-zsh
 antigen bundle git
