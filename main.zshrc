@@ -24,3 +24,5 @@ export PATH="$(yarn global bin):$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export BAT_THEME="Dracula"
 export GIT_PAGER='delta --dark -s -n'
+
+bindkey -v
