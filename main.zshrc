@@ -1,10 +1,8 @@
 #!/bin/zsh
-
-source ~/.antigen.zsh
-antigen use oh-my-zsh
-antigen bundle git
-antigen theme romkatv/powerlevel10k
-antigen apply
+#
+export ZSH="$HOME/.sheldon/repos/github.com/ohmyzsh/ohmyzsh"
+plugins=(git)
+eval "$(sheldon source)"
 
 # set editor to nvim
 export VISUAL=nvim

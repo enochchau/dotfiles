@@ -4,7 +4,7 @@ local actions = require "telescope.actions"
 
 local code_actions_config = {
   layout_strategy = 'cursor',
-  layout_config = { width = 0.45, height = 0.4 }
+  layout_config = { width = 0.45, height = 0.25 }
 }
 
 telescope.setup({

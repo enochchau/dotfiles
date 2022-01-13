@@ -1,6 +1,6 @@
 update:
 	git submodule update --remote dotbot \
-	&& curl -L git.io/antigen > antigen.zsh
+		&& ./scripts/sheldon_install.zsh
 
 link:
 	./install
