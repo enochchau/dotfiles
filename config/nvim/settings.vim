@@ -50,6 +50,34 @@ noremap <silent> <A-l> <C-w>>
 autocmd VimResized * wincmd =
 
 " use system clipboard
+" https://github.com/neovim/neovim/issues/9570030.964%20%20000.026%20%20000.026:%20sourcing%20/home/enoch/.config/plugged/nvim-treesitter/ftdetect/gdresource.vim
+if has('wsl')
+  let g:clipboard = {
+    \ 'name': 'win32yank',
+    \ 'copy': {
+    \    '+': 'win32yank.exe -i --crlf',
+    \    '*': 'win32yank.exe -i --crlf',
+    \  },
+    \ 'paste': {
+    \    '+': 'win32yank.exe -o --lf',
+    \    '*': 'win32yank.exe -o --lf',
+    \ },
+    \ 'cache_enabled': 0,
+    \ }
+elseif has('mac')
+  let g:clipboard = {
+    \ 'name': 'pbcopy',
+    \ 'copy': {
+    \    '+': 'pbcopy',
+    \    '*': 'pbcopy',
+    \  },
+    \ 'paste': {
+    \    '+': 'pbpaste',
+    \    '*': 'pbpaste',
+    \ },
+    \ 'cache_enabled': 0,
+    \ }
+endif
 set clipboard+=unnamedplus
 
 " traverse buffers
