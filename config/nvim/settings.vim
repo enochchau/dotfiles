@@ -10,7 +10,6 @@ set showmatch
 set laststatus=2
 set ruler
 set hidden
-set cmdheight=2
 set updatetime=300
 
 " move vertically by visual line, don't skip wrapped lines
