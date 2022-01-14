@@ -4,3 +4,6 @@ update:
 
 link:
 	./install
+
+neovim:
+	./scripts/nvim_install.sh

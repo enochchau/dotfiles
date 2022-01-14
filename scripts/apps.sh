@@ -8,7 +8,6 @@ if [[ "$OS" == "Darwin" ]]; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
   # dev
   brew install --cask alacritty
-  brew install neovim --HEAD # use nightly
   brew install --cask visual-studio-code # best debugger in town
   brew install --cask docker
   brew install tmux
@@ -67,7 +66,6 @@ if [[ "$OS" == "Linux" ]]; then
 
     # dev
     # missing alacritty
-    sudo apt install neovim
     sudo apt install docker-ce docker-ce-cli containerd.io
     sudo apt install tmux
     sudo apt install code
@@ -84,10 +82,3 @@ if [[ "$OS" == "Linux" ]]; then
 fi
 
 npm install -g yarn n
-
-# neovim plugged
-sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
-  https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
-
-# install neovim plugins
-nvim +'PlugInstall --sync' +qa

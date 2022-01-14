@@ -1,5 +1,5 @@
-#!/bin/zsh
-#
+#!/bin/bash
+
 OS=`uname`
 if [[ "$OS" == 'Linux' ]]; then
   curl --proto '=https' -fLsS https://rossmacarthur.github.io/install/crate.sh \
