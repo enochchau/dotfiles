@@ -41,5 +41,6 @@
   "telemetry.enableTelemetry": false,
   "workbench.colorTheme": "Halcyon",
   "workbench.sideBar.location": "right",
-  "editor.minimap.enabled": false
+  "editor.minimap.enabled": false,
+  "workbench.iconTheme": "material-icon-theme"
 }
