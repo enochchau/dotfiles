@@ -5,7 +5,6 @@ Plug 'projekt0n/github-nvim-theme'
 Plug 'folke/tokyonight.nvim'
 
 Plug 'editorconfig/editorconfig-vim'
-" Plug 'mhinz/vim-startify'
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown' }
 Plug 'tpope/vim-obsession'
 " yarn pnp
@@ -46,6 +45,7 @@ if has('nvim')
   Plug 'akinsho/toggleterm.nvim'
   Plug 'hoob3rt/lualine.nvim'
   Plug 'lukas-reineke/indent-blankline.nvim'
+  Plug 'goolord/alpha-nvim'
 endif
 call plug#end()
 
@@ -65,6 +65,7 @@ if has('nvim')
   lua require('enoch.toggleterm')
   lua require('enoch.telescope')
   lua require('enoch.treesitter')
+  lua require('enoch.alpha')
 
   source ~/.config/nvim/format.vim
 endif

@@ -95,3 +95,6 @@ augroup END
 
 " color column at 80
 set colorcolumn=120
+
+" disable startup screen
+set shortmess+=I
