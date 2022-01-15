@@ -6,7 +6,13 @@ require'nvim-tree'.setup {
   view = {
     side = 'right',
     auto_resize = true,
-    width = 35
+    width = 35,
+    relativenumber = true,
+    signcolumn = 'auto'
+  },
+  git = {
+    enable = true,
+    ignore = false,
   },
   filters = {
     custom = {
@@ -14,6 +20,7 @@ require'nvim-tree'.setup {
     }
   }
 }
+
 helpers.nnoremap('<leader>n', ':NvimTreeFindFile<CR>')
 helpers.nnoremap('<C-n>', ':NvimTreeToggle<CR>')
 helpers.nnoremap('<leader>r', ':NvimTreeRefresh<CR>')
