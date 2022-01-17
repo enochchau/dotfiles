@@ -14,9 +14,6 @@ if ! command -v nix-env &> /dev/null; then
   fi
 fi
 
-nix-env -iA "nixpkgs.myPackages"
-if $IS_WSL; then
-  echo 'skipping GUI packages'
-else
-  nix-env -iA "nixpkgs.GUIs"
-fi
+nix-channel --add https://github.com/nix-community/home-manager/archive/master.tar.gz home-manager
+nix-channel --update
+home-manager switch
