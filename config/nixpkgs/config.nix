@@ -7,7 +7,6 @@
         fd
         ripgrep
         bat
-        tealdeer
         delta
         tmux
       ];
