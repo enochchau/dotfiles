@@ -2,7 +2,7 @@
   packageOverrides = pkgs: {
     devTools = pkgs.buildEnv {
       name = "dev-tools-0.0.1";
-      paths = [
+      paths = with pkgs; [
         fzf
         fd
         ripgrep
@@ -10,7 +10,7 @@
         tealdeer
         delta
         tmux
-      ]
-    }
-  }
+      ];
+    };
+  };
 }
