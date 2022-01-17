@@ -21,6 +21,7 @@ if [[ "$OS" == "Darwin" ]]; then
   # QOL
   brew install --cask rectangle
   brew install --cask scroll-reverser
+  brew install --cask alt-tab
   # command line utils
   brew install fd ripgrep bat sd tealdeer hyperfine git-delta fzf
 fi

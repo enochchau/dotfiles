@@ -9,6 +9,7 @@ export VISUAL=nvim
 export EDITOR="$VISUAL"
 alias vi="nvim"
 alias vim="nvim"
+alias cdnvim="cd ~/.config/nvim"
 
 export ZSH="$HOME/.sheldon/repos/github.com/ohmyzsh/ohmyzsh"
 plugins=(git)
