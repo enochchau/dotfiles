@@ -1,17 +1,12 @@
 - link:
-    # nvim
     ~/.config/nvim:
         create: true
         path: config/nvim
-    # alacritty
     ~/.config/alacritty/alacritty.yml: 
         create: true
         path: config/alacritty/alacritty.yml
-    # zsh
     ~/.main.zshrc: main.zshrc
-    # tmux
     ~/.tmux.conf: tmux.conf
-    # vscode
     ~/Library/Application Support/Code/User/settings.json:
         if: '[ `uname` = Darwin ]'
         create: true
@@ -23,3 +18,6 @@
     ~/.sheldon/plugins.toml:
         create: true
         path: sheldon/plugins.toml
+    ~/.config/nixpkgs:
+        create: true
+        path: config/nixpkgs
