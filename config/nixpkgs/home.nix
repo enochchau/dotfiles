@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./shared.nix
+    ./common.nix
   ];
 
   home.username = "enoch";
