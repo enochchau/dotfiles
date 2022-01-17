@@ -6,7 +6,6 @@
         create: true
         path: config/alacritty/alacritty.yml
     ~/.main.zshrc: main.zshrc
-    ~/.tmux.conf: tmux.conf
     ~/Library/Application Support/Code/User/settings.json:
         if: '[ `uname` = Darwin ]'
         create: true
