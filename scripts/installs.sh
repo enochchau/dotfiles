@@ -10,7 +10,6 @@ if [[ "$OS" == "Darwin" ]]; then
   brew install --cask alacritty
   brew install --cask visual-studio-code # best debugger in town
   brew install --cask docker
-  brew install tmux
   brew install node
   # apps
   brew install --cask google-chrome
@@ -22,8 +21,6 @@ if [[ "$OS" == "Darwin" ]]; then
   brew install --cask rectangle
   brew install --cask scroll-reverser
   brew install --cask alt-tab
-  # command line utils
-  brew install fd ripgrep bat sd tealdeer hyperfine git-delta fzf
 fi
 
 # linux apps
@@ -68,18 +65,11 @@ if [[ "$OS" == "Linux" ]]; then
     # dev
     # missing alacritty
     sudo apt install docker-ce docker-ce-cli containerd.io
-    sudo apt install tmux
     sudo apt install code
     sudo apt install nodejs
     # gnome
     sudo apt isntall dconf-editor
     sudo apt install gnome-tweaks
-    # command line utils
-    # missing sd, tealdeer, and delta
-    sudo apt install fd-find bat ripgrep hyperfine fzf
-    mkdir -p ~/.local/bin
-    ln -s /usr/bin/batcat ~/.local/bin/bat
-    ln -s /usr/bin/fdfind ~/.local/bin/fd
 fi
 
 npm install -g yarn n

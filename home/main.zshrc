@@ -1,8 +1,8 @@
 #!/bin/zsh
+export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels${NIX_PATH:+:$NIX_PATH}
 export PATH="$(yarn global bin):$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export BAT_THEME="Dracula"
-export GIT_PAGER='delta --dark -s -n'
 
 # set editor to nvim
 export VISUAL=nvim
