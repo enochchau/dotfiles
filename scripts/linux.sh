@@ -11,14 +11,12 @@ function cmd_exists(){
 
 apps=(
   'fzf'
-  'ripgrep'
   'tmux'
   'neovim'
   'zsh'
   'git'
   'nodejs'
   'fd-find'
-  'bat'
   'wget'
 )
 
@@ -26,6 +24,9 @@ for app in "${apps[@]}"
 do
   sudo apt install "$app"
 done
+
+# https://github.com/sharkdp/bat/issues/938#issuecomment-646745610
+sudo apt install -o Dpkg::Options::="--force-overwrite" bat ripgrep
 
 # neovim
 if ! cmd_exists "nvim" &> /dev/null
@@ -36,7 +37,7 @@ fi
 # local sym links for aliased programs
 local_symlinks=(
   'batcat:bat'
-  'fd-find:fd'
+  'fdfind:fd'
 )
 
 mkdir -p ~/.local/bin
@@ -44,7 +45,7 @@ for link in "${local_symlinks[@]}"
 do
   source=${link%%:*}
   destination=${link#*:}
-  ln -s "/usr/bin/$source" "~/.local/bin/$destination"
+  ln -s "/usr/bin/$source" "~/.local/bin/$destination" 
 done
 
 # sheldon

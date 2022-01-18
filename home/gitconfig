@@ -14,3 +14,7 @@
 
 [diff]
     colorMoved = default
+
+[delta]
+    side-by-side = true
+    syntax-theme = Dracula

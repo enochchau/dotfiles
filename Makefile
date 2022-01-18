@@ -5,5 +5,8 @@ update:
 link:
 	./install
 
-neovim:
-	./scripts/nvim_install.sh
+macos:
+	./scripts/macos.sh
+
+linux:
+	./scripts/linux.sh
