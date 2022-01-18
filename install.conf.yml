@@ -1,23 +1,25 @@
 - link:
     ~/.config/nvim:
         create: true
-        path: config/nvim
-    ~/.config/alacritty/alacritty.yml: 
+        path: home/config/nvim
+    ~/.config/alacritty: 
         create: true
-        path: config/alacritty/alacritty.yml
-    ~/.main.zshrc: main.zshrc
-    ~/.tmux.conf: tmux.conf
+        path: home/config/alacritty
+    ~/.main.zshrc: home/main.zshrc
+    ~/.tmux.conf: home/tmux.conf
     ~/Library/Application Support/Code/User/settings.json:
         if: '[ `uname` = Darwin ]'
         create: true
-        path: vscode-settings.json
+        path: home/vscode-settings.json
     ~/.config/Code/User/settings.json:
         if: '[ `uname` = Linux ]'
         create: true
-        path: vscode-settings.json
+        path: home/vscode-settings.json
     ~/.sheldon/plugins.toml:
         create: true
-        path: sheldon/plugins.toml
+        path: home/sheldon/plugins.toml
     ~/.config/nixpkgs:
         create: true
-        path: config/nixpkgs
+        path: home/config/nixpkgs
+    ~/.gitconfig:
+        path: home/gitconfig
