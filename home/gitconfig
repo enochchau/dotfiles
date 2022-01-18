@@ -18,3 +18,18 @@
 [delta]
     side-by-side = true
     syntax-theme = Dracula
+
+[init]
+	defaultBranch = main
+
+[pull]
+	rebase = true
+
+[pager]
+  branch = false
+
+[gpg]
+	program = gpg
+
+[credential]
+	helper = store
