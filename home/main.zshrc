@@ -7,11 +7,18 @@ export BAT_THEME="Dracula"
 # set editor to nvim
 export VISUAL=nvim
 export EDITOR="$VISUAL"
+
+# setup XDG
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
+export XDG_STATE_HOME="$HOME/.local/state"
+
 alias vi="nvim"
 alias vim="nvim"
 alias cdnvim="cd ~/.config/nvim"
 
-export ZSH="$HOME/.sheldon/repos/github.com/ohmyzsh/ohmyzsh"
+export ZSH="$XDG_DATA_HOME/sheldon/repos/github.com/ohmyzsh/ohmyzsh"
 plugins=(git)
 eval "$(sheldon source)"
 
