@@ -7,3 +7,10 @@ github = "ohmyzsh/ohmyzsh"
 
 [plugins.powerlevel10k]
 github = "romkatv/powerlevel10k"
+
+[plugins.zsh-completions]
+github = "zsh-users/zsh-completions"
+
+# must be loaded last
+[plugins.zsh-syntax-highlighting]
+github = "zsh-users/zsh-syntax-highlighting"
