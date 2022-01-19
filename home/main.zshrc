@@ -23,4 +23,6 @@ _cdg_completion()
 }
 complete -F _cdg_completion cdg
 
+alias gcol="git branch | fzf | sed 's/^.* //' | xargs git checkout"
+
 bindkey -v
