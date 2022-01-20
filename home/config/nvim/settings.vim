@@ -98,3 +98,5 @@ set colorcolumn=120
 
 " disable startup screen
 set shortmess+=I
+
+command! BufClear silent! execute "%bd|e#|bd#"
