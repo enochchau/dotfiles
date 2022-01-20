@@ -24,6 +24,7 @@ apps=(
   'node'
   'sheldon'
   'docker'
+  'watch'
 )
 
 for app in "${apps[@]}"
