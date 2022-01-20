@@ -10,7 +10,10 @@
     ~/.config/alacritty: 
         create: true
         path: home/config/alacritty
-    ~/.main.zshrc: home/main.zshrc
+    ~/.config/zsh/main.zshrc: 
+        create: true
+        path: home/config/zsh/main.zshrc
+    ~/.zenv: home/zenv
     ~/.tmux.conf: home/tmux.conf
     ~/Library/Application Support/Code/User/settings.json:
         if: '[ `uname` = Darwin ]'
