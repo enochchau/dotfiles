@@ -13,6 +13,9 @@
     ~/.config/zsh/main.zshrc: 
         create: true
         path: home/config/zsh/main.zshrc
+    ~/.config/zsh/prompt.sh: 
+        create: true
+        path: home/config/zsh/prompt.sh
     ~/.config/zsh/zsh_aliases.sh: 
         create: true
         path: home/config/zsh/zsh_aliases.sh

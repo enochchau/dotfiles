@@ -11,6 +11,7 @@ autoload -U compinit; compinit
 autoload -U bashcompinit; bashcompinit
 
 source "$ZDOTDIR/zsh_aliases.sh"
+source "$ZDOTDIR/prompt.sh"
 # plugins=(git)
 # export ZSH="$XDG_DATA_HOME/sheldon/repos/github.com/ohmyzsh/ohmyzsh"
 eval "$(sheldon source)"
@@ -25,5 +26,10 @@ complete -F _cdg_completion cdg
 
 bindkey -v
 
-PROMPT='%~ %b$ '
-RPROMPT='%T'
+export HISTFILESIZE=50000
+export HISTSIZE=50000
+export HISTFILE="$ZDOTDIR/zsh_history"
+setopt HIST_FIND_NO_DUPS
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
+setopt APPEND_HISTORY
