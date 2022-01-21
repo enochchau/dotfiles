@@ -13,8 +13,8 @@ zstyle ':vcs_info:git*' actionformats '%F{blue}%b%u%c%m%F{red}%a '
 zstyle ':vcs_info:git*' formats '%F{blue}%b%u%c%m '
 
 # style vi mode
-vim_ins_mode="%F{yellow}[INSERT]%F"
-vim_cmd_mode="%F{magenta}[NORMAL]%F"
+vim_ins_mode="%F{yellow}[INSERT]"
+vim_cmd_mode="%F{magenta}[NORMAL]"
 vim_mode=$vim_ins_mode
 
 function zle-keymap-select {
@@ -36,8 +36,8 @@ function TRAPINT() {
 } 
 
 
-PROMPT='%F{yellow}%5~ ${vcs_info_msg_0_}%F{cyan}%(!.#.$) '
-RPROMPT='%F{cyan}%T ${vim_mode}'
+PROMPT='%F{yellow}%5~ ${vcs_info_msg_0_}%F{cyan}%(!.#.$)%F{white} '
+RPROMPT='%F{cyan}%T ${vim_mode}%F'
 
 # disable cursor blink
 echo -e -n "\e[2 q"
