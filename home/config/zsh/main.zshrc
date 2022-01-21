@@ -15,12 +15,7 @@ alias gitdel='~/code/dev-scripts/git-delete.sh'
 # apps
 export BAT_THEME="Dracula"
 
-autoload -U compinit; compinit
-autoload -U bashcompinit; bashcompinit
-
-source "$ZDOTDIR/zsh_aliases.sh"
-
-plugins=(git)
+plugins=(git vi-mode docker docker-compose kubectl ripgrep fd)
 export ZSH="$XDG_DATA_HOME/sheldon/repos/github.com/ohmyzsh/ohmyzsh"
 eval "$(sheldon source)"
 
@@ -31,5 +26,3 @@ _cdg_completion()
   COMPREPLY="$(ls $(git rev-parse --show-toplevel || echo "$HOME")/)" 
 }
 complete -F _cdg_completion cdg
-
-bindkey -v
