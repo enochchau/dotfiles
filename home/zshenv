@@ -9,13 +9,13 @@ export XDG_CACHE_HOME="$HOME/.cache"
 export XDG_DATA_HOME="$HOME/.local/share"
 export XDG_STATE_HOME="$HOME/.local/state"
 
+# zsh
+export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
 # path
 export PATH="$(yarn global bin):$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
-# zsh
-export ZDOTDIR= "$XDG_CONFIG_HOME/zsh"
-export ZSH="$XDG_DATA_HOME/sheldon/repos/github.com/ohmyzsh/ohmyzsh"
 
 # apps
 export BAT_THEME="Dracula"

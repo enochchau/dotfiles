@@ -13,7 +13,10 @@
     ~/.config/zsh/main.zshrc: 
         create: true
         path: home/config/zsh/main.zshrc
-    ~/.zenv: home/zenv
+    ~/.config/zsh/zsh_aliases.sh: 
+        create: true
+        path: home/config/zsh/zsh_aliases.sh
+    ~/.zshenv: home/zshenv
     ~/.tmux.conf: home/tmux.conf
     ~/Library/Application Support/Code/User/settings.json:
         if: '[ `uname` = Darwin ]'

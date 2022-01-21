@@ -1,11 +1,8 @@
 #!/bin/zsh
 
-alias vi="nvim"
-alias vim="nvim"
-alias cdnvim="cd ~/.config/nvim"
-alias gcol="git branch | fzf | sed 's/^.* //' | xargs git checkout"
-
+source "$ZDOTDIR/zsh_aliases.sh"
 plugins=(git)
+export ZSH="$XDG_DATA_HOME/sheldon/repos/github.com/ohmyzsh/ohmyzsh"
 eval "$(sheldon source)"
 
 # go to git root directory
