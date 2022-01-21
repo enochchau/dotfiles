@@ -2,8 +2,8 @@ shell = "zsh"
 
 [plugins]
 
-[plugins.oh-my-zsh]
-github = "ohmyzsh/ohmyzsh"
+# [plugins.oh-my-zsh]
+# github = "ohmyzsh/ohmyzsh"
 
 [plugins.powerlevel10k]
 github = "romkatv/powerlevel10k"

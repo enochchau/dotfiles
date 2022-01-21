@@ -11,11 +11,3 @@ export XDG_STATE_HOME="$HOME/.local/state"
 
 # zsh
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
-
-# path
-export PATH="$(yarn global bin):$PATH"
-export PATH="$HOME/.local/bin:$PATH"
-
-
-# apps
-export BAT_THEME="Dracula"
