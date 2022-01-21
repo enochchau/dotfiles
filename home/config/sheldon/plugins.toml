@@ -2,11 +2,11 @@ shell = "zsh"
 
 [plugins]
 
-# [plugins.oh-my-zsh]
-# github = "ohmyzsh/ohmyzsh"
+[plugins.oh-my-zsh]
+github = "ohmyzsh/ohmyzsh"
 
-# [plugins.powerlevel10k]
-# github = "romkatv/powerlevel10k"
+[plugins.powerlevel10k]
+github = "romkatv/powerlevel10k"
 
 [plugins.zsh-completions]
 github = "zsh-users/zsh-completions"

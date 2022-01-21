@@ -4,6 +4,14 @@
 export PATH="$(yarn global bin):$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 
+# aliases
+alias vi="nvim"
+alias vim="nvim"
+alias cdnvim="cd ~/.config/nvim"
+alias cddot="cd ~/dotfiles"
+alias gcol="git branch | fzf | sed 's/^.* //' | xargs git checkout"
+alias gitdel='~/code/dev-scripts/git-delete.sh'
+
 # apps
 export BAT_THEME="Dracula"
 
@@ -11,9 +19,9 @@ autoload -U compinit; compinit
 autoload -U bashcompinit; bashcompinit
 
 source "$ZDOTDIR/zsh_aliases.sh"
-source "$ZDOTDIR/prompt.sh"
-# plugins=(git)
-# export ZSH="$XDG_DATA_HOME/sheldon/repos/github.com/ohmyzsh/ohmyzsh"
+
+plugins=(git)
+export ZSH="$XDG_DATA_HOME/sheldon/repos/github.com/ohmyzsh/ohmyzsh"
 eval "$(sheldon source)"
 
 # go to git root directory
@@ -25,11 +33,3 @@ _cdg_completion()
 complete -F _cdg_completion cdg
 
 bindkey -v
-
-export HISTFILESIZE=50000
-export HISTSIZE=50000
-export HISTFILE="$ZDOTDIR/zsh_history"
-setopt HIST_FIND_NO_DUPS
-setopt INC_APPEND_HISTORY
-setopt SHARE_HISTORY
-setopt APPEND_HISTORY
