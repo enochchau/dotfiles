@@ -9,7 +9,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'm
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
 " yarn pnp
-Plug 'lbrayner/vim-rzip'
+Plug 'lbrayner/vim-rzip', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' ]}
 
 if has('nvim')
   " lsp
@@ -31,10 +31,10 @@ if has('nvim')
   Plug 'nvim-telescope/telescope.nvim'
   Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
   " tree-sitter
-  Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
+  Plug 'nvim-treesitter/nvim-treesitter', { 'do': ':TSUpdate' }
   Plug 'windwp/nvim-ts-autotag'
   Plug 'windwp/nvim-autopairs'
-  Plug 'nvim-treesitter/playground'
+  Plug 'nvim-treesitter/playground', { 'on': 'TSPlaygroundToggle' }
   " comment
   Plug 'JoosepAlviste/nvim-ts-context-commentstring'
   Plug 'b3nj5m1n/kommentary'
