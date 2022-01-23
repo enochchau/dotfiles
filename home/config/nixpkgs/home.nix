@@ -49,39 +49,4 @@ in
       set -g pane-active-border-style "fg=colour4 bg=default"
     '';
   };
-
-  programs.git = {
-    enable = true;
-    extraConfig = {
-      merge = {
-        conflictstyle = "diff3";
-      };
-      diff = {
-        colorMoved = "default";
-      };
-      init = {
-        defaultBranch = "main";
-      };
-      pull = {
-        rebase = true;
-      };
-      pager = {
-        branch = false;
-      };
-      gpg = {
-        program = "gpg";
-      };
-      credential = {
-        helper = "store";
-      };
-    };
-    delta = {
-      enable = true;
-      options = {
-        side-by-side =  true;
-        syntax-theme = "Dracula";
-        navigate = true;
-      };
-    };
-  };
 }
