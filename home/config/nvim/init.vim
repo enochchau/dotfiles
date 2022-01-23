@@ -12,12 +12,6 @@ Plug 'tpope/vim-surround'
 Plug 'lbrayner/vim-rzip', { 'for': [ 'javascript', 'typescript', 'javascriptreact', 'typescriptreact' ]}
 
 if has('nvim')
-  " lsp
-  Plug 'neovim/nvim-lspconfig'
-  Plug 'williamboman/nvim-lsp-installer', { 'commit': '5d4195df48b7639aa1dbcf3e7d67fa9306ad0655' }
-  Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
-  " formatting
-  Plug 'mhartington/formatter.nvim', { 'do': 'npm install -g @fsouza/prettierd' }
   " completion
   Plug 'hrsh7th/cmp-nvim-lsp'
   Plug 'hrsh7th/cmp-buffer'
@@ -26,6 +20,12 @@ if has('nvim')
   Plug 'hrsh7th/nvim-cmp'
   Plug 'L3MON4D3/LuaSnip'
   Plug 'saadparwaiz1/cmp_luasnip'
+  " lsp
+  Plug 'neovim/nvim-lspconfig'
+  Plug 'williamboman/nvim-lsp-installer', { 'commit': '5d4195df48b7639aa1dbcf3e7d67fa9306ad0655' }
+  Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
+  " formatting
+  Plug 'mhartington/formatter.nvim', { 'do': 'npm install -g @fsouza/prettierd' }
   " telescope
   Plug 'nvim-lua/plenary.nvim'
   Plug 'nvim-telescope/telescope.nvim'

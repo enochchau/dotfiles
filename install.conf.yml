@@ -28,3 +28,6 @@
         path: home/config/sheldon/plugins.toml
     ~/.gitconfig:
         path: home/gitconfig
+    ~/.config/nixpkgs:
+        create: true
+        path: home/config/nixpkgs

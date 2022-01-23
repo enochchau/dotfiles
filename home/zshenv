@@ -11,3 +11,5 @@ export XDG_STATE_HOME="$HOME/.local/state"
 
 # zsh
 export ZDOTDIR="$XDG_CONFIG_HOME/zsh"
+
+if [ -e /home/enoch/.nix-profile/etc/profile.d/nix.sh ]; then . /home/enoch/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
