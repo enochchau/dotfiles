@@ -28,12 +28,12 @@ local function common_on_attach(client, bufnr)
   buf_set_keymap('n', 'gs', telescope_picker('lsp_document_symbols'), opts)
   buf_set_keymap('n', '[g', '<cmd>lua vim.diagnostic.goto_prev()<CR>', opts)
   buf_set_keymap('n', ']g', '<cmd>lua vim.diagnostic.goto_next()<CR>', opts)
-  buf_set_keymap('x', ',f', ':<C-U>lua vim.lsp.buf.range_formatting()<CR>', opts)
-  buf_set_keymap('n', ',f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
+  buf_set_keymap('x', '<leader>f', ':<C-U>lua vim.lsp.buf.range_formatting()<CR>', opts)
+  buf_set_keymap('n', '<leader>f', '<cmd>lua vim.lsp.buf.formatting()<CR>', opts)
   buf_set_keymap('n', 'ga', '<cmd>Telescope diagnostics bufnr=0<CR>', opts)
-  buf_set_keymap('n', ',a', telescope_picker('lsp_code_actions'), opts)
-  buf_set_keymap('x', ',a', ':Telescope lsp_range_code_actions<CR>', opts)
-  buf_set_keymap('n', ',rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
+  buf_set_keymap('n', '<leader>a', telescope_picker('lsp_code_actions'), opts)
+  buf_set_keymap('x', '<leader>a', ':Telescope lsp_range_code_actions<CR>', opts)
+  buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 end
 
 local servers = { 'tsserver' }

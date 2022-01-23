@@ -1,3 +1,4 @@
+let mapleader = ","
 set signcolumn=yes:1
 set number
 set wrap

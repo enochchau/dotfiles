@@ -5,10 +5,8 @@ in
 {
   imports = [
     ./nvim/init.nix
+    ./user.nix
   ];
-
-  home.username = "enoch";
-  home.homeDirectory = "/home/enoch";
 
   home.stateVersion = "22.05";
 
@@ -24,9 +22,14 @@ in
     nodePackages.eslint_d
     nodePackages.node2nix
     myNodePackages."@fsouza/prettierd"
+    fd
+    ripgrep
+    bat
+    fzf
   ];
 
   programs.tmux = {
+    enable = true;
     escapeTime = 0;
     historyLimit = 10000;
     keyMode = "vi";
@@ -47,4 +50,38 @@ in
     '';
   };
 
+  programs.git = {
+    enable = true;
+    extraConfig = {
+      merge = {
+        conflictstyle = "diff3";
+      };
+      diff = {
+        colorMoved = "default";
+      };
+      init = {
+        defaultBranch = "main";
+      };
+      pull = {
+        rebase = true;
+      };
+      pager = {
+        branch = false;
+      };
+      gpg = {
+        program = "gpg";
+      };
+      credential = {
+        helper = "store";
+      };
+    };
+    delta = {
+      enable = true;
+      options = {
+        side-by-side =  true;
+        syntax-theme = "Dracula";
+        navigate = true;
+      };
+    };
+  };
 }

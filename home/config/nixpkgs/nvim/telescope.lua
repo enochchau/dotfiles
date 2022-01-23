@@ -31,7 +31,7 @@ local nnoremap = {
   ['<C-p>'] = '<cmd>Telescope find_files<CR>',
   ['<C-f>'] = '<cmd>Telescope live_grep<cr>',
   ['<C-b>'] = '<cmd>Telescope buffers<cr>',
-  [',fh'] = '<cmd>Telescope help_tags<cr>'
+  ['<leader>fh'] = '<cmd>Telescope help_tags<cr>'
 }
 
 for lhs, rhs in pairs(nnoremap) do

@@ -9,10 +9,12 @@ in
     viAlias = true;
     vimAlias = true;
     vimdiffAlias = true;
-    extraConfig = sourceVim ./settings.vim + "\n" + sourceVim ./theme.vim + "\n" + sourceVim ./format.vim;
     plugins = with pkgs.vimPlugins; [
       # themes
-      neon
+      { plugin = neon;
+        # this stuff needs to be at the top of the init.vim
+        config = sourceVim ./settings.vim + "\n" + sourceVim ./theme.vim + "\n" + sourceVim ./format.vim;
+      }
       tokyonight-nvim
       # vimscript utils
       editorconfig-vim

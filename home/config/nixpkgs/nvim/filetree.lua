@@ -20,9 +20,9 @@ require'nvim-tree'.setup {
 }
 
 local nnoremap = {
-  [',n'] = ':NvimTreeFindFile<CR>',
+  ['<leader>n'] = ':NvimTreeFindFile<CR>',
   ['<C-n>'] = ':NvimTreeToggle<CR>',
-  [',r'] = ':NvimTreeRefresh<CR>'
+  ['<leader>r'] = ':NvimTreeRefresh<CR>'
 }
 
 for lhs, rhs in pairs(nnoremap) do
