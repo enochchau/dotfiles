@@ -28,5 +28,3 @@
         path: home/config/sheldon/plugins.toml
     ~/.gitconfig:
         path: home/gitconfig
-    ~/.p10k.zsh:
-        path: home/p10k.zsh
