@@ -109,6 +109,8 @@ in
       fi
     '';
     initExtra = ''
+      bindkey '^I'   complete-word       # tab          | complete
+      bindkey '^[[Z' autosuggest-accept  # shift + tab  | autosuggest
       export PATH="$(yarn global bin):$PATH"
       export PATH="$HOME/.local/bin:$PATH"
       export BAT_THEME="Dracula"
@@ -121,6 +123,7 @@ in
       }
       complete -F _cdg_completion cdg
 
+      # source p10k 
       [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
     '';
   };
