@@ -1,7 +1,7 @@
 [include]
   path = ~/.gitconfig.local
 [core]
-    pager = delta
+    pager = ~/.nix-profile/bin/delta
 
 [interactive]
     diffFilter = delta --color-only
