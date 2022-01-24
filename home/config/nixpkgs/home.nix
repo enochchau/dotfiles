@@ -21,6 +21,8 @@ in
     nodejs
     nodePackages.typescript-language-server 
     nodePackages.vscode-langservers-extracted # includes ccls, eslint, html, jsonls
+    nodePackages.bash-language-server
+    nodePackages.vim-language-server
     nodePackages.typescript
     nodePackages.eslint
     nodePackages.eslint_d

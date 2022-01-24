@@ -36,7 +36,7 @@ local function common_on_attach(client, bufnr)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 end
 
-local servers = { 'tsserver', 'eslint', 'html', 'cssls', 'jsonls' }
+local servers = { 'tsserver', 'eslint', 'html', 'cssls', 'jsonls', 'bashls', 'vimls' }
 for _, lsp in ipairs(servers) do
   local opts = {
     on_attach = common_on_attach,
