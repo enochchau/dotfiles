@@ -19,13 +19,14 @@ in
   home.packages = with pkgs; [
     nix
     nodejs
-    nodePackages.typescript-language-server # includes ccls, eslint, html, jsonls
-    nodePackages.vscode-langservers-extracted
+    nodePackages.typescript-language-server 
+    nodePackages.vscode-langservers-extracted # includes ccls, eslint, html, jsonls
     nodePackages.typescript
     nodePackages.eslint
     nodePackages.eslint_d
     nodePackages.node2nix
     nodePackages.npm
+    nodePackages.yarn
     myNodePackages."@fsouza/prettierd"
     fd
     ripgrep

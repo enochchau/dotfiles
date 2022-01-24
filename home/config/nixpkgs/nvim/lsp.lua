@@ -43,6 +43,11 @@ for _, lsp in ipairs(servers) do
     capabilities = capabilities
   }
 
+  if lsp == 'eslint' then
+    -- for yarn pnp
+    opts.cmd = {"yarn", "node", "/Users/enochchau/.nix-profile/bin/vscode-eslint-language-server", "--stdio"}
+  end
+
   if lsp == 'html' then
     opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
   end
@@ -69,9 +74,9 @@ for _, lsp in ipairs(servers) do
         silent = true,
         noremap = true
       }
-      buf_set_keymap('n', ',o', ":TSLspOrganize<CR>", keymap_opts)
-      buf_set_keymap('n', ',rf', ":TSLspRenameFile<CR>", keymap_opts)
-      buf_set_keymap('n', ',i', ":TSLspImportAll<CR>", keymap_opts)
+      buf_set_keymap('n', '<leader>o', ":TSLspOrganize<CR>", keymap_opts)
+      buf_set_keymap('n', '<leader>rf', ":TSLspRenameFile<CR>", keymap_opts)
+      buf_set_keymap('n', '<leader>i', ":TSLspImportAll<CR>", keymap_opts)
 
       common_on_attach(client, bufnr)
     end
