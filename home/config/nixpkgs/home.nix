@@ -1,8 +1,8 @@
 { config, pkgs, ... }:
 
-let 
-myNodePackages = import ./nodejs/default.nix {};
-user = import ./user.nix {} ;
+let
+  myNodePackages = import ./nodejs/default.nix { };
+  user = import ./user.nix { };
 in
 {
   imports = [
@@ -19,7 +19,7 @@ in
   home.packages = with pkgs; [
     nix
     nodejs
-    nodePackages.typescript-language-server 
+    nodePackages.typescript-language-server
     nodePackages.vscode-langservers-extracted # includes ccls, eslint, html, jsonls
     nodePackages.bash-language-server
     nodePackages.vim-language-server
@@ -31,6 +31,7 @@ in
     nodePackages.yarn
     myNodePackages."@fsouza/prettierd"
     stylua
+    nixpkgs-fmt
     fd
     ripgrep
     bat
@@ -38,7 +39,7 @@ in
     zsh-autosuggestions
     zsh-syntax-highlighting
     delta
-    rnix
+    rnix-lsp
   ];
 
   programs.tmux = {
@@ -107,8 +108,8 @@ in
           repo = "powerlevel10k";
           rev = "v1.16.0";
           sha256 = "gSPCNLK733+9NWdalqUJ8nzkhoQxurXAYX9t4859j2s=";
-         };
-       }
+        };
+      }
     ];
     initExtraFirst = ''
       if [[ -r "$\{XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-$\{(%):-%n}.zsh" ]]; then

@@ -10,4 +10,13 @@
       sha256 = "4mcoav4tyLS6KT5fTvarugoRdVDoe5/5lwU66mEXXTc=";
     };
   };
+  github-nvim-theme = pkgs.vimUtils.buildVimPluginFrom2Nix {
+    name = "github-nvim-theme";
+    src = pkgs.fetchFromGitHub {
+      owner = "projekt0n";
+      repo = "github-nvim-theme";
+      rev = "1700dfe790985ce859868e16e13dcda0ec80cb3f";
+      sha256 = "sha256-3Rp0oL+yhojQ6bIejS4IlPzyrxut7LcuobykonrpAEc=";
+    };
+  };
 }

@@ -1,7 +1,8 @@
-let pkgs = import <nixpkgs> {};
-myPlugins = pkgs.callPackage ./plugins.nix {};
-sourceVim = path: builtins.readFile path;
-sourceLua = path: "lua << EOF\n" + builtins.readFile path + "\nEOF";
+let
+  pkgs = import <nixpkgs> { };
+  myPlugins = pkgs.callPackage ./plugins.nix { };
+  sourceVim = path: builtins.readFile path;
+  sourceLua = path: "lua << EOF\n" + builtins.readFile path + "\nEOF";
 in
 {
   programs.neovim = {
@@ -11,14 +12,17 @@ in
     vimdiffAlias = true;
     plugins = with pkgs.vimPlugins; [
       # themes
-      { plugin = neon;
+      {
+        plugin = neon;
         # this stuff needs to be at the top of the init.vim
         config = sourceVim ./settings.vim + "\n" + sourceVim ./theme.vim + "\n" + sourceVim ./format.vim;
       }
       tokyonight-nvim
+      myPlugins.github-nvim-theme
       # vimscript utils
       editorconfig-vim
-      { plugin = markdown-preview-nvim;
+      {
+        plugin = markdown-preview-nvim;
         config = "nmap <silent> <C-M> :MarkdownPreviewToggle<CR>";
       }
       vim-obsession
@@ -50,7 +54,7 @@ in
       { plugin = kommentary; config = sourceLua ./kommentary.lua; }
       # other
       { plugin = lualine-nvim; config = sourceLua ./lualine.lua; }
-      { plugin = indent-blankline-nvim; config = sourceLua  ./blankline.lua; }
+      { plugin = indent-blankline-nvim; config = sourceLua ./blankline.lua; }
       { plugin = gitsigns-nvim; config = "lua require('gitsigns').setup()"; }
       { plugin = toggleterm-nvim; config = sourceLua ./toggleterm.lua; }
       vim-startify
