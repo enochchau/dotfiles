@@ -25,6 +25,7 @@ in
     nodePackages.eslint
     nodePackages.eslint_d
     nodePackages.node2nix
+    nodePackages.npm
     myNodePackages."@fsouza/prettierd"
     fd
     ripgrep

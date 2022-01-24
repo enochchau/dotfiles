@@ -36,12 +36,24 @@ local function common_on_attach(client, bufnr)
   buf_set_keymap('n', '<leader>rn', '<cmd>lua vim.lsp.buf.rename()<CR>', opts)
 end
 
-local servers = { 'tsserver' }
+local servers = { 'tsserver', 'eslint', 'html', 'cssls', 'jsonls' }
 for _, lsp in ipairs(servers) do
   local opts = {
     on_attach = common_on_attach,
     capabilities = capabilities
   }
+
+  if lsp == 'html' then
+    opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
+  end
+
+  if lsp == 'jsonls' then
+    opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
+  end
+
+  if lsp == 'cssls' then
+    opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
+  end
 
   if lsp == 'tsserver' then
     opts.init_options = require("nvim-lsp-ts-utils").init_options
