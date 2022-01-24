@@ -30,6 +30,7 @@ in
     nodePackages.npm
     nodePackages.yarn
     myNodePackages."@fsouza/prettierd"
+    stylua
     fd
     ripgrep
     bat
@@ -37,6 +38,7 @@ in
     zsh-autosuggestions
     zsh-syntax-highlighting
     delta
+    rnix
   ];
 
   programs.tmux = {
@@ -80,6 +82,7 @@ in
     shellAliases = {
       cdnvim = "cd ~/.config/nvim";
       cddot = "cd ~/dotfiles";
+      cdnix = "cd ~/.config/nixpkgs";
       gcol = "git branch | fzf | sed 's/^.* //' | xargs git checkout";
       gitdel = "~/code/dev-scripts/git-delete.sh";
     };
