@@ -49,7 +49,6 @@ noremap <silent> <A-l> <C-w>>
 autocmd VimResized * wincmd =
 
 " use system clipboard
-" https://github.com/neovim/neovim/issues/9570030.964%20%20000.026%20%20000.026:%20sourcing%20/home/enoch/.config/plugged/nvim-treesitter/ftdetect/gdresource.vim
 if has('wsl')
   let g:clipboard = {
         \ 'name': 'win32yank',

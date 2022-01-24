@@ -8,5 +8,5 @@ if (has('termguicolors'))
 endif
 
 " colo neon
-" colo tokyonight
-colo github_dark
+" colo github_dark
+colo tokyonight

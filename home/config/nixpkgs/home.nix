@@ -18,6 +18,7 @@ in
 
   home.packages = with pkgs; [
     nix
+    sumneko-lua-language-server
     nodejs
     nodePackages.typescript-language-server
     nodePackages.vscode-langservers-extracted # includes ccls, eslint, html, jsonls

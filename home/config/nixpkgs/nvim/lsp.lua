@@ -42,12 +42,40 @@ local function common_on_attach(client, bufnr)
 	buf_set_keymap("n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts)
 end
 
-local servers = { "tsserver", "eslint", "html", "cssls", "jsonls", "bashls", "vimls", "rnix" }
+local servers = { "tsserver", "eslint", "html", "cssls", "jsonls", "bashls", "vimls", "rnix", "sumneko_lua" }
 for _, lsp in ipairs(servers) do
 	local opts = {
 		on_attach = common_on_attach,
 		capabilities = capabilities,
 	}
+
+	if lsp == "sumneko_lua" then
+		local runtime_path = vim.split(package.path, ";")
+		table.insert(runtime_path, "lua/?.lua")
+		table.insert(runtime_path, "lua/?/init.lua")
+
+    -- settings for nvim plugin linting
+		opts.settings = {
+			Lua = {
+				runtime = {
+					-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+					version = "LuaJIT",
+					-- Setup your lua path
+					path = runtime_path,
+				},
+				diagnostics = {
+					-- Get the language server to recognize the `vim` global
+					globals = { "vim" },
+				},
+				workspace = {
+					-- Make the server aware of Neovim runtime files
+					library = vim.api.nvim_get_runtime_file("", true),
+				},
+				-- Do not send telemetry data containing a randomized but unique identifier
+				telemetry = { enable = false },
+			},
+		}
+	end
 
 	if lsp == "eslint" then
 		-- for yarn pnp
@@ -88,6 +116,7 @@ for _, lsp in ipairs(servers) do
 			common_on_attach(client, bufnr)
 		end
 	end
+
 	nvim_lsp[lsp].setup(opts)
 end
 
