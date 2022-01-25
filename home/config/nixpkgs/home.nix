@@ -17,30 +17,34 @@ in
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
+    # nix
     nix
-    sumneko-lua-language-server
-    nodejs
-    nodePackages.typescript-language-server
-    nodePackages.vscode-langservers-extracted # includes ccls, eslint, html, jsonls
+    nixpkgs-fmt
+    # lsp
+    rnix-lsp
     nodePackages.bash-language-server
     nodePackages.vim-language-server
+    nodePackages.typescript-language-server
+    nodePackages.vscode-langservers-extracted # includes ccls, eslint, html, jsonls
+    sumneko-lua-language-server
+    # lua
+    stylua
+    # nodejs
+    nodejs
     nodePackages.typescript
     nodePackages.eslint
-    nodePackages.eslint_d
     nodePackages.node2nix
     nodePackages.npm
     nodePackages.yarn
     myNodePackages."@fsouza/prettierd"
-    stylua
-    nixpkgs-fmt
+    # cmd line util
     fd
     ripgrep
     bat
     fzf
+    # zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
-    delta
-    rnix-lsp
   ];
 
   xdg = {
