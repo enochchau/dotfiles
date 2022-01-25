@@ -6,7 +6,7 @@ let
 in
 {
   imports = [
-    ./nvim/init.nix
+    ./nvim/default.nix
   ];
 
   home.username = user.username;
