@@ -48,7 +48,8 @@ in
       telescope-fzf-native-nvim
       # treesitter
       {
-        plugin = (nvim-treesitter.withPlugins (
+        plugin = nvim-treesitter;
+        /* (nvim-treesitter.withPlugins (
           plugins: with plugins; [
             # missing tree-sitter-hcl
             tree-sitter-bash
@@ -73,7 +74,7 @@ in
             tree-sitter-vim
             tree-sitter-yaml
           ]
-        ));
+        )); */
         config = sourceLua ./treesitter.lua;
       }
       { plugin = nvim-autopairs; config = "lua require('nvim-autopairs').setup {}"; }
