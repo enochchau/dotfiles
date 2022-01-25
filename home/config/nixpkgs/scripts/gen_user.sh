@@ -3,7 +3,7 @@
 git_username=${1:-'ec965'}
 git_email=${2:-'enoch965@gmail.com'}
 
-user=$(cat << EOF
+echo $(cat << EOF
 { ... }:
 
 {
@@ -14,5 +14,3 @@ user=$(cat << EOF
 }
 EOF
 )
-
-echo $user > user.nix

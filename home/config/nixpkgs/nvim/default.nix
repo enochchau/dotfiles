@@ -51,30 +51,30 @@ in
         plugin = nvim-treesitter;
         /* (nvim-treesitter.withPlugins (
           plugins: with plugins; [
-            # missing tree-sitter-hcl
-            tree-sitter-bash
-            tree-sitter-comment
-            tree-sitter-css
-            tree-sitter-dockerfile
-            tree-sitter-dot
-            tree-sitter-graphql
-            tree-sitter-html
-            tree-sitter-javascript
-            tree-sitter-jsdoc
-            tree-sitter-json
-            tree-sitter-julia
-            tree-sitter-lua
-            tree-sitter-nix
-            tree-sitter-query
-            tree-sitter-regex
-            tree-sitter-scss
-            tree-sitter-svelte
-            tree-sitter-tsx
-            tree-sitter-typescript
-            tree-sitter-vim
-            tree-sitter-yaml
+          # missing tree-sitter-hcl
+          tree-sitter-bash
+          tree-sitter-comment
+          tree-sitter-css
+          tree-sitter-dockerfile
+          tree-sitter-dot
+          tree-sitter-graphql
+          tree-sitter-html
+          tree-sitter-javascript
+          tree-sitter-jsdoc
+          tree-sitter-json
+          tree-sitter-julia
+          tree-sitter-lua
+          tree-sitter-nix
+          tree-sitter-query
+          tree-sitter-regex
+          tree-sitter-scss
+          tree-sitter-svelte
+          tree-sitter-tsx
+          tree-sitter-typescript
+          tree-sitter-vim
+          tree-sitter-yaml
           ]
-        )); */
+          )); */
         config = sourceLua ./treesitter.lua;
       }
       { plugin = nvim-autopairs; config = "lua require('nvim-autopairs').setup {}"; }

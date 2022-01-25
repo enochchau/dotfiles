@@ -1,5 +1,5 @@
 user.nix:
-	./scripts/gen_user.sh $(git_username) $(git_email)
+	./scripts/gen_user.sh $(git_username) $(git_email) > user.nix
 
 .PHONY: fmt install-part1 install-part2 install
 
