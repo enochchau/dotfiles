@@ -40,7 +40,6 @@ in
     # cmd line util
     fd
     ripgrep
-    bat
     fzf
     # zsh
     zsh-autosuggestions
@@ -49,6 +48,14 @@ in
 
   xdg = {
     enable = true;
+  };
+
+  programs.bat = {
+    enable = true;
+    config = {
+      theme = "Dracula";
+      pager = "less -F";
+    };
   };
 
   programs.tmux = {
@@ -121,6 +128,7 @@ in
         source "$\{XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-$\{(%):-%n}.zsh"
       fi
 
+      export MANPAGER="sh -c 'col -bx | bat -l man -p'"
       export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels''${NIX_PATH:+:$NIX_PATH}
     '';
     initExtra = ''
@@ -128,7 +136,6 @@ in
       bindkey '^[[Z' autosuggest-accept  # shift + tab  | autosuggest
       export PATH="$(yarn global bin):$PATH"
       export PATH="$HOME/.local/bin:$PATH"
-      export BAT_THEME="Dracula"
 
       # go to git root directory
       cdg() { cd "$(git rev-parse --show-toplevel)/$1" }
