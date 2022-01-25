@@ -19,6 +19,7 @@ in
       }
       tokyonight-nvim
       myPlugins.github-nvim-theme
+      vim-one
       # vimscript utils
       editorconfig-vim
       {
@@ -45,7 +46,35 @@ in
       { plugin = telescope-nvim; config = sourceLua ./telescope.lua; }
       telescope-fzf-native-nvim
       # treesitter
-      { plugin = nvim-treesitter; config = sourceLua ./treesitter.lua; }
+      {
+        plugin = (nvim-treesitter.withPlugins (
+          plugins: with plugins; [
+            # missing tree-sitter-hcl
+            tree-sitter-bash
+            tree-sitter-comment
+            tree-sitter-css
+            tree-sitter-dockerfile
+            tree-sitter-dot
+            tree-sitter-graphql
+            tree-sitter-html
+            tree-sitter-javascript
+            tree-sitter-jsdoc
+            tree-sitter-json
+            tree-sitter-julia
+            tree-sitter-lua
+            tree-sitter-nix
+            tree-sitter-query
+            tree-sitter-regex
+            tree-sitter-scss
+            tree-sitter-svelte
+            tree-sitter-tsx
+            tree-sitter-typescript
+            tree-sitter-vim
+            tree-sitter-yaml
+          ]
+        ));
+        config = sourceLua ./treesitter.lua;
+      }
       { plugin = nvim-autopairs; config = "lua require('nvim-autopairs').setup {}"; }
       nvim-ts-autotag
       playground
@@ -64,7 +93,3 @@ in
     ];
   };
 }
-
-# missing
-# rakr/vim-one
-# projekt0n/github-nvim-theme

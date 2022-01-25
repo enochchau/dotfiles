@@ -1,7 +1,11 @@
 { pkgs, ... }:
 
+# emapty sha256
+# use this and then copy in the expected sha256
+# 0000000000000000000000000000000000000000000000000000
+
 {
-  vim-rzip = pkgs.vimUtils.buildVimPlugin {
+  vim-rzip = pkgs.vimUtils.buildVimPluginFrom2Nix {
     name = "vim-rzip";
     src = pkgs.fetchFromGitHub {
       owner = "lbrayner";

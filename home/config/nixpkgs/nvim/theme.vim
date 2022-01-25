@@ -9,4 +9,5 @@ endif
 
 " colo neon
 " colo github_dark
+" colo one
 colo tokyonight
