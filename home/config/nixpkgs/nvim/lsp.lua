@@ -54,7 +54,7 @@ for _, lsp in ipairs(servers) do
 		table.insert(runtime_path, "lua/?.lua")
 		table.insert(runtime_path, "lua/?/init.lua")
 
-    -- settings for nvim plugin linting
+		-- settings for nvim plugin linting
 		opts.settings = {
 			Lua = {
 				runtime = {

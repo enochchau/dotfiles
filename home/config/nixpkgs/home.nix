@@ -184,7 +184,7 @@ in
     delta = {
       enable = true;
       options = {
-        side-by-side =  true;
+        side-by-side = true;
         syntax-theme = "Dracula";
         navigate = true;
       };
