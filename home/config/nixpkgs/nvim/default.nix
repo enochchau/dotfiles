@@ -11,13 +11,16 @@ in
     vimAlias = true;
     vimdiffAlias = true;
     plugins = with pkgs.vimPlugins; [
-      # themes
       {
-        plugin = neon;
+        plugin = vim-obsession;
         # this stuff needs to be at the top of the init.vim
         config = sourceVim ./settings.vim + "\n" + sourceVim ./theme.vim + "\n" + sourceVim ./format.vim;
       }
+
+      vim-surround
+      # themes
       tokyonight-nvim
+      neon
       myPlugins.github-nvim-theme
       vim-one
       # vimscript utils
@@ -26,8 +29,6 @@ in
         plugin = markdown-preview-nvim;
         config = "nmap <silent> <C-M> :MarkdownPreviewToggle<CR>";
       }
-      vim-obsession
-      vim-surround
       { plugin = myPlugins.vim-rzip; config = sourceVim ./rzip.vim; }
       # completion
       cmp-buffer
