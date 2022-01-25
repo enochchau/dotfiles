@@ -136,4 +136,45 @@ in
       [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
     '';
   };
+
+  programs.ssh = {
+    enable = true;
+  };
+
+  programs.git = {
+    enable = true;
+    userName = user.gitUsername;
+    userEmail = user.gitEmail;
+    extraConfig = {
+      merge = {
+        conflictstyle = "diff3";
+      };
+      diff = {
+        colorMoved = "default";
+      };
+      init = {
+        defaultBranch = "main";
+      };
+      pull = {
+        rebase = true;
+      };
+      pager = {
+        branch = false;
+      };
+      gpg = {
+        program = "gpg";
+      };
+      credential = {
+        helper = "store";
+      };
+    };
+    delta = {
+      enable = true;
+      options = {
+        side-by-side =  true;
+        syntax-theme = "Dracula";
+        navigate = true;
+      };
+    };
+  };
 }
