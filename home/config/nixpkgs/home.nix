@@ -43,6 +43,10 @@ in
     rnix-lsp
   ];
 
+  xdg = {
+    enable = true;
+  };
+
   programs.tmux = {
     enable = true;
     escapeTime = 0;
@@ -75,10 +79,6 @@ in
     envExtra = ''
       export EDITOR="nvim"
       export VISUAL=$EDITOR
-      export XDG_CONFIG_HOME="$HOME/.config"
-      export XDG_CACHE_HOME="$HOME/.cache"
-      export XDG_DATA_HOME="$HOME/.local/share"
-      export XDG_STATE_HOME="$HOME/.local/state"
       if [ -e ${user.homeDirectory}/.nix-profile/etc/profile.d/nix.sh ]; then . ${user.homeDirectory}/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
     '';
     shellAliases = {
