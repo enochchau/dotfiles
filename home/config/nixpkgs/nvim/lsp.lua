@@ -55,69 +55,73 @@ for _, lsp in ipairs(servers) do
     table.insert(runtime_path, "lua/?/init.lua")
 
     -- settings for nvim plugin linting
-    opts.settings = {
-      Lua = {
-        runtime = {
-          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-          version = "LuaJIT",
-          -- Setup your lua path
-          path = runtime_path,
-        },
-        diagnostics = {
-          -- Get the language server to recognize the `vim` global
-          globals = { "vim" },
-        },
-        workspace = {
-          -- Make the server aware of Neovim runtime files
-          library = vim.api.nvim_get_runtime_file("", true),
-        },
-        -- Do not send telemetry data containing a randomized but unique identifier
-        telemetry = { enable = false },
-      },
-    }
-  end
+		opts.settings = {
+			Lua = {
+				runtime = {
+					-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+					version = "LuaJIT",
+					-- Setup your lua path
+					path = runtime_path,
+				},
+				diagnostics = {
+					-- Get the language server to recognize the `vim` global
+					globals = { "vim" },
+				},
+				workspace = {
+					-- Make the server aware of Neovim runtime files
+					library = vim.api.nvim_get_runtime_file("", true),
+				},
+				-- Do not send telemetry data containing a randomized but unique identifier
+				telemetry = { enable = false },
+			},
+		}
+	end
 
-  if lsp == "eslint" then
-    -- for yarn pnp
-    opts.cmd = { "yarn", "node", "/Users/enochchau/.nix-profile/bin/vscode-eslint-language-server", "--stdio" }
-  end
-  if lsp == "html" then
-    opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
-  end
+	if lsp == "eslint" then
+		-- for yarn pnp
+		opts.cmd = { "yarn", "node", "/Users/enochchau/.nix-profile/bin/vscode-eslint-language-server", "--stdio" }
+	end
+	if lsp == "html" then
+		opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
+	end
 
-  if lsp == "jsonls" then
-    opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
-  end
+	if lsp == "jsonls" then
+		opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
+	end
 
-  if lsp == "cssls" then
-    opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
-  end
+	if lsp == "cssls" then
+		opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
+	end
 
-  if lsp == "tsserver" then
-    opts.init_options = require("nvim-lsp-ts-utils").init_options
+	if lsp == "tsserver" then
+		opts.init_options = require("nvim-lsp-ts-utils").init_options
 
-    opts.on_attach = function(client, bufnr)
-      local ts_utils = require("nvim-lsp-ts-utils")
-      ts_utils.setup({
-        auto_inlay_hints = false,
-      })
-      ts_utils.setup_client(client)
-      local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-      end
-      local keymap_opts = {
-        silent = true,
-        noremap = true,
-      }
-      buf_set_keymap("n", "<leader>o", ":TSLspOrganize<CR>", keymap_opts)
-      buf_set_keymap("n", "<leader>rf", ":TSLspRenameFile<CR>", keymap_opts)
-      buf_set_keymap("n", "<leader>i", ":TSLspImportAll<CR>", keymap_opts)
+		opts.on_attach = function(client, bufnr)
+			local ts_utils = require("nvim-lsp-ts-utils")
+			ts_utils.setup({
+				auto_inlay_hints = false,
+			})
+			ts_utils.setup_client(client)
+			local function buf_set_keymap(...)
+				vim.api.nvim_buf_set_keymap(bufnr, ...)
+			end
+			local keymap_opts = {
+				silent = true,
+				noremap = true,
+			}
+			buf_set_keymap("n", "<leader>o", ":TSLspOrganize<CR>", keymap_opts)
+			buf_set_keymap("n", "<leader>rf", ":TSLspRenameFile<CR>", keymap_opts)
+			buf_set_keymap("n", "<leader>i", ":TSLspImportAll<CR>", keymap_opts)
 
-      common_on_attach(client, bufnr)
-    end
-  end
+      -- use null-ls for formatting instead of tsserver
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
 
-  nvim_lsp[lsp].setup(opts)
+			common_on_attach(client, bufnr)
+		end
+	end
+
+	nvim_lsp[lsp].setup(opts)
 end
 
 -- show diagnostic on hover instead of in virtual text

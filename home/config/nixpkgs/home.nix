@@ -145,6 +145,10 @@ in
       }
       complete -F _cdg_completion cdg
 
+      if test -f $ZDOTDIR/machine.zshrc; then 
+        source $ZDOTDIR/machine.zshrc
+      fi
+
       # source p10k 
       [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
     '';
