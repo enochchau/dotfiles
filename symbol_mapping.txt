@@ -1,0 +1,36 @@
+! bang b
+@ at t
+# hash h
+$ dollar l
+% percent n
+^ caret r
+& ampersand m
+* star s
+- dash d
+_ underscore u
+= equal e
++ plus p
+| pipe i
+\ backslash k
+/ forwardslash f
+, comma o
+. period e
+? questions mark q
+` backtick a
+~ squily y
+; -> leave
+: -> leave
+" -> leave
+
+( open paren op
+) close paren cp
+() pair paren pp
+[ open square os
+] close square cs
+[] pair square ps
+{ open curly oc
+} close curly cc
+{} pair curly pc
+< open arrow oa
+> close arrow ca
+<> pair arrow pa

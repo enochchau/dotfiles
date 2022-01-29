@@ -163,9 +163,6 @@ in
     userName = user.gitUsername;
     userEmail = user.gitEmail;
     extraConfig = {
-      merge = {
-        conflictstyle = "diff3";
-      };
       diff = {
         colorMoved = "default";
       };
