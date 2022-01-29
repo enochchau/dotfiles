@@ -1,6 +1,49 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local nvim_lsp = require("lspconfig")
 
+-- @param path string - file path
+-- @return boolean
+local function file_exists(path)
+  local f = io.open(path, "r")
+  if f ~= nil then
+    io.close(f)
+    return true
+  else
+    return false
+  end
+end
+
+-- @param bin string - bin to look for
+-- @return string - path to bin
+local function which(bin)
+  local handle = io.popen("which " .. bin)
+  return handle:read("*all")
+end
+
+-- @return boolean - whether the current workspace has yarn pnp
+local function check_for_pnp()
+  local lsp_roots = vim.lsp.buf.list_workspace_folders()
+
+  for i, root in ipairs(lsp_roots) do
+    -- check if workspace root has a yarnrc.yml
+    local yarnrc_path = root .. "/.yarnrc.yml"
+    if file_exists(yarnrc_path) then
+      for line in io.lines(yarnrc_path) do
+        -- see if nodeLinker is specified
+        local has_node_linker = string.match(line, "nodeLinker")
+        if has_node_linker ~= nil then
+          -- found a pnp repo
+          return not (string.match(line, "node-modules") or string.match(line, "pnpm"))
+        end
+      end
+      -- no nodeLinker strategy was found so defauls to pnp
+      return true
+    end
+  end
+
+  return false
+end
+
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
@@ -55,77 +98,71 @@ for _, lsp in ipairs(servers) do
     table.insert(runtime_path, "lua/?/init.lua")
 
     -- settings for nvim plugin linting
-		opts.settings = {
-			Lua = {
-				runtime = {
-					-- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
-					version = "LuaJIT",
-					-- Setup your lua path
-					path = runtime_path,
-				},
-				diagnostics = {
-					-- Get the language server to recognize the `vim` global
-					globals = { "vim" },
-				},
-				workspace = {
-					-- Make the server aware of Neovim runtime files
-					library = vim.api.nvim_get_runtime_file("", true),
-				},
-				-- Do not send telemetry data containing a randomized but unique identifier
-				telemetry = { enable = false },
-			},
-		}
-	end
+    opts.settings = {
+      Lua = {
+        runtime = {
+          -- Tell the language server which version of Lua you're using (most likely LuaJIT in the case of Neovim)
+          version = "LuaJIT",
+          -- Setup your lua path
+          path = runtime_path,
+        },
+        diagnostics = {
+          -- Get the language server to recognize the `vim` global
+          globals = { "vim" },
+        },
+        workspace = {
+          -- Make the server aware of Neovim runtime files
+          library = vim.api.nvim_get_runtime_file("", true),
+        },
+        -- Do not send telemetry data containing a randomized but unique identifier
+        telemetry = { enable = false },
+      },
+    }
+  end
 
-	if lsp == "eslint" then
-		-- for yarn pnp
-		opts.cmd = { "yarn", "node", "/Users/enochchau/.nix-profile/bin/vscode-eslint-language-server", "--stdio" }
-	end
-	if lsp == "html" then
-		opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
-	end
+  if lsp == "eslint" then
+    -- for yarn pnp
+    if check_for_pnp() then
+      local eslint_path = which("vscode-eslint-language-server")
+      opts.cmd = { "yarn", "node", eslint_path, "--stdio" }
+    end
+  end
 
-	if lsp == "jsonls" then
-		opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
-	end
+  if lsp == "html" or lsp == "jsonls" or lsp == "cssls" then
+    opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
+  end
 
-	if lsp == "cssls" then
-		opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
-	end
+  if lsp == "tsserver" then
+    opts.init_options = require("nvim-lsp-ts-utils").init_options
 
-	if lsp == "tsserver" then
-		opts.init_options = require("nvim-lsp-ts-utils").init_options
-
-		opts.on_attach = function(client, bufnr)
-			local ts_utils = require("nvim-lsp-ts-utils")
-			ts_utils.setup({
-				auto_inlay_hints = false,
-			})
-			ts_utils.setup_client(client)
-			local function buf_set_keymap(...)
-				vim.api.nvim_buf_set_keymap(bufnr, ...)
-			end
-			local keymap_opts = {
-				silent = true,
-				noremap = true,
-			}
-			buf_set_keymap("n", "<leader>o", ":TSLspOrganize<CR>", keymap_opts)
-			buf_set_keymap("n", "<leader>rf", ":TSLspRenameFile<CR>", keymap_opts)
-			buf_set_keymap("n", "<leader>i", ":TSLspImportAll<CR>", keymap_opts)
+    opts.on_attach = function(client, bufnr)
+      local ts_utils = require("nvim-lsp-ts-utils")
+      ts_utils.setup({
+        auto_inlay_hints = false,
+      })
+      ts_utils.setup_client(client)
+      local function buf_set_keymap(...)
+        vim.api.nvim_buf_set_keymap(bufnr, ...)
+      end
+      local keymap_opts = {
+        silent = true,
+        noremap = true,
+      }
+      buf_set_keymap("n", "<leader>o", ":TSLspOrganize<CR>", keymap_opts)
+      buf_set_keymap("n", "<leader>rf", ":TSLspRenameFile<CR>", keymap_opts)
+      buf_set_keymap("n", "<leader>i", ":TSLspImportAll<CR>", keymap_opts)
 
       -- use null-ls for formatting instead of tsserver
       client.resolved_capabilities.document_formatting = false
       client.resolved_capabilities.document_range_formatting = false
 
-			common_on_attach(client, bufnr)
-		end
-	end
+      common_on_attach(client, bufnr)
+    end
+  end
 
-	nvim_lsp[lsp].setup(opts)
+  nvim_lsp[lsp].setup(opts)
 end
 
--- show diagnostic on hover instead of in virtual text
-vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])
 vim.diagnostic.config({
   virtual_text = false,
 })
@@ -137,6 +174,7 @@ local signs = {
   Hint = " ",
   Info = " ",
 }
+
 for type, icon in pairs(signs) do
   local hl = "DiagnosticSign" .. type
   vim.fn.sign_define(hl, {
@@ -145,3 +183,6 @@ for type, icon in pairs(signs) do
     numhl = hl,
   })
 end
+
+-- show diagnostic on hover instead of in virtual text
+vim.cmd([[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]])

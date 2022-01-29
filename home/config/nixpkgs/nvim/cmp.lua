@@ -53,7 +53,7 @@ cmp.setup({
   }, {
     { name = "path" },
   }, {
-    { name = "treesitter"}
+    { name = "treesitter" },
   }),
 })
 

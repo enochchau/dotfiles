@@ -26,9 +26,11 @@ in
     nodePackages.vim-language-server
     nodePackages.typescript-language-server
     nodePackages.vscode-langservers-extracted # includes ccls, eslint, html, jsonls
+    nodePackages.typescript
     sumneko-lua-language-server
     # lua
     stylua
+    luajit
     # nodejs
     nodejs
     nodePackages.typescript
@@ -46,9 +48,9 @@ in
     zsh-syntax-highlighting
   ];
 
-  xdg = {
-    enable = true;
-  };
+  xdg.enable = true;
+  programs.ssh.enable = true;
+  programs.jq.enable = true;
 
   programs.bat = {
     enable = true;
@@ -154,9 +156,6 @@ in
     '';
   };
 
-  programs.ssh = {
-    enable = true;
-  };
 
   programs.git = {
     enable = true;
