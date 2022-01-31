@@ -1,8 +1,8 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local nvim_lsp = require("lspconfig")
 
--- @param path string - file path
--- @return boolean
+---@param path string file path
+---@return boolean
 local function file_exists(path)
   local f = io.open(path, "r")
   if f ~= nil then
@@ -13,14 +13,14 @@ local function file_exists(path)
   end
 end
 
--- @param bin string - bin to look for
--- @return string - path to bin
+---@param bin string bin to look for
+---@return string path to bin
 local function which(bin)
   local handle = io.popen("which " .. bin)
   return handle:read("*all")
 end
 
--- @return boolean - whether the current workspace has yarn pnp
+---@return boolean whether the current workspace has yarn pnp
 local function check_for_pnp()
   local lsp_roots = vim.lsp.buf.list_workspace_folders()
 
@@ -46,50 +46,45 @@ local function check_for_pnp()
   return false
 end
 
+---binds keymap for a given buffer
+---@param bufnr any the current buffer
+---@param keymap table a 2D table with rows: { mode, keys, command }
+local function bind_keymap(bufnr, keymap)
+  local opts = { silent = true, noremap = true }
+
+  for _, mapping in pairs(keymap) do
+    table.insert(mapping, opts)
+    vim.api.nvim_buf_set_keymap(bufnr, unpack(mapping))
+  end
+end
+
 local function common_on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  -- @param picker string - name of the builtin telescope picker
+  ---@param picker string name of the builtin telescope picker
   local telescope_picker = function(picker)
     return '<cmd>lua require"telescope.builtin".' .. picker .. "()<CR>"
   end
 
-  -- Mappings.
-  local opts = {
-    noremap = true,
-    silent = true,
-  }
-
   local keymap = {
-    { "n", "gd", telescope_picker("lsp_definitions"), opts },
-    { "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>", opts },
-    { "n", "gi", telescope_picker("lsp_implementations"), opts },
-    { "n", "gy", telescope_picker("lsp_type_definitions"), opts },
-    { "n", "gr", telescope_picker("lsp_references"), opts },
-    { "n", "gs", telescope_picker("lsp_document_symbols"), opts },
-    { "n", "[g", "<cmd>lua vim.diagnostic.goto_prev()<CR>", opts },
-    { "n", "]g", "<cmd>lua vim.diagnostic.goto_next()<CR>", opts },
-    {
-      "x",
-      "<leader>f",
-      ":<C-U>lua vim.lsp.buf.range_formatting()<CR>",
-      opts,
-    },
-    { "n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts },
-    { "n", "ga", "<cmd>Telescope diagnostics bufnr=0<CR>", opts },
-    { "n", "<leader>a", telescope_picker("lsp_code_actions"), opts },
-    { "x", "<leader>a", ":Telescope lsp_range_code_actions<CR>", opts },
-    { "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>", opts },
+    { "n", "gd", telescope_picker("lsp_definitions") },
+    { "n", "K", "<cmd>lua vim.lsp.buf.hover()<CR>" },
+    { "n", "gi", telescope_picker("lsp_implementations") },
+    { "n", "gy", telescope_picker("lsp_type_definitions") },
+    { "n", "gr", telescope_picker("lsp_references") },
+    { "n", "gs", telescope_picker("lsp_document_symbols") },
+    { "n", "[g", "<cmd>lua vim.diagnostic.goto_prev()<CR>" },
+    { "n", "]g", "<cmd>lua vim.diagnostic.goto_next()<CR>" },
+    { "x", "<leader>f", ":<C-U>lua vim.lsp.buf.range_formatting()<CR>" },
+    { "n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>" },
+    { "n", "ga", "<cmd>Telescope diagnostics bufnr=0<CR>" },
+    { "n", "<leader>a", telescope_picker("lsp_code_actions") },
+    { "x", "<leader>a", ":Telescope lsp_range_code_actions<CR>" },
+    { "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" },
   }
 
-  for i, keys in ipairs(keymap) do
-    vim.api.nvim_buf_set_keymap(bufnr, unpack(keys))
-  end
+  bind_keymap(bufnr, keymap)
 end
-
-vim.diagnostic.config({
-  virtual_text = false,
-})
 
 -- use custom icons
 local signs = {
@@ -108,10 +103,15 @@ for type, icon in pairs(signs) do
   })
 end
 
--- show diagnostic on hover instead of in virtual text
-vim.cmd(
-  [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
-)
+vim.diagnostic.config({
+  virtual_text = true,
+})
+
+vim.api.nvim_set_keymap("n", '<leader>d', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<CR>', { noremap = true, silent = true })
+-- show diagnostic on hover
+-- vim.cmd(
+--   [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
+-- )
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -239,16 +239,14 @@ for _, lsp in ipairs(servers) do
         auto_inlay_hints = false,
       })
       ts_utils.setup_client(client)
-      local function buf_set_keymap(...)
-        vim.api.nvim_buf_set_keymap(bufnr, ...)
-      end
-      local keymap_opts = {
-        silent = true,
-        noremap = true,
+
+      local keymap = {
+        { "n", "<leader>o", ":TSLspOrganize<CR>" },
+        { "n", "<leader>rf", ":TSLspRenameFile<CR>" },
+        { "n", "<leader>i", ":TSLspImportAll<CR>" },
       }
-      buf_set_keymap("n", "<leader>o", ":TSLspOrganize<CR>", keymap_opts)
-      buf_set_keymap("n", "<leader>rf", ":TSLspRenameFile<CR>", keymap_opts)
-      buf_set_keymap("n", "<leader>i", ":TSLspImportAll<CR>", keymap_opts)
+
+      bind_keymap(bufnr, keymap)
 
       -- use null-ls for formatting instead of tsserver
       client.resolved_capabilities.document_formatting = false
