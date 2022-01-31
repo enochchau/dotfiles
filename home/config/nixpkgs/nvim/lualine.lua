@@ -1,3 +1,11 @@
+local theme = vim.g.colors_name
+if theme == "one" then
+  theme = "onedark"
+end
+if theme == "github_dark" then
+  theme = "github"
+end
+
 require("lualine").setup({
   sections = {
     lualine_b = {
@@ -16,7 +24,7 @@ require("lualine").setup({
     },
   },
   options = {
-    theme = vim.g.colors_name,
+    theme = theme,
     section_separators = "",
     component_separators = "│",
   },
