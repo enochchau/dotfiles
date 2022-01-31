@@ -9,8 +9,10 @@ ln -s ./home/config/nixpkgs ~/.config/nixpkgs
 
 if [ $uname = 'Linux' ]
 then
+  mkdir -p ~/.config/Code/User
   ln -s home/vscode-settings.json ~/.config/Code/User/settings.json
 elif [ $uname = 'Darwin' ]
 then
-  ln -s home/vscode-settings.json ~/Library/Application Support/Code/User/settings.json
+  mkdir -p '~/Library/Application Support/Code/User'
+  ln -s home/vscode-settings.json '~/Library/Application Support/Code/User/settings.json'
 fi
