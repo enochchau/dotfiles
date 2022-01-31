@@ -128,8 +128,47 @@ for _, lsp in ipairs(servers) do
     end
   end
 
-  if lsp == "html" or lsp == "jsonls" or lsp == "cssls" then
+  if lsp == "html" or lsp == "cssls" then
     opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
+  end
+
+  if lsp == "jsonls" then
+    opts.capabilities.textDocument.completion.completionItem.snippetSupport = true
+    -- https://www.reddit.com/r/neovim/comments/n1n4zc/need_help_with_tsconfigjson_autocompletion_with/
+    opts.settings = {
+      json = {
+        schemas = {
+          {
+            fileMatch = { "package.json" },
+            url = "https://json.schemastore.org/package.json",
+          },
+          {
+            fileMatch = { "tsconfig*.json" },
+            url = "https://json.schemastore.org/tsconfig.json",
+          },
+          {
+            fileMatch = {
+              ".prettierrc",
+              ".prettierrc.json",
+              "prettier.config.json",
+            },
+            url = "https://json.schemastore.org/prettierrc.json",
+          },
+          {
+            fileMatch = { ".eslintrc", ".eslintrc.json" },
+            url = "https://json.schemastore.org/eslintrc.json",
+          },
+          {
+            fileMatch = { ".babelrc", ".babelrc.json", "babel.config.json" },
+            url = "https://json.schemastore.org/babelrc.json",
+          },
+          {
+            fileMatch = { "lerna.json" },
+            url = "https://json.schemastore.org/lerna.json",
+          },
+        },
+      },
+    }
   end
 
   if lsp == "tsserver" then
