@@ -1,4 +1,4 @@
-{ pkgs, user, ... }:
+{ pkgs ? import <nixpkgs>, user, ... }:
 {
   enable = true;
   dotDir = ".config/zsh";

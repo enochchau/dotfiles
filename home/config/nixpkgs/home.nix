@@ -4,11 +4,9 @@ let
   myNodePackages = import ./nodejs/default.nix { };
   user = import ./user.nix { };
   zsh = import ./zsh/default.nix { pkgs = pkgs; user = user; };
+  neovim = import ./nvim/default.nix { pkgs = pkgs; };
 in
 {
-  imports = [
-    ./nvim/default.nix
-  ];
 
   home.username = user.username;
   home.homeDirectory = user.homeDirectory;
@@ -53,6 +51,7 @@ in
   programs.ssh.enable = true;
   programs.jq.enable = true;
   programs.zsh = zsh;
+  programs.neovim = neovim;
 
   programs.bat = {
     enable = true;
