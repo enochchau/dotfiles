@@ -4,17 +4,9 @@
       recursive: true
        
 - link:
-    ~/.config/nvim:
-        create: true
-        path: home/config/nvim
     ~/.config/alacritty: 
         create: true
         path: home/config/alacritty
-    ~/.config/zsh/main.zshrc: 
-        create: true
-        path: home/config/zsh/main.zshrc
-    ~/.zshenv: home/zshenv
-    ~/.tmux.conf: home/tmux.conf
     ~/Library/Application Support/Code/User/settings.json:
         if: '[ `uname` = Darwin ]'
         create: true
@@ -23,11 +15,6 @@
         if: '[ `uname` = Linux ]'
         create: true
         path: home/vscode-settings.json
-    ~/.config/sheldon/plugins.toml:
-        create: true
-        path: home/config/sheldon/plugins.toml
-    ~/.gitconfig:
-        path: home/gitconfig
     ~/.config/nixpkgs:
         create: true
         path: home/config/nixpkgs
