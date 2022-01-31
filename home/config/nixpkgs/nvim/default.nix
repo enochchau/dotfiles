@@ -13,7 +13,11 @@ in
     {
       plugin = vim-obsession;
       # this stuff needs to be at the top of the init.vim
-      config = sourceVim ./settings.vim + "\n" + sourceVim ./theme.vim + "\n" + sourceVim ./format.vim;
+      config = ''
+      ${sourceVim ./settings.vim}
+      ${sourceVim ./theme.vim}
+      ${sourceVim ./format.vim}
+      '';
     }
 
     vim-surround
@@ -22,6 +26,8 @@ in
     neon
     myPlugins.github-nvim-theme
     vim-one
+    nightfox-nvim
+    papercolor-theme
     # vimscript utils
     editorconfig-vim
     {

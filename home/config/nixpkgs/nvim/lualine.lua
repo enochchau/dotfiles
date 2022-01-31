@@ -16,7 +16,7 @@ require("lualine").setup({
     },
   },
   options = {
-    theme = "tokyonight",
+    theme = vim.g.colors_name,
     section_separators = "",
     component_separators = "│",
   },
