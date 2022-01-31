@@ -1,4 +1,4 @@
-set bg=light
+set bg=dark
 let g:neon_style = 'doom'
 let g:tokyonight_style = 'day'
 
