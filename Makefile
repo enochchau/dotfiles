@@ -1,3 +1,3 @@
 PHONY link
 link:
-	./link.sh
+	./scripts/link.sh
