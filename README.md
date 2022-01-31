@@ -1,7 +1,20 @@
 # dotfiles
 
-Instructions
-1. Run `make link`
-1. [Install Nix](https://nixos.org/download.html)
-2. [Install Home Manager](https://nix-community.github.io/home-manager/index.html#ch-installation)
-3. Run `home-manager switch`
+Instructions:
+
+1. Link files and directories
+```sh
+make link
+```
+
+2. Install Nix
+```sh
+cd home/config/nixpkgs
+make install-part1
+```
+
+3. Restart the terminal session and install Home Manager
+```sh
+cd home/config/nixpkgs
+make install-part2
+```
