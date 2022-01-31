@@ -27,6 +27,7 @@ in
     nodePackages.vscode-langservers-extracted # includes ccls, eslint, html, jsonls
     nodePackages.typescript
     sumneko-lua-language-server
+    nodePackages.yaml-language-server
     # lua
     stylua
     luajit
