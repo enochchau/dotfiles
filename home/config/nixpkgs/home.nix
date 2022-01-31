@@ -35,6 +35,7 @@ in
     nodejs
     nodePackages.typescript
     nodePackages.eslint
+    nodePackages.prettier
     nodePackages.node2nix
     nodePackages.npm
     nodePackages.yarn

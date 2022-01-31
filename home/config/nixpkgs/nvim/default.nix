@@ -92,7 +92,7 @@ in
     # other
     { plugin = lualine-nvim; config = sourceLua ./lualine.lua; }
     { plugin = indent-blankline-nvim; config = sourceLua ./blankline.lua; }
-    { plugin = gitsigns-nvim; config = "lua require('gitsigns').setup()"; }
+    { plugin = gitsigns-nvim; config = sourceLua ./gitsigns.lua; }
     { plugin = toggleterm-nvim; config = sourceLua ./toggleterm.lua; }
     vim-startify
     # file tree
