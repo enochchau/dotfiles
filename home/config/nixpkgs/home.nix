@@ -3,6 +3,7 @@
 let
   myNodePackages = import ./nodejs/default.nix { };
   user = import ./user.nix { };
+  zsh = import ./zsh/default.nix { pkgs = pkgs; user = user; };
 in
 {
   imports = [
@@ -51,6 +52,7 @@ in
   xdg.enable = true;
   programs.ssh.enable = true;
   programs.jq.enable = true;
+  programs.zsh = zsh;
 
   programs.bat = {
     enable = true;
@@ -81,81 +83,6 @@ in
       set -g pane-active-border-style "fg=colour4 bg=default"
     '';
   };
-
-  programs.zsh = {
-    enable = true;
-    dotDir = ".config/zsh";
-    enableCompletion = true;
-    enableAutosuggestions = true;
-    enableSyntaxHighlighting = true;
-    defaultKeymap = "viins";
-    envExtra = ''
-      export EDITOR="nvim"
-      export VISUAL=$EDITOR
-      if [ -e ${user.homeDirectory}/.nix-profile/etc/profile.d/nix.sh ]; then . ${user.homeDirectory}/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
-    '';
-    shellAliases = {
-      cdnvim = "cd ~/.config/nvim";
-      cddot = "cd ~/dotfiles";
-      cdnix = "cd ~/.config/nixpkgs";
-      gcol = "git branch | fzf | sed 's/^.* //' | xargs git checkout";
-      gitdel = "~/code/dev-scripts/git-delete.sh";
-    };
-    oh-my-zsh = {
-      enable = true;
-      plugins = [
-        "git"
-        "vi-mode"
-        "docker"
-        "docker-compose"
-        "kubectl"
-        "ripgrep"
-        "fd"
-      ];
-    };
-    plugins = [
-      {
-        name = "powerlevel10k";
-        file = "powerlevel10k.zsh-theme";
-        src = pkgs.fetchFromGitHub {
-          owner = "romkatv";
-          repo = "powerlevel10k";
-          rev = "v1.16.0";
-          sha256 = "gSPCNLK733+9NWdalqUJ8nzkhoQxurXAYX9t4859j2s=";
-        };
-      }
-    ];
-    initExtraFirst = ''
-      if [[ -r "$\{XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-$\{(%):-%n}.zsh" ]]; then
-        source "$\{XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-$\{(%):-%n}.zsh"
-      fi
-
-      export MANPAGER="sh -c 'col -bx | bat -l man -p'"
-      export NIX_PATH=$HOME/.nix-defexpr/channels:/nix/var/nix/profiles/per-user/root/channels''${NIX_PATH:+:$NIX_PATH}
-    '';
-    initExtra = ''
-      bindkey '^I'   complete-word       # tab          | complete
-      bindkey '^[[Z' autosuggest-accept  # shift + tab  | autosuggest
-      export PATH="$(yarn global bin):$PATH"
-      export PATH="$HOME/.local/bin:$PATH"
-
-      # go to git root directory
-      cdg() { cd "$(git rev-parse --show-toplevel)/$1" }
-      _cdg_completion()
-      {
-        COMPREPLY="$(ls $(git rev-parse --show-toplevel || echo "$HOME")/)" 
-      }
-      complete -F _cdg_completion cdg
-
-      if test -f $ZDOTDIR/machine.zshrc; then 
-        source $ZDOTDIR/machine.zshrc
-      fi
-
-      # source p10k 
-      [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
-    '';
-  };
-
 
   programs.git = {
     enable = true;
