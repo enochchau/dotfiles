@@ -17,7 +17,9 @@ end
 ---@return string path to bin
 local function which(bin)
   local handle = io.popen("which " .. bin)
-  return handle:read("*all")
+  local result = handle:read("*all")
+  result = string.gsub(result, "%s+", "")
+  return result
 end
 
 ---@return boolean whether the current workspace has yarn pnp
@@ -107,7 +109,12 @@ vim.diagnostic.config({
   virtual_text = true,
 })
 
-vim.api.nvim_set_keymap("n", '<leader>d', '<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<CR>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap(
+  "n",
+  "<leader>d",
+  "<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<CR>",
+  { noremap = true, silent = true }
+)
 -- show diagnostic on hover
 -- vim.cmd(
 --   [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
@@ -165,8 +172,11 @@ for _, lsp in ipairs(servers) do
   end
 
   if lsp == "eslint" then
+    local current_path = vim.loop.cwd()
+    local use_gatsby_monorepo = string.match(current_path, "Gatsby/repo") ~= nil
+      and string.match(current_path, "cli") == nil
     -- for yarn pnp
-    if check_for_pnp() then
+    if check_for_pnp() or use_gatsby_monorepo then
       local eslint_path = which("vscode-eslint-language-server")
       opts.cmd = { "yarn", "node", eslint_path, "--stdio" }
     end
