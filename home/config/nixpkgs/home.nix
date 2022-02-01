@@ -28,6 +28,7 @@ in
     nodePackages.typescript
     sumneko-lua-language-server
     nodePackages.yaml-language-server
+    vale
     # lua
     stylua
     luajit
