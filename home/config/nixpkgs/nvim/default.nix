@@ -14,9 +14,9 @@ in
       plugin = vim-obsession;
       # this stuff needs to be at the top of the init.vim
       config = ''
-      ${sourceVim ./settings.vim}
-      ${sourceVim ./theme.vim}
-      ${sourceVim ./format.vim}
+        ${sourceVim ./settings.vim}
+        ${sourceVim ./theme.vim}
+        ${sourceVim ./format.vim}
       '';
     }
 

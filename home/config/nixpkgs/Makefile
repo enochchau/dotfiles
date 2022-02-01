@@ -4,7 +4,7 @@ user.nix:
 .PHONY: fmt install-part1 install-part2 install
 
 fmt:
-	nixpkgs-fmt . && stylua .
+	nixpkgs-fmt . && stylua . && prettier . -w
 
 install:
 	echo "run 'make install-part1' to install nix\nthen restart your shell and run 'make install-part2' to install home-manager"

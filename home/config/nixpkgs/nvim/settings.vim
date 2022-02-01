@@ -93,7 +93,7 @@ augroup numbertoggle
 augroup END
 
 " color column at 80
-set colorcolumn=120
+set colorcolumn=80
 
 " disable startup screen
 set shortmess+=I
