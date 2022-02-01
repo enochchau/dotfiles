@@ -33,7 +33,12 @@ in
   };
   solarized-nvim = githubPlugin {
     repo = "shaunsingh/solarized.nvim";
-    rev = "sha256-EMN4Ru6B9FBwvR33gON81LPjZk5X0sG5wamlSxZjNcU=";
+    rev = "26dea71db242c64c220e7cd311d659c4f98e30aa";
     sha256 = "sha256-EMN4Ru6B9FBwvR33gON81LPjZk5X0sG5wamlSxZjNcU=";
+  };
+  rose-pine = githubPlugin {
+    repo = "rose-pine/neovim";
+    rev = "b6f26f45d920a246f075b888c24edfa744a1c551";
+    sha256 = "sha256-4OJU+WMbn9sJe6z1DasQqzNK0oRjhkDzk+JWXBUD0xE=";
   };
 }

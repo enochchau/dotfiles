@@ -28,6 +28,8 @@ in
     vim-one
     nightfox-nvim
     papercolor-theme
+    myPlugins.rose-pine
+    gruvbox
     # vimscript utils
     editorconfig-vim
     {
