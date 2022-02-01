@@ -105,3 +105,8 @@ augroup markdownSpell
     autocmd FileType markdown setlocal spell
     autocmd BufRead,BufNewFile *.md setlocal spell
 augroup END
+
+" detect prolog
+augroup filetypedetect
+  au! BufRead,BufNewFile *.pro setfiletype prolog
+augroup END
