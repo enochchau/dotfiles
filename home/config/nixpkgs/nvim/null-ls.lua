@@ -8,7 +8,7 @@ local sources = {
   null_ls.builtins.formatting.prettierd.with({
     env = {
       PRETTIERD_DEFAULT_CONFIG = vim.fn.expand(
-        "$XDG_CONFIG_HOME/nixpkgs/.prettierrc"
+        "~/.config/nixpkgs/.prettierrc"
       ),
     },
   }),
