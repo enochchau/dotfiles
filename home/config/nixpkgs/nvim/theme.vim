@@ -9,6 +9,6 @@ endif
 " colo neon
 " colo github_dark
 " colo one
-" colo tokyonight
-colo nightfox
+colo tokyonight
+" colo nightfox
 " colo PaperColor

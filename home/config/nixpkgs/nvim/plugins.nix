@@ -31,4 +31,9 @@ in
     rev = "1700dfe790985ce859868e16e13dcda0ec80cb3f";
     sha256 = "sha256-3Rp0oL+yhojQ6bIejS4IlPzyrxut7LcuobykonrpAEc=";
   };
+  solarized-nvim = githubPlugin {
+    repo = "shaunsingh/solarized.nvim";
+    rev = "sha256-EMN4Ru6B9FBwvR33gON81LPjZk5X0sG5wamlSxZjNcU=";
+    sha256 = "sha256-EMN4Ru6B9FBwvR33gON81LPjZk5X0sG5wamlSxZjNcU=";
+  };
 }
