@@ -41,6 +41,7 @@ in
     cmp-path
     cmp-cmdline
     cmp-treesitter
+    cmp-spell
     luasnip
     cmp_luasnip
     { plugin = nvim-cmp; config = sourceLua ./cmp.lua; }

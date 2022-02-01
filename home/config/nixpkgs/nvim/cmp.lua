@@ -49,16 +49,16 @@ cmp.setup({
       select = true,
     }),
   },
-  sources = cmp.config.sources({
-    { name = "nvim_lsp" },
-    { name = "luasnip" },
-  }, {
-    { name = "buffer" },
-  }, {
-    { name = "path" },
-  }, {
-    { name = "treesitter" },
-  }),
+  sources = cmp.config.sources(
+    {
+      { name = "nvim_lsp" },
+      { name = "luasnip" },
+    },
+    { { name = "buffer" } },
+    { { name = "path" } },
+    { { name = "treesitter" } },
+    { { name = "spell" } }
+  ),
 })
 
 -- Use buffer source for `/` (if you enabled `native_menu`, this won't work anymore).

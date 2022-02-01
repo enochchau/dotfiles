@@ -99,3 +99,9 @@ set colorcolumn=80
 set shortmess+=I
 
 command! BufClear silent! execute "%bd|e#|bd#"
+
+augroup markdownSpell
+    autocmd!
+    autocmd FileType markdown setlocal spell
+    autocmd BufRead,BufNewFile *.md setlocal spell
+augroup END
