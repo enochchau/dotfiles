@@ -11,6 +11,8 @@ set laststatus=2
 set ruler
 set hidden
 set updatetime=300
+set smartcase
+set ignorecase
 
 " move vertically by visual line, don't skip wrapped lines
 nmap j gj
