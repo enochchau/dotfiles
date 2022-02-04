@@ -30,6 +30,7 @@ in
     papercolor-theme
     myPlugins.rose-pine
     gruvbox
+    neovim-ayu
     # vimscript utils
     editorconfig-vim
     {

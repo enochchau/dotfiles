@@ -14,4 +14,5 @@ endif
 " colo nightfox
 " colo PaperColor
 " colo rose-pine
+" color ayu-mirage
 colo gruvbox
