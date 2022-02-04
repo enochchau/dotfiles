@@ -1,7 +1,7 @@
 set bg=light
 let g:neon_style = 'doom'
 " let g:tokyonight_style = 'day'
-let g:gruvbox_contrast_light = 'medium'
+let g:gruvbox_contrast_light = 'light'
 
 if (has('termguicolors'))
   set termguicolors

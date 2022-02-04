@@ -31,6 +31,7 @@ in
     myPlugins.rose-pine
     gruvbox
     neovim-ayu
+    myPlugins.solarized-nvim
     # vimscript utils
     editorconfig-vim
     {
