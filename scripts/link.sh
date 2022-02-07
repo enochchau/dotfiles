@@ -2,19 +2,34 @@
 
 uname=`uname`
 
+function make_link() {
+  local from=$1
+  local to=$2
+
+  if [ -L "$to" ]
+  then
+    # link exists
+    echo "Link exists for: $to"
+    return
+  fi
+
+  echo "Creating link for: $from $to"
+  ln -s $from $to
+}
+
 mkdir -p ~/.config
 
-ln -s $PWD/home/config/alacritty ~/.config/alacritty
-ln -s $PWD/home/config/nixpkgs ~/.config/nixpkgs
+make_link $PWD/home/config/alacritty ~/.config/alacritty
+make_link $PWD/home/config/nixpkgs ~/.config/nixpkgs
 
 if [ $uname = 'Linux' ]
 then
   mkdir -p ~/.config/Code/User
-  ln -s $PWD/home/vscode-settings.json ~/.config/Code/User/settings.json
+  make_link $PWD/home/vscode-settings.json ~/.config/Code/User/settings.json
 elif [ $uname = 'Darwin' ]
 then
-  ln -s $PWD/home/hammerspoon ~/.hammerspoon
+  make_link $PWD/home/hammerspoon ~/.hammerspoon
 
-  mkdir -p "$HOME/Library/Application Support/Code/User"
-  ln -s $PWD/home/vscode-settings.json '~/Library/Application Support/Code/User/settings.json'
+  mkdir -p $HOME/Library/'Application Support'/Code/User
+  make_link $PWD/home/vscode-settings.json $HOME/Library/'Application Support'/Code/User/settings.json
 fi
