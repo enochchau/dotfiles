@@ -1,3 +1,4 @@
-PHONY link
+PHONY: link
+
 link:
 	./scripts/link.sh
