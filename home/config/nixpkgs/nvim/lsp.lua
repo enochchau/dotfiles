@@ -171,7 +171,7 @@ for _, lsp in ipairs(servers) do
           telemetry = { enable = false },
         },
       }
-    elseif string.match(current_path, ".hammerspoon") then
+    elseif string.match(current_path, "hammerspoon") then
       opts.settings = {
         Lua = {
           diagnostics = {
