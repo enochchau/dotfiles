@@ -35,6 +35,7 @@ casks=(
   'rectangle'
   'scroll-reverser'
   'alt-tab'
+  'hammerspoon'
 )
 
 for cask in "${casks[@]}"
