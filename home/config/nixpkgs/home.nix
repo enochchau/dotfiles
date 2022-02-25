@@ -19,19 +19,21 @@ in
     # nix
     nix
     nixpkgs-fmt
-    # lsp
     rnix-lsp
+    # bash
     nodePackages.bash-language-server
+    # viml
     nodePackages.vim-language-server
-    nodePackages.typescript-language-server
-    nodePackages.vscode-langservers-extracted # includes ccls, eslint, html, jsonls
-    nodePackages.typescript
-    sumneko-lua-language-server
+    # web dev lsps
+    # includes ccls, eslint, html, jsonls
+    nodePackages.vscode-langservers-extracted 
+    # yml
     nodePackages.yaml-language-server
     vale
     # lua
     stylua
     luajit
+    sumneko-lua-language-server
     # nodejs
     nodejs
     nodePackages.typescript
@@ -41,6 +43,9 @@ in
     nodePackages.npm
     nodePackages.yarn
     myNodePackages."@fsouza/prettierd"
+    # typescript
+    nodePackages.typescript-language-server
+    nodePackages.typescript
     # cmd line util
     fd
     ripgrep
@@ -48,6 +53,9 @@ in
     # zsh
     zsh-autosuggestions
     zsh-syntax-highlighting
+    # tf
+    terraform
+    terraform-ls
   ];
 
   xdg.enable = true;

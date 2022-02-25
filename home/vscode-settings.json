@@ -1,46 +1,55 @@
 {
-  "vim.visualModeKeyBindings": [
+  "telemetry.enableTelemetry" : false,
+  "workbench.sideBar.location" : "right",
+  "editor.accessibilitySupport" : "off",
+  "[jsonc]" : {
+    "editor.defaultFormatter" : "vscode.json-language-features"
+  },
+  "files.autoSave" : "afterDelay",
+  "editor.highlightActiveIndentGuide" : true,
+  "editor.inlineSuggest.enabled" : true,
+  "editor.wordWrap" : "on",
+  "telemetry.enableCrashReporter" : false,
+  "typescript.updateImportsOnFileMove.enabled" : "always",
+  "editor.formatOnSave" : true,
+  "workbench.iconTheme" : "material-icon-theme",
+  "[typescript]" : {
+    "editor.defaultFormatter" : "esbenp.prettier-vscode",
+    "editor.tabSize" : 2
+  },
+  "editor.minimap.enabled" : false,
+  "javascript.updateImportsOnFileMove.enabled" : "always",
+  "vim.visualModeKeyBindings" : [
     {
-      "before": [">"],
-      "commands": ["editor.action.indentLines"]
+      "commands" : [
+        "editor.action.indentLines"
+      ],
+      "before" : [
+        ">"
+      ]
     },
     {
-      "before": ["<"],
-      "commands": ["editor.action.outdentLines"]
+      "commands" : [
+        "editor.action.outdentLines"
+      ],
+      "before" : [
+        "<"
+      ]
     }
   ],
-  "vim.useSystemClipboard": true,
-  "[json]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  "vim.useSystemClipboard" : true,
+  "[typescriptreact]" : {
+    "editor.defaultFormatter" : "esbenp.prettier-vscode",
+    "editor.tabSize" : 2
   },
-  "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+  "editor.tabSize" : 4,
+  "[javascript]" : {
+    "editor.defaultFormatter" : "esbenp.prettier-vscode",
+    "editor.tabSize" : 2
   },
-  "[javascript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.tabSize": 2
-  },
-  "[typescriptreact]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.tabSize": 2
-  },
-  "[typescript]": {
-    "editor.defaultFormatter": "esbenp.prettier-vscode",
-    "editor.tabSize": 2
-  },
-  "typescript.updateImportsOnFileMove.enabled": "always",
-  "javascript.updateImportsOnFileMove.enabled": "always",
-  "files.autoSave": "afterDelay",
-  "editor.formatOnSave": true,
-  "editor.tabSize": 4,
-  "editor.highlightActiveIndentGuide": true,
-  "editor.wordWrap": "on",
-  "editor.inlineSuggest.enabled": true,
-  "diffEditor.wordWrap": "on",
-  "telemetry.enableCrashReporter": false,
-  "telemetry.enableTelemetry": false,
-  "workbench.colorTheme": "Halcyon",
-  "workbench.sideBar.location": "right",
-  "editor.minimap.enabled": false,
-  "workbench.iconTheme": "material-icon-theme"
+  "workbench.colorTheme" : "Halcyon",
+  "diffEditor.wordWrap" : "on",
+  "[json]" : {
+    "editor.defaultFormatter" : "esbenp.prettier-vscode"
+  }
 }

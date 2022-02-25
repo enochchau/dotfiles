@@ -135,6 +135,7 @@ local servers = {
   "rnix",
   "sumneko_lua",
   "yamlls",
+  "terraformls"
 }
 
 for _, lsp in ipairs(servers) do
