@@ -26,7 +26,7 @@ in
     nodePackages.vim-language-server
     # web dev lsps
     # includes ccls, eslint, html, jsonls
-    nodePackages.vscode-langservers-extracted 
+    nodePackages.vscode-langservers-extracted
     # yml
     nodePackages.yaml-language-server
     vale
