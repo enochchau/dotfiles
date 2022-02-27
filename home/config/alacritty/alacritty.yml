@@ -1,4 +1,5 @@
 window:
+  opacity: 1
   dimensions:
     columns: 130
     lines: 40
@@ -8,7 +9,7 @@ window:
   decorations: full
 font:
   normal:
-    family: Hack Nerd Font # , JetBrainsMono Nerd Font, MesloLGS NF
+    family: Hack Nerd Font Mono # , JetBrainsMono Nerd Font, MesloLGS NF
   size: 13
 
 colors:
@@ -36,8 +37,6 @@ colors:
     magenta: '#c678dd'
     cyan:    '#56b6c2'
     white:   '#e6efff'
-
-background_opacity: 1.0
 
 cursor:
   style:
