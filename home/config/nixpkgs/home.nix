@@ -36,13 +36,13 @@ in
     sumneko-lua-language-server
     # nodejs
     nodejs
-    nodePackages.typescript
     nodePackages.eslint
     nodePackages.prettier
     nodePackages.node2nix
     nodePackages.npm
     nodePackages.yarn
     myNodePackages."@fsouza/prettierd"
+    myNodePackages."@prisma/language-server"
     # typescript
     nodePackages.typescript-language-server
     nodePackages.typescript
@@ -56,6 +56,9 @@ in
     # tf
     terraform
     terraform-ls
+    # zig
+    zig
+    zls
   ];
 
   xdg.enable = true;

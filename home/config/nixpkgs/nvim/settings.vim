@@ -109,6 +109,8 @@ augroup markdownSpell
 augroup END
 
 " detect prolog
+" detect zig
 augroup filetypedetect
   au! BufRead,BufNewFile *.pro setfiletype prolog
+  au! BufRead,BufNewFile *.zig set tabstop=4 expandtab shiftwidth=4 softtabstop=4 | setfiletype zig
 augroup END
