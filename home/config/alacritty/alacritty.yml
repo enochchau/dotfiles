@@ -10,7 +10,7 @@ window:
 font:
   normal:
     family: Hack Nerd Font Mono # , JetBrainsMono Nerd Font, MesloLGS NF
-  size: 13
+  size: 11
 
 colors:
   primary:
