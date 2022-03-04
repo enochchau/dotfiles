@@ -4,6 +4,7 @@ let
   myNodePackages = import ./nodejs/default.nix { };
   user = import ./user.nix { };
   zsh = import ./zsh/default.nix { pkgs = pkgs; user = user; };
+  tmux = import ./tmux/default.nix { pkgs = pkgs; user = user; };
   neovim = import ./nvim/default.nix { pkgs = pkgs; };
 in
 {
@@ -62,6 +63,7 @@ in
   programs.ssh.enable = true;
   programs.jq.enable = true;
   programs.zsh = zsh;
+  programs.tmux = tmux;
   programs.neovim = neovim;
 
   programs.bat = {
@@ -70,28 +72,6 @@ in
       theme = "Dracula";
       pager = "less -F";
     };
-  };
-
-  programs.tmux = {
-    enable = true;
-    escapeTime = 0;
-    historyLimit = 10000;
-    keyMode = "vi";
-    prefix = "C-a";
-    customPaneNavigationAndResize = true;
-    resizeAmount = 5;
-    extraConfig = ''
-      set -g mouse on
-      set -g default-terminal "screen-256color"
-      # tell Tmux that outside terminal supports true color
-      set -ga terminal-overrides ",xterm-256color*:Tc"
-
-      set -g status-style fg='black',bg='blue'
-      set -g status-right "%a %I:%M%p %d %b %Y"
-
-      set -g pane-border-style "fg=default bg=default"
-      set -g pane-active-border-style "fg=colour4 bg=default"
-    '';
   };
 
   programs.git = {
