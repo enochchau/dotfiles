@@ -56,9 +56,6 @@ in
     # tf
     terraform
     terraform-ls
-    # zig
-    zig
-    zls
   ];
 
   xdg.enable = true;
