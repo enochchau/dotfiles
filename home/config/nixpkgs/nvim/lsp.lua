@@ -137,7 +137,6 @@ local servers = {
   "vimls",
   "yamlls",
   "terraformls",
-  "zls"
 }
 
 for _, lsp in ipairs(servers) do
