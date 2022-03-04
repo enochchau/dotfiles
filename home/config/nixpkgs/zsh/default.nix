@@ -14,7 +14,7 @@
     VISUAL = "nvim";
   };
   shellAliases = {
-    cdnvim = "cd ~/.config/nvim";
+    cdnvim = "cd ~/.config/nixpkgs/nvim";
     cddot = "cd ~/dotfiles";
     cdnix = "cd ~/.config/nixpkgs";
     gcol = "git branch | fzf | sed 's/^.* //' | xargs git checkout";
