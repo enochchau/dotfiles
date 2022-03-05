@@ -57,6 +57,9 @@ in
     # tf
     terraform
     terraform-ls
+    # k8s
+    kubectx
+    kubectl
   ];
 
   xdg.enable = true;

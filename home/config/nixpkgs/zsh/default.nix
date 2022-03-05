@@ -19,6 +19,8 @@
     cdnix = "cd ~/.config/nixpkgs";
     gcol = "git branch | fzf | sed 's/^.* //' | xargs git checkout";
     gitdel = "~/code/dev-scripts/git-delete.sh";
+    proj = "~/code/dev-scripts/project.sh";
+    wtb = "~/code/dev-scripts/bootstrap-worktree.sh";
   };
   oh-my-zsh = {
     enable = true;
