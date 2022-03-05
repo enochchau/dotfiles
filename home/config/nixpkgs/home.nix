@@ -14,6 +14,8 @@ in
 
   home.stateVersion = "22.05";
 
+  xdg.enable = true;
+
   programs.home-manager.enable = true;
 
   home.packages = with pkgs; [
@@ -62,7 +64,6 @@ in
     kubectl
   ];
 
-  xdg.enable = true;
   programs.ssh.enable = true;
   programs.jq.enable = true;
   programs.zsh = zsh;

@@ -49,6 +49,10 @@
       name = "my-completions";
       src = ~/.config/nixpkgs/zsh/completions;
     }
+    {
+      name = "my-scripts";
+      src = ~/.config/nixpkgs/zsh/scripts;
+    }
   ];
   initExtraFirst = builtins.readFile ./initFirst.zsh;
   initExtra = builtins.readFile ./initExtra.zsh;
