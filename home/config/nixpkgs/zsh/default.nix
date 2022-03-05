@@ -45,6 +45,10 @@
         sha256 = "gSPCNLK733+9NWdalqUJ8nzkhoQxurXAYX9t4859j2s=";
       };
     }
+    {
+      name = "my-completions";
+      src = ~/.config/nixpkgs/zsh/completions;
+    }
   ];
   initExtraFirst = builtins.readFile ./initFirst.zsh;
   initExtra = builtins.readFile ./initExtra.zsh;
