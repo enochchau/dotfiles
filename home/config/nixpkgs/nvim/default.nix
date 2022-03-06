@@ -91,7 +91,9 @@ in
     { plugin = nvim-autopairs; config = "lua require('nvim-autopairs').setup {}"; }
     nvim-ts-autotag
     playground
+    # syntax
     vim-prisma
+    vim-terraform
     # comment
     nvim-ts-context-commentstring
     { plugin = kommentary; config = sourceLua ./kommentary.lua; }

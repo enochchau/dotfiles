@@ -62,6 +62,7 @@ in
     # k8s
     kubectx
     kubectl
+    kubernetes-helm
   ];
 
   programs.ssh.enable = true;

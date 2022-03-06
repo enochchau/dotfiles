@@ -8,7 +8,7 @@ require("nvim-treesitter.configs").setup({
     "dockerfile",
     "dot",
     "graphql",
-    "hcl",
+    -- "hcl",
     "html",
     "javascript",
     "jsdoc",
@@ -24,7 +24,7 @@ require("nvim-treesitter.configs").setup({
     "tsx",
     "typescript",
     "vim",
-    "yaml",
+    -- "yaml",
     "zig",
   },
   highlight = {
