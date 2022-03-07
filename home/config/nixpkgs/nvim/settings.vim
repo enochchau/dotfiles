@@ -110,10 +110,17 @@ augroup END
 " detect prolog
 " detect zig
 augroup filetypedetect
-  au! BufRead,BufNewFile *.pro setfiletype prolog
-  au! BufRead,BufNewFile *.zig set tabstop=4 expandtab shiftwidth=4 | setfiletype zig
+  autocmd!
+  autocmd BufRead,BufNewFile *.pro setfiletype prolog
+  autocmd BufRead,BufNewFile *.zig setfiletype zig
+augroup END
+
+augroup zig
+  autocmd!
+  autocmd FileType zig setlocal tabstop=4 shiftwidth=4 expandtab
 augroup END
 
 augroup golang
-  au! FileType go set tabstop=4 shiftwidth=4 noexpandtab
-augroup
+  autocmd!
+  autocmd FileType go setlocal tabstop=4 shiftwidth=4 noexpandtab
+augroup END
