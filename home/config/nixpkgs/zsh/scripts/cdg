@@ -1,3 +1,0 @@
-#!/bin/bash
-# go to git root directory
-source cd "$(git rev-parse --show-toplevel)/$1" 
