@@ -24,9 +24,8 @@ filetype plugin indent on
 
 " set tabs to 2 spaces
 set tabstop=2
-set expandtab
 set shiftwidth=2
-set softtabstop=2
+set expandtab
 
 " set autoindent
 " set smartindent
@@ -103,14 +102,18 @@ set shortmess+=I
 command! BufClear silent! execute "%bd|e#|bd#"
 
 augroup markdownSpell
-    autocmd!
-    autocmd FileType markdown setlocal spell
-    autocmd BufRead,BufNewFile *.md setlocal spell
+  autocmd!
+  autocmd FileType markdown setlocal spell
+  autocmd BufRead,BufNewFile *.md setlocal spell
 augroup END
 
 " detect prolog
 " detect zig
 augroup filetypedetect
   au! BufRead,BufNewFile *.pro setfiletype prolog
-  au! BufRead,BufNewFile *.zig set tabstop=4 expandtab shiftwidth=4 softtabstop=4 | setfiletype zig
+  au! BufRead,BufNewFile *.zig set tabstop=4 expandtab shiftwidth=4 | setfiletype zig
 augroup END
+
+augroup golang
+  au! FileType go set tabstop=4 shiftwidth=4 noexpandtab
+augroup

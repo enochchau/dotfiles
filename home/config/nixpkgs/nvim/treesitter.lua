@@ -26,7 +26,7 @@ require("nvim-treesitter.configs").setup({
     "vim",
     -- "yaml",
     "zig",
-    "go"
+    "go",
   },
   highlight = {
     enable = true,

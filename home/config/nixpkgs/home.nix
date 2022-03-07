@@ -63,6 +63,8 @@ in
     kubectx
     kubectl
     kubernetes-helm
+    # golang
+    gopls
   ];
 
   programs.ssh.enable = true;
