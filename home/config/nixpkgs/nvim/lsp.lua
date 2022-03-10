@@ -1,6 +1,6 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local nvim_lsp = require("lspconfig")
-local pnp_checker = require('nvim-pnp-checker')
+local pnp_checker = require("nvim-pnp-checker")
 
 ---binds keymap for a given buffer
 ---@param bufnr any the current buffer

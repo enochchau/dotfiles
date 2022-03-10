@@ -1,12 +1,10 @@
-for _, lang in
-  ipairs({
-    "typescriptreact",
-    "lua",
-    "vim",
-    "css",
-    "scss",
-  })
-do
+for _, lang in ipairs({
+  "typescriptreact",
+  "lua",
+  "vim",
+  "css",
+  "scss",
+}) do
   require("kommentary.config").configure_language(lang, {
     single_line_comment_string = "auto",
     multi_line_comment_strings = "auto",
