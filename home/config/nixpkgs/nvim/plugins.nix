@@ -41,4 +41,9 @@ in
     rev = "b6f26f45d920a246f075b888c24edfa744a1c551";
     sha256 = "sha256-4OJU+WMbn9sJe6z1DasQqzNK0oRjhkDzk+JWXBUD0xE=";
   };
+  nvim-pnp-checker = githubPlugin {
+    repo = "ec965/nvim-pnp-checker";
+    rev = "e0411cc465eba8c9d37bd55e7b5fc991290424d7";
+    sha256  = "sha256-VGpPiklTUDk5hnMIY2f8w86yIMJpL4E0SSD9Y12tKsM=";
+  };
 }

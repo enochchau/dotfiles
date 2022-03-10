@@ -1,52 +1,6 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local nvim_lsp = require("lspconfig")
-
----@param path string file path
----@return boolean
-local function file_exists(path)
-  local f = io.open(path, "r")
-  if f ~= nil then
-    io.close(f)
-    return true
-  else
-    return false
-  end
-end
-
----@param bin string bin to look for
----@return string path to bin
-local function which(bin)
-  local handle = io.popen("which " .. bin)
-  local result = handle:read("*all")
-  result = string.gsub(result, "%s+", "")
-  return result
-end
-
----@return boolean whether the current workspace has yarn pnp
-local function check_for_pnp()
-  local lsp_roots = vim.lsp.buf.list_workspace_folders()
-
-  for _, root in ipairs(lsp_roots) do
-    -- check if workspace root has a yarnrc.yml
-    local yarnrc_path = root .. "/.yarnrc.yml"
-    if file_exists(yarnrc_path) then
-      for line in io.lines(yarnrc_path) do
-        -- see if nodeLinker is specified
-        local has_node_linker = string.match(line, "nodeLinker")
-        if has_node_linker ~= nil then
-          -- found a pnp repo
-          return not (
-              string.match(line, "node-modules") or string.match(line, "pnpm")
-            )
-        end
-      end
-      -- no nodeLinker strategy was found so defauls to pnp
-      return true
-    end
-  end
-
-  return false
-end
+local pnp_checker = require('nvim-pnp-checker')
 
 ---binds keymap for a given buffer
 ---@param bufnr any the current buffer
@@ -193,12 +147,11 @@ for _, lsp in ipairs(servers) do
   end
 
   if lsp == "eslint" then
-    local use_gatsby_monorepo = string.match(current_path, "Gatsby/repo") ~= nil
-      and string.match(current_path, "cli") == nil
-    -- for yarn pnp
-    if check_for_pnp() or use_gatsby_monorepo then
-      local eslint_path = which("vscode-eslint-language-server")
-      opts.cmd = { "yarn", "node", eslint_path, "--stdio" }
+    -- local use_gatsby_monorepo = string.match(current_path, "Gatsby/repo") ~= nil
+    --   and string.match(current_path, "cli") == nil
+
+    if pnp_checker.check_for_pnp() then
+      opts.cmd = pnp_checker.get_pnp_cmd()
     end
   end
 
