@@ -158,7 +158,6 @@ for _, lsp in ipairs(servers) do
 
     opts.on_attach = function(client, bufnr)
       client.resolved_capabilities.document_formatting = true
-      client.resolved_capabilities.document_range_formatting = true
       common_on_attach(client, bufnr)
     end
   end
