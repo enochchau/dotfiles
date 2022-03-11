@@ -52,7 +52,7 @@ in
     # lsp
     { plugin = nvim-lspconfig; config = sourceLua ./lsp.lua; }
     nvim-lsp-ts-utils
-    { plugin = null-ls-nvim; config = sourceLua ./null-ls.lua; }
+    null-ls-nvim
     # telescope
     plenary-nvim
     { plugin = telescope-nvim; config = sourceLua ./telescope.lua; }

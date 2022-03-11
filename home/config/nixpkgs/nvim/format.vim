@@ -1,1 +1,11 @@
-command! FmtNls :lua vim.lsp.buf.formatting_seq_sync({}, 5000, { 'null-ls' })<CR>
+command! FmtNls :lua vim.lsp.buf.formatting_seq_sync({}, 3000, { 'null-ls' })<CR>
+
+augroup FmtJavaScript
+  autocmd!
+  autocmd BufWritePre *.js,*.ts,*.jsx,*.tsx lua vim.lsp.buf.formatting_seq_sync({}, 3000, { 'null-ls', 'eslint' })
+augroup END
+
+augroup FmtMarkdown
+  autocmd!
+  autocmd BufWritePre *.md lua vim.lsp.buf.formatting_seq_sync({}, 3000, { 'null-ls' })
+augroup END

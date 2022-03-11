@@ -1,6 +1,7 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local nvim_lsp = require("lspconfig")
 local pnp_checker = require("nvim-pnp-checker")
+local null_ls = require("null-ls")
 
 ---binds keymap for a given buffer
 ---@param bufnr any the current buffer
@@ -150,8 +151,15 @@ for _, lsp in ipairs(servers) do
     -- local use_gatsby_monorepo = string.match(current_path, "Gatsby/repo") ~= nil
     --   and string.match(current_path, "cli") == nil
 
+    -- check for yarn pnp
     if pnp_checker.check_for_pnp() then
       opts.cmd = pnp_checker.get_pnp_cmd()
+    end
+
+    opts.on_attach = function(client, bufnr)
+      client.resolved_capabilities.document_formatting = true
+      client.resolved_capabilities.document_range_formatting = true
+      common_on_attach(client, bufnr)
     end
   end
 
@@ -198,13 +206,12 @@ for _, lsp in ipairs(servers) do
         },
       },
     }
-    opts.on_attach = function (client, bufnr)
+    opts.on_attach = function(client, bufnr)
       -- use null-ls for formatting instead
       client.resolved_capabilities.document_formatting = false
       client.resolved_capabilities.document_range_formatting = false
       common_on_attach(client, bufnr)
     end
-
   end
 
   if lsp == "yamlls" then
@@ -248,3 +255,17 @@ for _, lsp in ipairs(servers) do
 
   nvim_lsp[lsp].setup(opts)
 end
+
+-- register null-ls
+-- register any number of sources simultaneously
+local sources = {
+  null_ls.builtins.formatting.prettierd.with({
+    env = {
+      PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/.config/nixpkgs/.prettierrc"),
+    },
+  }),
+  null_ls.builtins.formatting.stylua,
+  null_ls.builtins.diagnostics.vale,
+}
+
+null_ls.setup({ sources = sources, on_attach = common_on_attach })
