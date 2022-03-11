@@ -198,6 +198,13 @@ for _, lsp in ipairs(servers) do
         },
       },
     }
+    opts.on_attach = function (client, bufnr)
+      -- use null-ls for formatting instead
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
+      common_on_attach(client, bufnr)
+    end
+
   end
 
   if lsp == "yamlls" then
