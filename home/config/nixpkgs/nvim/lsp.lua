@@ -61,7 +61,7 @@ for type, icon in pairs(signs) do
 end
 
 vim.diagnostic.config({
-  virtual_text = true,
+  virtual_text = false,
 })
 
 vim.api.nvim_set_keymap(
@@ -70,10 +70,6 @@ vim.api.nvim_set_keymap(
   "<cmd>lua vim.diagnostic.open_float(nil, {focus=false})<CR>",
   { noremap = true, silent = true }
 )
--- show diagnostic on hover
--- vim.cmd(
---   [[autocmd CursorHold,CursorHoldI * lua vim.diagnostic.open_float(nil, {focus=false})]]
--- )
 
 -- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
 local capabilities = vim.lsp.protocol.make_client_capabilities()

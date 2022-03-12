@@ -46,4 +46,9 @@ in
     rev = "e0411cc465eba8c9d37bd55e7b5fc991290424d7";
     sha256 = "sha256-VGpPiklTUDk5hnMIY2f8w86yIMJpL4E0SSD9Y12tKsM=";
   };
+  nvim-format-select = githubPlugin {
+    repo = "ec965/nvim-format-select";
+    rev = "02c4471c4a474d58e0466f52baf8a42cff12bd3c";
+    sha256 = "sha256-5EiRg47DkyULz0SUgSypAJoEX2DAuQ0O8Qryg7BYdzM=";
+  };
 }

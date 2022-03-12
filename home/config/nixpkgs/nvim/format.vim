@@ -3,7 +3,7 @@ function! SpecificJSFormat()
   if s:path =~ 'Gatsby/repo'
     " use only eslint at work
     echo "Formatting with Eslint"
-    execute "EslintFixAll"
+    lua require('nvim-format-select').formatting_sync_select('eslint', {}, 3000)
   else
     " use both prettier and eslint
     echo "Formatting with Prettier and Eslint"

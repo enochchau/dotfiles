@@ -107,5 +107,6 @@ in
     nvim-web-devicons
     { plugin = nvim-tree-lua; config = sourceLua ./filetree.lua; }
     myPlugins.nvim-pnp-checker
+    myPlugins.nvim-format-select
   ];
 }
