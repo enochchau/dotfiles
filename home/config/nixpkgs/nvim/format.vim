@@ -13,7 +13,6 @@ endfunction
 
 augroup FmtJavaScript
   autocmd!
-  " use prettier then eslint
   autocmd BufWritePre *.js,*.ts,*.jsx,*.tsx call SpecificJSFormat()
 augroup END
 
