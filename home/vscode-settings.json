@@ -51,5 +51,8 @@
   "diffEditor.wordWrap" : "on",
   "[json]" : {
     "editor.defaultFormatter" : "esbenp.prettier-vscode"
+  },
+  "terminal.integrated.env.osx": {
+    "FIG_NEW_SESSION": "1"
   }
 }
