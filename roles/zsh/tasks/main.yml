@@ -1,0 +1,40 @@
+- name: Install zsh
+  package: 
+    name: zsh
+    state: present
+
+- name: Make ZDOTDIR
+  file: 
+    path: ~/.config/zsh
+    state: directory
+    mode: '0755'
+
+- name: Link home zshenv
+  file:
+    src: "{{ ansible_env.PWD }}/roles/zsh/files/home.zshenv"
+    path: ~/.zshenv
+    state: link
+
+- name: Link zdotdir zshenv
+  file:
+    src: "{{ ansible_env.PWD }}/roles/zsh/files/dot.zshenv"
+    path: ~/.config/zsh/.zshenv
+    state: link
+
+- name: Link zshrc
+  file:
+    src: "{{ ansible_env.PWD }}/roles/zsh/files/dot.zshrc"
+    path: ~/.config/zsh/.zshrc
+    state: link
+
+- name: Install Oh my Zsh
+  git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: ~/.config/zsh/oh-my-zsh
+    depth: 1
+
+- name: Install Powerlevel10k
+  git:
+    repo: https://github.com/romkatv/powerlevel10k.git
+    depth: 1
+    dest: ~/.config/zsh/oh-my-zsh/custom/themes/powerlevel10k

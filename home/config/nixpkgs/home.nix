@@ -5,7 +5,6 @@ let
   user = import ./user.nix { };
   zsh = import ./zsh/default.nix { pkgs = pkgs; user = user; };
   tmux = import ./tmux/default.nix { pkgs = pkgs; user = user; };
-  neovim = import ./nvim/default.nix { pkgs = pkgs; };
 in
 {
 
@@ -69,9 +68,8 @@ in
 
   programs.ssh.enable = true;
   programs.jq.enable = true;
-  programs.zsh = zsh;
+  programs.zsh.enable = false;
   programs.tmux = tmux;
-  programs.neovim = neovim;
 
   programs.bat = {
     enable = true;
