@@ -1,0 +1,4 @@
+- name: Dot files config
+  hosts: local
+  roles:
+    - role: nvim

@@ -5,7 +5,7 @@ let
   sourceLua = path: "lua << EOF\n" + builtins.readFile path + "\nEOF";
 in
 {
-  enable = true;
+  enable=false;
   viAlias = true;
   vimAlias = true;
   vimdiffAlias = true;
