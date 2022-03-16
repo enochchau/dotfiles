@@ -1,4 +1,4 @@
-PHONY: install
+.PHONY: install upgrade
 
 install:
 	if ! which ansible &>/dev/null ; then pip3 install ansible ; fi
