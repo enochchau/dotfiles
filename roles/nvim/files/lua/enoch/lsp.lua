@@ -155,7 +155,6 @@ lsp_installer.on_server_ready(function (server)
 
   if server.name == "eslint" then
     -- check for yarn pnp
-    print('check for pnp', pnp_checker.check_for_pnp())
     if pnp_checker.check_for_pnp() then
       opts.cmd = pnp_checker.get_pnp_cmd()
     end
