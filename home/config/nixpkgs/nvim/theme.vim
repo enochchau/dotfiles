@@ -1,4 +1,4 @@
-set bg=light
+set bg=dark
 let g:neon_style = 'doom'
 " let g:tokyonight_style = 'day'
 let g:gruvbox_contrast_light = 'light'
@@ -12,7 +12,7 @@ endif
 " colo one
 " colo tokyonight
 " colo nightfox
-" colo PaperColor
 " colo rose-pine
 " color ayu-mirage
 colo gruvbox
+" colo PaperColor
