@@ -1,7 +1,10 @@
 - name: Install zsh
-  package: 
+  apt: 
     name: zsh
     state: present
+  become: 'yes'
+  # zsh is preinstalled on MacOS
+  when: ansible_facts['os_family'] == "Debian"
 
 - name: Make ZDOTDIR
   file: 
@@ -27,14 +30,44 @@
     path: ~/.config/zsh/.zshrc
     state: link
 
+- name: Check for Oh my Zsh
+  stat: path=~/.config/zsh/oh-my-zsh
+  register: oh_my_zsh
+
 - name: Install Oh my Zsh
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
     dest: ~/.config/zsh/oh-my-zsh
     depth: 1
+  when: not oh_my_zsh.stat.exists
+
+- name: Check for Powerlevel10k
+  stat: path=~/.config/zsh/oh-my-zsh/custom/themes/powerlevel10k
+  register: powerlevel10k
 
 - name: Install Powerlevel10k
   git:
     repo: https://github.com/romkatv/powerlevel10k.git
     depth: 1
     dest: ~/.config/zsh/oh-my-zsh/custom/themes/powerlevel10k
+  when: not powerlevel10k.stat.exists
+
+- name: Check for zsh autosuggestions
+  stat: path=~/.config/zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions
+  register: zsh_autosuggestions
+
+- name: Install zsh autosuggestions
+  git:
+    repo: https://github.com/zsh-users/zsh-autosuggestions
+    dest: ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions
+  when: not zsh_autosuggestions.stat.exists
+
+- name: Check for zsh syntax highlighting
+  stat: path=~/.config/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+  register: zsh_syntax_highlighting
+
+- name: Install zsh syntax highlighting
+  git:
+    repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    dest: ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+  when: not zsh_syntax_highlighting.stat.exists

@@ -1,0 +1,17 @@
+- import_tasks: install_darwin.yml
+  when: ansible_facts['os_family'] == "Darwin"
+- import_tasks: install_debian.yml
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Make .config directory
+  file:
+    path: ~/.config/tmux
+    state: directory
+    mode: '0755'
+    recurse: 'yes'
+
+- name: Symlink config
+  file:
+    src: "{{ ansible_env.PWD }}/roles/tmux/files/tmux.conf"
+    path: ~/.config/tmux/tmux.conf
+    state: link

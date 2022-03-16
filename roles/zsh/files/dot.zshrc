@@ -5,17 +5,30 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+bindkey '^I'   complete-word       # tab          | complete
+bindkey '^[[Z' autosuggest-accept  # shift + tab  | autosuggest
+
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export ZSH=$HOME/.config/zsh/oh-my-zsh
 export ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=( git )
+plugins=( 
+  git 
+  vi-mode
+  docker
+  docker-compose
+  kubectl
+  ripgrep
+  fd
+  zsh-syntax-highlighting
+  zsh-autosuggestions
+)
 
 source $ZSH/oh-my-zsh.sh
 
 
 alias cddot='cd ~/dotfiles'
 alias cdnix='cd ~/.config/nixpkgs'
-alias cdnvim='cd ~/.config/nixpkgs/nvim'
+alias cdnvim='cd ~/.config/nvim'
 alias gcol='git branch | fzf | sed '\''s/^.* //'\'' | xargs git checkout'
 alias gitdel='~/code/dev-scripts/git-delete.sh'
 alias wtb='~/code/dev-scripts/bootstrap-worktree.sh'

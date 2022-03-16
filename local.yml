@@ -2,4 +2,8 @@
   hosts: local
   roles:
     - role: nvim
+      tag: nvim
     - role: zsh
+      tag: zsh
+    - role: tmux
+      tag: tmux

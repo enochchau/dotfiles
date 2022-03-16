@@ -69,7 +69,7 @@ in
   programs.ssh.enable = true;
   programs.jq.enable = true;
   programs.zsh.enable = false;
-  programs.tmux = tmux;
+  programs.tmux.enable = false;
 
   programs.bat = {
     enable = true;
