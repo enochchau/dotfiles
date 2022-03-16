@@ -56,5 +56,7 @@
     - role: link
       tags: link
       vars:
-        - links:
-          - { file: "alacritty.yml", target: "~/.config/alacritty" }
+        - link_files:
+          - { file: "alacritty.yml", target: "~/.config/alacritty/alacritty.yml" }
+        - link_dirs:
+          - { file: "hammerspoon", target: "~/.hammerspoon" }
