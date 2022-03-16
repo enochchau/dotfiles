@@ -1,0 +1,11 @@
+- name: Install asdf plugin
+  shell: "if ! asdf plugin list | grep -q '{{ item.name }}'; then asdf plugin add {{ item.name }} {{ item.repo }} ; fi"
+  loop: "{{ programs }}"
+
+- name: Install program
+  shell: "if ! asdf list {{ item.name }} | grep -q '{{ item.version }}'; then asdf install {{ item.name }} {{ item.version }}; fi"
+  loop: "{{ programs }}"
+
+- name: Set global node version
+  shell: "asdf global {{ item.name }} {{ item.version }}"
+  loop: "{{ programs }}"
