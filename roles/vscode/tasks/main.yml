@@ -1,0 +1,4 @@
+- import_tasks: darwin.yml
+  when: ansible_facts['os_family'] == "Darwin"
+- import_tasks: debian.yml
+  when: ansible_facts['os_family'] == "Debian"

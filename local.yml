@@ -1,0 +1,66 @@
+- name: Dot files config
+  hosts: local
+  roles:
+    - role: nvim
+      tags: nvim
+    - role: zsh
+      tags: zsh
+      vars:
+        oh_my_zsh_path: ~/.config/zsh/oh-my-zsh
+        zdotdir: ~/.config/zsh
+    - role: tmux
+      tags: tmux
+    - role: devtools
+      tags: devtools
+      vars:
+        homebrew_pkgs:
+          - asdf
+          - bat
+          - docker
+          - docker-compose
+          - fd
+          - fzf
+          - git-delta
+          - gopls
+          - helm
+          - jq
+          - kubectl
+          - kubectx
+          - lua-language-server
+          - luajit
+          - ripgrep
+          - stylua
+          - terraform
+          - terraform-ls
+          - vale
+    - role: nodejs
+      tags: nodejs
+      vars:
+        - node_version: "16.14.0"
+        - npm_global_packages:
+          - "@ansible/ansible-language-server"
+          - "@fsouza/prettierd"
+          - "@prisma/language-server"
+          - bash-language-server
+          - eslint
+          - prettier
+          - typescript
+          - typescript-language-server
+          - vim-language-server
+          - vscode-langservers-extracted
+          - yaml-language-server
+          - yarn
+    - role: git
+      tags: git
+      vars:
+        - git_email: 22567131+ec965@users.noreply.github.com
+        - git_user: ec965
+    - role: link
+      tags: link
+      vars:
+        - link_files:
+          - { file: "alacritty.yml", target: "~/.config/alacritty/alacritty.yml" }
+        - darwin_link_dirs:
+          - { file: "hammerspoon", target: "~/.hammerspoon" }
+    - role: vscode
+      tags: vscode

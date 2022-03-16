@@ -1,0 +1,14 @@
+- name: Create directory
+  file:
+    path: ~/Library/Application Support/Code/User
+    state: directory
+    recurse: true
+    mode: '0755'
+  when: ansible_facts['os_family'] == "Darwin"
+
+- name: Link VSCode settings
+  file:
+    src: "{{ ansible_env.PWD }}/roles/vscode/files/settings.json"
+    path: ~/Library/Application Support/Code/User/settings.json
+    state: link
+  when: ansible_facts['os_family'] == "Darwin"

@@ -1,0 +1,4 @@
+- name: Install neovim on Darwin
+  homebrew:
+    name: neovim
+    state: present

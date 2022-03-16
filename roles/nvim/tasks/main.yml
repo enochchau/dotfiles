@@ -1,0 +1,30 @@
+- import_tasks: install_darwin.yml
+  when: ansible_facts['os_family'] == "Darwin"
+- import_tasks: install_debian.yml
+  when: ansible_facts['os_family'] == "Debian"
+
+- name: Download Vim Plug
+  command: sh -c 'curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  args:
+    creates: ~/.local/share/nvim/site/autoload/plug.vim
+
+- name: Make plugin directory
+  file:
+    path: ~/.config/plugged
+    state: directory
+    mode: '0755'
+
+- name: Make .config directory
+  file:
+    path: ~/.config
+    state: directory
+    mode: '0755'
+
+- name: Symlink vimrc
+  file:
+    src: "{{ ansible_env.PWD }}/roles/nvim/files"
+    path: ~/.config/nvim
+    state: link
+
+- name: Install plugins
+  command: nvim --headless +'PlugInstall --sync' +qall

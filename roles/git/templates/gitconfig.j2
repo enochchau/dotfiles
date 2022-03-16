@@ -1,0 +1,32 @@
+[core]
+	pager = "delta"
+
+[credential]
+	helper = "store"
+
+[delta]
+	navigate = true
+	side-by-side = true
+	syntax-theme = "Dracula"
+
+[diff]
+	colorMoved = "default"
+
+[gpg]
+	program = "gpg"
+
+[init]
+	defaultBranch = "main"
+
+[interactive]
+	diffFilter = "delta --color-only"
+
+[pager]
+	branch = false
+
+[pull]
+	rebase = true
+
+[user]
+	email = {{ git_email }}
+	name = {{ git_user }}

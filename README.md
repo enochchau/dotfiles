@@ -1,23 +1,17 @@
 # dotfiles
 
-Instructions:
+## Dependencies
 
-1. Link files and directories
+- `python3`
+- `pip3`
 
-```sh
-make link
+## Installation
+
+```
+make upgrade
 ```
 
-2. Install Nix
+## Todo
 
-```sh
-cd home/config/nixpkgs
-make install-part1
-```
-
-3. Restart the terminal session and install Home Manager
-
-```sh
-cd home/config/nixpkgs
-make install-part2
-```
+- playbook to install vscode on Debian based systems
+- devtools role playbook for Debian based systems
