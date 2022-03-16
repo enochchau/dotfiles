@@ -1,0 +1,14 @@
+- name: Create directories
+  file:
+    path: "{{ item.target }}"
+    state: directory
+    mode: '0755'
+    recurse: true
+  loop: "{{ links }}"
+
+- name: Link config files
+  file:
+    src: "{{ ansible_env.PWD }}/roles/link/files/{{ item.file }}"
+    path: "{{ item.target }}/{{ item.file }}"
+    state: link
+  loop: "{{ links }}"

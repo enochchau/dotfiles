@@ -52,6 +52,7 @@ Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 Plug 'pantharshit00/vim-prisma'
 Plug 'hashivim/vim-terraform'
 Plug 'ziglang/zig.vim'
+Plug 'pearofducks/ansible-vim'
 
 " status line
 Plug 'nvim-lualine/lualine.nvim'
