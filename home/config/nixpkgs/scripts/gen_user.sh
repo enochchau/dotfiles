@@ -1,7 +1,7 @@
 #!/bin/bash
 
 git_username=${1:-'ec965'}
-git_email=${2:-'enoch965@gmail.com'}
+git_email=${2:-'22567131+ec965@users.noreply.github.com'}
 
 echo $(cat << EOF
 { ... }:
