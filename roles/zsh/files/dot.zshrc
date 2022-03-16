@@ -31,7 +31,6 @@ source $ZSH/oh-my-zsh.sh
 
 
 alias cddot='cd ~/dotfiles'
-alias cdnix='cd ~/.config/nixpkgs'
 alias cdnvim='cd ~/.config/nvim'
 alias gcol='git branch | fzf | sed '\''s/^.* //'\'' | xargs git checkout'
 alias gitdel='~/code/dev-scripts/git-delete.sh'
