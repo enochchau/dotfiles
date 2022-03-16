@@ -47,3 +47,4 @@
           - "@prisma/language-server"
           - typescript-language-server
           - typescript
+          - "@ansible/ansible-language-server"

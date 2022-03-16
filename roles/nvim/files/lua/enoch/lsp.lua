@@ -76,19 +76,19 @@ local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
 local servers = {
+  "ansiblels",
   "bashls",
   "cssls",
   "eslint",
+  "gopls",
   "html",
   "jsonls",
   "prismals",
-  "rnix",
   "sumneko_lua",
+  "terraformls",
   "tsserver",
   "vimls",
   "yamlls",
-  "terraformls",
-  "gopls",
 }
 
 for _, lsp in ipairs(servers) do
@@ -256,7 +256,7 @@ end
 local sources = {
   null_ls.builtins.formatting.prettierd.with({
     env = {
-      PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/.config/nixpkgs/.prettierrc"),
+      PRETTIERD_DEFAULT_CONFIG = vim.fn.expand("~/.config/nvim/.prettierrc"),
     },
   }),
   null_ls.builtins.formatting.stylua,

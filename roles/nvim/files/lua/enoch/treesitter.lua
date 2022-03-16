@@ -24,7 +24,7 @@ require("nvim-treesitter.configs").setup({
     "tsx",
     "typescript",
     "vim",
-    -- "yaml",
+    "yaml",
     "zig",
     "go",
   },
