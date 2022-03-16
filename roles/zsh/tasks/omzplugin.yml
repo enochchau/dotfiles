@@ -1,0 +1,9 @@
+- name: Check for plugin
+  stat: "path={{ oh_my_zsh_path }}/custom/{{ item.path }}"
+  register: plugin_stat
+
+- name: Install plugin
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ oh_my_zsh_path }}/custom/{{ item.path }}"
+  when: not plugin_stat.stat.exists
