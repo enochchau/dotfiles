@@ -1,4 +1,5 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
+local lsp_installer = require("nvim-lsp-installer")
 local nvim_lsp = require("lspconfig")
 local pnp_checker = require("nvim-pnp-checker")
 local null_ls = require("null-ls")
@@ -91,14 +92,22 @@ local servers = {
   "yamlls",
 }
 
-for _, lsp in ipairs(servers) do
+for _, name in pairs(servers) do
+  local server_is_found, server = lsp_installer.get_server(name)
+  if server_is_found and not server:is_installed() then
+    print("Installing " .. name)
+    server:install()
+  end
+end
+
+lsp_installer.on_server_ready(function (server)
   local current_path = vim.loop.cwd()
   local opts = {
     on_attach = common_on_attach,
     capabilities = capabilities,
   }
 
-  if lsp == "sumneko_lua" then
+  if server == "sumneko_lua" then
     local runtime_path = vim.split(package.path, ";")
     table.insert(runtime_path, "lua/?.lua")
     table.insert(runtime_path, "lua/?/init.lua")
@@ -143,7 +152,7 @@ for _, lsp in ipairs(servers) do
     end
   end
 
-  if lsp == "eslint" then
+  if server == "eslint" then
     -- local use_gatsby_monorepo = string.match(current_path, "Gatsby/repo") ~= nil
     --   and string.match(current_path, "cli") == nil
 
@@ -158,12 +167,12 @@ for _, lsp in ipairs(servers) do
     end
   end
 
-  if lsp == "html" or lsp == "cssls" then
+  if server == "html" or server == "cssls" then
     opts.capabilities.textDocument.completion.completionItem.snippetSupport =
       true
   end
 
-  if lsp == "jsonls" then
+  if server == "jsonls" then
     opts.capabilities.textDocument.completion.completionItem.snippetSupport =
       true
     -- https://www.reddit.com/r/neovim/comments/n1n4zc/need_help_with_tsconfigjson_autocompletion_with/
@@ -209,7 +218,7 @@ for _, lsp in ipairs(servers) do
     end
   end
 
-  if lsp == "yamlls" then
+  if server == "yamlls" then
     opts.settings = {
       schemas = {
         ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = {
@@ -222,7 +231,7 @@ for _, lsp in ipairs(servers) do
     }
   end
 
-  if lsp == "tsserver" then
+  if server == "tsserver" then
     opts.init_options = require("nvim-lsp-ts-utils").init_options
 
     opts.on_attach = function(client, bufnr)
@@ -248,8 +257,8 @@ for _, lsp in ipairs(servers) do
     end
   end
 
-  nvim_lsp[lsp].setup(opts)
-end
+  server:setup(opts)
+end)
 
 -- register null-ls
 -- register any number of sources simultaneously

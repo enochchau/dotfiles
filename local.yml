@@ -26,15 +26,12 @@
           - fd
           - fzf
           - git-delta
-          - gopls
           - helm
           - jq
           - kubectx
-          - lua-language-server
           - luajit
           - ripgrep
           - stylua
-          - terraform-ls
           - vale
     - role: asdf
       tags: asdf
@@ -63,14 +60,7 @@
           - prettier
           - typescript
           - yarn
-          - "@ansible/ansible-language-server"
           - "@fsouza/prettierd"
-          - "@prisma/language-server"
-          - bash-language-server
-          - typescript-language-server
-          - vim-language-server
-          - vscode-langservers-extracted
-          - yaml-language-server
     - role: git
       tags: git
       vars:

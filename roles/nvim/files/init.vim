@@ -23,6 +23,7 @@ Plug 'neovim/nvim-lspconfig'
 Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'ec965/nvim-format-select'
+Plug 'williamboman/nvim-lsp-installer'
 
 " completion
 Plug 'hrsh7th/nvim-cmp'
