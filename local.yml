@@ -11,14 +11,19 @@
     - role: tmux
       tags: tmux
     - role: devtools
+      tags: devtools
       vars:
         homebrew_pkgs:
           - asdf
+          - bat
+          - docker
+          - docker-compose
           - fd
           - fzf
           - git-delta
           - gopls
           - helm
+          - jq
           - kubectl
           - kubectx
           - lua-language-server
@@ -27,27 +32,24 @@
           - stylua
           - terraform
           - terraform-ls
-          - jq
           - vale
-          - bat
-      tags: devtools
     - role: nodejs
       tags: nodejs
       vars:
         - node_version: "16.14.0"
         - npm_global_packages:
+          - "@ansible/ansible-language-server"
+          - "@fsouza/prettierd"
+          - "@prisma/language-server"
           - bash-language-server
+          - eslint
+          - prettier
+          - typescript
+          - typescript-language-server
           - vim-language-server
           - vscode-langservers-extracted
           - yaml-language-server
-          - eslint
-          - prettier
           - yarn
-          - "@fsouza/prettierd"
-          - "@prisma/language-server"
-          - typescript-language-server
-          - typescript
-          - "@ansible/ansible-language-server"
     - role: git
       tags: git
       vars:
@@ -58,5 +60,7 @@
       vars:
         - link_files:
           - { file: "alacritty.yml", target: "~/.config/alacritty/alacritty.yml" }
-        - link_dirs:
+        - darwin_link_dirs:
           - { file: "hammerspoon", target: "~/.hammerspoon" }
+    - role: vscode
+      tags: vscode

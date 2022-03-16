@@ -13,9 +13,10 @@
     state: link
   loop: "{{ link_files }}"
 
-- name: Link config directories
+- name: Darwin Link config directories
   file:
     src: "{{ ansible_env.PWD }}/roles/link/files/{{ item.file }}"
     path: "{{ item.target }}"
     state: link
-  loop: "{{ link_dirs }}"
+  loop: "{{ darwin_link_dirs }}"
+  when: ansible_facts['os_family'] == "Darwin"
