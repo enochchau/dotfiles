@@ -1,8 +1,33 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lsp_installer = require("nvim-lsp-installer")
-local nvim_lsp = require("lspconfig")
 local pnp_checker = require("nvim-pnp-checker")
 local null_ls = require("null-ls")
+
+local servers = {
+  "ansiblels",
+  "bashls",
+  "cssls",
+  "eslint",
+  "gopls",
+  "html",
+  "jsonls",
+  "prismals",
+  "sumneko_lua",
+  "terraformls",
+  "tsserver",
+  "vimls",
+  "yamlls",
+  "zls"
+}
+
+-- auto install servers
+for _, name in pairs(servers) do
+  local server_is_found, server = lsp_installer.get_server(name)
+  if server_is_found and not server:is_installed() then
+    print("Installing " .. name)
+    server:install()
+  end
+end
 
 ---binds keymap for a given buffer
 ---@param bufnr any the current buffer
@@ -76,31 +101,6 @@ vim.api.nvim_set_keymap(
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
 
-local servers = {
-  "ansiblels",
-  "bashls",
-  "cssls",
-  "eslint",
-  "gopls",
-  "html",
-  "jsonls",
-  "prismals",
-  "sumneko_lua",
-  "terraformls",
-  "tsserver",
-  "vimls",
-  "yamlls",
-  "zls"
-}
-
-for _, name in pairs(servers) do
-  local server_is_found, server = lsp_installer.get_server(name)
-  if server_is_found and not server:is_installed() then
-    print("Installing " .. name)
-    server:install()
-  end
-end
-
 lsp_installer.on_server_ready(function (server)
   local current_path = vim.loop.cwd()
   local opts = {
@@ -113,7 +113,7 @@ lsp_installer.on_server_ready(function (server)
     table.insert(runtime_path, "lua/?.lua")
     table.insert(runtime_path, "lua/?/init.lua")
 
-    if string.match(current_path, "nixpkgs/nvim") then
+    if string.match(current_path, "nvim") then
       -- settings for nvim plugin linting
       opts.settings = {
         Lua = {
