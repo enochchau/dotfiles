@@ -48,3 +48,9 @@
           - typescript-language-server
           - typescript
           - "@ansible/ansible-language-server"
+    - role: git
+      tag: git
+      vars:
+        - git_email: 22567131+ec965@users.noreply.github.com
+        - git_user: ec965
+

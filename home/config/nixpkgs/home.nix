@@ -66,7 +66,7 @@ in
     /* gopls */
   ];
 
-  programs.ssh.enable = true;
+  programs.ssh.enable = false;
 
   programs.jq.enable = false;
   programs.zsh.enable = false;
@@ -81,7 +81,7 @@ in
   };
  */
   programs.git = {
-    enable = true;
+    enable = false;
     userName = user.gitUsername;
     userEmail = user.gitEmail;
     extraConfig = {
@@ -105,7 +105,7 @@ in
       };
     };
     delta = {
-      enable = true;
+      enable = false;
       options = {
         side-by-side = true;
         syntax-theme = "Dracula";

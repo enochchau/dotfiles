@@ -1,3 +1,4 @@
 - name: Install Devtools
   homebrew:
-    name: "{{ homebrew_pkgs }}"
+    name: "{{ item }}"
+  loop: "{{ homebrew_pkgs }}"
