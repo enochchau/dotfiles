@@ -8,7 +8,7 @@
 
 - name: Make ZDOTDIR
   file: 
-    path: ~/.config/zsh
+    path: "{{ zdotdir }}"
     state: directory
     mode: '0755'
 
@@ -21,53 +21,53 @@
 - name: Link zdotdir zshenv
   file:
     src: "{{ ansible_env.PWD }}/roles/zsh/files/dot.zshenv"
-    path: ~/.config/zsh/.zshenv
+    path: "{{ zdotdir }}/.zshenv"
     state: link
 
 - name: Link zshrc
   file:
     src: "{{ ansible_env.PWD }}/roles/zsh/files/dot.zshrc"
-    path: ~/.config/zsh/.zshrc
+    path: "{{ zdotdir }}/.zshrc"
     state: link
 
 - name: Check for Oh my Zsh
-  stat: path=~/.config/zsh/oh-my-zsh
+  stat: "path={{ oh_my_zsh_path }}"
   register: oh_my_zsh
 
 - name: Install Oh my Zsh
   git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
-    dest: ~/.config/zsh/oh-my-zsh
+    dest: "{{ oh_my_zsh_path }}"
     depth: 1
   when: not oh_my_zsh.stat.exists
 
 - name: Check for Powerlevel10k
-  stat: path=~/.config/zsh/oh-my-zsh/custom/themes/powerlevel10k
+  stat: "path={{ oh_my_zsh_path }}/custom/themes/powerlevel10k"
   register: powerlevel10k
 
 - name: Install Powerlevel10k
   git:
     repo: https://github.com/romkatv/powerlevel10k.git
     depth: 1
-    dest: ~/.config/zsh/oh-my-zsh/custom/themes/powerlevel10k
+    dest: "{{ oh_my_zsh_path }}/custom/themes/powerlevel10k"
   when: not powerlevel10k.stat.exists
 
 - name: Check for zsh autosuggestions
-  stat: path=~/.config/zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions
+  stat: "path={{ oh_my_zsh_path }}/custom/plugins/zsh-autosuggestions"
   register: zsh_autosuggestions
 
 - name: Install zsh autosuggestions
   git:
     repo: https://github.com/zsh-users/zsh-autosuggestions
-    dest: ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-autosuggestions
+    dest: "{{ oh_my_zsh_path }}/custom/plugins/zsh-autosuggestions"
   when: not zsh_autosuggestions.stat.exists
 
 - name: Check for zsh syntax highlighting
-  stat: path=~/.config/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+  stat: "path={{ oh_my_zsh_path }}/custom/plugins/zsh-syntax-highlighting"
   register: zsh_syntax_highlighting
 
 - name: Install zsh syntax highlighting
   git:
     repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-    dest: ~/.config/zsh/oh-my-zsh/custom/plugins/zsh-syntax-highlighting
+    dest: "{{ oh_my_zsh_path }}/custom/plugins/zsh-syntax-highlighting"
   when: not zsh_syntax_highlighting.stat.exists

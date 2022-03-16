@@ -9,9 +9,13 @@ bindkey '^I'   complete-word       # tab          | complete
 bindkey '^[[Z' autosuggest-accept  # shift + tab  | autosuggest
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export BAT_PAGER='less -F'
+export BAT_THEME='Dracula'
+
 export ZSH=$HOME/.config/zsh/oh-my-zsh
 export ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=( 
+  asdf
   git 
   vi-mode
   docker

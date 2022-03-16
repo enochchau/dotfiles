@@ -23,62 +23,63 @@ in
     nixpkgs-fmt
     rnix-lsp
     # bash
-    nodePackages.bash-language-server
+    /* nodePackages.bash-language-server */
     # viml
-    nodePackages.vim-language-server
+    /* nodePackages.vim-language-server */
     # web dev lsps
     # includes ccls, eslint, html, jsonls
-    nodePackages.vscode-langservers-extracted
+    /* nodePackages.vscode-langservers-extracted */
     # yml
-    nodePackages.yaml-language-server
-    vale
+    /* nodePackages.yaml-language-server */
+    /* vale */
     # lua
-    stylua
-    luajit
-    sumneko-lua-language-server
+    /* stylua
+    luajit */
+    /* sumneko-lua-language-server */
     # nodejs
-    nodejs
-    nodePackages.eslint
+    /* nodejs */
+    /* nodePackages.eslint
     nodePackages.prettier
     nodePackages.node2nix
     nodePackages.npm
     nodePackages.yarn
     myNodePackages."@fsouza/prettierd"
-    myNodePackages."@prisma/language-server"
+    myNodePackages."@prisma/language-server" */
     # typescript
-    nodePackages.typescript-language-server
-    nodePackages.typescript
+    /* nodePackages.typescript-language-server
+    nodePackages.typescript */
     # cmd line util
-    fd
+    /* fdtypescript-language-server
     ripgrep
-    fzf
+    fzf */
     # zsh
-    zsh-autosuggestions
-    zsh-syntax-highlighting
+    /* zsh-autosuggestions
+    zsh-syntax-highlighting */
     # tf
-    terraform
-    terraform-ls
+    /* terraform
+    terraform-ls */
     # k8s
-    kubectx
+    /* kubectx
     kubectl
-    kubernetes-helm
+    kubernetes-helm */
     # golang
-    gopls
+    /* gopls */
   ];
 
   programs.ssh.enable = true;
-  programs.jq.enable = true;
+
+  programs.jq.enable = false;
   programs.zsh.enable = false;
   programs.tmux.enable = false;
 
-  programs.bat = {
+  /* programs.bat = {
     enable = true;
     config = {
       theme = "Dracula";
       pager = "less -F";
     };
   };
-
+ */
   programs.git = {
     enable = true;
     userName = user.gitUsername;
