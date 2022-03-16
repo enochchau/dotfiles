@@ -49,6 +49,8 @@ if test -f $ZDOTDIR/machine.zshrc; then
   source $ZDOTDIR/machine.zshrc
 fi
 
+export PATH=~/dotfiles/roles/zsh/files/scripts:$PATH
+
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
