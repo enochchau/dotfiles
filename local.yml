@@ -63,15 +63,6 @@
           - prettier
           - typescript
           - yarn
-    - role: git
-      tags: git
-      vars:
-        - git_email: 22567131+ec965@users.noreply.github.com
-        - git_user: ec965
-    - role: nvim
-      tags: nvim
-      vars:
-        - npm_lsp:
           - "@ansible/ansible-language-server"
           - "@fsouza/prettierd"
           - "@prisma/language-server"
@@ -80,6 +71,13 @@
           - vim-language-server
           - vscode-langservers-extracted
           - yaml-language-server
+    - role: git
+      tags: git
+      vars:
+        - git_email: 22567131+ec965@users.noreply.github.com
+        - git_user: ec965
+    - role: nvim
+      tags: nvim
     - role: link
       tags: link
       vars:
