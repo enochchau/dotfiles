@@ -108,7 +108,7 @@ lsp_installer.on_server_ready(function (server)
     capabilities = capabilities,
   }
 
-  if server == "sumneko_lua" then
+  if server.name == "sumneko_lua" then
     local runtime_path = vim.split(package.path, ";")
     table.insert(runtime_path, "lua/?.lua")
     table.insert(runtime_path, "lua/?/init.lua")
@@ -153,11 +153,9 @@ lsp_installer.on_server_ready(function (server)
     end
   end
 
-  if server == "eslint" then
-    -- local use_gatsby_monorepo = string.match(current_path, "Gatsby/repo") ~= nil
-    --   and string.match(current_path, "cli") == nil
-
+  if server.name == "eslint" then
     -- check for yarn pnp
+    print('check for pnp', pnp_checker.check_for_pnp())
     if pnp_checker.check_for_pnp() then
       opts.cmd = pnp_checker.get_pnp_cmd()
     end
@@ -168,12 +166,12 @@ lsp_installer.on_server_ready(function (server)
     end
   end
 
-  if server == "html" or server == "cssls" then
+  if server.name == "html" or server == "cssls" then
     opts.capabilities.textDocument.completion.completionItem.snippetSupport =
       true
   end
 
-  if server == "jsonls" then
+  if server.name == "jsonls" then
     opts.capabilities.textDocument.completion.completionItem.snippetSupport =
       true
     -- https://www.reddit.com/r/neovim/comments/n1n4zc/need_help_with_tsconfigjson_autocompletion_with/
@@ -219,7 +217,7 @@ lsp_installer.on_server_ready(function (server)
     end
   end
 
-  if server == "yamlls" then
+  if server.name == "yamlls" then
     opts.settings = {
       schemas = {
         ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = {
@@ -232,7 +230,7 @@ lsp_installer.on_server_ready(function (server)
     }
   end
 
-  if server == "tsserver" then
+  if server.name == "tsserver" then
     opts.init_options = require("nvim-lsp-ts-utils").init_options
 
     opts.on_attach = function(client, bufnr)
