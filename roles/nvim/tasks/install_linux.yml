@@ -1,5 +1,5 @@
-- name: Install neovim on Debian
-  apt:
+- name: Install neovim on linux
+  package:
     name: neovim
     state: present
   become: 'yes'

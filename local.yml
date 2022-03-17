@@ -33,6 +33,25 @@
           - ripgrep
           - stylua
           - vale
+        dnf_pkgs:
+          - bat
+          - fd-find
+          - fzf
+          - git-delta
+          - jq
+          - luajit
+          - ripgrep
+          # - kubectx
+          # - vale
+          # - stylua
+          # - helm
+    - role: nvim
+      tags: nvim
+    - role: git
+      tags: git
+      vars:
+        - git_email: 22567131+ec965@users.noreply.github.com
+        - git_user: ec965
     - role: asdf
       tags: asdf
       vars:
@@ -61,13 +80,6 @@
           - typescript
           - yarn
           - "@fsouza/prettierd"
-    - role: git
-      tags: git
-      vars:
-        - git_email: 22567131+ec965@users.noreply.github.com
-        - git_user: ec965
-    - role: nvim
-      tags: nvim
     - role: link
       tags: link
       vars:

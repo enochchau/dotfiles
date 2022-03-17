@@ -1,4 +1,4 @@
-- import_tasks: darwin.yml
+- import_tasks: install_darwin.yml
   when: ansible_facts['os_family'] == "Darwin"
-- import_tasks: debian.yml
-  when: ansible_facts['os_family'] == "Debian"
+- import_tasks: install_linux.yml
+  when: ansible_facts['os_family'] == "Debian" or ansible_facts['os_family'] == "RedHat"
