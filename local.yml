@@ -33,6 +33,7 @@
           - ripgrep
           - stylua
           - vale
+          - alacritty
         dnf_pkgs:
           - bat
           - fd-find
@@ -41,6 +42,7 @@
           - jq
           - luajit
           - ripgrep
+          - alacritty
           # - kubectx
           # - vale
           # - stylua

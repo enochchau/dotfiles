@@ -12,8 +12,8 @@ window:
   decorations: full
 font:
   normal:
-    family: Hack Nerd Font Mono # , JetBrainsMono Nerd Font, MesloLGS NF
-  size: 12
+    family: SauceCodePro Nerd Font Mono # , JetBrainsMono Nerd Font, MesloLGS NF
+  size: 10
 
 colors:
   primary:

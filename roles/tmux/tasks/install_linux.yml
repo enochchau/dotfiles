@@ -1,4 +1,4 @@
-- name: Install neovim on Debian
+- name: Install neovim on Linux
   package:
     name: tmux
     state: present
