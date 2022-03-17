@@ -1,0 +1,21 @@
+- name: Create directory
+  file:
+    path: ~/.config/alacritty
+    state: directory
+    mode: '0755'
+    recurse: true
+
+- name: Check if alacritty config exists
+  stat: path="~/.config/alacritty/alacritty.yml"
+  register: alacritty_stat
+
+- name: Back up config
+  command: mv ~/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml.bak
+  args:
+    creates: "~/.config/alacritty/alacritty.yml.bak"
+  when: alacritty_stat.stat.exists
+
+- name: Update alacritty config 
+  template:
+    src: "alacritty.j2"
+    dest: ~/.config/alacritty/alacritty.yml

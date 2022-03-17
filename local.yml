@@ -99,3 +99,8 @@
       tags: vscode
     - role: fonts
       tags: fonts
+    - role: alacritty
+      tags: alacritty
+      vars:
+        - font_size: 12
+        - font: JetBrainsMono Nerd Font Mono
