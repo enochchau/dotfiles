@@ -19,7 +19,6 @@
       tags: devtools
       vars:
         homebrew_pkgs:
-          - alacritty
           - asdf
           - bat
           - docker
@@ -34,6 +33,8 @@
           - ripgrep
           - stylua
           - vale
+        homebrew_casks:
+          - alacritty
         dnf_pkgs:
           - alacritty
           - bat
@@ -91,11 +92,10 @@
         - link_files:
           - file: "alacritty.yml"
             target: "~/.config/alacritty/alacritty.yml"
-        - link_dirs:
-          - file: "fonts"
-            target: "~/.fonts"
         - darwin_link_dirs:
           - file: "hammerspoon"
             target: "~/.hammerspoon"
     - role: vscode
       tags: vscode
+    - role: fonts
+      tags: fonts

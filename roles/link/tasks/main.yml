@@ -13,13 +13,6 @@
     state: link
   loop: "{{ link_files }}"
 
-- name: Link directories
-  file:
-    src: "{{ ansible_env.PWD }}/roles/link/files/{{ item.file }}"
-    path: "{{ item.target }}"
-    state: link
-  loop: "{{ link_dirs }}"
-
 - name: Darwin Link directories
   file:
     src: "{{ ansible_env.PWD }}/roles/link/files/{{ item.file }}"

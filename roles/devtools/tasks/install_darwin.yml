@@ -1,4 +1,6 @@
-- name: Install Devtools
+- name: Install brew packages
   homebrew:
-    name: "{{ item }}"
-  loop: "{{ homebrew_pkgs }}"
+    name: "{{ homebrew_pkgs }}"
+- name: Install casks
+  homebrew_cask:
+    name: "{{ homebrew_casks }}"

@@ -1,0 +1,19 @@
+- name: Find font files
+  find:
+    paths: "{{ ansible_env.PWD }}/roles/fonts/files"
+    recurse: yes
+  register: fonts
+
+- name: Link fonts Linux
+  file:
+    src: "{{ ansible_env.PWD }}/roles/fonts/files"
+    path: "~/.fonts"
+    state: link
+  when: ansible_facts['os_family'] == "RedHat" or ansible_facts['os_family'] == "Debian"
+
+- name: Link fonts Darwin
+  file:
+    src: "{{ ansible_env.PWD }}/roles/fonts/files"
+    path: "~/Library/Fonts"
+    state: link
+  when: ansible_facts['os_family'] == "Darwin"
