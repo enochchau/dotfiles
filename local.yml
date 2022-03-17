@@ -19,6 +19,7 @@
       tags: devtools
       vars:
         homebrew_pkgs:
+          - alacritty
           - asdf
           - bat
           - docker
@@ -33,16 +34,18 @@
           - ripgrep
           - stylua
           - vale
-          - alacritty
         dnf_pkgs:
+          - alacritty
           - bat
           - fd-find
           - fzf
           - git-delta
           - jq
           - luajit
+          - podman
+          - podman-compose
           - ripgrep
-          - alacritty
+          - g++
           # - kubectx
           # - vale
           # - stylua
