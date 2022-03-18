@@ -2,7 +2,7 @@
   hosts: local
   roles:
     - role: zsh
-      tags: 
+      tags:
         - part1
         - zsh
       vars:
@@ -41,23 +41,23 @@
         # homebrew_casks:
         #   - alacritty
         dnf_pkgs:
-          # - alacritty
           - bat
           - fd-find
           - fzf
+          - g++
           - git-delta
           - jq
           - luajit
           - podman
           - podman-compose
           - ripgrep
-          - g++
           - wget
           - zip
-          # - kubectx
-          # - vale
-          # - stylua
+          # - alacritty
           # - helm
+          # - kubectx
+          # - stylua
+          # - vale
     - role: git
       tags: git
       vars:
