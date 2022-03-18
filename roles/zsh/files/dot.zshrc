@@ -9,6 +9,7 @@ bindkey '^I'   complete-word       # tab          | complete
 bindkey '^[[Z' autosuggest-accept  # shift + tab  | autosuggest
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
+export MANROFFOPT="-c"
 export BAT_PAGER='less'
 export BAT_THEME='Dracula'
 

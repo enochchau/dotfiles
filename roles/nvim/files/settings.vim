@@ -83,9 +83,6 @@ set clipboard+=unnamedplus
 noremap <silent> ]b :bnext<CR>
 noremap <silent> [b :bprevious<CR>
 
-" terminal remap
-tnoremap <Esc> <C-\><C-n>
-
 " relative line numbers
 augroup numbertoggle
   autocmd!
@@ -108,11 +105,9 @@ augroup markdownSpell
 augroup END
 
 " detect prolog
-" detect zig
 augroup detectExtras
   autocmd!
   autocmd BufRead,BufNewFile *.pro setfiletype prolog
-  autocmd BufRead,BufNewFile *.zig setfiletype zig
 augroup END
 
 augroup setSpacing

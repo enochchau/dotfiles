@@ -27,6 +27,7 @@ require("lualine").setup({
     theme = theme,
     section_separators = "",
     component_separators = "│",
+    -- globalstatus = true
   },
   extensions = {
     "nvim-tree",
