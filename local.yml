@@ -36,10 +36,10 @@
           - ripgrep
           - stylua
           - vale
-        homebrew_casks:
-          - alacritty
+        # homebrew_casks:
+        #   - alacritty
         dnf_pkgs:
-          - alacritty
+          # - alacritty
           - bat
           - fd-find
           - fzf
