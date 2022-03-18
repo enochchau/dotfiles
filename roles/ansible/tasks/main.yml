@@ -1,0 +1,6 @@
+- name: Install Ansible
+  ansible.builtin.pip:
+    name:
+      - ansible
+      - ansible-lint
+
