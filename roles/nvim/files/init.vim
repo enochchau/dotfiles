@@ -74,6 +74,9 @@ source ~/.config/nvim/settings.vim
 source ~/.config/nvim/rzip.vim
 source ~/.config/nvim/theme.vim
 source ~/.config/nvim/format.vim
+if has("gui_running")
+  source ~/.config/nvim/gvim.vim
+endif
 lua require('enoch.blankline')
 lua require('enoch.cmp')
 lua require('enoch.filetree')

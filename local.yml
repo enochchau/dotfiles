@@ -32,7 +32,6 @@
         homebrew_pkgs:
           - python
           - asdf
-          - pip
           - bat
           - docker
           - docker-compose
@@ -46,8 +45,8 @@
           - ripgrep
           - stylua
           - vale
-        # homebrew_casks:
-        #   - alacritty
+        homebrew_casks:
+          - alacritty
         dnf_pkgs:
           - python
           - pip
@@ -109,8 +108,6 @@
           - ansible-lint
     - role: nvim
       tags: nvim
-    - role: hammerspoon
-      tags: hammerspoon
     - role: vscode
       tags: vscode
     - role: fonts
@@ -120,5 +117,9 @@
       vars:
         - font_size: 12
         - font: JetBrainsMono Nerd Font Mono
+    - role: hammerspoon
+      tags: hammerspoon
+      when: ansible_facts['os_family'] == "Darwin"
     - role: skhd
       tags: skhd
+      when: ansible_facts['os_family'] == "Darwin"

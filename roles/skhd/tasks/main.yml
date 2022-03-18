@@ -1,6 +1,6 @@
 - name: Create directory
   ansible.builtin.file:
-    path: ~/.config/alacritty
+    path: ~/.config/skhd
     state: directory
     mode: '0755'
     recurse: true
