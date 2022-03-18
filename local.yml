@@ -2,7 +2,9 @@
   hosts: local
   roles:
     - role: zsh
-      tags: zsh
+      tags: 
+        - part1
+        - zsh
       vars:
         zdotdir: ~/.config/zsh
     - role: omz
