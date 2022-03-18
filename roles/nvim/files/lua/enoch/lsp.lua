@@ -1,33 +1,6 @@
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lsp_installer = require("nvim-lsp-installer")
-local pnp_checker = require("nvim-pnp-checker")
 local null_ls = require("null-ls")
-
-local servers = {
-  "ansiblels",
-  "bashls",
-  "cssls",
-  "eslint",
-  "gopls",
-  "html",
-  "jsonls",
-  "prismals",
-  "sumneko_lua",
-  "terraformls",
-  "tsserver",
-  "vimls",
-  "yamlls",
-  "zls",
-}
-
--- auto install servers
-for _, name in pairs(servers) do
-  local server_is_found, server = lsp_installer.get_server(name)
-  if server_is_found and not server:is_installed() then
-    print("Installing " .. name)
-    server:install()
-  end
-end
 
 ---binds keymap for a given buffer
 ---@param bufnr any the current buffer
@@ -98,23 +71,41 @@ vim.api.nvim_set_keymap(
   { noremap = true, silent = true }
 )
 
--- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+local servers = {
+  "ansiblels",
+  "bashls",
+  "cssls",
+  "eslint",
+  "gopls",
+  "html",
+  "jsonls",
+  "prismals",
+  "sumneko_lua",
+  "terraformls",
+  "tsserver",
+  "vimls",
+  "yamlls",
+  "zls",
+}
 
-lsp_installer.on_server_ready(function(server)
-  local current_path = vim.loop.cwd()
-  local opts = {
-    on_attach = common_on_attach,
-    capabilities = capabilities,
-  }
+-- auto install servers
+for _, name in pairs(servers) do
+  local server_is_found, server = lsp_installer.get_server(name)
+  if server_is_found and not server:is_installed() then
+    print("Installing " .. name)
+    server:install()
+  end
+end
 
-  if server.name == "sumneko_lua" then
+local server_init = {
+  sumneko_lua = function(opts)
     local runtime_path = vim.split(package.path, ";")
     table.insert(runtime_path, "lua/?.lua")
     table.insert(runtime_path, "lua/?/init.lua")
 
-    if string.match(current_path, "nvim") then
+    local root = vim.fn.getcwd()
+
+    if string.match(root, "nvim") then
       -- settings for nvim plugin linting
       opts.settings = {
         Lua = {
@@ -136,26 +127,27 @@ lsp_installer.on_server_ready(function(server)
           telemetry = { enable = false },
         },
       }
-    elseif string.match(current_path, "hammerspoon") then
+    elseif string.match(root, "hammerspoon") then
       opts.settings = {
         Lua = {
           diagnostics = {
-            globals = { "vim", "hs" },
+            globals = { "hs" },
           },
           workspace = {
             library = {
-              [vim.fn.expand("$VIMRUNTIME/lua")] = true,
-              [vim.fn.expand("$VIMRUNTIME/lua/vim/lsp")] = true,
               ["/Applications/Hammerspoon.app/Contents/Resources/extensions/hs/"] = true,
             },
           },
+          telemetry = { enable = false },
         },
       }
     end
-  end
 
-  if server.name == "eslint" then
+    return opts
+  end,
+  eslint = function(opts)
     -- check for yarn pnp
+    local pnp_checker = require("nvim-pnp-checker")
     if pnp_checker.check_for_pnp() then
       opts.cmd = pnp_checker.get_pnp_cmd()
     end
@@ -164,14 +156,19 @@ lsp_installer.on_server_ready(function(server)
       client.resolved_capabilities.document_formatting = true
       common_on_attach(client, bufnr)
     end
-  end
-
-  if server.name == "html" or server == "cssls" then
+    return opts
+  end,
+  html = function(opts)
     opts.capabilities.textDocument.completion.completionItem.snippetSupport =
       true
-  end
-
-  if server.name == "jsonls" then
+    return opts
+  end,
+  cssls = function(opts)
+    opts.capabilities.textDocument.completion.completionItem.snippetSupport =
+      true
+    return opts
+  end,
+  jsonls = function(opts)
     opts.capabilities.textDocument.completion.completionItem.snippetSupport =
       true
     -- https://www.reddit.com/r/neovim/comments/n1n4zc/need_help_with_tsconfigjson_autocompletion_with/
@@ -215,9 +212,9 @@ lsp_installer.on_server_ready(function(server)
       client.resolved_capabilities.document_range_formatting = false
       common_on_attach(client, bufnr)
     end
-  end
-
-  if server.name == "yamlls" then
+    return opts
+  end,
+  yamlls = function(opts)
     opts.on_attach = function(client, bufnr)
       client.resolved_capabilities.document_formatting = true
       common_on_attach(client, bufnr)
@@ -232,9 +229,9 @@ lsp_installer.on_server_ready(function(server)
         ["http://json.schemastore.org/prettierrc.json"] = ".prettierrc.{yml,yaml}",
       },
     }
-  end
-
-  if server.name == "tsserver" then
+    return opts
+  end,
+  tsserver = function(opts)
     opts.init_options = require("nvim-lsp-ts-utils").init_options
 
     opts.on_attach = function(client, bufnr)
@@ -258,6 +255,23 @@ lsp_installer.on_server_ready(function(server)
 
       common_on_attach(client, bufnr)
     end
+    return opts
+  end,
+}
+
+-- The nvim-cmp almost supports LSP's capabilities so You should advertise it to LSP servers..
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+
+-- attach servers
+lsp_installer.on_server_ready(function(server)
+  local opts = {
+    on_attach = common_on_attach,
+    capabilities = capabilities,
+  }
+
+  if server_init[server.name] then
+    opts = server_init[server.name](opts)
   end
 
   server:setup(opts)
