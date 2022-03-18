@@ -7,8 +7,6 @@
         state: present
       when: ansible_facts['os_family'] == "RedHat"
   roles:
-    - role: ansible
-      tags: ansible
     - role: zsh
       tags:
         - part1
@@ -103,6 +101,12 @@
             - typescript
             - yarn
             - "@fsouza/prettierd"
+    - role: pip
+      tags: pip
+      vars:
+        pkgs:
+          - ansible
+          - ansible-lint
     - role: nvim
       tags: nvim
     - role: hammerspoon
