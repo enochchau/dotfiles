@@ -3,7 +3,7 @@
     path: ~/Library/Application Support/Code/User
     state: directory
     recurse: true
-    mode: '0755'
+    mode: "0755"
   when: ansible_facts['os_family'] == "Darwin"
 
 - name: Link VSCode settings

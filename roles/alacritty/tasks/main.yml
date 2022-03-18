@@ -2,7 +2,7 @@
   ansible.builtin.file:
     path: ~/.config/alacritty
     state: directory
-    mode: '0755'
+    mode: "0755"
     recurse: true
 
 - name: Check if alacritty config exists

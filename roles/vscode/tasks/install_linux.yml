@@ -3,8 +3,7 @@
     path: ~/.config/Code/User
     state: directory
     recurse: true
-    mode: '0755'
-
+    mode: "0755"
 
 - name: Link VSCode settings
   ansible.builtin.file:
