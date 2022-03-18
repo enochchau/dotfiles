@@ -1,14 +1,15 @@
 - name: Check if gitconfig exists
-  stat: path="~/.gitconfig"
+  ansible.builtin.stat: path="~/.gitconfig"
   register: gitconfig_stat
 
 - name: Back up gitconfig
-  command: mv ~/.gitconfig ~/.gitconfig.bak
+  ansible.builtin.command: mv ~/.gitconfig ~/.gitconfig.bak
   args:
     creates: "~/.gitconfig.bak"
   when: gitconfig_stat.stat.exists
 
 - name: Update gitconfig
-  template:
+  ansible.builtin.template:
     src: "gitconfig.j2"
     dest: ~/.gitconfig
+    mode: 0664

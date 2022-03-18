@@ -4,27 +4,31 @@
   when: ansible_facts['os_family'] == "Debian" or ansible_facts['os_family'] == "RedHat"
 
 - name: Download Vim Plug
-  command: sh -c 'curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+  ansible.builtin.command: >
+    sh -c 'curl -fLo $HOME/.local/share/nvim/site/autoload/plug.vim --create-dirs
+    https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
   args:
     creates: ~/.local/share/nvim/site/autoload/plug.vim
 
 - name: Make plugin directory
-  file:
+  ansible.builtin.file:
     path: ~/.config/plugged
     state: directory
     mode: '0755'
 
 - name: Make .config directory
-  file:
+  ansible.builtin.file:
     path: ~/.config
     state: directory
     mode: '0755'
 
 - name: Symlink vimrc
-  file:
+  ansible.builtin.file:
     src: "{{ ansible_env.PWD }}/roles/nvim/files"
     path: ~/.config/nvim
     state: link
 
 - name: Install plugins
-  command: nvim --headless +'PlugInstall --sync' +qall
+  ansible.builtin.command: nvim --headless +'PlugInstall --sync' +qall
+  args:
+    creates: ~/.config/plugged/*

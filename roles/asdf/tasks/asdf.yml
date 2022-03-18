@@ -4,7 +4,7 @@
   changed_when: check_plugin.rc != 0
 
 - name: Install asdf plugin
-  ansible.builtin.shell: "asdf plugin add {{ item.name }} {{ item.repo }}"
+  ansible.builtin.command: "asdf plugin add {{ item.name }} {{ item.repo }}"
   when: check_plugin.rc != 0
 
 - name: Check installed version
@@ -13,12 +13,12 @@
   changed_when: check_installed.rc != 0
 
 - name: Install program
-  ansible.builtin.shell: "asdf install {{ item.name }} {{ item.version }}"
+  ansible.builtin.command: "asdf install {{ item.name }} {{ item.version }}"
   register: installed
   when: check_installed.rc != 0
   changed_when: installed.rc != 0
 
 - name: Set global version
-  ansible.builtin.shell: "asdf global {{ item.name }} {{ item.version }}"
+  ansible.builtin.command: "asdf global {{ item.name }} {{ item.version }}"
   register: set_version
   changed_when: set_version.rc != 0

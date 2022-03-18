@@ -4,14 +4,14 @@
   when: ansible_facts['os_family'] == "Debian" or ansible_facts['os_family'] == "RedHat"
 
 - name: Make .config directory
-  file:
+  ansible.builtin.file:
     path: ~/.config/tmux
     state: directory
     mode: '0755'
     recurse: 'yes'
 
 - name: Symlink config
-  file:
+  ansible.builtin.file:
     src: "{{ ansible_env.PWD }}/roles/tmux/files/tmux.conf"
     path: ~/.config/tmux/tmux.conf
     state: link

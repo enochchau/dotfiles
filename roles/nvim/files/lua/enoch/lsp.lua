@@ -61,6 +61,7 @@ local function common_on_attach(client, bufnr)
     { "x", "<leader>f", ":<C-U>lua vim.lsp.buf.range_formatting()<CR>" },
     { "n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>" },
     { "n", "ga", "<cmd>Telescope diagnostics bufnr=0<CR>" },
+    { "n", "gc", "<cmd>Telescope diagnostics<CR>" },
     { "n", "<leader>a", telescope_picker("lsp_code_actions") },
     { "x", "<leader>a", ":Telescope lsp_range_code_actions<CR>" },
     { "n", "<leader>rn", "<cmd>lua vim.lsp.buf.rename()<CR>" },

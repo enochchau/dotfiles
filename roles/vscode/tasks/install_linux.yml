@@ -1,5 +1,5 @@
 - name: Create directory
-  file:
+  ansible.builtin.file:
     path: ~/.config/Code/User
     state: directory
     recurse: true
@@ -7,7 +7,7 @@
 
 
 - name: Link VSCode settings
-  file:
+  ansible.builtin.file:
     src: "{{ ansible_env.PWD }}/roles/vscode/files/settings.json"
     path: ~/.config/Code/User/settings.json
     state: link

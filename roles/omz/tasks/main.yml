@@ -1,14 +1,15 @@
-- name: Check for Oh my Zsh
-  stat: "path={{ oh_my_zsh_path }}"
-  register: oh_my_zsh
-
 - name: Install Oh my Zsh
-  git:
+  ansible.builtin.git:
     repo: https://github.com/ohmyzsh/ohmyzsh.git
     dest: "{{ oh_my_zsh_path }}"
     depth: 1
-  when: not oh_my_zsh.stat.exists
+    version: HEAD
+    update: true
 
-- name: Install omz plugins
-  include_tasks: omzplugin.yml
+- name: Install plugin
+  ansible.builtin.git:
+    repo: "{{ item.repo }}"
+    dest: "{{ oh_my_zsh_path }}/custom/{{ item.path }}"
+    update: true
+    version: HEAD
   loop: "{{ omz_plugins }}"
