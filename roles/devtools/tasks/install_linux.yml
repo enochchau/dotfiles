@@ -1,16 +1,16 @@
 - name: Check for asdf
-  stat: "path=~/.asdf"
+  ansible.builtin.stat: "path=~/.asdf"
   register: asdf_check
 
 - name: Install asdf
-  git:
+  ansible.builtin.git:
     repo: https://github.com/asdf-vm/asdf.git
     version: "v0.9.0"
     dest: "~/.asdf"
   when: not asdf_check.stat.exists
 
 - name: Install dnf Packages
-  package:
+  ansible.builtin.package:
     name: "{{ dnf_pkgs }}"
   when: ansible_facts['os_family'] == "RedHat"
-  become: 'yes'
+  become: yes

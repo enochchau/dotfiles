@@ -18,8 +18,6 @@
   when: check_installed.rc != 0
   changed_when: installed.rc != 0
 
-
-
 - name: Set global version
   ansible.builtin.shell: "asdf global {{ item.name }} {{ item.version }}"
   register: set_version

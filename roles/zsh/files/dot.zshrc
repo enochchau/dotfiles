@@ -37,6 +37,7 @@ alias gitdel='~/code/dev-scripts/git-delete.sh'
 alias wtb='~/code/dev-scripts/bootstrap-worktree.sh'
 alias vi="nvim"
 alias vim="nvim"
+alias vimrc="nvim ~/.config/nvim"
 
 cdg() { cd "$(git rev-parse --show-toplevel)/$1" }
 _cdg_completion()
