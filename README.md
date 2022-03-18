@@ -1,5 +1,7 @@
 # dotfiles
 
+For Fedora and MacOS
+
 ## Dependencies
 
 - `python3`
@@ -7,10 +9,14 @@
 
 ## Installation
 
-```
-make upgrade
+First, configure zsh
+
+```sh
+make part1
 ```
 
-## Todo
+Then restart your terminal session and run
 
-- playbook to install vscode on Linux
+```sh
+make update
+```

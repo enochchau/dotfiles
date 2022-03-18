@@ -1,0 +1,14 @@
+- name: Check for Oh my Zsh
+  stat: "path={{ oh_my_zsh_path }}"
+  register: oh_my_zsh
+
+- name: Install Oh my Zsh
+  git:
+    repo: https://github.com/ohmyzsh/ohmyzsh.git
+    dest: "{{ oh_my_zsh_path }}"
+    depth: 1
+  when: not oh_my_zsh.stat.exists
+
+- name: Install omz plugins
+  include_tasks: omzplugin.yml
+  loop: "{{ omz_plugins }}"

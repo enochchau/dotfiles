@@ -2,6 +2,7 @@ call plug#begin('~/.config/plugged')
 " editing
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
+Plug 'tpope/vim-sleuth'
 Plug 'editorconfig/editorconfig-vim'
 Plug 'b3nj5m1n/kommentary'
 

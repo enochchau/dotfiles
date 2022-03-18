@@ -1,4 +1,4 @@
-- name: Install neovim on Darwin
+- name: Install tmux on Darwin
   homebrew:
     name: neovim
     state: present

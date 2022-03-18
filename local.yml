@@ -4,8 +4,11 @@
     - role: zsh
       tags: zsh
       vars:
-        oh_my_zsh_path: ~/.config/zsh/oh-my-zsh
         zdotdir: ~/.config/zsh
+    - role: omz
+      tags: omz
+      vars:
+        oh_my_zsh_path: ~/.config/zsh/oh-my-zsh
         omz_plugins:
           - repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
             path: plugins/zsh-syntax-highlighting
@@ -47,12 +50,12 @@
           - podman-compose
           - ripgrep
           - g++
+          - wget
+          - zip
           # - kubectx
           # - vale
           # - stylua
           # - helm
-    - role: nvim
-      tags: nvim
     - role: git
       tags: git
       vars:
@@ -62,39 +65,38 @@
       tags: asdf
       vars:
         - programs:
-          - name: nodejs
-            repo: "https://github.com/asdf-vm/asdf-nodejs.git"
-            version: "16.14.0"
-          - name: golang
-            repo: https://github.com/kennyp/asdf-golang.git
-            version: latest
-          - name: terraform
-            repo: https://github.com/asdf-community/asdf-hashicorp.git
-            version: latest
-          - name: kubectl
-            repo: https://github.com/asdf-community/asdf-kubectl.git
-            version: latest
-          - name: zig
-            repo: https://github.com/asdf-community/asdf-zig.git
-            version: latest
+            - name: nodejs
+              repo: "https://github.com/asdf-vm/asdf-nodejs.git"
+              version: "16.14.0"
+            - name: golang
+              repo: https://github.com/kennyp/asdf-golang.git
+              version: latest
+            - name: terraform
+              repo: https://github.com/asdf-community/asdf-hashicorp.git
+              version: latest
+            - name: kubectl
+              repo: https://github.com/asdf-community/asdf-kubectl.git
+              version: latest
+            - name: zig
+              repo: https://github.com/asdf-community/asdf-zig.git
+              version: latest
     - role: nodejs
       tags: nodejs
       vars:
         - npm_global_packages:
-          - eslint
-          - prettier
-          - typescript
-          - yarn
-          - "@fsouza/prettierd"
+            - eslint
+            - prettier
+            - typescript
+            - yarn
+            - "@fsouza/prettierd"
+    - role: nvim
+      tags: nvim
     - role: link
       tags: link
       vars:
-        - link_files:
-          - file: "alacritty.yml"
-            target: "~/.config/alacritty/alacritty.yml"
         - darwin_link_dirs:
-          - file: "hammerspoon"
-            target: "~/.hammerspoon"
+            - file: "hammerspoon"
+              target: "~/.hammerspoon"
     - role: vscode
       tags: vscode
     - role: fonts

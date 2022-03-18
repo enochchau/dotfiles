@@ -1,4 +1,4 @@
-- name: Install neovim on Linux
+- name: Install tmux on Linux
   package:
     name: tmux
     state: present
