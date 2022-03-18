@@ -120,3 +120,5 @@
       vars:
         - font_size: 12
         - font: JetBrainsMono Nerd Font Mono
+    - role: skhd
+      tags: skhd
