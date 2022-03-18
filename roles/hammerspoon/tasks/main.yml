@@ -1,0 +1,6 @@
+- name: Link Hammerspoon
+  file:
+    src: "{{ ansible_env.PWD }}/roles/link/files/hammerspoon"
+    path: ~/.hammerspoon
+    state: link
+  when: ansible_facts['os_family'] == "Darwin"

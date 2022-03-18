@@ -1,7 +1,0 @@
-- name: Darwin Link directories
-  file:
-    src: "{{ ansible_env.PWD }}/roles/link/files/{{ item.file }}"
-    path: "{{ item.target }}"
-    state: link
-  loop: "{{ darwin_link_dirs }}"
-  when: ansible_facts['os_family'] == "Darwin"

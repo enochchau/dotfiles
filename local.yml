@@ -93,12 +93,8 @@
             - "@fsouza/prettierd"
     - role: nvim
       tags: nvim
-    - role: link
-      tags: link
-      vars:
-        - darwin_link_dirs:
-            - file: "hammerspoon"
-              target: "~/.hammerspoon"
+    - role: hammerspoon
+      tags: hammerspoon
     - role: vscode
       tags: vscode
     - role: fonts
