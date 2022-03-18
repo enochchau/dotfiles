@@ -218,6 +218,10 @@ lsp_installer.on_server_ready(function(server)
   end
 
   if server.name == "yamlls" then
+    opts.on_attach = function(client, bufnr)
+      client.resolved_capabilities.document_formatting = true
+      common_on_attach(client, bufnr)
+    end
     opts.settings = {
       schemas = {
         ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = {
