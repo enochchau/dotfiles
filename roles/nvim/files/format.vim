@@ -11,7 +11,8 @@ function! SpecificJSFormat()
   endif
 endfunction
 
-augroup FmtJavaScript
+augroup FmtOnSave
   autocmd!
+  autocmd BufWritePre *.md,*.go,*.yaml,*.yml,*.json,*.lua lua vim.lsp.buf.formatting_sync({}, 3000)
   autocmd BufWritePre *.js,*.ts,*.jsx,*.tsx call SpecificJSFormat()
 augroup END

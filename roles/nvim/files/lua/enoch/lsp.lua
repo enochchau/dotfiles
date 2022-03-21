@@ -15,15 +15,6 @@ local function bind_keymap(bufnr, keymap)
 end
 
 local function common_on_attach(client, bufnr)
-  -- add an autocmd to format on save if the lsp supports it
-  if client.resolved_capabilities.document_formatting then
-    vim.cmd([[
-    augroup LspFormatting
-        autocmd! * <buffer>
-        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
-    augroup END
-    ]])
-  end
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   ---@param picker string name of the builtin telescope picker
