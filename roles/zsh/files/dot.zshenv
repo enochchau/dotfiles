@@ -9,4 +9,4 @@ export XDG_STATE_HOME="$HOME/.local/state"
 export JQ_COLORS="1;30:0;37:0;37:0;37:0;32:1;37:1;37"
 
 export ZDOTDIR=$HOME/.config/zsh
-. "$HOME/.cargo/env"
+test -f "$HOME/.cargo/env" && . "$HOME/.cargo/env"

@@ -15,6 +15,15 @@ local function bind_keymap(bufnr, keymap)
 end
 
 local function common_on_attach(client, bufnr)
+  -- add an autocmd to format on save if the lsp supports it
+  if client.resolved_capabilities.document_formatting then
+    vim.cmd([[
+    augroup LspFormatting
+        autocmd! * <buffer>
+        autocmd BufWritePre <buffer> lua vim.lsp.buf.formatting_sync()
+    augroup END
+    ]])
+  end
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
   ---@param picker string name of the builtin telescope picker
@@ -216,7 +225,8 @@ local server_init = {
   end,
   yamlls = function(opts)
     opts.on_attach = function(client, bufnr)
-      client.resolved_capabilities.document_formatting = true
+      -- use prettier/null-ls for formatting
+      client.resolved_capabilities.document_formatting = false
       common_on_attach(client, bufnr)
     end
     opts.settings = {
@@ -289,4 +299,7 @@ local sources = {
   null_ls.builtins.diagnostics.vale,
 }
 
-null_ls.setup({ sources = sources, on_attach = common_on_attach })
+null_ls.setup({
+  sources = sources,
+  on_attach = common_on_attach,
+})

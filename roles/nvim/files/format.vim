@@ -15,8 +15,3 @@ augroup FmtJavaScript
   autocmd!
   autocmd BufWritePre *.js,*.ts,*.jsx,*.tsx call SpecificJSFormat()
 augroup END
-
-augroup FmtMarkdown
-  autocmd!
-  autocmd BufWritePre *.md lua vim.lsp.buf.formatting_sync()
-augroup END
