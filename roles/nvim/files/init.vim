@@ -64,7 +64,6 @@ Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'lewis6991/gitsigns.nvim'
 Plug 'mhinz/vim-startify'
 Plug 'akinsho/toggleterm.nvim'
-Plug 'ahmedkhalf/project.nvim'
 
 " file tree
 Plug 'kyazdani42/nvim-web-devicons'
@@ -91,4 +90,3 @@ lua require('enoch.treesitter')
 
 nmap <silent> <C-M> :MarkdownPreviewToggle<CR>
 lua require('nvim-autopairs').setup{}
-lua require('project_nvim').setup{}

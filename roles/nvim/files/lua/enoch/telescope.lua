@@ -27,13 +27,11 @@ telescope.setup({
   },
 })
 telescope.load_extension("fzf")
-telescope.load_extension("projects")
 local nnoremap = {
   ["<C-p>"] = "<cmd>Telescope find_files<CR>",
   ["<C-f>"] = "<cmd>Telescope live_grep<CR>",
   ["<C-b>"] = "<cmd>Telescope buffers<CR>",
   ["<leader>fh"] = "<cmd>Telescope help_tags<CR>",
-  ["<leader>fw"] = "<cmd>Telescope projects<CR>",
 }
 
 for lhs, rhs in pairs(nnoremap) do

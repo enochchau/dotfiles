@@ -79,7 +79,6 @@ local servers = {
   "gopls",
   "html",
   "jsonls",
-  "prismals",
   "sumneko_lua",
   "terraformls",
   "tsserver",
