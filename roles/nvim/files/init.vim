@@ -3,8 +3,8 @@ call plug#begin('~/.config/plugged')
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-commentary'
 Plug 'editorconfig/editorconfig-vim'
-Plug 'b3nj5m1n/kommentary'
 
 " themes
 Plug 'morhetz/gruvbox'
@@ -81,7 +81,6 @@ lua require('enoch.blankline')
 lua require('enoch.cmp')
 lua require('enoch.filetree')
 lua require('enoch.gitsigns')
-lua require('enoch.kommentary')
 lua require('enoch.lsp')
 lua require('enoch.lualine')
 lua require('enoch.telescope')
