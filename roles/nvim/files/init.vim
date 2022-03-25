@@ -68,6 +68,8 @@ Plug 'akinsho/toggleterm.nvim'
 " file tree
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
+
+Plug 'j-hui/fidget.nvim'
 call plug#end()
 
 source ~/.config/nvim/settings.vim
@@ -89,3 +91,4 @@ lua require('enoch.treesitter')
 
 nmap <silent> <C-M> :MarkdownPreviewToggle<CR>
 lua require('nvim-autopairs').setup{}
+lua require"fidget".setup{}
