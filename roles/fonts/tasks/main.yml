@@ -9,7 +9,10 @@
 
 - name: Link fonts Darwin
   ansible.builtin.file:
-    src: "{{ ansible_env.PWD }}/roles/fonts/files"
-    path: "~/Library/Fonts"
+    src: "{{ item }}"
+    path: "~/Library/Fonts/"
     state: hard # macos isn't detecting fonts that are symlinked
+    mode: "644"
   when: ansible_facts['os_family'] == "Darwin"
+  with_fileglob:
+    - "{{ ansible_env.PWD }}/roles/fonts/files/*"
