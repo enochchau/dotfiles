@@ -67,6 +67,14 @@
           # - kubectx
           # - stylua
           # - vale
+        apt_pkgs:
+          - bat
+          - fd-find
+          - fzf
+          - jq
+          - ripgrep
+          - wget
+          - zip
     - role: git
       tags: git
       vars:
