@@ -1,24 +1,28 @@
 - name: Check for asdf plugin
-  ansible.builtin.shell: "set -o pipefail && asdf plugin list | grep -q '{{ item.name }}'"
+  ansible.builtin.shell: "asdf plugin list | grep -q '{{ item.name }}'"
   register: check_plugin
   changed_when: check_plugin.rc != 0
+  failed_when: check_plugin.rc not in [ 0, 1 ]
 
 - name: Install asdf plugin
   ansible.builtin.command: "asdf plugin add {{ item.name }} {{ item.repo }}"
   when: check_plugin.rc != 0
 
 - name: Check installed version
-  ansible.builtin.shell: "set -o pipefail && asdf list {{ item.name }} | grep -q '{{ item.version }}'"
+  ansible.builtin.shell: "asdf list {{ item.name }} | grep -q '{{ item.version }}'"
   register: check_installed
   changed_when: check_installed.rc != 0
+  failed_when: check_plugin.rc not in [ 0, 1 ]
 
 - name: Install program
   ansible.builtin.command: "asdf install {{ item.name }} {{ item.version }}"
   register: installed
   when: check_installed.rc != 0
   changed_when: installed.rc != 0
+  failed_when: check_plugin.rc not in [ 0, 1 ]
 
 - name: Set global version
   ansible.builtin.command: "asdf global {{ item.name }} {{ item.version }}"
   register: set_version
   changed_when: set_version.rc != 0
+  failed_when: check_plugin.rc not in [ 0, 1 ]
