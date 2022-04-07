@@ -13,6 +13,7 @@ set hidden
 set updatetime=300
 set smartcase
 set ignorecase
+set sessionoptions-=buffers
 
 " move vertically by visual line, don't skip wrapped lines
 nmap j gj

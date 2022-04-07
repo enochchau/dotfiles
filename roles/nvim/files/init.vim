@@ -62,7 +62,8 @@ Plug 'nvim-lualine/lualine.nvim'
 " qol
 Plug 'lukas-reineke/indent-blankline.nvim'
 Plug 'lewis6991/gitsigns.nvim'
-Plug 'mhinz/vim-startify'
+Plug 'goolord/alpha-nvim'
+Plug 'lewis6991/impatient.nvim'
 Plug 'akinsho/toggleterm.nvim'
 
 " file tree
@@ -72,10 +73,12 @@ Plug 'kyazdani42/nvim-tree.lua'
 Plug 'j-hui/fidget.nvim'
 call plug#end()
 
+lua require('impatient')
+
 source ~/.config/nvim/settings.vim
-source ~/.config/nvim/rzip.vim
 source ~/.config/nvim/theme.vim
 source ~/.config/nvim/format.vim
+source ~/.config/nvim/rzip.vim
 if has("gui_running")
   source ~/.config/nvim/gvim.vim
 endif
@@ -88,6 +91,7 @@ lua require('enoch.lualine')
 lua require('enoch.telescope')
 lua require('enoch.toggleterm')
 lua require('enoch.treesitter')
+lua require('enoch.alpha')
 
 nmap <silent> <C-M> :MarkdownPreviewToggle<CR>
 lua require('nvim-autopairs').setup{}
