@@ -5,6 +5,7 @@ Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 Plug 'editorconfig/editorconfig-vim'
+" Plug 'mhinz/vim-startify'
 
 " themes
 Plug 'morhetz/gruvbox'

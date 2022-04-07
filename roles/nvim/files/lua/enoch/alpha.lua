@@ -2,11 +2,13 @@ local alpha = require("alpha")
 local startify = require("alpha.themes.startify")
 local fortune = require("alpha.fortune")()
 local cowsays = {
-  [[    \   ^__^            ]],
-  [[     \  (oo)\_______    ]],
-  [[        (__)\       )\/\]],
-  [[            ||----w |   ]],
-  [[            ||     ||   ]],
+  [[                         ]],
+  [[    o                    ]],
+  [[     o   ^__^            ]],
+  [[      o  (oo)\_______    ]],
+  [[         (__)\       )\/\]],
+  [[             ||----w |   ]],
+  [[             ||     ||   ]],
 }
 
 for _, v in ipairs(cowsays) do
