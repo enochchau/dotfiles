@@ -25,6 +25,7 @@ Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'ec965/nvim-format-select'
 Plug 'williamboman/nvim-lsp-installer'
+Plug 'j-hui/fidget.nvim'
 
 " completion
 Plug 'hrsh7th/nvim-cmp'
@@ -69,8 +70,6 @@ Plug 'akinsho/toggleterm.nvim'
 " file tree
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
-
-Plug 'j-hui/fidget.nvim'
 call plug#end()
 
 lua require('impatient')
