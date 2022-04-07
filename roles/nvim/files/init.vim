@@ -16,7 +16,7 @@ Plug 'folke/tokyonight.nvim'
 " preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown' }
 " yarn pnp
-Plug 'lbrayner/vim-rzip'
+Plug 'lbrayner/vim-rzip', { 'for': [ 'typescript', 'javascript', 'typescriptreact', 'javascriptreact' ] }
 Plug 'ec965/nvim-pnp-checker'
 
 " lsp
@@ -48,7 +48,7 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-ts-autotag'
-Plug 'nvim-treesitter/playground'
+" Plug 'nvim-treesitter/playground'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
 " additional language support
