@@ -72,7 +72,7 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
-lua require('impatient')
+" lua require('impatient')
 
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/theme.vim
@@ -94,4 +94,4 @@ lua require('enoch.alpha')
 
 nmap <silent> <C-M> :MarkdownPreviewToggle<CR>
 lua require('nvim-autopairs').setup{}
-lua require"fidget".setup{}
+lua require"fidget".setup()

@@ -27,7 +27,6 @@ telescope.setup({
   },
 })
 telescope.load_extension("fzf")
-telescope.load_extension("possession")
 local nnoremap = {
   ["<C-p>"] = "<cmd>Telescope find_files<CR>",
   ["<C-f>"] = "<cmd>Telescope live_grep<CR>",
