@@ -13,6 +13,7 @@ Plug 'rakr/vim-one'
 Plug 'rafamadriz/neon'
 Plug 'projekt0n/github-nvim-theme'
 Plug 'folke/tokyonight.nvim'
+Plug 'Mofiqul/adwaita.nvim'
 
 " preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown' }
