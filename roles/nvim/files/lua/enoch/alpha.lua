@@ -1,7 +1,17 @@
 local alpha = require("alpha")
 local startify = require("alpha.themes.startify")
 local fortune = require("alpha.fortune")()
-local cowsays = {
+-- local says = {
+--   [[    o              ]],
+--   [[     o     .--.    ]],
+--   [[      o   |o_o |   ]],
+--   [[          |:_/ |   ]],
+--   [[         //   \ \  ]],
+--   [[        (|     | ) ]],
+--   [[       /'\_   _/`\ ]],
+--   [[       \___)=(___/ ]],
+-- }
+local says = {
   [[                         ]],
   [[    o                    ]],
   [[     o   ^__^            ]],
@@ -11,7 +21,7 @@ local cowsays = {
   [[             ||     ||   ]],
 }
 
-for _, v in ipairs(cowsays) do
+for _, v in ipairs(says) do
   table.insert(fortune, v)
 end
 
