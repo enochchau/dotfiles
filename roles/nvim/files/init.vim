@@ -78,7 +78,7 @@ lua require('impatient')
 
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/theme.vim
-source ~/.config/nvim/format.vim
+" source ~/.config/nvim/format.vim
 source ~/.config/nvim/rzip.vim
 if has("gui_running")
   source ~/.config/nvim/gvim.vim
@@ -93,6 +93,7 @@ lua require('enoch.telescope')
 lua require('enoch.toggleterm')
 lua require('enoch.treesitter')
 lua require('enoch.alpha')
+lua require('enoch.format')
 
 nmap <silent> <C-M> :MarkdownPreviewToggle<CR>
 lua require('nvim-autopairs').setup{}
