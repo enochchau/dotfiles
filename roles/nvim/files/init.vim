@@ -85,18 +85,8 @@ source ~/.config/nvim/rzip.vim
 if has("gui_running")
   source ~/.config/nvim/gvim.vim
 endif
-lua require('enoch.blankline')
-lua require('enoch.cmp')
-lua require('enoch.filetree')
-lua require('enoch.gitsigns')
-lua require('enoch.lsp')
-lua require('enoch.lualine')
-lua require('enoch.telescope')
-lua require('enoch.toggleterm')
-lua require('enoch.treesitter')
-lua require('enoch.alpha')
-lua require('enoch.format')
-lua require('enoch.autopairs')
+
+lua require('enochfnl')
+lua require('enoch')
 
 nmap <silent> <C-M> :MarkdownPreviewToggle<CR>
-lua require('fidget').setup()

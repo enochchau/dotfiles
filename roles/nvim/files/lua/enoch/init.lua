@@ -1,0 +1,11 @@
+require(... .. ".cmp")
+require(... .. ".filetree")
+require(... .. ".gitsigns")
+require(... .. ".lsp")
+require(... .. ".telescope")
+require(... .. ".toggleterm")
+require(... .. ".treesitter")
+require(... .. ".alpha")
+require(... .. ".format")
+
+require("fidget").setup()
