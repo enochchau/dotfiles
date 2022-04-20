@@ -81,7 +81,6 @@ lua require('hotpot')
 
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/theme.vim
-" source ~/.config/nvim/format.vim
 source ~/.config/nvim/rzip.vim
 if has("gui_running")
   source ~/.config/nvim/gvim.vim
@@ -97,7 +96,7 @@ lua require('enoch.toggleterm')
 lua require('enoch.treesitter')
 lua require('enoch.alpha')
 lua require('enoch.format')
+lua require('enoch.autopairs')
 
 nmap <silent> <C-M> :MarkdownPreviewToggle<CR>
-lua require('nvim-autopairs').setup({})
 lua require('fidget').setup()
