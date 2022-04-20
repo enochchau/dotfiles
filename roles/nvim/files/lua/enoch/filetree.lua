@@ -1,6 +1,3 @@
--- for project_nvim
-vim.g.nvim_tree_respect_buf_cwd = 1
-
 require("nvim-tree").setup({
   open_on_setup = false,
   update_cwd = true,
@@ -29,5 +26,5 @@ local nnoremap = {
 }
 
 for lhs, rhs in pairs(nnoremap) do
-  vim.api.nvim_set_keymap("n", lhs, rhs, { noremap = true, silent = true })
+  vim.keymap.set("n", lhs, rhs, { noremap = true, silent = true })
 end

@@ -6,11 +6,12 @@ local null_ls = require("null-ls")
 ---@param bufnr any the current buffer
 ---@param keymap table a 2D table with rows: { mode, keys, command }
 local function bind_keymap(bufnr, keymap)
-  local opts = { silent = true, noremap = true }
+  local opts = { silent = true, noremap = true, buffer = bufnr }
 
   for _, mapping in pairs(keymap) do
     table.insert(mapping, opts)
-    vim.api.nvim_buf_set_keymap(bufnr, unpack(mapping))
+    vim.keymap.set(unpack(mapping))
+    -- vim.api.nvim_buf_set_keymap(bufnr, unpack(mapping))
   end
 end
 
@@ -286,7 +287,7 @@ local sources = {
     },
   }),
   null_ls.builtins.formatting.stylua,
-  null_ls.builtins.diagnostics.vale,
+  null_ls.builtins.formatting.fnlfmt,
 }
 
 null_ls.setup({

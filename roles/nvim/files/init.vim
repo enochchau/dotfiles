@@ -1,11 +1,13 @@
 call plug#begin('~/.config/plugged')
+" fennel
+Plug 'rktjmp/hotpot.nvim'
+
 " editing
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-commentary'
 Plug 'editorconfig/editorconfig-vim'
-" Plug 'mhinz/vim-startify'
 
 " themes
 Plug 'morhetz/gruvbox'
@@ -75,6 +77,7 @@ Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
 lua require('impatient')
+lua require('hotpot')
 
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/theme.vim
@@ -96,5 +99,5 @@ lua require('enoch.alpha')
 lua require('enoch.format')
 
 nmap <silent> <C-M> :MarkdownPreviewToggle<CR>
-lua require('nvim-autopairs').setup{}
-lua require"fidget".setup()
+lua require('nvim-autopairs').setup({})
+lua require('fidget').setup()

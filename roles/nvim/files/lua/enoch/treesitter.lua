@@ -1,14 +1,13 @@
 require("nvim-treesitter.configs").setup({
   ensure_installed = {
-    -- Moved to default.nix
-
     "bash",
     "comment",
     "css",
     "dockerfile",
     "dot",
+    "fennel",
+    "go",
     "graphql",
-    -- "hcl",
     "html",
     "javascript",
     "jsdoc",
@@ -26,7 +25,7 @@ require("nvim-treesitter.configs").setup({
     "vim",
     "yaml",
     "zig",
-    "go",
+    -- "hcl",
   },
   highlight = {
     enable = true,

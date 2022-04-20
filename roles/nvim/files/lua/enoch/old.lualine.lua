@@ -1,8 +1,7 @@
 local theme = vim.g.colors_name
 if theme == "one" then
   theme = "onedark"
-end
-if theme == "github_dark" then
+elseif theme == "github_dark" then
   theme = "github"
 end
 
