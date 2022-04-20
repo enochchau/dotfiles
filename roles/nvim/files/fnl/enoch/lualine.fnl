@@ -1,7 +1,5 @@
 (fn get-theme [theme]
-  (if (= theme :one) :onedark
-      (= theme :github_dark) :github
-      theme))
+  (if (= theme :one) :onedark theme))
 
 (let [theme (get-theme vim.g.colors_name)
       lualine (require :lualine)]
