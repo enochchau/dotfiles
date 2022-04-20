@@ -75,6 +75,7 @@
           - ripgrep
           - wget
           - zip
+          - luajit
     - role: git
       tags: git
       vars:
