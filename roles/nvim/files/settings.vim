@@ -110,9 +110,3 @@ augroup detectExtras
   autocmd!
   autocmd BufRead,BufNewFile *.pro setfiletype prolog
 augroup END
-
-augroup setSpacing
-  autocmd!
-  autocmd FileType go setlocal tabstop=4 shiftwidth=4 noexpandtab
-  autocmd FileType zig setlocal tabstop=4 shiftwidth=4 expandtab
-augroup END
