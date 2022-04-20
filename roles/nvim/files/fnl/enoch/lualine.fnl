@@ -14,4 +14,5 @@
                   :options {: theme
                             :section_separators ""
                             :component_separators "|"}
-                  :extensions [:nvim-tree :toggleterm]}))
+                  :extensions [:nvim-tree :toggleterm]})
+  nil)
