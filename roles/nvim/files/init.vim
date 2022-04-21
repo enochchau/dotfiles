@@ -69,6 +69,7 @@ Plug 'lewis6991/gitsigns.nvim'
 Plug 'goolord/alpha-nvim'
 Plug 'lewis6991/impatient.nvim'
 Plug 'akinsho/toggleterm.nvim'
+Plug 'ggandor/leap.nvim'
 
 " file tree
 Plug 'kyazdani42/nvim-web-devicons'

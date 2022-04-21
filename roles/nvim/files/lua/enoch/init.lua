@@ -12,3 +12,4 @@ require("enoch.blankline")
 require("enoch.lualine")
 
 require("fidget").setup()
+require("leap").set_default_keymaps()

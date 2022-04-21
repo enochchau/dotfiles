@@ -13,7 +13,7 @@ vim.api.nvim_create_autocmd("BufWritePre", {
     "*.yml",
     "*.json",
     "*.lua",
-    "*.fnl",
+    -- "*.fnl",
   },
   callback = function()
     vim.lsp.buf.formatting_sync({}, 3000)
