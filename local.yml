@@ -124,8 +124,8 @@
     - role: alacritty
       tags: alacritty
       vars:
-        - font_size: 12
-        - font: Hack Nerd Font Mono
+        - font_size: 13
+        - font: FantasqueSansMono NF
     - role: hammerspoon
       tags: hammerspoon
       when: ansible_facts['os_family'] == "Darwin"
