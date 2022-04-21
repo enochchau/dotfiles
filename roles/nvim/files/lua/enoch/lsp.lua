@@ -11,7 +11,6 @@ local function bind_keymap(bufnr, keymap)
   for _, mapping in pairs(keymap) do
     table.insert(mapping, opts)
     vim.keymap.set(unpack(mapping))
-    -- vim.api.nvim_buf_set_keymap(bufnr, unpack(mapping))
   end
 end
 
