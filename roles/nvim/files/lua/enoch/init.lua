@@ -1,7 +1,7 @@
 require("enoch.lsp")
 require("enoch.telescope")
-require("enoch.toggleterm")
 require("enoch.treesitter")
+-- require("enoch.toggleterm")
 -- require("enoch.lualine")
 -- require("enoch.filetree")
 -- require("enoch.gitsigns")

@@ -11,6 +11,6 @@
                            :lualine_c ["%{ObsessionStatus('', '')}"
                                        :filename]}
                 :options {:theme (get-theme)
-                          :section_seperators ""
-                          :component_seperators "|"}
+                          :section_separators ""
+                          :component_separators "|"}
                 :extensions [:nvim-tree :toggleterm]})
