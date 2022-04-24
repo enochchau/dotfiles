@@ -1,0 +1,7 @@
+(require :enoch_fnl.alpha)
+(require :enoch_fnl.autopairs)
+(require :enoch_fnl.cmp)
+(local fidget (require :fidget))
+(local leap (require :leap))
+(fidget.setup)
+(leap.set_default_keymaps)

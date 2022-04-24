@@ -76,14 +76,14 @@ Plug 'kyazdani42/nvim-web-devicons'
 Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
-lua require('impatient')
-" lua require('hotpot')
+" lua require('impatient')
+lua require('hotpot')
 
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/theme.vim
 source ~/.config/nvim/rzip.vim
 
-" lua require('enochfnl')
+lua require('enoch_fnl')
 lua require('enoch')
 
 nmap <silent> <C-M> :MarkdownPreviewToggle<CR>
