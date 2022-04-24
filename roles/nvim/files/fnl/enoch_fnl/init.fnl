@@ -7,6 +7,8 @@
 (require :enoch_fnl.filetree)
 (require :enoch_fnl.statusline)
 (require :enoch_fnl.term)
+(require :enoch_fnl.treesitter)
+
 (local fidget (require :fidget))
 (local leap (require :leap))
 (fidget.setup)
