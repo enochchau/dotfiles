@@ -1,7 +1,7 @@
 (local cmp-nvim-lsp (require :cmp_nvim_lsp))
 (local lsp-opts (require :enoch_fnl.lsp-opts))
 (local lsp-installer (require :nvim-lsp-installer))
-(local {: nnoremap : xnoremap : table-merge} (require :enoch_fnl.helpers))
+(local {: nnoremap} (require :enoch_fnl.helpers))
 (local null-ls (require :null-ls))
 
 (fn enable-icon-signs []
@@ -51,9 +51,8 @@
                                    (let [opts {:on_attach lsp-opts.common_on_attach
                                                : capabilities}]
                                      (if (. lsp-opts server.name)
-                                         (table-merge opts
-                                                      ((. lsp-opts server.name))))
-                                     (server:setup opts)))))
+                                         (server:setup ((. lsp-opts server.name) opts))
+                                         (server:setup opts))))))
 
 (let [formatting null-ls.builtins.formatting]
   (null-ls.setup {:on_attach lsp-opts.common_on_attach
