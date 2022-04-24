@@ -1,8 +1,6 @@
 local theme = vim.g.colors_name
 if theme == "one" then
   theme = "onedark"
-elseif theme == "github_dark" then
-  theme = "github"
 end
 
 require("lualine").setup({

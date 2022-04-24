@@ -5,8 +5,8 @@
   (let [[line col] (vim.api.nvim_win_get_cursor 0)
         word (. (vim.api.nvim_buf_get_lines 0 (- line 1) line true) 1)]
     (and (not= col 0) (= (-> word
-                             (strings.sub col col)
-                             (strings.match "%s")) nil))))
+                             (string.sub col col)
+                             (string.match "%s")) nil))))
 
 (fn expand-snippet [args]
   (luasnip.lsp_expand args.body))
