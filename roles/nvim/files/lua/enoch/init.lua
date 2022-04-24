@@ -1,4 +1,4 @@
-require("enoch.lsp")
+-- require("enoch.lsp")
 -- require("enoch.telescope")
 -- require("enoch.treesitter")
 -- require("enoch.toggleterm")

@@ -9,6 +9,7 @@
 (require :enoch_fnl.term)
 (require :enoch_fnl.treesitter)
 (require :enoch_fnl.telescope)
+(require :enoch_fnl.lsp)
 
 (local fidget (require :fidget))
 (local leap (require :leap))
