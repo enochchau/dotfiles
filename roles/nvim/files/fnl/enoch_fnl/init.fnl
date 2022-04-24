@@ -10,3 +10,12 @@
 (local leap (require :leap))
 (fidget.setup)
 (leap.set_default_keymaps)
+
+;; set comment string for fennel
+(let [comment-string (vim.api.nvim_create_augroup :CommentString {})]
+  (vim.api.nvim_create_autocmd :FileType
+                               {:group comment-string
+                                :pattern [:fennel]
+                                :callback (fn []
+                                            (tset vim.opt_local :commentstring
+                                                  ";; %s"))}))
