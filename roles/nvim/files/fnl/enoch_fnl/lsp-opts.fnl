@@ -53,7 +53,8 @@
 
 (fn eslint [opts]
   (let [common_on_attach opts.on_attach]
-    (if (pnp-checker.check_for_pnp) (tset opts :cmd (pnp-checker.get_pnp_cmd)))
+    (if (pnp-checker.check_for_pnp)
+        (tset opts :cmd (pnp-checker.get_pnp_cmd)))
     (tset opts :on-attach
           (fn [client bufnr]
             (tset client.resolved_capabilities :document_formatting true)
