@@ -1,6 +1,7 @@
 (require :enoch_fnl.alpha)
 (require :enoch_fnl.autopairs)
 (require :enoch_fnl.cmp)
+(require :enoch_fnl.blankline)
 (local fidget (require :fidget))
 (local leap (require :leap))
 (fidget.setup)

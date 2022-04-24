@@ -25,29 +25,23 @@
   nil)
 
 (fn source_group [...]
+  "create a completion source group for input into `cmp.config.sources`"
   (let [t []]
     (each [i v (ipairs [...])]
       (table.insert t {:name v}))
     t))
 
-(fn setup-cmdline []
-  "setup cmp command line"
-  (cmp.setup.cmdline "/" {:sources (source_group :buffer)})
-  (cmp.setup.cmdline ":"
-                     {:sources (cmp.config.sources (source_group :path)
-                                                   (source_group :cmdline))}))
+(cmp.setup.cmdline "/" {:sources (source_group :buffer)})
+(cmp.setup.cmdline ":"
+                   {:sources (cmp.config.sources (source_group :path)
+                                                 (source_group :cmdline))})
 
-(fn setup []
-  "setup cmp"
-  (cmp.setup {:snippet {:expand expand-snippet}
-              :mapping {:<Tab> (cmp.mapping tab-mapping [:i :s])
-                        :<S-Tab> (cmp.mapping stab-mapping [:i :s])
-                        :<CR> (cmp.mapping.confirm {:select true})}
-              :sources (cmp.config.sources (source_group :nvim_lsp :luasnip)
-                                           (source_group :buffer)
-                                           (source_group :path)
-                                           (source_group :treesitter)
-                                           (source_group :spell))}))
-
-(setup)
-(setup-cmdline)
+(cmp.setup {:snippet {:expand expand-snippet}
+            :mapping {:<Tab> (cmp.mapping tab-mapping [:i :s])
+                      :<S-Tab> (cmp.mapping stab-mapping [:i :s])
+                      :<CR> (cmp.mapping.confirm {:select true})}
+            :sources (cmp.config.sources (source_group :nvim_lsp :luasnip)
+                                         (source_group :buffer)
+                                         (source_group :path)
+                                         (source_group :treesitter)
+                                         (source_group :spell))})
