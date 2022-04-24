@@ -4,27 +4,6 @@
 (local {: nnoremap : xnoremap : table-merge} (require :enoch_fnl.helpers))
 (local null-ls (require :null-ls))
 
-(fn telescope-cmd [picker]
-  (.. "<cmd>lua require\"telescope.builtin\"." picker "()<CR>"))
-
-(fn common_on_attach [client bufnr]
-  (vim.api.nvim_buf_set_option bufnr :omnifunc "v:lua.vim.lsp.omnifunc")
-  (nnoremap :gd (telescope-cmd :lsp_definitions))
-  (nnoremap :K "<cmd>lua vim.lsp.buf.hover()<CR>")
-  (nnoremap :gi (telescope-cmd :lsp_implementations))
-  (nnoremap :gy (telescope-cmd :lsp_type_definitions))
-  (nnoremap :gr (telescope-cmd :lsp_references))
-  (nnoremap :gs (telescope-cmd :lsp_document_symbols))
-  (nnoremap "[g" "<cmd>lua vim.diagnostic.goto_prev()<CR>")
-  (nnoremap "]g" "<cmd>lua vim.diagnostic.goto_next()<CR>")
-  (xnoremap :<leader>f ":<C-U>lua vim.lsp.buf.range_formatting()<CR>")
-  (nnoremap :<leader>f "<cmd>lua vim.lsp.buf.formatting()<CR>")
-  (nnoremap :ga "<cmd>Telescope diagnostics bufnr=0<CR>")
-  (nnoremap :gc "<cmd>Telescope diagnostics<CR>")
-  (nnoremap :<leader>a (telescope-cmd :lsp_code_actions))
-  (xnoremap :<leader>a ":<C-U>Telescope lsp_range_code_actions<CR>")
-  (nnoremap :<leader>rn "<cmd>lua vim.lsp.buf.rename()<CR>"))
-
 (fn enable-icon-signs []
   (let [signs {:Error " " :Warn " " :Hint " " :Info " "}]
     (each [type icon (pairs signs)]
@@ -69,7 +48,7 @@
 (let [capabilities (-> (vim.lsp.protocol.make_client_capabilities)
                        (cmp-nvim-lsp.update_capabilities))]
   (lsp_installer.on_server_ready (fn [server]
-                                   (let [opts {:on_attach common_on_attach
+                                   (let [opts {:on_attach lsp-opts.common_on_attach
                                                : capabilities}]
                                      (if (. lsp-opts server.name)
                                          (table-merge opts
@@ -77,7 +56,7 @@
                                      (server:setup opts)))))
 
 (let [formatting null-ls.builtins.formatting]
-  (null-ls.setup {:on_attach common_on_attach
+  (null-ls.setup {:on_attach lsp-opts.common_on_attach
                   :sources [(formatting.prettierd.with {:env {:PRETTIERD_DEFAULT_CONFIG (vim.fn.expand "~/.config/nvim/.prettierrc")}})
                             formatting.stylua
                             formatting.fnlfmt]}))
