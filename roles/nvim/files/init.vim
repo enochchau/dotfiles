@@ -82,6 +82,5 @@ source ~/.config/nvim/theme.vim
 source ~/.config/nvim/rzip.vim
 
 lua require('enoch_fnl')
-" lua require('enoch')
 
 nmap <silent> <C-M> :MarkdownPreviewToggle<CR>
