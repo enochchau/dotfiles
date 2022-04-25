@@ -1,4 +1,5 @@
 (local indent-blankline (require :indent_blankline))
 
 (indent-blankline.setup {:space_char_blankline " " :show_current_context true})
-(tset vim.g :indentLine_fileTypeExclude [:alpha])
+(set vim.g.indent_blankline_filetype_exclude
+     [:alpha :lspinfo :packer :checkhealth :help :man ""])

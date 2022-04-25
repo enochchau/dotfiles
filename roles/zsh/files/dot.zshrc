@@ -55,6 +55,7 @@ fi
 
 export PATH=~/dotfiles/roles/zsh/files/scripts:$PATH
 export PATH=~/.local/bin:$PATH
+export PATH=~/.luarocks/bin:$PATH
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh

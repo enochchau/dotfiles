@@ -30,26 +30,26 @@
       tags: devtools
       vars:
         homebrew_pkgs:
-          - python
           - asdf
           - bat
           - docker
           - docker-compose
           - fd
+          - fnlfmt
           - fzf
           - git-delta
           - helm
           - jq
           - kubectx
           - luajit
+          - luarocks
+          - python
           - ripgrep
           - stylua
           - vale
         homebrew_casks:
           - alacritty
         dnf_pkgs:
-          - python
-          - pip
           - bat
           - fd-find
           - fzf
@@ -57,25 +57,24 @@
           - git-delta
           - jq
           - luajit
+          - luarocks
+          - pip
           - podman
           - podman-compose
+          - python
           - ripgrep
           - wget
           - zip
-          # - alacritty
-          # - helm
-          # - kubectx
-          # - stylua
-          # - vale
         apt_pkgs:
           - bat
           - fd-find
           - fzf
           - jq
+          - luajit
+          - luarocks
           - ripgrep
           - wget
           - zip
-          - luajit
     - role: git
       tags: git
       vars:
