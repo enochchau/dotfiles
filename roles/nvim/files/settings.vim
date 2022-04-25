@@ -14,6 +14,18 @@ set updatetime=300
 set smartcase
 set ignorecase
 set sessionoptions-=buffers
+" color column at 80
+set colorcolumn=80
+" disable startup screen
+set shortmess+=I
+" enable true color support
+if (has('termguicolors'))
+  set termguicolors
+endif
+" highlight all search pattern matches
+set hlsearch
+set cursorline
+set spelllang=en_us
 
 " move vertically by visual line, don't skip wrapped lines
 nmap j gj
@@ -27,15 +39,8 @@ filetype plugin indent on
 set tabstop=2
 set shiftwidth=2
 set expandtab
-
-" set autoindent
-" set smartindent
-
-" highlight all search pattern matches
-set hlsearch
-
-set cursorline
-" set spell spelllang=en_us
+set autoindent
+set smartindent
 
 " Hold visual mode after indent
 vnoremap > >gv
@@ -51,6 +56,7 @@ noremap <silent> <A-l> <C-w>>
 autocmd VimResized * wincmd =
 
 " use system clipboard
+" improved startup times by defining the unnamed clipboard
 if has('wsl')
   let g:clipboard = {
         \ 'name': 'win32yank',
@@ -90,12 +96,6 @@ augroup numbertoggle
   autocmd BufEnter,FocusGained,InsertLeave,WinEnter * if &nu && mode() != "i" | set rnu   | endif
   autocmd BufLeave,FocusLost,InsertEnter,WinLeave   * if &nu                  | set nornu | endif
 augroup END
-
-" color column at 80
-set colorcolumn=80
-
-" disable startup screen
-set shortmess+=I
 
 command! BufClear silent! execute "%bd|e#|bd#"
 

@@ -10,10 +10,9 @@ Plug 'tpope/vim-commentary'
 Plug 'editorconfig/editorconfig-vim'
 
 " themes
-Plug 'morhetz/gruvbox'
-Plug 'rakr/vim-one'
+" Plug 'rakr/vim-one'
+Plug 'navarasu/onedark.nvim'
 Plug 'rafamadriz/neon'
-Plug 'projekt0n/github-nvim-theme'
 Plug 'folke/tokyonight.nvim'
 
 " preview
@@ -51,7 +50,6 @@ Plug 'nvim-telescope/telescope-fzf-native.nvim', { 'do': 'make' }
 Plug 'nvim-treesitter/nvim-treesitter', {'do': ':TSUpdate'}
 Plug 'windwp/nvim-autopairs'
 Plug 'windwp/nvim-ts-autotag'
-" Plug 'nvim-treesitter/playground'
 Plug 'JoosepAlviste/nvim-ts-context-commentstring'
 
 " additional language support
@@ -77,13 +75,12 @@ Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
 lua require('impatient')
-" lua require('hotpot')
+lua require('hotpot')
 
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/theme.vim
 source ~/.config/nvim/rzip.vim
 
-" lua require('enochfnl')
-lua require('enoch')
+lua require('enoch_fnl')
 
 nmap <silent> <C-M> :MarkdownPreviewToggle<CR>
