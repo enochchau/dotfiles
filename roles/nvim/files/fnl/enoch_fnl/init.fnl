@@ -15,9 +15,11 @@
 (local autocmd vim.api.nvim_create_autocmd)
 (local fidget (require :fidget))
 (local leap (require :leap))
+(local onedark (require :onedark))
 
 (fidget.setup)
 (leap.set_default_keymaps)
+(onedark.load)
 
 ;; set comment string for fennel
 (let [comment-string (augroup :CommentString {})]
