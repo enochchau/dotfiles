@@ -4,7 +4,6 @@
 (nvim-tree.setup {:open_on_setup false
                   :update_cwd true
                   :view {:side :right
-                         :auto_resize true
                          :width 35
                          :relativenumber true
                          :signcolumn :auto}

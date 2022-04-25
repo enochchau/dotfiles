@@ -10,10 +10,9 @@ Plug 'tpope/vim-commentary'
 Plug 'editorconfig/editorconfig-vim'
 
 " themes
-Plug 'morhetz/gruvbox'
-Plug 'rakr/vim-one'
+" Plug 'rakr/vim-one'
+Plug 'navarasu/onedark.nvim'
 Plug 'rafamadriz/neon'
-Plug 'projekt0n/github-nvim-theme'
 Plug 'folke/tokyonight.nvim'
 
 " preview

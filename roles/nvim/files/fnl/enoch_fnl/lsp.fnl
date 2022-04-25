@@ -45,15 +45,14 @@
   (each [index name (ipairs servers)]
     (install-language-server name)))
 
-(let [capabilities (-> (vim.lsp.protocol.make_client_capabilities)
-                       (cmp-nvim-lsp.update_capabilities))]
-  (lsp_installer.on_server_ready (fn [server]
-                                   (let [opts {:on_attach lsp-opts.common_on_attach
-                                               : capabilities}]
-                                     (if (. lsp-opts server.name)
-                                         (server:setup ((. lsp-opts server.name) opts))
-                                         (server:setup opts))))))
+;; lsp client setup
+(lsp_installer.on_server_ready (fn [server]
+                                 (let [opts-getter (. lsp-opts server.name)]
+                                   (if opts-getter
+                                       (server:setup (opts-getter))
+                                       (server:setup (lsp-opts.create-default-opts))))))
 
+;; null-ls setup
 (let [formatting null-ls.builtins.formatting]
   (null-ls.setup {:on_attach lsp-opts.common_on_attach
                   :sources [(formatting.prettierd.with {:env {:PRETTIERD_DEFAULT_CONFIG (vim.fn.expand "~/.config/nvim/.prettierrc")}})
