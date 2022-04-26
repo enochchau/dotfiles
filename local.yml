@@ -45,11 +45,13 @@
           - luarocks
           - python
           - ripgrep
+          - shellcheck
           - stylua
           - vale
         homebrew_casks:
           - alacritty
         dnf_pkgs:
+          - ShellCheck
           - bat
           - fd-find
           - fzf
@@ -73,6 +75,7 @@
           - luajit
           - luarocks
           - ripgrep
+          - shellcheck
           - wget
           - zip
     - role: git

@@ -53,8 +53,10 @@
                                        (server:setup (lsp-opts.create-default-opts))))))
 
 ;; null-ls setup
-(let [formatting null-ls.builtins.formatting]
+(let [formatting null-ls.builtins.formatting
+      diagnostics null_ls.builtins.diagnostics]
   (null-ls.setup {:on_attach lsp-opts.common_on_attach
                   :sources [(formatting.prettierd.with {:env {:PRETTIERD_DEFAULT_CONFIG (vim.fn.expand "~/.config/nvim/.prettierrc")}})
                             formatting.stylua
-                            formatting.fnlfmt]}))
+                            formatting.fnlfmt
+                            diagnostics.shellcheck]}))
