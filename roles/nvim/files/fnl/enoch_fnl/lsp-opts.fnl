@@ -24,8 +24,8 @@
   (nnoremap :<leader>f "<cmd>lua vim.lsp.buf.formatting()<CR>")
   (nnoremap :ga "<cmd>Telescope diagnostics bufnr=0<CR>")
   (nnoremap :gc "<cmd>Telescope diagnostics<CR>")
-  (nnoremap :<leader>a (telescope-cmd :lsp_code_actions))
-  (xnoremap :<leader>a ":<C-U>Telescope lsp_range_code_actions<CR>")
+  (nnoremap :<leader>a "<cmd>lua vim.lsp.buf.code_action()<CR>")
+  (xnoremap :<leader>a ":<C-U>lua vim.lsp.buf.range_code_action()<CR>")
   (nnoremap :<leader>rn "<cmd>lua vim.lsp.buf.rename()<CR>"))
 
 (fn create-capabilities []
