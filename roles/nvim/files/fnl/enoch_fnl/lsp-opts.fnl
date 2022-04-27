@@ -74,8 +74,15 @@
     (tset client.resolved_capabilities :document_formatting true)
     (common-on-attach client bufnr))
 
-  (let [opts {:capabilities (create-capabilities) :on_attach on-attach}]
-    (if (pnp-checker.check_for_pnp)
+  (fn has-pnp [pnp-dirs]
+    "check if cwd is in pnp-dirs"
+    (let [root (vim.fn.getcwd)]
+      (accumulate [has-pnp false i dir (ipairs pnp-dirs)]
+        (or (string.match root dir) has-pnp))))
+
+  (let [opts {:capabilities (create-capabilities) :on_attach on-attach}
+        pnp-dirs [(vim.fn.expand "~/Gatsby/repo/")]]
+    (if (has-pnp pnp-dirs)
         (tset opts :cmd (pnp-checker.get_pnp_cmd)))
     opts))
 
