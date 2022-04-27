@@ -80,5 +80,3 @@ source ~/.config/nvim/settings.vim
 source ~/.config/nvim/rzip.vim
 
 lua require('enoch_fnl')
-
-nmap <silent> <C-M> :MarkdownPreviewToggle<CR>

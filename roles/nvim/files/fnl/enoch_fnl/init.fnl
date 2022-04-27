@@ -12,6 +12,7 @@
 (require :enoch_fnl.lsp)
 (require :enoch_fnl.theme)
 
+(local {: nnoremap} (require :enoch_fnl.helpers))
 (local augroup vim.api.nvim_create_augroup)
 (local autocmd vim.api.nvim_create_autocmd)
 (local fidget (require :fidget))
@@ -27,3 +28,5 @@
             :pattern [:fennel]
             :callback (fn []
                         (tset vim.opt_local :commentstring ";; %s"))}))
+
+(nnoremap :<CR> ":MarkdownPreviewToggle<CR>")
