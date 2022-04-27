@@ -1,6 +1,5 @@
 (local luasnip (require :luasnip))
 (local cmp (require :cmp))
-
 (fn has_words_before []
   (let [[line col] (vim.api.nvim_win_get_cursor 0)
         word (. (vim.api.nvim_buf_get_lines 0 (- line 1) line true) 1)]
@@ -31,10 +30,14 @@
       (table.insert t {:name v}))
     t))
 
-(cmp.setup.cmdline "/" {:sources (source_group :buffer)})
+(cmp.setup.cmdline "/"
+                   {:sources (source_group :buffer)
+                    :mapping (cmp.mapping.preset.cmdline)})
+
 (cmp.setup.cmdline ":"
                    {:sources (cmp.config.sources (source_group :path)
-                                                 (source_group :cmdline))})
+                                                 (source_group :cmdline))
+                    :mapping (cmp.mapping.preset.cmdline)})
 
 (cmp.setup {:snippet {:expand expand-snippet}
             :mapping {:<Tab> (cmp.mapping tab-mapping [:i :s])
