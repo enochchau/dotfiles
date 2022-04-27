@@ -10,7 +10,6 @@ Plug 'tpope/vim-commentary'
 Plug 'editorconfig/editorconfig-vim'
 
 " themes
-" Plug 'rakr/vim-one'
 Plug 'navarasu/onedark.nvim'
 Plug 'rafamadriz/neon'
 Plug 'folke/tokyonight.nvim'
@@ -78,7 +77,6 @@ lua require('impatient')
 lua require('hotpot')
 
 source ~/.config/nvim/settings.vim
-source ~/.config/nvim/theme.vim
 source ~/.config/nvim/rzip.vim
 
 lua require('enoch_fnl')
