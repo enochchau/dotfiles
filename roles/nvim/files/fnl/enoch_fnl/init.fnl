@@ -30,3 +30,4 @@
                         (tset vim.opt_local :commentstring ";; %s"))}))
 
 (nnoremap :<CR> ":MarkdownPreviewToggle<CR>")
+(nnoremap :z= ":lua require('telescope.builtin').spell_suggest()<CR>")
