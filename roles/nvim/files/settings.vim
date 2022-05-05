@@ -55,20 +55,7 @@ autocmd VimResized * wincmd =
 
 " use system clipboard
 " improved startup times by defining the unnamed clipboard
-if has('wsl')
-  let g:clipboard = {
-        \ 'name': 'win32yank',
-        \ 'copy': {
-          \    '+': 'win32yank.exe -i --crlf',
-          \    '*': 'win32yank.exe -i --crlf',
-          \  },
-          \ 'paste': {
-            \    '+': 'win32yank.exe -o --lf',
-            \    '*': 'win32yank.exe -o --lf',
-            \ },
-            \ 'cache_enabled': 0,
-            \ }
-elseif has('mac')
+if has('mac')
   let g:clipboard = {
         \ 'name': 'pbcopy',
         \ 'copy': {
@@ -78,6 +65,19 @@ elseif has('mac')
           \ 'paste': {
             \    '+': 'pbpaste',
             \    '*': 'pbpaste',
+            \ },
+            \ 'cache_enabled': 0,
+            \ }
+elseif has('wsl')
+  let g:clipboard = {
+        \ 'name': 'win32yank',
+        \ 'copy': {
+          \    '+': 'win32yank.exe -i --crlf',
+          \    '*': 'win32yank.exe -i --crlf',
+          \  },
+          \ 'paste': {
+            \    '+': 'win32yank.exe -o --lf',
+            \    '*': 'win32yank.exe -o --lf',
             \ },
             \ 'cache_enabled': 0,
             \ }

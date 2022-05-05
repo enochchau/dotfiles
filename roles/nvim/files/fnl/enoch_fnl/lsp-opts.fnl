@@ -2,6 +2,7 @@
 (local lsp-ts-utils (require :nvim-lsp-ts-utils))
 (local {: nnoremap : xnoremap} (require :enoch_fnl.helpers))
 (local cmp-nvim-lsp (require :cmp_nvim_lsp))
+(local pnp-checker (require :nvim-pnp-checker))
 
 (fn schema-store [file-name]
   (.. "https://json.schemastore.org/" file-name))
@@ -74,16 +75,10 @@
     (tset client.resolved_capabilities :document_formatting true)
     (common-on-attach client bufnr))
 
-  (fn has-pnp [pnp-dirs]
-    "check if cwd is in pnp-dirs"
-    (let [root (vim.fn.getcwd)]
-      (accumulate [has-pnp false i dir (ipairs pnp-dirs)]
-        (or (string.match root dir) has-pnp))))
-
-  (let [opts {:capabilities (create-capabilities) :on_attach on-attach}
-        pnp-dirs [(vim.fn.expand "~/Gatsby/repo/")]]
-    (if (has-pnp pnp-dirs)
-        (tset opts :cmd (pnp-checker.get_pnp_cmd)))
+  (let [opts {:capabilities (create-capabilities) :on_attach on-attach}]
+    ;; might not need this righ now
+    ;; (if (pnp-checker.check_for_pnp)
+    ;;     (tset opts :cmd (pnp-checker.get_pnp_cmd)))
     opts))
 
 (fn html []
