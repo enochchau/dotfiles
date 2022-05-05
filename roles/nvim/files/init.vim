@@ -13,6 +13,7 @@ Plug 'editorconfig/editorconfig-vim'
 Plug 'navarasu/onedark.nvim'
 Plug 'rafamadriz/neon'
 Plug 'folke/tokyonight.nvim'
+Plug 'sainnhe/everforest'
 
 " preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': 'cd app && yarn install', 'for': 'markdown' }
