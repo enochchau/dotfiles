@@ -77,8 +77,8 @@
 
   (let [opts {:capabilities (create-capabilities) :on_attach on-attach}]
     ;; might not need this righ now
-    ;; (if (pnp-checker.check_for_pnp)
-    ;;     (tset opts :cmd (pnp-checker.get_pnp_cmd)))
+    (if (pnp-checker.check_for_pnp)
+        (tset opts :cmd (pnp-checker.get_pnp_cmd)))
     opts))
 
 (fn html []
