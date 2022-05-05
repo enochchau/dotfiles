@@ -3,8 +3,6 @@
 (fn colo [theme]
   (vim.cmd (.. "colo " theme)))
 
-(onedark.load)
-
 ;; theme configs
 (set vim.opt.bg :light)
 (set vim.g.neon_style :light)
