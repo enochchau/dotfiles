@@ -6,7 +6,6 @@
     "editor.defaultFormatter": "vscode.json-language-features"
   },
   "files.autoSave": "afterDelay",
-  "editor.highlightActiveIndentGuide": true,
   "editor.inlineSuggest.enabled": true,
   "editor.wordWrap": "on",
   "telemetry.enableCrashReporter": false,
@@ -44,7 +43,5 @@
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "terminal.integrated.env.osx": {
-    "FIG_NEW_SESSION": "1"
-  }
+  "editor.guides.highlightActiveIndentation": true
 }
