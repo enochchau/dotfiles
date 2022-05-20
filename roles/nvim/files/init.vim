@@ -23,7 +23,7 @@ Plug 'ec965/nvim-pnp-checker'
 
 " lsp
 Plug 'neovim/nvim-lspconfig'
-Plug 'jose-elias-alvarez/null-ls.nvim', { 'commit': 'bd9dfc6015241334c140fb065445ba9443e6de14' }
+Plug 'jose-elias-alvarez/null-ls.nvim'
 Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'ec965/nvim-format-select'
 Plug 'williamboman/nvim-lsp-installer'
