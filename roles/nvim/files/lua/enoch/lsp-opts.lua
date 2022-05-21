@@ -27,8 +27,10 @@ local function common_on_attach(client, bufnr)
 
   nnoremap("[g", vim.diagnostic.goto_prev)
   nnoremap("g]", vim.diagnostic.goto_next)
-  nnoremap("ga", "<cmd>Telescope diagnostics bufnr=0<CR>")
-  nnoremap("gc", "<cmd>Telescope diagnostics<CR>")
+  nnoremap("ga", function()
+    telescope_builtin.diagnostics({ bufnr = 0 })
+  end)
+  nnoremap("gw", telescope_builtin.diagnostics)
 
   nnoremap("<leader>a", vim.lsp.buf.code_action)
   xnoremap("<leader>a", ":<C-U>lua vim.lsp.buf.range_code_action()<CR>")

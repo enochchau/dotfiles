@@ -1,4 +1,3 @@
-local cmp_nvim_lsp = require("cmp_nvim_lsp")
 local lspconfig = require("lspconfig")
 local lsp_opts = require("enoch.lsp-opts")
 local lsp_installer = require("nvim-lsp-installer")
