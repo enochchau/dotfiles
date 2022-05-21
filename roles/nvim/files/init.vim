@@ -76,9 +76,10 @@ Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
 lua require('impatient')
-lua require('hotpot')
+" lua require('hotpot')
 
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/rzip.vim
 
-lua require('enoch_fnl')
+" lua require('enoch_fnl')
+lua require('enoch')
