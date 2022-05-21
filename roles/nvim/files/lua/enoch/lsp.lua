@@ -15,7 +15,7 @@ local function enable_icon_signs()
 end
 
 local function remap_diagnostic()
-  vim.diagnostic.config({virtual_text = false})
+  vim.diagnostic.config({ virtual_text = false })
   nnoremap("<leader>d", function()
     vim.diagnostic.open_float(nil, { focus = false })
   end)

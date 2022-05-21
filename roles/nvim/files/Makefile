@@ -1,9 +1,4 @@
-PHONY: fmt-lua fmt-fnl fmt
+PHONY: fmt
 
-fmt: fmt-lua fmt-fnl
-
-fmt-lua:
+fmt:
 	stylua .
-
-fmt-fnl:
-	find . -type f -iname "*.fnl" -exec fnlfmt --fix {} \;

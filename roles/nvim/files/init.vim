@@ -1,7 +1,4 @@
 call plug#begin('~/.config/plugged')
-" fennel
-Plug 'rktjmp/hotpot.nvim'
-
 " editing
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
@@ -76,10 +73,8 @@ Plug 'kyazdani42/nvim-tree.lua'
 call plug#end()
 
 lua require('impatient')
-" lua require('hotpot')
 
 source ~/.config/nvim/settings.vim
 source ~/.config/nvim/rzip.vim
 
-" lua require('enoch_fnl')
 lua require('enoch')
