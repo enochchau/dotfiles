@@ -1,3 +1,7 @@
+local nnoremap = require("enoch.helpers").nnoremap
+local augroup = vim.api.nvim_create_augroup
+local autocmd = vim.api.nvim_create_autocmd
+
 require("enoch.alpha")
 require("enoch.cmp")
 require("enoch.filetree")
@@ -28,10 +32,6 @@ vim.g.indent_blankline_filetype_exclude = {
   "",
 }
 
-local nnoremap = require("enoch.helpers").nnoremap
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
-
 local comment_string = augroup("CommentString", {})
 autocmd("FileType", {
   group = comment_string,
@@ -42,4 +42,3 @@ autocmd("FileType", {
 })
 
 nnoremap("<CR>", ":MarkdownPreviewToggle<CR>")
-nnoremap("z=", require("telescope.builtin").spell_suggest)
