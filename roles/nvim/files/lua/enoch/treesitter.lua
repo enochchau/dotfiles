@@ -15,7 +15,6 @@ local langs = {
   "jsonc",
   "julia",
   "lua",
-  "nix",
   "query",
   "regex",
   "scss",
