@@ -1,14 +1,13 @@
 {
-  "telemetry.enableTelemetry": false,
+  "telemetry.telemetryLevel": "off",
   "workbench.sideBar.location": "right",
   "editor.accessibilitySupport": "off",
   "[jsonc]": {
-    "editor.defaultFormatter": "vscode.json-language-features"
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "files.autoSave": "afterDelay",
   "editor.inlineSuggest.enabled": true,
   "editor.wordWrap": "on",
-  "telemetry.enableCrashReporter": false,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "editor.formatOnSave": true,
   "workbench.iconTheme": "material-icon-theme",
@@ -18,6 +17,7 @@
   },
   "editor.minimap.enabled": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
+  "vim.leader": ",",
   "vim.visualModeKeyBindings": [
     {
       "commands": ["editor.action.indentLines"],
@@ -26,6 +26,16 @@
     {
       "commands": ["editor.action.outdentLines"],
       "before": ["<"]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["<leader>", "n"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
     }
   ],
   "vim.useSystemClipboard": true,
@@ -38,10 +48,15 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
   },
-  "workbench.colorTheme": "Halcyon",
   "diffEditor.wordWrap": "on",
   "[json]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "editor.guides.highlightActiveIndentation": true
+  "editor.guides.highlightActiveIndentation": true,
+  "workbench.colorTheme": "Tokyo Night Light",
+  "editor.fontFamily": "FantasqueSansMono NF, Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
+  "terminal.integrated.fontSize": 13,
+  "editor.rulers": [80],
+  "update.showReleaseNotes": false
 }
