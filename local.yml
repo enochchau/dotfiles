@@ -50,6 +50,9 @@
           - vale
         homebrew_casks:
           - alacritty
+          - linearmouse
+          - karabiner-elements
+          - rectangle
         dnf_pkgs:
           - ShellCheck
           - bat
