@@ -63,7 +63,6 @@ cmp.setup({
     source_group("nvim_lsp", "luasnip"),
     source_group("buffer"),
     source_group("path"),
-    source_group("treesitter"),
     source_group("spell")
   ),
 })

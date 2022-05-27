@@ -61,6 +61,12 @@ local function add_snippet_support(capabilities)
   return capabilities
 end
 
+local function disable_formatting(client)
+  client.resolved_capabilities.document_formatting = false
+  client.resolved_capabilities.document_range_formatting = false
+  return client
+end
+
 local function sumneko_lua()
   local function get_runtime_path()
     local runtime_path = vim.split(package.path, ";")
@@ -99,6 +105,12 @@ local function sumneko_lua()
         telemetry = { enable = false },
       },
     }
+  end
+
+  opts.on_attach = function(client, bufnr)
+    -- use stylua for formatting
+    client = disable_formatting(client)
+    common_on_attach(client, bufnr)
   end
 
   return opts
@@ -142,8 +154,7 @@ local function jsonls()
   opts.capabilities = add_snippet_support(opts.capabilities)
   opts.on_attach = function(client, bufnr)
     -- use prettier for formatting
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client = disable_formatting(client)
     common_on_attach(client, bufnr)
   end
   opts.settings = {
@@ -170,7 +181,7 @@ end
 local function yammls()
   local opts = create_default_opts()
   opts.on_attach = function(client, bufnr)
-    client.resolved_capabilities.document_formatting = false
+    client = disable_formatting(client)
     common_on_attach(client, bufnr)
   end
   opts.settings = {
@@ -195,8 +206,7 @@ local function tsserver()
     nnoremap("<leader>i", ":TSLspImportAll<CR>")
 
     -- use prettierd and eslint for formatting
-    client.resolved_capabilities.document_formatting = false
-    client.resolved_capabilities.document_range_formatting = false
+    client = disable_formatting(client)
     common_on_attach(client, bufnr)
   end
   opts.init_options = lsp_ts_utils.init_options
