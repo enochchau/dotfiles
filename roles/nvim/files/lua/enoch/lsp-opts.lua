@@ -44,11 +44,31 @@ local function create_capabilities()
   return cmp_nvim_lsp.update_capabilities(capabilities)
 end
 
+local function disable_formatting(client)
+  client.resolved_capabilities.document_formatting = false
+  client.resolved_capabilities.document_range_formatting = false
+  return client
+end
+
 ---create default lsp client opts
+---@param opts table
 ---@return table
-local function create_default_opts()
+local function create_default_opts(opts)
+  ---@type function
+  local on_attach
+
+  if opts and opts.disable_formatting then
+    on_attach = function(client, bufnr)
+      client = disable_formatting(client)
+
+      common_on_attach(client, bufnr)
+    end
+  else
+    on_attach = common_on_attach
+  end
+
   return {
-    on_attach = common_on_attach,
+    on_attach,
     capabilities = create_capabilities(),
   }
 end
@@ -61,12 +81,6 @@ local function add_snippet_support(capabilities)
   return capabilities
 end
 
-local function disable_formatting(client)
-  client.resolved_capabilities.document_formatting = false
-  client.resolved_capabilities.document_range_formatting = false
-  return client
-end
-
 local function sumneko_lua()
   local function get_runtime_path()
     local runtime_path = vim.split(package.path, ";")
@@ -76,7 +90,7 @@ local function sumneko_lua()
   end
 
   local root = vim.fn.getcwd()
-  local opts = create_default_opts()
+  local opts = create_default_opts({ disable_formatting = true })
 
   if string.match(root, "nvim") then
     opts.settings = {
@@ -105,12 +119,6 @@ local function sumneko_lua()
         telemetry = { enable = false },
       },
     }
-  end
-
-  opts.on_attach = function(client, bufnr)
-    -- use stylua for formatting
-    client = disable_formatting(client)
-    common_on_attach(client, bufnr)
   end
 
   return opts
@@ -150,13 +158,8 @@ local function jsonls()
     return { fileMatch = file_match, url = schema_store(file_url_name) }
   end
 
-  local opts = create_default_opts()
+  local opts = create_default_opts({ disable_formatting = true })
   opts.capabilities = add_snippet_support(opts.capabilities)
-  opts.on_attach = function(client, bufnr)
-    -- use prettier for formatting
-    client = disable_formatting(client)
-    common_on_attach(client, bufnr)
-  end
   opts.settings = {
     json = {
       schemas = {
@@ -179,11 +182,7 @@ local function jsonls()
 end
 
 local function yammls()
-  local opts = create_default_opts()
-  opts.on_attach = function(client, bufnr)
-    client = disable_formatting(client)
-    common_on_attach(client, bufnr)
-  end
+  local opts = create_default_opts({ disable_formatting = true })
   opts.settings = {
     schemas = {
       ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose*.{yml,yaml}",
@@ -196,7 +195,9 @@ local function yammls()
 end
 
 local function tsserver()
-  local opts = create_default_opts()
+  local opts = create_default_opts({ disable_formatting = true })
+  local original_on_attach = opts.on_attach
+
   opts.on_attach = function(client, bufnr)
     lsp_ts_utils.setup({ auto_inlay_hints = false })
     lsp_ts_utils.setup_client(client)
@@ -205,10 +206,9 @@ local function tsserver()
     nnoremap("<leader>rf", ":TSLspRenameFile<CR>")
     nnoremap("<leader>i", ":TSLspImportAll<CR>")
 
-    -- use prettierd and eslint for formatting
-    client = disable_formatting(client)
-    common_on_attach(client, bufnr)
+    original_on_attach(client, bufnr)
   end
+
   opts.init_options = lsp_ts_utils.init_options
   return opts
 end
