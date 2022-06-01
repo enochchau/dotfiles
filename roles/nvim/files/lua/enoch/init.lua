@@ -21,6 +21,7 @@ require("indent_blankline").setup({
   space_char_blankline = " ",
   show_current_context = true,
 })
+require("neogen").setup({})
 
 vim.g.indent_blankline_filetype_exclude = {
   "alpha",

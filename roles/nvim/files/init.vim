@@ -3,8 +3,11 @@ call plug#begin('~/.config/plugged')
 Plug 'tpope/vim-obsession'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-commentary'
 Plug 'editorconfig/editorconfig-vim'
+
+" comments
+Plug 'tpope/vim-commentary'
+Plug 'danymat/neogen'
 
 " themes
 Plug 'navarasu/onedark.nvim'

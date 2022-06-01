@@ -35,6 +35,7 @@ autocmd("BufWritePre", {
   },
   callback = fmt_default,
 })
+
 autocmd("BufWritePre", {
   group = fmt_on_save,
   pattern = { "*.js", "*.ts", "*.jsx", "*.tsx", "*.cjs", "*.mjs" },
