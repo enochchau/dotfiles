@@ -37,48 +37,36 @@ local function common_on_attach(client, bufnr)
   nnoremap("<leader>rn", vim.lsp.buf.rename)
 end
 
----create cmp-nvim-lsp client capabilities
----@return any
-local function create_capabilities()
+--- create cmp-nvim-lsp client capabilities
+---@param opts table?
+local function create_capabilities(opts)
   local capabilities = vim.lsp.protocol.make_client_capabilities()
+  if opts and opts.add_snippet_support then
+    capabilities.textDocument.completion.completionItem.snippetSupport = true
+  end
   return cmp_nvim_lsp.update_capabilities(capabilities)
 end
 
-local function disable_formatting(client)
-  client.resolved_capabilities.document_formatting = false
-  client.resolved_capabilities.document_range_formatting = false
-  return client
+local function create_on_attach(opts)
+  if opts and opts.disable_formatting then
+    return function(client, bufnr)
+      client.resolved_capabilities.document_formatting = false
+      client.resolved_capabilities.document_range_formatting = false
+      common_on_attach(client, bufnr)
+    end
+  end
+
+  return common_on_attach
 end
 
 ---create default lsp client opts
----@param opts table
+---@param opts table?
 ---@return table
 local function create_default_opts(opts)
-  ---@type function
-  local on_attach
-
-  if opts and opts.disable_formatting then
-    on_attach = function(client, bufnr)
-      client = disable_formatting(client)
-
-      common_on_attach(client, bufnr)
-    end
-  else
-    on_attach = common_on_attach
-  end
-
   return {
-    on_attach,
-    capabilities = create_capabilities(),
+    on_attach = create_on_attach(opts),
+    capabilities = create_capabilities(opts),
   }
-end
-
----add snippet support
----@param capabilities table
----@return table
-local function add_snippet_support(capabilities)
-  capabilities.textDocument.completion.completionItem.snippetSupport = true
-  return capabilities
 end
 
 local function sumneko_lua()
@@ -140,14 +128,12 @@ local function eslint()
 end
 
 local function html()
-  local opts = create_default_opts()
-  opts.capabilities = add_snippet_support(opts.capabilities)
+  local opts = create_default_opts({ add_snippet_support = true })
   return opts
 end
 
 local function cssls()
-  local opts = create_default_opts()
-  opts.capabilities = add_snippet_support(opts.capabilities)
+  local opts = create_default_opts({ add_snippet_support = true })
   return opts
 end
 
@@ -158,8 +144,11 @@ local function jsonls()
     return { fileMatch = file_match, url = schema_store(file_url_name) }
   end
 
-  local opts = create_default_opts({ disable_formatting = true })
-  opts.capabilities = add_snippet_support(opts.capabilities)
+  local opts = create_default_opts({
+    add_snippet_support = true,
+    disable_formatting = true,
+  })
+
   opts.settings = {
     json = {
       schemas = {
