@@ -19,8 +19,8 @@ lualine.setup({
   },
   options = {
     theme = get_theme(),
-    section_seperators = "",
-    component_separators = "|",
+    section_separators = "",
+    component_separators = "│",
   },
   extensions = {
     "nvim-tree",
