@@ -44,4 +44,4 @@ autocmd("FileType", {
 
 nnoremap("<CR>", ":MarkdownPreviewToggle<CR>")
 
-nnoremap("<leader>nf", require('neogen').generate)
+nnoremap("<leader>nf", require("neogen").generate)
