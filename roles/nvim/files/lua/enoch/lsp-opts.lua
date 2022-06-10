@@ -6,13 +6,6 @@ local nnoremap = require("enoch.helpers").nnoremap
 local xnoremap = require("enoch.helpers").xnoremap
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
----append to schema store url
----@param file_name string
----@return string
-local function schema_store(file_name)
-  return "https://json.schemastore.org/" .. file_name
-end
-
 local function common_on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
@@ -156,14 +149,14 @@ end
 
 local function yammls()
   local opts = create_default_opts({ disable_formatting = true })
-  opts.settings = {
-    schemas = {
-      ["https://raw.githubusercontent.com/compose-spec/compose-spec/master/schema/compose-spec.json"] = "docker-compose*.{yml,yaml}",
-      [schema_store("github-workflow.json")] = ".github/workflows/*.{yml,yaml}",
-      [schema_store("github-action.json")] = ".github/action.{yml,yaml}",
-      [schema_store("prettierrc.json")] = ".prettierrc.{yml,yaml}",
-    },
-  }
+
+  local jsonls_schemas = schemastore.json.schemas()
+  local schemas = {}
+  for _, schema in ipairs(jsonls_schemas) do
+    schemas[schema.url] = schema.fileMatch
+  end
+
+  opts.settings = { schemas }
   return opts
 end
 
