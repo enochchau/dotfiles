@@ -28,6 +28,7 @@ Plug 'jose-elias-alvarez/nvim-lsp-ts-utils'
 Plug 'ec965/nvim-format-select'
 Plug 'williamboman/nvim-lsp-installer'
 Plug 'j-hui/fidget.nvim'
+Plug 'b0o/schemastore.nvim'
 
 " completion
 Plug 'hrsh7th/nvim-cmp'

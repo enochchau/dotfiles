@@ -1,4 +1,5 @@
 local pnp_checker = require("nvim-pnp-checker")
+local schemastore = require("schemastore")
 local telescope_builtin = require("telescope.builtin")
 local lsp_ts_utils = require("nvim-lsp-ts-utils")
 local nnoremap = require("enoch.helpers").nnoremap
@@ -138,12 +139,6 @@ local function cssls()
 end
 
 local function jsonls()
-  ---@param file_match table
-  ---@param file_url_name string
-  local function get_schema(file_match, file_url_name)
-    return { fileMatch = file_match, url = schema_store(file_url_name) }
-  end
-
   local opts = create_default_opts({
     add_snippet_support = true,
     disable_formatting = true,
@@ -151,22 +146,11 @@ local function jsonls()
 
   opts.settings = {
     json = {
-      schemas = {
-        get_schema({ "package.json" }, "package.json"),
-        get_schema({ "tsconfig*.json" }, "tsconfig.json"),
-        get_schema(
-          { ".prettierrc", ".prettierrc.json", "prettier.config.json" },
-          "prettierrc.json"
-        ),
-        get_schema({ ".eslintrc.", ".eslintrc.json" }, "eslintrc.json"),
-        get_schema(
-          { ".babelrc", ".babelrc.json", "babel.config.json" },
-          "babelrc.json"
-        ),
-        get_schema({ "lerna.json" }, "lerna.json"),
-      },
+      schemas = schemastore.json.schemas(),
+      validate = { enable = true },
     },
   }
+
   return opts
 end
 
