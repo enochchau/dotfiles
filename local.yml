@@ -32,8 +32,6 @@
         homebrew_pkgs:
           - asdf
           - bat
-          - docker
-          - docker-compose
           - fd
           - fnlfmt
           - fzf
