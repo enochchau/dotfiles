@@ -53,6 +53,7 @@
           - linearmouse
           - karabiner-elements
           - rectangle
+          - spaceid
         dnf_pkgs:
           - ShellCheck
           - bat
@@ -136,4 +137,7 @@
       when: ansible_facts['os_family'] == "Darwin"
     - role: skhd
       tags: skhd
+      when: ansible_facts['os_family'] == "Darwin"
+    - role: yabai
+      tags: yabai
       when: ansible_facts['os_family'] == "Darwin"
