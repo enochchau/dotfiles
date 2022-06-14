@@ -2,21 +2,11 @@
   ansible.builtin.file:
     path: ~/.config/skhd
     state: directory
-    mode: '0755'
+    mode: "0755"
     recurse: true
 
-- name: Check if config exists
-  ansible.builtin.stat: path="~/.config/skhd/skhdrc"
-  register: alacritty_stat
-
-- name: Back up config
-  ansible.builtin.command: mv ~/.config/skhd/skhdrc ~/.config/skhd/skhdrc.bak
-  args:
-    creates: "~/.config/skhd/skhdrc.bak"
-  when: alacritty_stat.stat.exists
-
-- name: Update config
-  ansible.builtin.template:
-    src: "skhdrc.j2"
-    dest: ~/.config/skhd/skhdrc
-    mode: 0664
+- name: Link Skhdrc
+  ansible.builtin.file:
+    src: "{{ ansible_env.PWD }}/roles/skhd/files/skhdrc"
+    path: ~/.config/skhd/skhdrc
+    state: link

@@ -5,18 +5,8 @@
     mode: "0755"
     recurse: true
 
-- name: Check if config exists
-  ansible.builtin.stat: path="~/.config/yabai/yabairc"
-  register: alacritty_stat
-
-- name: Back up config
-  ansible.builtin.command: mv ~/.config/yabai/yabairc ~/.config/yabai/yabairc.bak
-  args:
-    creates: "~/.config/yabai/yabairc.bak"
-  when: alacritty_stat.stat.exists
-
-- name: Update config
-  ansible.builtin.template:
-    src: "yabairc.j2"
-    dest: ~/.config/yabai/yabairc
-    mode: 0664
+- name: Link Yabairc
+  ansible.builtin.file:
+    src: "{{ ansible_env.PWD }}/roles/yabai/files/yabairc"
+    path: ~/.config/yabai/yabairc
+    state: link
