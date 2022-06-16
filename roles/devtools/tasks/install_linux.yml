@@ -24,5 +24,5 @@
     state: link
   when: ansible_facts['os_family'] == "Debian"
   loop:
-    - { src: /usr/bin/batcat,dest: ~/.local/bin/bat }
-    - { src: /usr/bin/fdfind,dest: ~/.local/bin/fd }
+    - { src: /usr/bin/batcat, dest: ~/.local/bin/bat }
+    - { src: /usr/bin/fdfind, dest: ~/.local/bin/fd }
