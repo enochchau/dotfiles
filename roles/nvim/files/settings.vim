@@ -97,19 +97,8 @@ augroup END
 
 command! BufClear silent! execute "%bd|e#|bd#"
 
-augroup MarkdownSpell
-  autocmd!
-  autocmd FileType markdown setlocal spell
-  autocmd BufRead,BufNewFile *.md setlocal spell
-augroup END
-
 " detect prolog
 augroup DetectExtras
   autocmd!
   autocmd BufRead,BufNewFile *.pro setfiletype prolog
-augroup END
-
-augroup MakefileTabs
-  autocmd!
-  autocmd FileType make setlocal noexpandtab
 augroup END
