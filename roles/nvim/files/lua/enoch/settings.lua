@@ -7,6 +7,7 @@ local mode = vim.fn.mode
 local g = vim.g
 local opt = vim.opt
 local opt_local = vim.opt_local
+local cmd = vim.cmd
 
 g.mapleader = ","
 opt.signcolumn = "yes:1"
@@ -41,8 +42,8 @@ nnoremap("j", "gj")
 nnoremap("k", "gk")
 
 -- enable syntax and filetype detection
-vim.cmd("syntax enable")
-vim.cmd("filetype plugin indent on")
+cmd("syntax enable")
+cmd("filetype plugin indent on")
 
 -- set tabs to 2 spaces
 opt.tabstop = 2
