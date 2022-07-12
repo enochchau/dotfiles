@@ -2,6 +2,7 @@ local nnoremap = require("enoch.helpers").nnoremap
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+require("enoch.settings")
 require("enoch.alpha")
 require("enoch.cmp")
 require("enoch.filetree")

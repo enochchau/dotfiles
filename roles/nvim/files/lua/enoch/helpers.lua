@@ -18,6 +18,15 @@ M.xnoremap = function(lhs, rhs, buffer)
   )
 end
 
+M.vnoremap = function(lhs, rhs, buffer)
+  vim.keymap.set(
+    "v",
+    lhs,
+    rhs,
+    { noremap = true, silent = true, buffer = buffer }
+  )
+end
+
 ---@param theme string
 M.colo = function(theme)
   vim.cmd("colo " .. theme)
