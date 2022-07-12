@@ -79,7 +79,6 @@ call plug#end()
 
 lua require('impatient')
 
-source ~/.config/nvim/settings.vim
 source ~/.config/nvim/rzip.vim
 
 lua require('enoch')
