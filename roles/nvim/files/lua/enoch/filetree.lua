@@ -1,24 +1,22 @@
-local nvim_tree = require("nvim-tree")
+local neotree = require("neo-tree")
 local nnoremap = require("enoch.helpers").nnoremap
 
-nvim_tree.setup({
-  open_on_setup = false,
-  update_cwd = true,
-  view = {
-    side = "right",
+vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
+
+neotree.setup({
+  window = {
+    position = "right",
     width = 35,
-    relativenumber = true,
-    signcolumn = "auto",
   },
-  git = {
-    enable = true,
-    ignore = false,
-  },
-  filters = {
-    custom = { ".DS_Store" },
+  filesystem = {
+    filtered_items = {
+      visible = true,
+    },
+    never_show = {
+      ".DS_Store",
+    },
   },
 })
 
-nnoremap("<leader>n", ":NvimTreeFindFile<CR>")
-nnoremap("<C-n>", ":NvimTreeToggle<CR>")
-nnoremap("<leader>r", ":NvimTreeRefresh<CR>")
+nnoremap("<leader>n", ":Neotree reveal<CR>")
+nnoremap("<C-n>", ":Neotree toggle<CR>")

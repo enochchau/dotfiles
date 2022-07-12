@@ -23,7 +23,7 @@ lualine.setup({
     component_separators = "│",
   },
   extensions = {
-    "nvim-tree",
+    "neo-tree",
     "toggleterm",
   },
 })

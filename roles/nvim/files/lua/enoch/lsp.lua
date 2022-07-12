@@ -40,6 +40,7 @@ local servers = {
   "gopls",
   "html",
   "jsonls",
+  "rust_analyzer",
   "sumneko_lua",
   "terraformls",
   "tsserver",

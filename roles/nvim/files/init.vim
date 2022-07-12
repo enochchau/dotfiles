@@ -72,7 +72,9 @@ Plug 'ggandor/leap.nvim'
 
 " file tree
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'kyazdani42/nvim-tree.lua'
+Plug 'MunifTanjim/nui.nvim'
+Plug 'nvim-neo-tree/neo-tree.nvim'
+
 call plug#end()
 
 lua require('impatient')
