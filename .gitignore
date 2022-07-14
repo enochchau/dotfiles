@@ -1,4 +1,5 @@
 nvim/.netrwhist
+packer_compiled.lua
 .DS_Store
 Session.vim
 user.nix
