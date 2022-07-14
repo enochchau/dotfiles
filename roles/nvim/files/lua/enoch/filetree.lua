@@ -1,5 +1,5 @@
 local neotree = require("neo-tree")
-local nnoremap = require("enoch.helpers").nnoremap
+local nmap = require("enoch.helpers").nmap
 
 vim.cmd([[ let g:neo_tree_remove_legacy_commands = 1 ]])
 
@@ -18,5 +18,5 @@ neotree.setup({
   },
 })
 
-nnoremap("<leader>n", ":Neotree reveal<CR>")
-nnoremap("<C-n>", ":Neotree toggle<CR>")
+nmap("<leader>n", ":Neotree reveal<CR>")
+nmap("<C-n>", ":Neotree toggle<CR>")

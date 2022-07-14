@@ -1,30 +1,21 @@
 local M = {}
 
-M.nnoremap = function(lhs, rhs, buffer)
-  vim.keymap.set(
-    "n",
-    lhs,
-    rhs,
-    { noremap = true, silent = true, buffer = buffer }
-  )
+local function map(modes)
+  return function(lhs, rhs, buffer)
+    vim.keymap.set(
+      modes,
+      lhs,
+      rhs,
+      { noremap = true, silent = true, buffer = buffer }
+    )
+  end
 end
 
-M.xnoremap = function(lhs, rhs, buffer)
-  vim.keymap.set(
-    "x",
-    lhs,
-    rhs,
-    { noremap = true, silent = true, buffer = buffer }
-  )
-end
-
-M.vnoremap = function(lhs, rhs, buffer)
-  vim.keymap.set(
-    "v",
-    lhs,
-    rhs,
-    { noremap = true, silent = true, buffer = buffer }
-  )
+M.nmap = map("n")
+M.vmap = map("v")
+M.xmap = map("x")
+M.map = function(modes, lhs, rhs, buffer)
+  map(modes)(lhs, rhs, buffer)
 end
 
 ---@param theme string

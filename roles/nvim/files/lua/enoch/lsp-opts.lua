@@ -2,33 +2,33 @@ local pnp_checker = require("nvim-pnp-checker")
 local schemastore = require("schemastore")
 local telescope_builtin = require("telescope.builtin")
 local lsp_ts_utils = require("nvim-lsp-ts-utils")
-local nnoremap = require("enoch.helpers").nnoremap
-local xnoremap = require("enoch.helpers").xnoremap
+local nmap = require("enoch.helpers").nmap
+local xmap = require("enoch.helpers").xmap
 local cmp_nvim_lsp = require("cmp_nvim_lsp")
 
 local function common_on_attach(client, bufnr)
   vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-  nnoremap("gd", telescope_builtin.lsp_definitions)
-  nnoremap("K", vim.lsp.buf.hover)
-  nnoremap("gi", telescope_builtin.lsp_implementations)
-  nnoremap("gy", telescope_builtin.lsp_type_definitions)
-  nnoremap("gr", telescope_builtin.lsp_references)
-  nnoremap("gs", telescope_builtin.lsp_document_symbols)
+  nmap("gd", telescope_builtin.lsp_definitions)
+  nmap("K", vim.lsp.buf.hover)
+  nmap("gi", telescope_builtin.lsp_implementations)
+  nmap("gy", telescope_builtin.lsp_type_definitions)
+  nmap("gr", telescope_builtin.lsp_references)
+  nmap("gs", telescope_builtin.lsp_document_symbols)
 
-  xnoremap("<leader>f", ":<C-U>lua vim.lsp.buf.range_formatting()<CR>")
-  nnoremap("<leader>f", vim.lsp.buf.formatting)
+  xmap("<leader>f", ":<C-U>lua vim.lsp.buf.range_formatting()<CR>")
+  nmap("<leader>f", vim.lsp.buf.formatting)
 
-  nnoremap("[g", vim.diagnostic.goto_prev)
-  nnoremap("g]", vim.diagnostic.goto_next)
-  nnoremap("ga", function()
+  nmap("[g", vim.diagnostic.goto_prev)
+  nmap("g]", vim.diagnostic.goto_next)
+  nmap("ga", function()
     telescope_builtin.diagnostics({ bufnr = 0 })
   end)
-  nnoremap("gw", telescope_builtin.diagnostics)
+  nmap("gw", telescope_builtin.diagnostics)
 
-  nnoremap("<leader>a", vim.lsp.buf.code_action)
-  xnoremap("<leader>a", ":<C-U>lua vim.lsp.buf.range_code_action()<CR>")
-  nnoremap("<leader>rn", vim.lsp.buf.rename)
+  nmap("<leader>a", vim.lsp.buf.code_action)
+  xmap("<leader>a", ":<C-U>lua vim.lsp.buf.range_code_action()<CR>")
+  nmap("<leader>rn", vim.lsp.buf.rename)
 end
 
 --- create cmp-nvim-lsp client capabilities
@@ -168,9 +168,9 @@ local function tsserver()
     lsp_ts_utils.setup({ auto_inlay_hints = false })
     lsp_ts_utils.setup_client(client)
 
-    nnoremap("<leader>o", ":TSLspOrganize<CR>")
-    nnoremap("<leader>rf", ":TSLspRenameFile<CR>")
-    nnoremap("<leader>i", ":TSLspImportAll<CR>")
+    nmap("<leader>o", ":TSLspOrganize<CR>")
+    nmap("<leader>rf", ":TSLspRenameFile<CR>")
+    nmap("<leader>i", ":TSLspImportAll<CR>")
 
     original_on_attach(client, bufnr)
   end

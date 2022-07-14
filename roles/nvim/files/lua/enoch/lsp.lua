@@ -1,7 +1,7 @@
 local lspconfig = require("lspconfig")
 local lsp_opts = require("enoch.lsp-opts")
 local lsp_installer = require("nvim-lsp-installer")
-local nnoremap = require("enoch.helpers").nnoremap
+local nmap = require("enoch.helpers").nmap
 local null_ls = require("null-ls")
 
 local function enable_icon_signs()
@@ -15,7 +15,7 @@ end
 
 local function remap_diagnostic()
   vim.diagnostic.config({ virtual_text = false })
-  nnoremap("<leader>d", function()
+  nmap("<leader>d", function()
     vim.diagnostic.open_float(nil, { focus = false })
   end)
 end

@@ -1,5 +1,7 @@
-local nnoremap = require("enoch.helpers").nnoremap
-local vnoremap = require("enoch.helpers").vnoremap
+require("impatient")
+
+local nmap = require("enoch.helpers").nmap
+local vmap = require("enoch.helpers").vmap
 local autocmd = vim.api.nvim_create_autocmd
 local augroup = vim.api.nvim_create_augroup
 local has = vim.fn.has
@@ -38,8 +40,8 @@ opt.cursorline = true
 opt.spelllang = "en_us"
 
 -- move vertically by visual line, don't skip wrapped lines
-nnoremap("j", "gj")
-nnoremap("k", "gk")
+nmap("j", "gj")
+nmap("k", "gk")
 
 -- enable syntax and filetype detection
 cmd("syntax enable")
@@ -51,14 +53,14 @@ opt.shiftwidth = 2
 opt.expandtab = true
 
 -- Hold visual mode after indent
-vnoremap(">", ">gv")
-vnoremap("<", "<gv")
+vmap(">", ">gv")
+vmap("<", "<gv")
 
 -- Maps Alt-[h,j,k,l] to resizing a window split
-nnoremap("<A-h>", "<C-w><")
-nnoremap("<A-j>", "<C-w>-")
-nnoremap("<A-k>", "<C-w>+")
-nnoremap("<A-l>", "<C-w>>")
+nmap("<A-h>", "<C-w><")
+nmap("<A-j>", "<C-w>-")
+nmap("<A-k>", "<C-w>+")
+nmap("<A-l>", "<C-w>>")
 
 -- auto resize
 autocmd("VimResized", { pattern = "*", command = "wincmd =" })
@@ -95,8 +97,8 @@ end
 opt.clipboard = "unnamedplus"
 
 -- traverse buffers
-nnoremap("]b", ":bnext<CR>")
-nnoremap("[b", ":bprevious<CR>")
+nmap("]b", ":bnext<CR>")
+nmap("[b", ":bprevious<CR>")
 
 -- relative line numbers
 local number_toggle = augroup("NumberToggle", {})
@@ -130,3 +132,16 @@ autocmd({ "BufRead", "BufNewFile" }, {
   pattern = "*.pro",
   group = detect_extras,
 })
+
+-- fennel comment string
+local comment_string = augroup("CommentString", {})
+autocmd("FileType", {
+  group = comment_string,
+  pattern = { "fennel" },
+  callback = function()
+    vim.opt_local.commentstring = ";; %s"
+  end,
+})
+
+vim.cmd("source ~/.config/nvim/rzip.vim")
+require("enoch")
