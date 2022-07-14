@@ -1,5 +1,3 @@
-local nmap = require("enoch.helpers").nmap
-
 return require("packer").startup(function(use)
   use("wbthomason/packer.nvim")
 
@@ -14,9 +12,7 @@ return require("packer").startup(function(use)
   use({
     "danymat/neogen",
     config = function()
-      local neogen = require("neogen")
-      neogen.setup({})
-      nmap("<leader>nf", neogen.generate)
+      require("neogen").setup({})
     end,
   })
 
@@ -31,9 +27,6 @@ return require("packer").startup(function(use)
     "iamcco/markdown-preview.nvim",
     ft = { "markdown" },
     run = "cd app && yarn install",
-    config = function()
-      nmap("<CR>", ":MarkdownPreviewToggle<CR>")
-    end,
   })
   -- yarn pnp
   use({

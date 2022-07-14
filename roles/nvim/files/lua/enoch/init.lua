@@ -1,3 +1,5 @@
+local nmap = require("enoch.helpers").nmap
+
 require("enoch.plugins")
 require("enoch.alpha")
 require("enoch.filetree")
@@ -9,3 +11,6 @@ require("enoch.telescope")
 require("enoch.term")
 require("enoch.theme")
 require("enoch.treesitter")
+
+nmap("<leader>nf", require("neogen").generate)
+nmap("<CR>", ":MarkdownPreviewToggle<CR>")
