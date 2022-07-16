@@ -37,6 +37,7 @@ local servers = {
   "bashls",
   "cssls",
   "eslint",
+  "prismals",
   "gopls",
   "html",
   "jsonls",
