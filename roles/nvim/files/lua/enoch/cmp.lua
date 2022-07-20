@@ -1,4 +1,5 @@
 local luasnip = require("luasnip")
+local lspkind = require("lspkind")
 local cmp = require("cmp")
 
 local function has_words_before()
@@ -65,4 +66,10 @@ cmp.setup({
     source_group("path"),
     source_group("spell")
   ),
+  formatting = {
+    format = lspkind.cmp_format({
+      preset = "default",
+      mode = "symbol_text",
+    }),
+  },
 })

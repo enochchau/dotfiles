@@ -18,7 +18,7 @@ return require("packer").startup(function(use)
 
   -- themes
   use("navarasu/onedark.nvim")
-  use("rafamadriz/neon")
+  use("NTBBloodbath/doom-one.nvim")
   use("folke/tokyonight.nvim")
   use("EdenEast/nightfox.nvim")
 
@@ -50,6 +50,7 @@ return require("packer").startup(function(use)
         end,
       },
       "b0o/schemastore.nvim",
+      "onsails/lspkind.nvim",
     },
   })
 
