@@ -1,6 +1,6 @@
 local lspconfig = require("lspconfig")
+local mason = require("mason")
 local lsp_opts = require("enoch.lsp-opts")
-local lsp_installer = require("nvim-lsp-installer")
 local nmap = require("enoch.helpers").nmap
 local null_ls = require("null-ls")
 
@@ -20,16 +20,7 @@ local function remap_diagnostic()
   end)
 end
 
----@param name string name of langauge server
-local function install_language_server(name)
-  local server_is_found, server = lsp_installer.get_server(name)
-  if server_is_found and not server:is_installed() then
-    print("Installing " .. name)
-    server:install()
-  end
-end
-
-lsp_installer.setup({})
+mason.setup()
 enable_icon_signs()
 remap_diagnostic()
 local servers = {
@@ -49,10 +40,11 @@ local servers = {
   "yamlls",
   "zls",
 }
--- install
-for _, server in ipairs(servers) do
-  install_language_server(server)
-end
+
+require("mason-lspconfig").setup({
+  ensure_installed = servers,
+})
+
 -- setup
 for _, server in ipairs(servers) do
   if lsp_opts[server] then
