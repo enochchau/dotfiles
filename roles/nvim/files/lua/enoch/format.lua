@@ -8,11 +8,11 @@ end
 
 local function fmt_js()
   local path = vim.fn.expand("%:p")
-  if string.match(path, "Gatsby/repo") then
-    fmt_eslint()
-  else
-    vim.lsp.buf.formatting_seq_sync({}, 3000, { "null-ls", "eslint" })
-  end
+  -- if string.match(path, "Gatsby/repo") then
+  --   fmt_eslint()
+  -- else
+  vim.lsp.buf.formatting_seq_sync({}, 3000, { "null-ls", "eslint" })
+  -- end
 end
 
 local function fmt_default()
