@@ -17,10 +17,13 @@ return require("packer").startup(function(use)
   })
 
   -- themes
-  use("navarasu/onedark.nvim")
-  use("NTBBloodbath/doom-one.nvim")
-  use("folke/tokyonight.nvim")
-  use("EdenEast/nightfox.nvim")
+  use({
+    "navarasu/onedark.nvim",
+    "NTBBloodbath/doom-one.nvim",
+    "folke/tokyonight.nvim",
+    "EdenEast/nightfox.nvim",
+    "kaiuri/nvim-juliana",
+  })
 
   -- preview
   use({
