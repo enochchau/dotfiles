@@ -8,7 +8,7 @@ vim.g.tokyonight_style = "storm"
 -- colo "doom-one"
 
 if vim.version().minor < 8 then
-    colo "juliana"
-else
     colo "tokyonight"
+else
+    colo "juliana"
 end
