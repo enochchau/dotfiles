@@ -1,4 +1,4 @@
-require("impatient")
+require "impatient"
 
 local nmap = require("enoch.helpers").nmap
 local vmap = require("enoch.helpers").vmap
@@ -31,8 +31,8 @@ opt.colorcolumn = "80"
 -- disable startup screen
 opt.shortmess = "I"
 -- true color
-if has("termguicolors") then
-  opt.termguicolors = true
+if has "termguicolors" then
+    opt.termguicolors = true
 end
 -- highlight all search pattern matches
 opt.hlsearch = true
@@ -44,8 +44,8 @@ nmap("j", "gj")
 nmap("k", "gk")
 
 -- enable syntax and filetype detection
-cmd("syntax enable")
-cmd("filetype plugin indent on")
+cmd "syntax enable"
+cmd "filetype plugin indent on"
 
 -- set tabs to 2 spaces
 opt.tabstop = 2
@@ -67,32 +67,32 @@ autocmd("VimResized", { pattern = "*", command = "wincmd =" })
 
 -- use system clipboard
 -- improved startup times by defining the unnamed clipboard
-if has("mac") == 1 then
-  g.clipboard = {
-    name = "pbcopy",
-    cache_enabled = 0,
-    copy = {
-      ["+"] = "pbcopy",
-      ["*"] = "pbcopy",
-    },
-    paste = {
-      ["+"] = "pbpaste",
-      ["*"] = "pbpaste",
-    },
-  }
-elseif has("wsl") == 1 then
-  g.clipboard = {
-    cache_enabled = 0,
-    name = "win32yank",
-    copy = {
-      ["*"] = "win32yank.exe -i --crlf",
-      ["+"] = "win32yank.exe -i --crlf",
-    },
-    paste = {
-      ["*"] = "win32yank.exe -o --lf",
-      ["+"] = "win32yank.exe -o --lf",
-    },
-  }
+if has "mac" == 1 then
+    g.clipboard = {
+        name = "pbcopy",
+        cache_enabled = 0,
+        copy = {
+            ["+"] = "pbcopy",
+            ["*"] = "pbcopy",
+        },
+        paste = {
+            ["+"] = "pbpaste",
+            ["*"] = "pbpaste",
+        },
+    }
+elseif has "wsl" == 1 then
+    g.clipboard = {
+        cache_enabled = 0,
+        name = "win32yank",
+        copy = {
+            ["*"] = "win32yank.exe -i --crlf",
+            ["+"] = "win32yank.exe -i --crlf",
+        },
+        paste = {
+            ["*"] = "win32yank.exe -o --lf",
+            ["+"] = "win32yank.exe -o --lf",
+        },
+    }
 end
 opt.clipboard = "unnamedplus"
 
@@ -103,22 +103,22 @@ nmap("[b", ":bprevious<CR>")
 -- relative line numbers
 local number_toggle = augroup("NumberToggle", {})
 autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
-  pattern = "*",
-  callback = function()
-    if opt_local.number._value and mode() ~= "i" then
-      opt_local.relativenumber = true
-    end
-  end,
-  group = number_toggle,
+    pattern = "*",
+    callback = function()
+        if opt_local.number._value and mode() ~= "i" then
+            opt_local.relativenumber = true
+        end
+    end,
+    group = number_toggle,
 })
 autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
-  pattern = "*",
-  callback = function()
-    if opt_local.number._value then
-      opt_local.relativenumber = false
-    end
-  end,
-  group = number_toggle,
+    pattern = "*",
+    callback = function()
+        if opt_local.number._value then
+            opt_local.relativenumber = false
+        end
+    end,
+    group = number_toggle,
 })
 
 vim.api.nvim_create_user_command("BufClear", "%bd|e#|bd#", {})
@@ -126,22 +126,22 @@ vim.api.nvim_create_user_command("BufClear", "%bd|e#|bd#", {})
 -- detect prolog
 local detect_extras = augroup("DetectExtras", {})
 autocmd({ "BufRead", "BufNewFile" }, {
-  callback = function()
-    opt_local.filetype = "prolog"
-  end,
-  pattern = "*.pro",
-  group = detect_extras,
+    callback = function()
+        opt_local.filetype = "prolog"
+    end,
+    pattern = "*.pro",
+    group = detect_extras,
 })
 
 -- fennel comment string
 local comment_string = augroup("CommentString", {})
 autocmd("FileType", {
-  group = comment_string,
-  pattern = { "fennel" },
-  callback = function()
-    vim.opt_local.commentstring = ";; %s"
-  end,
+    group = comment_string,
+    pattern = { "fennel" },
+    callback = function()
+        vim.opt_local.commentstring = ";; %s"
+    end,
 })
 
-vim.cmd("source ~/.config/nvim/rzip.vim")
-require("enoch")
+vim.cmd "source ~/.config/nvim/rzip.vim"
+require "enoch"

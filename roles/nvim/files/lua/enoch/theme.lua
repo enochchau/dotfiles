@@ -7,4 +7,4 @@ vim.g.tokyonight_style = "storm"
 -- colo("onedark")
 -- colo("nightfox")
 -- colo("doom-one")
-colo("juliana")
+colo "juliana"
