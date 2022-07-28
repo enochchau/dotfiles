@@ -21,8 +21,8 @@ return require("packer").startup(function(use)
         "navarasu/onedark.nvim",
         "NTBBloodbath/doom-one.nvim",
         "folke/tokyonight.nvim",
-        "EdenEast/nightfox.nvim",
         "kaiuri/nvim-juliana",
+        "rmehri01/onenord.nvim",
     }
 
     -- preview
