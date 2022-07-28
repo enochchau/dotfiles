@@ -23,6 +23,7 @@ return require("packer").startup(function(use)
         "folke/tokyonight.nvim",
         "kaiuri/nvim-juliana",
         "rmehri01/onenord.nvim",
+        "shaunsingh/moonlight.nvim",
     }
 
     -- preview
