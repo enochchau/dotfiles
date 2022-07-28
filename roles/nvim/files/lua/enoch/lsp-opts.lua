@@ -43,19 +43,6 @@ local function create_capabilities(opts)
 end
 
 local function create_on_attach(opts)
-    if opts and opts.disable_formatting then
-        return function(client, bufnr)
-            -- TODO: Remove this when 0.8 is no longer nightly
-            if vim.version().minor < 8 then
-                client.resolved_capabilities.document_formatting = false
-                client.resolved_capabilities.document_range_formatting = false
-            else
-                client.server_capabilities.documentFormattingProvider = false
-            end
-            common_on_attach(client, bufnr)
-        end
-    end
-
     return common_on_attach
 end
 
@@ -78,7 +65,7 @@ local function sumneko_lua()
     end
 
     local root = vim.fn.getcwd()
-    local opts = create_default_opts { disable_formatting = true }
+    local opts = create_default_opts {}
 
     if string.match(root, "nvim") then
         opts.settings = {
@@ -118,7 +105,7 @@ local function eslint()
     local opts = create_default_opts()
 
     opts.on_attach = function(client, bufnr)
-        client.resolved_capabilities.document_formatting = true
+        client.server_capabilities.documentFormattingProvider = true
         common_on_attach(client, bufnr)
     end
 
@@ -142,7 +129,6 @@ end
 local function jsonls()
     local opts = create_default_opts {
         add_snippet_support = true,
-        disable_formatting = true,
     }
 
     opts.settings = {
@@ -156,7 +142,7 @@ local function jsonls()
 end
 
 local function yammls()
-    local opts = create_default_opts { disable_formatting = true }
+    local opts = create_default_opts {}
 
     local jsonls_schemas = schemastore.json.schemas()
     local schemas = {}
@@ -169,7 +155,7 @@ local function yammls()
 end
 
 local function tsserver()
-    local opts = create_default_opts { disable_formatting = true }
+    local opts = create_default_opts {}
     local original_on_attach = opts.on_attach
 
     opts.on_attach = function(client, bufnr)
