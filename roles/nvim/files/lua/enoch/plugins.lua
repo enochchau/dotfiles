@@ -24,6 +24,7 @@ return require("packer").startup(function(use)
         "kaiuri/nvim-juliana",
         "rmehri01/onenord.nvim",
         "shaunsingh/moonlight.nvim",
+        "catppuccin/nvim",
     }
 
     -- preview
