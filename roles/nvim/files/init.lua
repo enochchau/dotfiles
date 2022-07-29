@@ -26,6 +26,13 @@ opt.updatetime = 300
 opt.smartcase = true
 opt.ignorecase = true
 opt.sessionoptions = "blank,curdir,folds,help,tabpages,winsize"
+
+opt.swapfile = true
+opt.writebackup = true
+opt.backup = false
+opt.backupcopy = "auto"
+opt.undofile = true
+
 -- color column @ 80 chars
 opt.colorcolumn = "80"
 -- disable startup screen
