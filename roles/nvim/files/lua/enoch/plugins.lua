@@ -50,7 +50,6 @@ return require("packer").startup(function(use)
         requires = {
             "jose-elias-alvarez/null-ls.nvim",
             "jose-elias-alvarez/nvim-lsp-ts-utils",
-            "ec965/nvim-format-select",
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             {

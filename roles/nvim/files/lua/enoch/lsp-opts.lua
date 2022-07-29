@@ -17,7 +17,7 @@ local function common_on_attach(client, bufnr)
     nmap("gs", telescope_builtin.lsp_document_symbols)
 
     xmap("<leader>f", ":<C-U>lua vim.lsp.buf.range_formatting()<CR>")
-    nmap("<leader>f", vim.lsp.buf.formatting)
+    nmap("<leader>f", vim.lsp.buf.format)
 
     nmap("[g", vim.diagnostic.goto_prev)
     nmap("g]", vim.diagnostic.goto_next)
