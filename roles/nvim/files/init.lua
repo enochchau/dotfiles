@@ -1,4 +1,4 @@
-require "impatient"
+pcall(require, "impatient")
 
 local nmap = require("enoch.helpers").nmap
 local vmap = require("enoch.helpers").vmap
@@ -150,5 +150,22 @@ autocmd("FileType", {
     end,
 })
 
-vim.cmd "source ~/.config/nvim/rzip.vim"
-require "enoch"
+nmap("<leader>nf", require("neogen").generate)
+nmap("<CR>", ":MarkdownPreviewToggle<CR>")
+
+require "enoch.alpha"
+require "enoch.theme"
+
+vim.defer_fn(function()
+    require "enoch.plugins"
+    require "enoch.filetree"
+    require "enoch.cmp"
+    require "enoch.format"
+    require "enoch.lsp"
+    require "enoch.statusline"
+    require "enoch.telescope"
+    require "enoch.term"
+    require "enoch.treesitter"
+
+    vim.cmd "source ~/.config/nvim/rzip.vim"
+end, 0)

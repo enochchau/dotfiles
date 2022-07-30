@@ -144,6 +144,7 @@ return require("packer").startup(function(use)
     }
     use "goolord/alpha-nvim"
     use "lewis6991/impatient.nvim"
+    use "nathom/filetype.nvim"
     use "akinsho/toggleterm.nvim"
     use {
         "ggandor/leap.nvim",
