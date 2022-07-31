@@ -109,9 +109,10 @@ local function eslint()
         common_on_attach(client, bufnr)
     end
 
-    -- if pnp_checker.check_for_pnp() then
-    --     opts.cmd = pnp_checker.get_pnp_cmd()
-    -- end
+    local pnp_path = pnp_checker.find_pnp()
+    if pnp_path then
+        opts.cmd = pnp_checker.get_pnp_cmd(pnp_path)
+    end
 
     return opts
 end
