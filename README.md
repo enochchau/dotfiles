@@ -1,6 +1,6 @@
 # dotfiles
 
-For Fedora and MacOS
+For Fedora, Ubuntu, and MacOS
 
 ## Dependencies
 
