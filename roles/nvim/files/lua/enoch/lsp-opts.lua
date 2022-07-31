@@ -111,7 +111,9 @@ local function eslint()
 
     local pnp_path = pnp_checker.find_pnp()
     if pnp_path then
-        opts.cmd = pnp_checker.get_pnp_cmd(pnp_path)
+        opts.settings = {
+            runtime = { execArgv = "-r " .. pnp_path },
+        }
     end
 
     return opts
