@@ -151,7 +151,6 @@ autocmd("FileType", {
 })
 
 nmap("<leader>nf", require("neogen").generate)
-nmap("<CR>", ":MarkdownPreviewToggle<CR>")
 
 require "enoch.alpha"
 require "enoch.theme"

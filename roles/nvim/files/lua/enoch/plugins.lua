@@ -162,5 +162,9 @@ return require("packer").startup(function(use)
             "MunifTanjim/nui.nvim",
         },
     }
-    use { "~/code/mjml-preview.nvim", ft = "mjml" }
+    use {
+        "~/code/mjml-preview.nvim",
+        ft = "mjml",
+        run = "cd app && npm install && npm run build",
+    }
 end)
