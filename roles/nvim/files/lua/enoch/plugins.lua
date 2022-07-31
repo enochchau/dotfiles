@@ -113,6 +113,7 @@ return require("packer").startup(function(use)
     use "hashivim/vim-terraform"
     use "ziglang/zig.vim"
     use "pearofducks/ansible-vim"
+    use "amadeus/vim-mjml"
 
     -- status line
     use "nvim-lualine/lualine.nvim"
@@ -161,4 +162,5 @@ return require("packer").startup(function(use)
             "MunifTanjim/nui.nvim",
         },
     }
+    use { "~/code/mjml-preview.nvim", ft = "mjml" }
 end)
