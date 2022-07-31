@@ -156,10 +156,10 @@ nmap("<CR>", ":MarkdownPreviewToggle<CR>")
 require "enoch.alpha"
 require "enoch.theme"
 require "enoch.lsp"
+require "enoch.filetree"
 
 vim.defer_fn(function()
     require "enoch.plugins"
-    require "enoch.filetree"
     require "enoch.cmp"
     require "enoch.format"
     require "enoch.statusline"
