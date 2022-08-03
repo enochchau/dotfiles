@@ -8,6 +8,7 @@ local langs = {
     "fennel",
     "go",
     "graphql",
+    "hcl",
     "html",
     "javascript",
     "jsdoc",
