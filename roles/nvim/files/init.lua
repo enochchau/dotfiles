@@ -130,26 +130,6 @@ autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
 
 vim.api.nvim_create_user_command("BufClear", "%bd|e#|bd#", {})
 
--- detect prolog
-local detect_extras = augroup("DetectExtras", {})
-autocmd({ "BufRead", "BufNewFile" }, {
-    callback = function()
-        opt_local.filetype = "prolog"
-    end,
-    pattern = "*.pro",
-    group = detect_extras,
-})
-
--- fennel comment string
-local comment_string = augroup("CommentString", {})
-autocmd("FileType", {
-    group = comment_string,
-    pattern = { "fennel" },
-    callback = function()
-        vim.opt_local.commentstring = ";; %s"
-    end,
-})
-
 nmap("<leader>nf", require("neogen").generate)
 
 require "enoch.alpha"
