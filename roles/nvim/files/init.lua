@@ -157,14 +157,12 @@ require "enoch.theme"
 require "enoch.lsp"
 require "enoch.filetree"
 
-vim.defer_fn(function()
-    require "enoch.plugins"
-    require "enoch.cmp"
-    require "enoch.format"
-    require "enoch.statusline"
-    require "enoch.telescope"
-    require "enoch.term"
-    require "enoch.treesitter"
+require "enoch.plugins"
+require "enoch.cmp"
+require "enoch.format"
+require "enoch.statusline"
+require "enoch.telescope"
+require "enoch.term"
+require "enoch.treesitter"
 
-    vim.cmd "source ~/.config/nvim/rzip.vim"
-end, 0)
+vim.cmd "source ~/.config/nvim/rzip.vim"
