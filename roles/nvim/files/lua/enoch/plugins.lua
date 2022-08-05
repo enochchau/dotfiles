@@ -25,6 +25,7 @@ return require("packer").startup(function(use)
         "rmehri01/onenord.nvim",
         "shaunsingh/moonlight.nvim",
         "catppuccin/nvim",
+        "B4mbus/oxocarbon-lua.nvim",
     }
 
     -- preview

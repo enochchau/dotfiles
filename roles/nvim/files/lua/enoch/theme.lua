@@ -1,13 +1,14 @@
 local colo = require("enoch.helpers").colo
 
-vim.opt.bg = "light"
+vim.opt.bg = "dark"
 vim.g.tokyonight_style = "storm"
 vim.g.catppuccin_flavour = "frappe"
 
-colo "juliana"
--- colo "tokyonight"
+-- colo "catppuccin"
+-- colo "doom-one"
+-- colo "juliana"
+-- colo "moonlight"
 -- colo "onedark"
 -- colo "onenord"
--- colo "moonlight"
--- colo "doom-one"
--- colo "catppuccin"
+-- colo "tokyonight"
+colo "oxocarbon-lua"
