@@ -63,6 +63,7 @@ return require("packer").startup(function(use)
             },
             "b0o/schemastore.nvim",
             "onsails/lspkind.nvim",
+            "lvimuser/lsp-inlayhints.nvim",
         },
     }
 

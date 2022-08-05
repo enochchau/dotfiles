@@ -6,7 +6,11 @@ local nmap = require("enoch.helpers").nmap
 local xmap = require("enoch.helpers").xmap
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
 
+require("lsp-inlayhints").setup()
+
 local function common_on_attach(client, bufnr)
+    require("lsp-inlayhints").on_attach(bufnr, client, false)
+
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
     nmap("gd", telescope_builtin.lsp_definitions)
@@ -171,6 +175,20 @@ local function tsserver()
     end
 
     opts.init_options = lsp_ts_utils.init_options
+
+    local inlayHints = {
+        includeInlayParameterNameHints = "all",
+        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+        includeInlayFunctionParameterTypeHints = true,
+        includeInlayVariableTypeHints = true,
+        includeInlayPropertyDeclarationTypeHints = true,
+        includeInlayFunctionLikeReturnTypeHints = true,
+        includeInlayEnumMemberValueHints = true,
+    }
+    opts.settings = {
+        typescript = { inlayHints = inlayHints },
+        javascript = { inlayHints = inlayHints },
+    }
     return opts
 end
 
