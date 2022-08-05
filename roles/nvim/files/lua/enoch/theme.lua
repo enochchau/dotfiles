@@ -1,5 +1,7 @@
 local colo = require("enoch.helpers").colo
+local transparent = require "transparent"
 
+transparent.setup { enable = true }
 vim.opt.bg = "dark"
 vim.g.tokyonight_style = "storm"
 vim.g.catppuccin_flavour = "frappe"

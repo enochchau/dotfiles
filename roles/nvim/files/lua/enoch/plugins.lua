@@ -27,6 +27,7 @@ return require("packer").startup(function(use)
         "catppuccin/nvim",
         "B4mbus/oxocarbon-lua.nvim",
     }
+    use "xiyaowong/nvim-transparent"
 
     -- preview
     use {

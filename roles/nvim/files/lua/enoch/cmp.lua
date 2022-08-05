@@ -12,7 +12,8 @@ local function has_words_before()
             == nil
 end
 
----@param ... table
+-- Create a cmp source group
+---@vararg string
 ---@return table
 local function source_group(...)
     local t = {}
