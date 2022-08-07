@@ -22,11 +22,7 @@ return require("packer").startup(function(use)
         "NTBBloodbath/doom-one.nvim",
         "folke/tokyonight.nvim",
         "kaiuri/nvim-juliana",
-        "rmehri01/onenord.nvim",
-        "shaunsingh/moonlight.nvim",
-        "catppuccin/nvim",
         "B4mbus/oxocarbon-lua.nvim",
-        "jnurmine/Zenburn",
     }
 
     use "xiyaowong/nvim-transparent"
@@ -121,10 +117,6 @@ return require("packer").startup(function(use)
     }
 
     -- additional language support
-    use "pantharshit00/vim-prisma"
-    use "hashivim/vim-terraform"
-    use "ziglang/zig.vim"
-    use "pearofducks/ansible-vim"
     use "amadeus/vim-mjml"
 
     -- status line
@@ -156,8 +148,6 @@ return require("packer").startup(function(use)
         end,
     }
     use "goolord/alpha-nvim"
-    use "lewis6991/impatient.nvim"
-    use "nathom/filetype.nvim"
     use "akinsho/toggleterm.nvim"
     use {
         "ggandor/leap.nvim",
@@ -165,6 +155,10 @@ return require("packer").startup(function(use)
             require("leap").set_default_keymaps()
         end,
     }
+
+    -- make vim start faster
+    use "lewis6991/impatient.nvim"
+    use "nathom/filetype.nvim"
 
     -- file tree
     use {
