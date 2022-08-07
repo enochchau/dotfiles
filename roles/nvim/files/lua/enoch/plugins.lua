@@ -118,6 +118,7 @@ return require("packer").startup(function(use)
 
     -- additional language support
     use "amadeus/vim-mjml"
+    use "pearofducks/ansible-vim"
 
     -- status line
     use "nvim-lualine/lualine.nvim"
