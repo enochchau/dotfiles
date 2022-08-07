@@ -26,7 +26,9 @@ return require("packer").startup(function(use)
         "shaunsingh/moonlight.nvim",
         "catppuccin/nvim",
         "B4mbus/oxocarbon-lua.nvim",
+        "jnurmine/Zenburn",
     }
+
     use "xiyaowong/nvim-transparent"
 
     -- preview
@@ -109,6 +111,13 @@ return require("packer").startup(function(use)
             "windwp/nvim-ts-autotag",
             "JoosepAlviste/nvim-ts-context-commentstring",
         },
+    }
+
+    use {
+        "AckslD/nvim-FeMaco.lua",
+        config = function()
+            require("femaco").setup()
+        end,
     }
 
     -- additional language support
