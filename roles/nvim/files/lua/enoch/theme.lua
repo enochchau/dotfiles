@@ -1,6 +1,6 @@
 local colo = require("enoch.helpers").colo
 
-if not vim.fn.has "wsl" then
+if vim.fn.has "wsl" == 0 then
     require("transparent").setup { enable = true }
 end
 
