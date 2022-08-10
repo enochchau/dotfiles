@@ -65,6 +65,7 @@ null_ls.setup {
             env = {
                 ["PRETTIERD_DEFAULT_CONFIG"] = vim.fn.expand "~/.config/nvim/.prettierrc",
             },
+            extra_filetypes = { "astro" },
         },
         formatting.stylua,
         formatting.fnlfmt,

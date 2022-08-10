@@ -12,14 +12,15 @@ local opt_local = vim.opt_local
 local cmd = vim.cmd
 
 g.mapleader = ","
+opt.winbar = "%t"
 opt.signcolumn = "yes:1"
+opt.laststatus = 3
 opt.number = true
 opt.wrap = true
 opt.encoding = "utf-8"
 opt.mouse = "a"
 opt.wildmenu = true
 opt.showmatch = false
-opt.laststatus = 2
 opt.ruler = true
 opt.hidden = true
 opt.updatetime = 300

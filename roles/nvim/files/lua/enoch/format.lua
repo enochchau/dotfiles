@@ -37,8 +37,10 @@ format_filetype({
     "*.lua",
     "*.go",
     "*.fnl",
+    "*.astro",
 }, {
     ["tsserver"] = true,
+    ["astro"] = true,
     ["jsonls"] = true,
     ["yammls"] = true,
     ["sumneko_lua"] = true,

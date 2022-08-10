@@ -6,10 +6,10 @@ local nmap = require("enoch.helpers").nmap
 local xmap = require("enoch.helpers").xmap
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
 
-require("lsp-inlayhints").setup()
+-- require("lsp-inlayhints").setup()
 
 local function common_on_attach(client, bufnr)
-    require("lsp-inlayhints").on_attach(bufnr, client, false)
+    -- require("lsp-inlayhints").on_attach(bufnr, client, false)
 
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
