@@ -1,3 +1,10 @@
+vim.cmd [[
+  augroup packer_user_config
+    autocmd!
+    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+  augroup end
+]]
+
 return require("packer").startup(function(use)
     use "wbthomason/packer.nvim"
 
@@ -159,7 +166,16 @@ return require("packer").startup(function(use)
     use {
         "NvChad/nvim-colorizer.lua",
         config = function()
-            require("colorizer").setup { names = false }
+            require("colorizer").setup({
+                "javascript",
+                "javascriptreact",
+                "svelte",
+                "astro",
+                "typescript",
+                "typescriptreact",
+                "css",
+                "scss",
+            }, { names = false })
         end,
     }
 
