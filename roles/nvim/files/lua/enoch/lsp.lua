@@ -26,7 +26,7 @@ enable_icon_signs()
 remap_diagnostic()
 local servers = {
     "ansiblels",
-    "astro-language-server",
+    "astro",
     "bashls",
     "cssls",
     "eslint",
