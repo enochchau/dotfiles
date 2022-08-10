@@ -1,5 +1,6 @@
 local treesitter = require "nvim-treesitter.configs"
 local langs = {
+    "astro",
     "bash",
     "c",
     "comment",

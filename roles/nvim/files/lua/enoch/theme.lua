@@ -1,10 +1,10 @@
 local colo = require("enoch.helpers").colo
 
 if vim.fn.has "wsl" == 0 then
-    require("transparent").setup { enable = true }
+    -- require("transparent").setup { enable = true }
 end
 
-vim.opt.bg = "dark"
+vim.opt.bg = "light"
 vim.g.tokyonight_style = "storm"
 vim.g.catppuccin_flavour = "frappe"
 
@@ -14,5 +14,5 @@ vim.g.catppuccin_flavour = "frappe"
 -- colo "moonlight"
 -- colo "onedark"
 -- colo "onenord"
--- colo "tokyonight"
-colo "oxocarbon-lua"
+colo "tokyonight"
+-- colo "oxocarbon-lua"
