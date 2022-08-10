@@ -156,6 +156,12 @@ return require("packer").startup(function(use)
             require("leap").set_default_keymaps()
         end,
     }
+    use {
+        "NvChad/nvim-colorizer.lua",
+        config = function()
+            require("colorizer").setup()
+        end,
+    }
 
     -- make vim start faster
     use "lewis6991/impatient.nvim"
