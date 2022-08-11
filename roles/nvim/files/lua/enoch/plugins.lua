@@ -206,8 +206,31 @@ return require("packer").startup(function(use)
     use {
         "https://gitlab.com/yorickpeterse/nvim-window.git",
         config = function()
+            local nvim_window = require "nvim-window"
+            nvim_window.setup {
+                chars = {
+                    "f",
+                    "j",
+                    "d",
+                    "k",
+                    "s",
+                    "l",
+                    "a",
+                    ";",
+                    "c",
+                    "m",
+                    "r",
+                    "u",
+                    "e",
+                    "i",
+                    "w",
+                    "o",
+                    "q",
+                    "p",
+                },
+            }
             require("enoch.helpers").nmap("<leader>w", function()
-                require("nvim-window").pick()
+                nvim_window.pick()
             end)
         end,
     }

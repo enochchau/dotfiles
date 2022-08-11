@@ -4,13 +4,7 @@ require("nvim-tree").setup {
     view = {
         side = "right",
         relativenumber = true,
-        float = {
-            enable = true,
-            open_win_config = {
-                row = 1,
-                col = width,
-            },
-        },
+        float = { enable = true, open_win_config = { col = width } },
     },
     filters = {
         exclude = { ".DS_Store" },
@@ -21,6 +15,13 @@ require("nvim-tree").setup {
         },
     },
     git = { ignore = false },
+    actions = {
+        open_file = {
+            window_picker = {
+                chars = "FJDKSLA;CMRUEIWOQP",
+            },
+        },
+    },
 }
 nmap("<leader>n", ":NvimTreeFindFile<CR>")
 nmap("<C-n>", ":NvimTreeToggle<CR>")
