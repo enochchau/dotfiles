@@ -198,39 +198,16 @@ return require("packer").startup(function(use)
 
     -- file tree
     use {
-        "nvim-neo-tree/neo-tree.nvim",
-        requires = {
-            "kyazdani42/nvim-web-devicons",
-            "MunifTanjim/nui.nvim",
-        },
+        "kyazdani42/nvim-tree.lua",
+        requires = { "kyazdani42/nvim-web-devicons" },
     }
+
+    -- window picker
     use {
-        "s1n7ax/nvim-window-picker",
-        tag = "v1.*",
+        "https://gitlab.com/yorickpeterse/nvim-window.git",
         config = function()
-            local window_picker = require "window-picker"
-            window_picker.setup {
-                autoselect_one = true,
-                include_current = false,
-                filter_rules = {
-                    bo = {
-                        filetype = {
-                            "neo-tree",
-                            "neo-tree-popup",
-                            "notify",
-                            "quickfix",
-                        },
-
-                        buftype = { "terminal" },
-                    },
-                },
-                other_win_hl_color = "#e35e4f",
-            }
-
             require("enoch.helpers").nmap("<leader>w", function()
-                local picked_window_id = window_picker.pick_window()
-                    or vim.api.nvim_get_current_win()
-                vim.api.nvim_set_current_win(picked_window_id)
+                require("nvim-window").pick()
             end)
         end,
     }

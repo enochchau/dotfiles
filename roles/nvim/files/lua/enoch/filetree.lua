@@ -1,27 +1,26 @@
-local neotree = require "neo-tree"
 local nmap = require("enoch.helpers").nmap
-
-vim.cmd [[ let g:neo_tree_remove_legacy_commands = 1 ]]
-
-neotree.setup {
-    window = {
-        position = "right",
-        width = 35,
-        mappings = {
-            ["S"] = "split_with_window_picker",
-            ["s"] = "vsplit_with_window_picker",
-            ["<cr>"] = "open_with_window_picker",
+local width = vim.api.nvim_win_get_width(0)
+require("nvim-tree").setup {
+    view = {
+        side = "right",
+        relativenumber = true,
+        float = {
+            enable = true,
+            open_win_config = {
+                row = 1,
+                col = width,
+            },
         },
     },
-    filesystem = {
-        filtered_items = {
-            visible = true,
-        },
-        never_show = {
-            ".DS_Store",
+    filters = {
+        exclude = { ".DS_Store" },
+    },
+    renderer = {
+        indent_markers = {
+            enable = true,
         },
     },
+    git = { ignore = false },
 }
-
-nmap("<leader>n", ":Neotree reveal<CR>")
-nmap("<C-n>", ":Neotree toggle<CR>")
+nmap("<leader>n", ":NvimTreeFindFile<CR>")
+nmap("<C-n>", ":NvimTreeToggle<CR>")
