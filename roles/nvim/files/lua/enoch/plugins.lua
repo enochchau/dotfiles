@@ -19,18 +19,18 @@ return require("packer").startup(function(use)
     use {
         "danymat/neogen",
         config = function()
-            require("neogen").setup {}
+            local neogen = require "neogen"
+            neogen.setup {}
+            require("enoch.helpers").nmap("<leader>nf", neogen.generate)
         end,
     }
 
     -- themes
-    use {
-        "navarasu/onedark.nvim",
-        "NTBBloodbath/doom-one.nvim",
-        "folke/tokyonight.nvim",
-        "kaiuri/nvim-juliana",
-        "B4mbus/oxocarbon-lua.nvim",
-    }
+    use "navarasu/onedark.nvim"
+    use "NTBBloodbath/doom-one.nvim"
+    use "folke/tokyonight.nvim"
+    use "kaiuri/nvim-juliana"
+    use "B4mbus/oxocarbon-lua.nvim"
 
     use "xiyaowong/nvim-transparent"
 
@@ -39,7 +39,19 @@ return require("packer").startup(function(use)
         "iamcco/markdown-preview.nvim",
         ft = { "markdown" },
         run = "cd app && yarn install",
+        config = function()
+            require("enoch.helpers").nmap("<CR>", ":MarkdownPreviewToggle<CR>")
+        end,
     }
+    use {
+        "~/code/mjml-preview.nvim",
+        ft = "mjml",
+        run = "cd app && npm install && npm run build",
+        config = function()
+            require("enoch.helpers").nmap("<CR>", ":MjmlPreviewToggle<CR>")
+        end,
+    }
+
     -- yarn pnp
     use {
         "lbrayner/vim-rzip",
@@ -116,6 +128,7 @@ return require("packer").startup(function(use)
         },
     }
 
+    -- markdown code block syntax highlighting
     use {
         "AckslD/nvim-FeMaco.lua",
         config = function()
@@ -192,8 +205,33 @@ return require("packer").startup(function(use)
         },
     }
     use {
-        "~/code/mjml-preview.nvim",
-        ft = "mjml",
-        run = "cd app && npm install && npm run build",
+        "s1n7ax/nvim-window-picker",
+        tag = "v1.*",
+        config = function()
+            local window_picker = require "window-picker"
+            window_picker.setup {
+                autoselect_one = true,
+                include_current = false,
+                filter_rules = {
+                    bo = {
+                        filetype = {
+                            "neo-tree",
+                            "neo-tree-popup",
+                            "notify",
+                            "quickfix",
+                        },
+
+                        buftype = { "terminal" },
+                    },
+                },
+                other_win_hl_color = "#e35e4f",
+            }
+
+            require("enoch.helpers").nmap("<leader>w", function()
+                local picked_window_id = window_picker.pick_window()
+                    or vim.api.nvim_get_current_win()
+                vim.api.nvim_set_current_win(picked_window_id)
+            end)
+        end,
     }
 end)

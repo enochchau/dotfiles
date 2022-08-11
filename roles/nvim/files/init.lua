@@ -131,8 +131,6 @@ autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
 
 vim.api.nvim_create_user_command("BufClear", "%bd|e#|bd#", {})
 
-nmap("<leader>nf", require("neogen").generate)
-
 require "enoch.plugins"
 
 require "enoch.alpha"

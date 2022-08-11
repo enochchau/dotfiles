@@ -7,6 +7,11 @@ neotree.setup {
     window = {
         position = "right",
         width = 35,
+        mappings = {
+            ["S"] = "split_with_window_picker",
+            ["s"] = "vsplit_with_window_picker",
+            ["<cr>"] = "open_with_window_picker",
+        },
     },
     filesystem = {
         filtered_items = {
