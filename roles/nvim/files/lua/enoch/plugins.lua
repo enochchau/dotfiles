@@ -16,14 +16,6 @@ return require("packer").startup(function(use)
 
     -- comments
     use "tpope/vim-commentary"
-    use {
-        "danymat/neogen",
-        config = function()
-            local neogen = require "neogen"
-            neogen.setup {}
-            require("enoch.helpers").nmap("<leader>nf", neogen.generate)
-        end,
-    }
 
     -- themes
     use "navarasu/onedark.nvim"
@@ -125,6 +117,16 @@ return require("packer").startup(function(use)
             },
             "windwp/nvim-ts-autotag",
             "JoosepAlviste/nvim-ts-context-commentstring",
+            {
+                "danymat/neogen",
+                config = function()
+                    require("neogen").setup {}
+                    require("enoch.helpers").nmap(
+                        "<leader>nf",
+                        require("neogen").generate
+                    )
+                end,
+            },
         },
     }
 
