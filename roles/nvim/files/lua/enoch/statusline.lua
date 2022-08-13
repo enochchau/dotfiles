@@ -5,6 +5,9 @@ local function get_theme()
     if theme == "one" then
         return "onedark"
     end
+    if theme == "doom-one" then
+        return "auto"
+    end
     return theme
 end
 
