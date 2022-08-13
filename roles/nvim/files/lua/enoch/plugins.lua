@@ -66,7 +66,6 @@ return require("packer").startup(function(use)
         "neovim/nvim-lspconfig",
         requires = {
             "jose-elias-alvarez/null-ls.nvim",
-            "jose-elias-alvarez/nvim-lsp-ts-utils",
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             {
@@ -77,7 +76,6 @@ return require("packer").startup(function(use)
             },
             "b0o/schemastore.nvim",
             "onsails/lspkind.nvim",
-            "lvimuser/lsp-inlayhints.nvim",
         },
     }
 
@@ -195,7 +193,7 @@ return require("packer").startup(function(use)
                 "typescriptreact",
                 "css",
                 "scss",
-            }, { names = false })
+            }, { names = false, mode = "virtualtext" })
         end,
     }
 

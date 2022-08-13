@@ -1,16 +1,11 @@
 local pnp_checker = require "nvim-pnp-checker"
 local schemastore = require "schemastore"
 local telescope_builtin = require "telescope.builtin"
-local lsp_ts_utils = require "nvim-lsp-ts-utils"
 local nmap = require("enoch.helpers").nmap
 local xmap = require("enoch.helpers").xmap
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
 
--- require("lsp-inlayhints").setup()
-
 local function common_on_attach(client, bufnr)
-    -- require("lsp-inlayhints").on_attach(bufnr, client, false)
-
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
     nmap("gd", telescope_builtin.lsp_definitions)
@@ -173,20 +168,6 @@ end
 
 local function tsserver()
     local opts = create_default_opts {}
-    local original_on_attach = opts.on_attach
-
-    opts.on_attach = function(client, bufnr)
-        lsp_ts_utils.setup { auto_inlay_hints = false }
-        lsp_ts_utils.setup_client(client)
-
-        nmap("<leader>o", ":TSLspOrganize<CR>")
-        nmap("<leader>rf", ":TSLspRenameFile<CR>")
-        nmap("<leader>i", ":TSLspImportAll<CR>")
-
-        original_on_attach(client, bufnr)
-    end
-
-    opts.init_options = lsp_ts_utils.init_options
 
     local inlayHints = {
         includeInlayParameterNameHints = "all",
