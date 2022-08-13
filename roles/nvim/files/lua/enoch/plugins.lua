@@ -10,12 +10,17 @@ return require("packer").startup(function(use)
 
     -- editing
     use "tpope/vim-obsession"
-    use "tpope/vim-surround"
-    use "tpope/vim-sleuth"
-    use "editorconfig/editorconfig-vim"
+    use {
+        "nmac427/guess-indent.nvim",
+        config = function()
+            require("guess-indent").setup {}
+        end,
+    }
+    use "kylechui/nvim-surround"
+    use "gpanders/editorconfig.nvim"
 
     -- comments
-    use "tpope/vim-commentary"
+    use "numToStr/Comment.nvim"
 
     -- themes
     use "navarasu/onedark.nvim"
