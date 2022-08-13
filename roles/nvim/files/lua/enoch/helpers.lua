@@ -18,9 +18,4 @@ M.map = function(modes, lhs, rhs, buffer)
     map(modes)(lhs, rhs, buffer)
 end
 
----@param theme string
-M.colo = function(theme)
-    vim.cmd("colo " .. theme)
-end
-
 return M

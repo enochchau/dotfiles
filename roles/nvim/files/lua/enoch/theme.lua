@@ -1,18 +1,25 @@
-local colo = require("enoch.helpers").colo
+-- "catppuccin"
+-- "doom-one"
+-- "juliana"
+-- "moonlight"
+-- "onedark"
+-- "onenord"
+-- "tokyonight"
+
+local theme = "oxocarbon-lua"
 
 if vim.fn.has "wsl" == 0 then
-    -- require("transparent").setup { enable = true }
+    if theme == "oxocarbon-lua" then
+        require("transparent").setup { enable = true }
+    end
 end
 
-vim.opt.bg = "light"
+vim.opt.bg = "dark"
+if theme == "tokyonight" then
+    vim.opt.bg = "light"
+end
+
 vim.g.tokyonight_style = "storm"
 vim.g.catppuccin_flavour = "frappe"
 
--- colo "catppuccin"
--- colo "doom-one"
--- colo "juliana"
--- colo "moonlight"
--- colo "onedark"
--- colo "onenord"
-colo "tokyonight"
--- colo "oxocarbon-lua"
+vim.cmd("colo " .. theme)
