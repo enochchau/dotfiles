@@ -16,7 +16,7 @@ return require("packer").startup(function(use)
             require("guess-indent").setup {}
         end,
     }
-    use "kylechui/nvim-surround"
+    use "tpope/vim-surround"
     use "gpanders/editorconfig.nvim"
 
     -- comments

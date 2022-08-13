@@ -1,3 +1,5 @@
+local has = vim.fn.has
+
 -- "catppuccin"
 -- "doom-one"
 -- "juliana"
@@ -5,10 +7,15 @@
 -- "onedark"
 -- "onenord"
 -- "tokyonight"
+-- "oxocarbon-lua"
 
 local theme = "oxocarbon-lua"
 
-if vim.fn.has "wsl" == 0 then
+if has "wsl" == 1 then
+    theme = "doom-one"
+end
+
+if has "wsl" == 0 then
     if theme == "oxocarbon-lua" then
         require("transparent").setup { enable = true }
     end
