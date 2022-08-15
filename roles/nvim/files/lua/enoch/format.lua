@@ -21,32 +21,35 @@ local function format_filetype(pattern, omit_clients)
     })
 end
 
-format_filetype({
-    "*.js",
-    "*.ts",
-    "*.jsx",
-    "*.tsx",
-    "*.cjs",
-    "*.mjs",
-    "*.css",
-    "*.scss",
-    "*.md",
-    "*.yaml",
-    "*.yml",
-    "*.json",
-    "*.lua",
-    "*.go",
-    "*.fnl",
-}, {
-    ["tsserver"] = true,
-    ["jsonls"] = true,
-    ["yammls"] = true,
-    ["sumneko_lua"] = true,
-})
+local enable = false
+if enable then
+    format_filetype({
+        "*.js",
+        "*.ts",
+        "*.jsx",
+        "*.tsx",
+        "*.cjs",
+        "*.mjs",
+        "*.css",
+        "*.scss",
+        "*.md",
+        "*.yaml",
+        "*.yml",
+        "*.json",
+        "*.lua",
+        "*.go",
+        "*.fnl",
+    }, {
+        ["tsserver"] = true,
+        ["jsonls"] = true,
+        ["yammls"] = true,
+        ["sumneko_lua"] = true,
+    })
 
-format_filetype({
-    "*.astro",
-}, {
-    ["astro"] = true,
-    ["eslint"] = true,
-})
+    format_filetype({
+        "*.astro",
+    }, {
+        ["astro"] = true,
+        ["eslint"] = true,
+    })
+end
