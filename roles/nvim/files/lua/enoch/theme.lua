@@ -9,7 +9,7 @@ local has = vim.fn.has
 -- "tokyonight"
 -- "oxocarbon-lua"
 
-local theme = "doom-one"
+local theme = "onedark"
 
 if has "wsl" == 0 then
     if theme == "oxocarbon-lua" then
