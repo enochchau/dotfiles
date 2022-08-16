@@ -48,6 +48,7 @@
           - vale
         homebrew_casks:
           - alacritty
+          - wezterm
           - linearmouse
           - karabiner-elements
           - rectangle
@@ -128,8 +129,15 @@
     - role: alacritty
       tags: alacritty
       vars:
-        - font_size: 13
+        - font_size: 14
         - font: FantasqueSansMono NF
+    - role: wezterm
+      tags: wezterm
+      vars:
+        - font_size: 14
+        - font: FantasqueSansMono NF
+        - opacity: 0.9
+        - theme: OneDark (base16)
     - role: hammerspoon
       tags: hammerspoon
       when: ansible_facts['os_family'] == "Darwin"
