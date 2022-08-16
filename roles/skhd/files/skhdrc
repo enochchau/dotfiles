@@ -1,6 +1,6 @@
 # Apps
-alt - t : /Applications/Alacritty.app/Contents/MacOS/alacritty
-# alt - t : /Applications/WezTerm.app/Contents/MacOS/wezterm
+# alt - t : /Applications/Alacritty.app/Contents/MacOS/alacritty
+alt - t : /Applications/WezTerm.app/Contents/MacOS/wezterm
 alt - b : /Applications/Google\ Chrome.app/Contents/MacOS/Google\ Chrome --args --profile-directory="Default"
 alt - f : open -a /Applications/Firefox.app
 
