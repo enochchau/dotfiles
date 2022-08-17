@@ -3,9 +3,12 @@ local schemastore = require "schemastore"
 local telescope_builtin = require "telescope.builtin"
 local nmap = require("enoch.helpers").nmap
 local xmap = require("enoch.helpers").xmap
+local fmt = require "enoch.format"
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
 
-local function common_on_attach(client, bufnr)
+local M = {}
+
+function M.common_on_attach(client, bufnr)
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
     nmap("gd", telescope_builtin.lsp_definitions)
@@ -16,7 +19,16 @@ local function common_on_attach(client, bufnr)
     nmap("gs", telescope_builtin.lsp_document_symbols)
 
     xmap("<leader>f", ":<C-U>lua vim.lsp.buf.range_formatting()<CR>")
-    nmap("<leader>f", vim.lsp.buf.format)
+    nmap("<leader>f", function()
+        vim.lsp.buf.format {
+            filter = function(fmt_client)
+                if client.name == "astro" then
+                    return fmt.format_filter(fmt.astro_fmt_omit)(fmt_client)
+                end
+                return fmt.format_filter(fmt.default_fmt_omit)(fmt_client)
+            end,
+        }
+    end)
 
     nmap("[g", vim.diagnostic.goto_prev)
     nmap("g]", vim.diagnostic.goto_next)
@@ -41,21 +53,17 @@ local function create_capabilities(opts)
     return cmp_nvim_lsp.update_capabilities(capabilities)
 end
 
-local function create_on_attach(opts)
-    return common_on_attach
-end
-
 ---create default lsp client opts
 ---@param opts table?
 ---@return table
-local function create_default_opts(opts)
+function M.create_default_opts(opts)
     return {
-        on_attach = create_on_attach(opts),
+        on_attach = M.common_on_attach,
         capabilities = create_capabilities(opts),
     }
 end
 
-local function sumneko_lua()
+function M.sumneko_lua()
     local function get_runtime_path()
         local runtime_path = vim.split(package.path, ";")
         table.insert(runtime_path, "lua/?.lua")
@@ -64,7 +72,7 @@ local function sumneko_lua()
     end
 
     local root = vim.fn.getcwd()
-    local opts = create_default_opts {}
+    local opts = M.create_default_opts {}
 
     if string.match(root, "nvim") then
         opts.settings = {
@@ -100,12 +108,12 @@ local function sumneko_lua()
     return opts
 end
 
-local function eslint()
-    local opts = create_default_opts()
+function M.eslint()
+    local opts = M.create_default_opts()
 
     opts.on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = true
-        common_on_attach(client, bufnr)
+        M.common_on_attach(client, bufnr)
     end
 
     local pnp_path = pnp_checker.find_pnp()
@@ -128,18 +136,18 @@ local function eslint()
     return opts
 end
 
-local function html()
-    local opts = create_default_opts { add_snippet_support = true }
+function M.html()
+    local opts = M.create_default_opts { add_snippet_support = true }
     return opts
 end
 
-local function cssls()
-    local opts = create_default_opts { add_snippet_support = true }
+function M.cssls()
+    local opts = M.create_default_opts { add_snippet_support = true }
     return opts
 end
 
-local function jsonls()
-    local opts = create_default_opts {
+function M.jsonls()
+    local opts = M.create_default_opts {
         add_snippet_support = true,
     }
 
@@ -153,8 +161,8 @@ local function jsonls()
     return opts
 end
 
-local function yammls()
-    local opts = create_default_opts {}
+function M.yammls()
+    local opts = M.create_default_opts {}
 
     local jsonls_schemas = schemastore.json.schemas()
     local schemas = {}
@@ -166,8 +174,8 @@ local function yammls()
     return opts
 end
 
-local function tsserver()
-    local opts = create_default_opts {}
+function M.tsserver()
+    local opts = M.create_default_opts {}
 
     local inlayHints = {
         includeInlayParameterNameHints = "all",
@@ -186,14 +194,4 @@ local function tsserver()
     return opts
 end
 
-return {
-    common_on_attach = common_on_attach,
-    create_default_opts = create_default_opts,
-    sumneko_lua = sumneko_lua,
-    eslint = eslint,
-    html = html,
-    cssls = cssls,
-    jsonls = jsonls,
-    yammls = yammls,
-    tsserver = tsserver,
-}
+return M

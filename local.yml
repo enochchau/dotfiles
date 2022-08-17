@@ -131,7 +131,7 @@
       vars:
         - font_size: 14
         - font: FantasqueSansMono NF
-        - opacity: 0.9
+        - opacity: 0.85
     - role: wezterm
       tags: wezterm
       vars:

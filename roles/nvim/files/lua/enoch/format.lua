@@ -1,7 +1,33 @@
 local augroup = vim.api.nvim_create_augroup
 local autocmd = vim.api.nvim_create_autocmd
 
+local M = {}
+
+M.default_fmt_omit = {
+    ["tsserver"] = true,
+    ["jsonls"] = true,
+    ["yammls"] = true,
+    ["sumneko_lua"] = true,
+}
+
+M.astro_fmt_omit = {
+    ["astro"] = true,
+    ["eslint"] = true,
+}
+
 local fmt_on_save = augroup("FmtOnSave", {})
+
+--- format filter on omitted clients
+---@param omit_client_set table Set like table
+---@return fun(client: table):boolean filter callback for vim.lsp.buf.format
+function M.format_filter(omit_client_set)
+    return function(fmt_client)
+        if omit_client_set[fmt_client.name] then
+            return false
+        end
+        return true
+    end
+end
 
 local function format_filetype(pattern, omit_clients)
     omit_clients = omit_clients or {}
@@ -10,12 +36,7 @@ local function format_filetype(pattern, omit_clients)
         pattern = pattern,
         callback = function()
             vim.lsp.buf.format {
-                filter = function(client)
-                    if omit_clients[client.name] then
-                        return false
-                    end
-                    return true
-                end,
+                filter = M.format_filter(omit_clients)
             }
         end,
     })
@@ -39,17 +60,11 @@ if enable then
         "*.lua",
         "*.go",
         "*.fnl",
-    }, {
-        ["tsserver"] = true,
-        ["jsonls"] = true,
-        ["yammls"] = true,
-        ["sumneko_lua"] = true,
-    })
+    }, M.default_fmt_omit)
 
     format_filetype({
         "*.astro",
-    }, {
-        ["astro"] = true,
-        ["eslint"] = true,
-    })
+    }, M.astro_fmt_omit)
 end
+
+return M
