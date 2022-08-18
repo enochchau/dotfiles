@@ -134,6 +134,14 @@ vim.api.nvim_create_user_command("BufClear", "%bd|e#|bd#", {})
 vim.api.nvim_create_user_command("SwapNu", function()
     opt.relativenumber = not opt.relativenumber._value
 end, {})
+autocmd(
+    { "BufRead", "BufNewFile" },
+    { pattern = "skhdrc", command = "set filetype=config" }
+)
+autocmd(
+    { "BufRead", "BufNewFile" },
+    { pattern = "yabairc", command = "set filetype=sh" }
+)
 
 require "enoch.plugins"
 
