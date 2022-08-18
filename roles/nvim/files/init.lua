@@ -16,6 +16,7 @@ opt.winbar = "%#lualine_a_active#%f"
 opt.signcolumn = "yes:1"
 opt.laststatus = 3
 opt.number = true
+opt.relativenumber = true
 opt.wrap = true
 opt.encoding = "utf-8"
 opt.mouse = "a"
@@ -109,27 +110,30 @@ nmap("]b", ":bnext<CR>")
 nmap("[b", ":bprevious<CR>")
 
 -- relative line numbers
-local number_toggle = augroup("NumberToggle", {})
-autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
-    pattern = "*",
-    callback = function()
-        if opt_local.number._value and mode() ~= "i" then
-            opt_local.relativenumber = true
-        end
-    end,
-    group = number_toggle,
-})
-autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
-    pattern = "*",
-    callback = function()
-        if opt_local.number._value then
-            opt_local.relativenumber = false
-        end
-    end,
-    group = number_toggle,
-})
+-- local number_toggle = augroup("NumberToggle", {})
+-- autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
+--     pattern = "*",
+--     callback = function()
+--         if opt_local.number._value and mode() ~= "i" then
+--             opt_local.relativenumber = true
+--         end
+--     end,
+--     group = number_toggle,
+-- })
+-- autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
+--     pattern = "*",
+--     callback = function()
+--         if opt_local.number._value then
+--             opt_local.relativenumber = false
+--         end
+--     end,
+--     group = number_toggle,
+-- })
 
 vim.api.nvim_create_user_command("BufClear", "%bd|e#|bd#", {})
+vim.api.nvim_create_user_command("SwapNu", function()
+    opt.relativenumber = not opt.relativenumber._value
+end, {})
 
 require "enoch.plugins"
 
