@@ -1,11 +1,74 @@
-local wezterm = require("wezterm")
+local wezterm = require "wezterm"
+
+local onedark = {
+    background = "#1e2127",
+    foreground = "#abb2bf",
+    bright_foreground = "#e6efff",
+    normal = {
+        black = "#1e2127",
+        red = "#e06c75",
+        green = "#98c379",
+        yellow = "#d19a66",
+        blue = "#61afef",
+        magenta = "#c678dd",
+        cyan = "#56b6c2",
+        white = "#828791",
+    },
+    bright = {
+        black = "#5c6370",
+        red = "#e06c75",
+        green = "#98c379",
+        yellow = "#d19a66",
+        blue = "#61afef",
+        magenta = "#c678dd",
+        cyan = "#56b6c2",
+        white = "#e6efff",
+    },
+}
 
 return {
-	term = "wezterm",
-	color_scheme = "{{ theme }}",
-	window_background_opacity = {{ opacity }},
-	font = wezterm.font("{{ font }}"),
-	font_size = {{ font_size }},
-	enable_tab_bar = false,
-	use_fancy_tab_bar = false,
+    term = "wezterm",
+    window_background_opacity = {{ opacity }},
+    font = wezterm.font "{{ font }}",
+    font_size = {{ font_size }},
+    window_padding = {
+        left = 6,
+        right = 6,
+        top = 6,
+        bottom = 6,
+    },
+    enable_tab_bar = false,
+    use_fancy_tab_bar = false,
+    color_scheme = "one-dark",
+    color_schemes = {
+        ["one-dark"] = {
+            foreground = onedark.foreground,
+            background = onedark.background,
+            cursor_bg = onedark.foreground,
+            cursor_fg = onedark.background,
+            compose_cursor = onedark.normal.orange,
+            selection_fg = "none",
+            selection_bg = "rgba(50% 50% 50% 50%)",
+            ansi = {
+                onedark.normal.black,
+                onedark.normal.red,
+                onedark.normal.green,
+                onedark.normal.yellow,
+                onedark.normal.blue,
+                onedark.normal.magenta,
+                onedark.normal.cyan,
+                onedark.normal.white,
+            },
+            brights = {
+                onedark.bright.black,
+                onedark.bright.red,
+                onedark.bright.green,
+                onedark.bright.yellow,
+                onedark.bright.blue,
+                onedark.bright.magenta,
+                onedark.bright.cyan,
+                onedark.bright.white,
+            },
+        },
+    },
 }
