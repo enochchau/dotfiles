@@ -41,6 +41,7 @@ alias wtb='~/code/dev-scripts/bootstrap-worktree.sh'
 alias vi="nvim"
 alias vim="nvim"
 alias vimrc="nvim ~/.config/nvim"
+alias conf="~/code/dev-scripts/config.sh"
 
 cdg() { cd "$(git rev-parse --show-toplevel)/$1" }
 _cdg_completion()
