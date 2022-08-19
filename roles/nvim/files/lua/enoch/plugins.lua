@@ -29,6 +29,10 @@ return require("packer").startup(function(use)
     use "folke/tokyonight.nvim"
     use "kaiuri/nvim-juliana"
     use "B4mbus/oxocarbon-lua.nvim"
+    use {
+        "mcchrish/zenbones.nvim",
+        requires = "rktjmp/lush.nvim",
+    }
 
     use "xiyaowong/nvim-transparent"
 

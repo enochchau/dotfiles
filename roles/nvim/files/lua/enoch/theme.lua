@@ -8,8 +8,9 @@ local has = vim.fn.has
 -- "onenord"
 -- "tokyonight"
 -- "oxocarbon-lua"
+-- "minimal"
 
-local theme = "minimal"
+local theme = "zenwritten"
 
 if has "wsl" == 0 then
     if theme == "oxocarbon-lua" then
