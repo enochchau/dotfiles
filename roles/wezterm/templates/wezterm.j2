@@ -27,7 +27,13 @@ local onedark = {
 }
 
 return {
+    -- wsl stuff
+    -- default_domain = "WSL:Ubuntu",
+    -- default_cwd = "/home/enochchau/",
+
     term = "wezterm",
+    initial_rows = 48,
+    initial_cols = 168,
     window_background_opacity = {{ opacity }},
     font = wezterm.font "{{ font }}",
     font_size = {{ font_size }},
