@@ -23,6 +23,7 @@ return require("packer").startup(function(use)
     use "numToStr/Comment.nvim"
 
     -- themes
+    use "yazeed1s/minimal.nvim"
     use "navarasu/onedark.nvim"
     use "NTBBloodbath/doom-one.nvim"
     use "folke/tokyonight.nvim"
