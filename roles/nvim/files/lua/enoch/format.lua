@@ -21,10 +21,12 @@ local fmt_on_save = augroup("FmtOnSave", {})
 ---@param omit_client_set table Set like table
 ---@return fun(client: table):boolean filter callback for vim.lsp.buf.format
 function M.format_filter(omit_client_set)
-    return function(fmt_client)
-        if omit_client_set[fmt_client.name] then
+    return function(fmt_client_name)
+        if omit_client_set[fmt_client_name] then
+            print('checking formatting', fmt_client_name, false)
             return false
         end
+            print('checking formatting', fmt_client_name, true)
         return true
     end
 end

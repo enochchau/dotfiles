@@ -23,9 +23,9 @@ function M.common_on_attach(client, bufnr)
         vim.lsp.buf.format {
             filter = function(fmt_client)
                 if client.name == "astro" then
-                    return fmt.format_filter(fmt.astro_fmt_omit)(fmt_client)
+                    return fmt.format_filter(fmt.astro_fmt_omit)(fmt_client.name)
                 end
-                return fmt.format_filter(fmt.default_fmt_omit)(fmt_client)
+                return fmt.format_filter(fmt.default_fmt_omit)(fmt_client.name)
             end,
         }
     end)
