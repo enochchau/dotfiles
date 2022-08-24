@@ -4,6 +4,7 @@ alt - t : open -n /Applications/Alacritty.app
 alt - b : open -n /Applications/Google\ Chrome.app --args --profile-directory="Default"   
 alt - f : open -n /Applications/Firefox.app
 alt - s : open /Applications/Slack.app
+alt - u : open /Applications/Spotify.app
 
 # Yabai
 

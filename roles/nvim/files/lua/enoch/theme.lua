@@ -3,7 +3,7 @@ local has = vim.fn.has
 vim.g.tokyonight_style = "storm"
 
 vim.opt.bg = "dark"
-local theme = "oxocarbon-lua"
+local theme = "tokyonight"
 
 if theme == "oxocarbon-lua" then
     require("transparent").setup { enable = true }
