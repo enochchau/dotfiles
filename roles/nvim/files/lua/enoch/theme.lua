@@ -13,5 +13,4 @@ if theme == "tokyonight" then
     vim.opt.bg = "light"
 end
 
-
 vim.cmd("colo " .. theme)

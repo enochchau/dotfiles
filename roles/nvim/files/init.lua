@@ -3,6 +3,7 @@ pcall(require, "impatient")
 local nmap = require("enoch.helpers").nmap
 local vmap = require("enoch.helpers").vmap
 local autocmd = vim.api.nvim_create_autocmd
+local fmt = require "enoch.format"
 local augroup = vim.api.nvim_create_augroup
 local has = vim.fn.has
 local mode = vim.fn.mode
@@ -130,10 +131,24 @@ nmap("[b", ":bprevious<CR>")
 --     group = number_toggle,
 -- })
 
+-- Clear all but the current buffer
 vim.api.nvim_create_user_command("BufClear", "%bd|e#|bd#", {})
+
+-- Format cmd
+vim.api.nvim_create_user_command("Format", function()
+    if vim.opt_local.filetype == "astro" then
+        fmt.fmt_astro()
+    else
+        fmt.fmt_default()
+    end
+end, {})
+
+-- swap nu to rnu and visa versa
 vim.api.nvim_create_user_command("SwapNu", function()
     opt.relativenumber = not opt.relativenumber._value
 end, {})
+
+-- Configure additional filetypes
 autocmd(
     { "BufRead", "BufNewFile" },
     { pattern = "skhdrc", command = "set filetype=config" }

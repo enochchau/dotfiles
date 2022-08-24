@@ -23,12 +23,24 @@ local fmt_on_save = augroup("FmtOnSave", {})
 function M.format_filter(omit_client_set)
     return function(fmt_client_name)
         if omit_client_set[fmt_client_name] then
-            print('checking formatting', fmt_client_name, false)
             return false
         end
-            print('checking formatting', fmt_client_name, true)
         return true
     end
+end
+
+local function fmt(omit_clients)
+    vim.lsp.buf.format {
+        filter = M.format_filter(omit_clients),
+    }
+end
+
+function M.fmt_astro()
+    fmt(M.astro_fmt_omit)
+end
+
+function M.fmt_default()
+    fmt(M.default_fmt_omit)
 end
 
 local function format_filetype(pattern, omit_clients)
@@ -37,15 +49,13 @@ local function format_filetype(pattern, omit_clients)
         group = fmt_on_save,
         pattern = pattern,
         callback = function()
-            vim.lsp.buf.format {
-                filter = M.format_filter(omit_clients)
-            }
+            fmt(omit_clients)
         end,
     })
 end
 
-local enable = false
-if enable then
+local enable_autocmd = false
+if enable_autocmd then
     format_filetype({
         "*.js",
         "*.ts",
