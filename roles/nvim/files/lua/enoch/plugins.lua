@@ -23,16 +23,11 @@ return require("packer").startup(function(use)
     use "numToStr/Comment.nvim"
 
     -- themes
-    use "yazeed1s/minimal.nvim"
     use "navarasu/onedark.nvim"
     use "NTBBloodbath/doom-one.nvim"
     use "folke/tokyonight.nvim"
     use "kaiuri/nvim-juliana"
     use "B4mbus/oxocarbon-lua.nvim"
-    use {
-        "mcchrish/zenbones.nvim",
-        requires = "rktjmp/lush.nvim",
-    }
 
     use "xiyaowong/nvim-transparent"
 
