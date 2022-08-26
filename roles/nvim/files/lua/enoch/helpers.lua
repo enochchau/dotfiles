@@ -14,6 +14,7 @@ end
 M.nmap = map "n"
 M.vmap = map "v"
 M.xmap = map "x"
+M.tmap = map "t"
 M.map = function(modes, lhs, rhs, buffer)
     map(modes)(lhs, rhs, buffer)
 end

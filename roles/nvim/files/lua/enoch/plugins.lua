@@ -175,7 +175,7 @@ return require("packer").startup(function(use)
         end,
     }
     use "goolord/alpha-nvim"
-    use "akinsho/toggleterm.nvim"
+    use "numToStr/FTerm.nvim"
     use {
         "ggandor/leap.nvim",
         config = function()

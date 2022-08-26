@@ -1,14 +1,26 @@
-local toggleterm = require "toggleterm"
+local nmap = require("enoch.helpers").nmap
 
-local opts = {
-    open_mapping = "<c-\\>",
-}
+require("FTerm").setup()
 
-local colors_name = vim.g.colors_name
-if colors_name == "gruvbox" then
-    opts.shading_factor = 5
-elseif colors_name == "onedark" then
-    opts.shading_factor = 3
-end
+nmap([[<C-\>]], require("FTerm").toggle)
 
-toggleterm.setup(opts)
+vim.api.nvim_create_user_command(
+    "FTermOpen",
+    require("FTerm").open,
+    { bang = true }
+)
+vim.api.nvim_create_user_command(
+    "FTermClose",
+    require("FTerm").close,
+    { bang = true }
+)
+vim.api.nvim_create_user_command(
+    "FTermExit",
+    require("FTerm").exit,
+    { bang = true }
+)
+vim.api.nvim_create_user_command(
+    "FTermToggle",
+    require("FTerm").toggle,
+    { bang = true }
+)
