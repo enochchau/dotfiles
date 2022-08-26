@@ -43,10 +43,6 @@ local servers = {
     "zls",
 }
 
-require("mason-lspconfig").setup {
-    ensure_installed = servers,
-}
-
 -- setup
 for _, server in ipairs(servers) do
     if lsp_opts[server] then
@@ -65,10 +61,15 @@ null_ls.setup {
             env = {
                 ["PRETTIERD_DEFAULT_CONFIG"] = vim.fn.expand "~/.config/nvim/.prettierrc",
             },
-            extra_filetypes = { "astro" },
+            extra_filetypes = { "astro", "html" },
         },
         formatting.stylua,
         formatting.fnlfmt,
         diagnostics.shellcheck,
     },
 }
+
+require("mason-lspconfig").setup {
+    ensure_installed = table.insert(servers,'html-lsp'),
+}
+
