@@ -28,6 +28,7 @@ return require("packer").startup(function(use)
     use "folke/tokyonight.nvim"
     use "kaiuri/nvim-juliana"
     use "B4mbus/oxocarbon-lua.nvim"
+    use "ray-x/aurora"
 
     use "xiyaowong/nvim-transparent"
 
