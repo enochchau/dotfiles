@@ -1,7 +1,5 @@
 local nmap = require("enoch.helpers").nmap
 
-require("FTerm").setup()
-
 nmap([[<C-\>]], require("FTerm").toggle)
 
 vim.api.nvim_create_user_command(

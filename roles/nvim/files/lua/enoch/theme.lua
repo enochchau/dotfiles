@@ -5,7 +5,7 @@ vim.g.aurora_italic = 1
 vim.g.aurora_bold = 1
 
 vim.opt.bg = "dark"
-local theme = "aurora"
+local theme = "tokyonight"
 
 if theme == "oxocarbon-lua" or theme == "aurora" then
     require("transparent").setup { enable = true }
