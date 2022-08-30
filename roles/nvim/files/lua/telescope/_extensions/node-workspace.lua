@@ -5,15 +5,6 @@ local conf = require("telescope.config").values
 local actions = require "telescope.actions"
 local action_state = require "telescope.actions.state"
 
-local function table_keys(t)
-    local keys = {}
-
-    for k, _v in pairs(t) do
-        table.insert(keys, k)
-    end
-    return keys
-end
-
 local function split_string(inputstr, sep)
     if sep == nil then
         sep = "%s"
@@ -25,7 +16,10 @@ local function split_string(inputstr, sep)
     return t
 end
 
-local function list_workspaces(package_manager)
+local function list_workspaces(package_manager, workspace_root)
+    local workspaces = {}
+    local keys = {}
+
     if package_manager == "yarn-berry" then
         local raw = vim.fn.system { "yarn", "workspaces", "list", "--json" }
         local lines = split_string(raw, "\n")
@@ -39,17 +33,57 @@ local function list_workspaces(package_manager)
         j = j .. "]"
         local parsed = json.decode(j)
 
-        local workspaces = {}
         for _i, v in ipairs(parsed) do
             workspaces[v.name] = v.location
+            table.insert(keys, v.name)
         end
-        return workspaces
+        return workspaces, keys
+    elseif package_manager == "yarn" then
+        local raw = vim.fn.system { "yarn", "workspaces", "info" }
+        local lines = split_string(raw, "\n")
+        local j = ""
+        for i = 2, #lines - 1, 1 do
+            j = j .. lines[i]
+        end
+        local parsed = json.decode(j)
+
+        workspaces["root"] = "."
+        table.insert(keys, "root")
+
+        for k, v in pairs(parsed) do
+            workspaces[k] = v.location
+            table.insert(keys, k)
+        end
+    elseif package_manager == "pnpm" then
+        local raw = vim.fn.system { "pnpm", "ls", "--json", "-r" }
+        local parsed = json.decode(raw)
+
+        for i, v in ipairs(parsed) do
+            workspaces[v.name] = v.path
+            table.insert(keys, v.name)
+        end
+    else -- npm
+        local original_cwd = vim.fn.getcwd()
+
+        vim.api.nvim_set_current_dir(workspace_root)
+        local raw =
+            vim.fn.system { "npm", "list", "-json", "-depth", "1", "-omit=dev" }
+        vim.api.nvim_set_current_dir(original_cwd)
+
+        local parsed = json.decode(raw)
+
+        workspaces["root"] = "."
+        table.insert(keys, "root")
+
+        for k, v in pairs(parsed.dependencies) do
+            if v.resolved ~= nil then
+                workspaces[k] = string.sub(v.resolved, 7)
+                table.insert(keys, k)
+            end
+        end
     end
-    -- TODO:
-    -- elseif package_manager == "yarn" then
-    --     local ws_json = vim.fn.system { "yarn", "workspaces", "info" }
-    --     print(ws_json)
-    -- end
+
+    return workspaces, keys
 end
 
 local function file_exists(name)
@@ -66,7 +100,7 @@ local function detect_package_manager(root_path)
     local res = "npm"
     if file_exists(root_path .. "/yarn.lock") then
         res = "yarn"
-    elseif file_exists(root_path .. "pnpm-lock.yaml") then
+    elseif file_exists(root_path .. "/pnpm-lock.yaml") then
         res = "pnpm"
     end
 
@@ -98,11 +132,6 @@ local function workspace(opts)
     local package_json = find_workspace_package_json()
     local j = read_json(package_json)
 
-    if j.workspaces == nil then
-        print "package.json is missing the workspace field!"
-        return
-    end
-
     local workspace_root = vim.fs.dirname(package_json)
     local package_manager = detect_package_manager(workspace_root)
 
@@ -113,8 +142,8 @@ local function workspace(opts)
         end
     end
 
-    local workspaces = list_workspaces(package_manager)
-    local workspace_keys = table_keys(workspaces)
+    local workspaces, workspace_keys =
+        list_workspaces(package_manager, workspace_root)
 
     pickers
         .new(opts, {
@@ -130,7 +159,13 @@ local function workspace(opts)
                     local key = selection[1]
                     local dir = workspaces[key]
 
-                    local path = vim.fs.normalize(workspace_root .. "/" .. dir)
+                    -- don't need to normalize paths for pnpm
+                    local path
+                    if package_manager ~= "pnpm" then
+                        path = vim.fs.normalize(workspace_root .. "/" .. dir)
+                    else
+                        path = dir
+                    end
                     vim.api.nvim_set_current_dir(path)
                 end)
                 return true
