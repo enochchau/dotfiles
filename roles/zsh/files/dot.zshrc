@@ -29,9 +29,11 @@ plugins=(
   yarn
   npm
   zoxide
+  fzf
 )
 
 source $ZSH/oh-my-zsh.sh
+export FZF_CTRL_T_OPTS="--preview 'bat --color=always {}'"
 
 
 alias cddot='cd ~/dotfiles'
