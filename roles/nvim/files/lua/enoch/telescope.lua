@@ -26,6 +26,7 @@ telescope.setup {
 
 telescope.load_extension "fzf"
 telescope.load_extension "ui-select"
+telescope.load_extension "node-workspace"
 
 nmap("<C-p>", builtin.find_files)
 nmap("<C-f>", builtin.live_grep)
