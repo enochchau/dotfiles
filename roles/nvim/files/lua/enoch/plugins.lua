@@ -105,6 +105,7 @@ return require("packer").startup(function(use)
                 run = "make",
             },
             "nvim-telescope/telescope-ui-select.nvim",
+            "~/code/telescope-node-workspace.nvim"
         },
     }
 
