@@ -46,6 +46,7 @@
           - shellcheck
           - stylua
           - vale
+          - zoxide
         homebrew_casks:
           - alacritty
           - wezterm
@@ -69,6 +70,7 @@
           - python
           - ripgrep
           - wget
+          - zoxide
           - zip
         apt_pkgs:
           - bat
@@ -79,6 +81,7 @@
           - luarocks
           - ripgrep
           - shellcheck
+          - zoxide
           - wget
           - zip
     - role: git
