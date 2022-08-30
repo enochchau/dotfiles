@@ -28,6 +28,7 @@ plugins=(
   zsh-autosuggestions
   yarn
   npm
+  zoxide
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -42,7 +43,6 @@ alias vi="nvim"
 alias vim="nvim"
 alias vimrc="nvim ~/.config/nvim"
 alias conf="~/code/dev-scripts/config.sh"
-alias z="zoxide"
 
 cdg() { cd "$(git rev-parse --show-toplevel)/$1" }
 _cdg_completion()
