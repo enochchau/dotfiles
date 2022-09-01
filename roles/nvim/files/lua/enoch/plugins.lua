@@ -65,19 +65,17 @@ return require("packer").startup(function(use)
     -- lsp
     use {
         "neovim/nvim-lspconfig",
-        requires = {
-            "jose-elias-alvarez/null-ls.nvim",
-            "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
-            {
-                "j-hui/fidget.nvim",
-                config = function()
-                    require("fidget").setup()
-                end,
-            },
-            "b0o/schemastore.nvim",
-            "onsails/lspkind.nvim",
+        "jose-elias-alvarez/null-ls.nvim",
+        "williamboman/mason.nvim",
+        "williamboman/mason-lspconfig.nvim",
+        {
+            "j-hui/fidget.nvim",
+            config = function()
+                require("fidget").setup()
+            end,
         },
+        "b0o/schemastore.nvim",
+        "onsails/lspkind.nvim",
     }
 
     -- completion
@@ -105,7 +103,7 @@ return require("packer").startup(function(use)
                 run = "make",
             },
             "nvim-telescope/telescope-ui-select.nvim",
-            "~/code/telescope-node-workspace.nvim"
+            "~/code/telescope-node-workspace.nvim",
         },
     }
 

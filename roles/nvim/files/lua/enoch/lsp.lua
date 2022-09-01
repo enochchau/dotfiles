@@ -52,6 +52,10 @@ for _, server in ipairs(servers) do
     end
 end
 
+require("mason-lspconfig").setup {
+    ensure_installed = table.insert(servers, "html-lsp"),
+}
+
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics
 null_ls.setup {
@@ -68,8 +72,3 @@ null_ls.setup {
         diagnostics.shellcheck,
     },
 }
-
-require("mason-lspconfig").setup {
-    ensure_installed = table.insert(servers,'html-lsp'),
-}
-
