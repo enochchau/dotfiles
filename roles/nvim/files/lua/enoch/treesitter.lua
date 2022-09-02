@@ -95,3 +95,4 @@ comment.setup {
         }
     end,
 }
+require("treesitter-context").setup()

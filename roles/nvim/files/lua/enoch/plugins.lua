@@ -130,6 +130,7 @@ return require("packer").startup(function(use)
                     )
                 end,
             },
+            "nvim-treesitter/nvim-treesitter-context",
         },
     }
 
