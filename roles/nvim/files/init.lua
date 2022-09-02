@@ -13,7 +13,6 @@ local opt_local = vim.opt_local
 local cmd = vim.cmd
 
 g.mapleader = ","
-opt.winbar = "%#lualine_a_active#%f"
 opt.signcolumn = "yes:1"
 opt.laststatus = 3
 opt.number = true

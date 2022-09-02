@@ -11,6 +11,10 @@ local function get_theme()
     return theme
 end
 
+local winbar = {
+    lualine_c = { "%f" },
+}
+
 lualine.setup {
     sections = {
         lualine_b = {
@@ -29,4 +33,6 @@ lualine.setup {
         "neo-tree",
         "toggleterm",
     },
+    winbar = winbar,
+    inactive_winbar = winbar,
 }

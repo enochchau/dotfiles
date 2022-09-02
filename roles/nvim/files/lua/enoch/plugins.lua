@@ -60,7 +60,7 @@ return require("packer").startup(function(use)
             "javascriptreact",
         },
     }
-    use "ec965/nvim-pnp-checker"
+    use "~/code/nvim-pnp-checker"
 
     -- lsp
     use {
