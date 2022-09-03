@@ -11,7 +11,7 @@ bindkey '^[[Z' autosuggest-accept  # shift + tab  | autosuggest
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 export BAT_PAGER='less'
-export BAT_THEME='Dracula'
+export BAT_THEME='ansi'
 
 export ZSH=$HOME/.config/zsh/oh-my-zsh
 export ZSH_THEME="powerlevel10k/powerlevel10k"
