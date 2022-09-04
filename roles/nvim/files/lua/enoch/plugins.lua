@@ -1,8 +1,8 @@
 vim.cmd [[
-  augroup packer_user_config
-    autocmd!
-    autocmd BufWritePost plugins.lua source <afile> | PackerCompile
-  augroup end
+    augroup packer_user_config
+        autocmd!
+        autocmd BufWritePost plugins.lua source <afile> | PackerCompile
+    augroup end
 ]]
 
 return require("packer").startup(function(use)
@@ -145,6 +145,7 @@ return require("packer").startup(function(use)
     -- additional language support
     use "amadeus/vim-mjml"
     use "pearofducks/ansible-vim"
+    use "vim-crystal/vim-crystal"
 
     -- status line
     use "nvim-lualine/lualine.nvim"
@@ -185,16 +186,22 @@ return require("packer").startup(function(use)
     use {
         "NvChad/nvim-colorizer.lua",
         config = function()
-            require("colorizer").setup({
-                "javascript",
-                "javascriptreact",
-                "svelte",
-                "astro",
-                "typescript",
-                "typescriptreact",
-                "css",
-                "scss",
-            }, { names = false, mode = "virtualtext" })
+            require("colorizer").setup {
+                filetypes = {
+                    "javascript",
+                    "javascriptreact",
+                    "svelte",
+                    "astro",
+                    "typescript",
+                    "typescriptreact",
+                    "css",
+                    "scss",
+                },
+                user_default_options = {
+                    names = false,
+                    mode = "virtualtext",
+                },
+            }
         end,
     }
 
