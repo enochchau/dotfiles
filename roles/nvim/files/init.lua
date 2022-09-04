@@ -4,12 +4,9 @@ local nmap = require("enoch.helpers").nmap
 local vmap = require("enoch.helpers").vmap
 local autocmd = vim.api.nvim_create_autocmd
 local fmt = require "enoch.format"
-local augroup = vim.api.nvim_create_augroup
 local has = vim.fn.has
-local mode = vim.fn.mode
 local g = vim.g
 local opt = vim.opt
-local opt_local = vim.opt_local
 local cmd = vim.cmd
 
 g.mapleader = ","
@@ -108,27 +105,6 @@ opt.clipboard = "unnamedplus"
 -- traverse buffers
 nmap("]b", ":bnext<CR>")
 nmap("[b", ":bprevious<CR>")
-
--- relative line numbers
--- local number_toggle = augroup("NumberToggle", {})
--- autocmd({ "BufEnter", "FocusGained", "InsertLeave", "WinEnter" }, {
---     pattern = "*",
---     callback = function()
---         if opt_local.number._value and mode() ~= "i" then
---             opt_local.relativenumber = true
---         end
---     end,
---     group = number_toggle,
--- })
--- autocmd({ "BufLeave", "FocusLost", "InsertEnter", "WinLeave" }, {
---     pattern = "*",
---     callback = function()
---         if opt_local.number._value then
---             opt_local.relativenumber = false
---         end
---     end,
---     group = number_toggle,
--- })
 
 -- Clear all but the current buffer
 vim.api.nvim_create_user_command("BufClear", "%bd|e#|bd#", {})
