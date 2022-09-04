@@ -4,6 +4,7 @@ local nmap = require("enoch.helpers").nmap
 local vmap = require("enoch.helpers").vmap
 local autocmd = vim.api.nvim_create_autocmd
 local fmt = require "enoch.format"
+local augroup = vim.api.nvim_create_augroup
 local has = vim.fn.has
 local g = vim.g
 local opt = vim.opt
@@ -131,6 +132,10 @@ autocmd(
 autocmd(
     { "BufRead", "BufNewFile" },
     { pattern = "yabairc", command = "set filetype=sh" }
+)
+autocmd(
+    { "BufRead", "BufNewFile" },
+    { pattern = "*.cr", command = "set filetype=crystal" }
 )
 
 require "enoch.plugins"

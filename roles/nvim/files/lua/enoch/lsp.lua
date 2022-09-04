@@ -29,6 +29,7 @@ local servers = {
     "astro",
     "bashls",
     "cssls",
+    "crystalline",
     "eslint",
     "prismals",
     "gopls",
