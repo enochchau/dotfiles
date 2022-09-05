@@ -125,18 +125,18 @@ vim.api.nvim_create_user_command("SwapNu", function()
 end, {})
 
 -- Configure additional filetypes
-vim.filetype.add({
+vim.filetype.add {
     extension = {
         ["cr"] = "crystal",
         ["mdx"] = "markdown",
         ["pro"] = "prolog",
-        ["tf"] = "terraform"
+        ["tf"] = "terraform",
     },
     filename = {
         ["yabairc"] = "sh",
         ["skhdrc"] = "config",
-    }
-})
+    },
+}
 
 require "enoch.plugins"
 
