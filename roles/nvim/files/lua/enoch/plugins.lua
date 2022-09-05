@@ -207,7 +207,6 @@ return require("packer").startup(function(use)
 
     -- make vim start faster
     use "lewis6991/impatient.nvim"
-    use "nathom/filetype.nvim"
 
     -- file tree
     use {

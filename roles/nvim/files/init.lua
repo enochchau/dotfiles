@@ -125,18 +125,18 @@ vim.api.nvim_create_user_command("SwapNu", function()
 end, {})
 
 -- Configure additional filetypes
-autocmd(
-    { "BufRead", "BufNewFile" },
-    { pattern = "skhdrc", command = "set filetype=config" }
-)
-autocmd(
-    { "BufRead", "BufNewFile" },
-    { pattern = "yabairc", command = "set filetype=sh" }
-)
-autocmd(
-    { "BufRead", "BufNewFile" },
-    { pattern = "*.cr", command = "set filetype=crystal" }
-)
+vim.filetype.add({
+    extension = {
+        ["cr"] = "crystal",
+        ["mdx"] = "markdown",
+        ["pro"] = "prolog",
+        ["tf"] = "terraform"
+    },
+    filename = {
+        ["yabairc"] = "sh",
+        ["skhdrc"] = "config",
+    }
+})
 
 require "enoch.plugins"
 
