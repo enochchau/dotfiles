@@ -12,7 +12,12 @@ local function get_theme()
 end
 
 local winbar = {
-    lualine_c = { "%f" },
+    lualine_c = {
+        -- function()
+        --     return vim.fn.pathshorten(vim.fn.expand "%f", 5)
+        -- end,
+        "%f"
+    },
 }
 
 lualine.setup {
