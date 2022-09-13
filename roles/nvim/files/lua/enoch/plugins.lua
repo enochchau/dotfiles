@@ -28,7 +28,6 @@ return require("packer").startup(function(use)
     use "folke/tokyonight.nvim"
     use "kaiuri/nvim-juliana"
     use "B4mbus/oxocarbon-lua.nvim"
-    use "ray-x/aurora"
 
     use "xiyaowong/nvim-transparent"
 
@@ -44,7 +43,7 @@ return require("packer").startup(function(use)
     use {
         "~/code/mjml-preview.nvim",
         ft = "mjml",
-        run = "cd app && npm install && npm run build",
+        run = "cd app && npm install",
         config = function()
             require("enoch.helpers").nmap("<CR>", ":MjmlPreviewToggle<CR>")
         end,
