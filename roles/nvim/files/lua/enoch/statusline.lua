@@ -16,7 +16,7 @@ local winbar = {
         -- function()
         --     return vim.fn.pathshorten(vim.fn.expand "%f", 5)
         -- end,
-        "%f"
+        "%f",
     },
 }
 
