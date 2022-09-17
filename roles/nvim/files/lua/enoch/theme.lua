@@ -11,4 +11,4 @@ if theme == "oxocarbon-lua" then
     require("transparent").setup { enable = true }
 end
 
-vim.cmd("colo " .. theme)
+vim.cmd.colorscheme(theme)
