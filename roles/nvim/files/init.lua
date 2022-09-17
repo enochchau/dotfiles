@@ -26,7 +26,6 @@ opt.updatetime = 300
 opt.smartcase = true
 opt.ignorecase = true
 opt.sessionoptions = "blank,curdir,folds,help,tabpages,winsize"
-opt.spell = true
 
 opt.swapfile = true
 opt.writebackup = true
