@@ -20,3 +20,5 @@ Then restart your terminal session and run
 ```sh
 make update
 ```
+
+[Remap keys on MacOS](https://github.com/amarsyla/hidutil-key-remapping-generator)

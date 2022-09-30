@@ -51,7 +51,6 @@
           - alacritty
           - wezterm
           - linearmouse
-          - karabiner-elements
           - rectangle
           - spaceid
         dnf_pkgs:
