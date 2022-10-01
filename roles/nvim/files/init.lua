@@ -51,8 +51,8 @@ nmap("j", "gj")
 nmap("k", "gk")
 
 -- enable syntax and filetype detection
-cmd.syntax("enable")
-cmd.filetype("plugin indent on")
+cmd.syntax "enable"
+cmd.filetype "plugin indent on"
 
 -- set tabs to 2 spaces
 opt.tabstop = 2

@@ -58,7 +58,7 @@ return require("packer").startup(function(use)
     use {
         "neovim/nvim-lspconfig",
         -- pin for now to fix client cmd type mismatch
-        {"jose-elias-alvarez/null-ls.nvim", commit = "76d0573fc159839a9c4e62a0ac4f1046845cdd50"},
+        "jose-elias-alvarez/null-ls.nvim",
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
         {
