@@ -61,14 +61,14 @@ return require("packer").startup(function(use)
         "jose-elias-alvarez/null-ls.nvim",
         "williamboman/mason.nvim",
         "williamboman/mason-lspconfig.nvim",
-        {
-            "j-hui/fidget.nvim",
-            config = function()
-                require("fidget").setup()
-            end,
-        },
         "b0o/schemastore.nvim",
         "onsails/lspkind.nvim",
+    }
+    use {
+        "vigoux/notifier.nvim",
+        config = function()
+            require("notifier").setup {}
+        end,
     }
 
     -- completion
