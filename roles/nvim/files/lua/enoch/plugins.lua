@@ -144,7 +144,13 @@ return require("packer").startup(function(use)
     use "nvim-lualine/lualine.nvim"
 
     -- qol
-    use "almo7aya/openingh.nvim"
+    use {
+        "almo7aya/openingh.nvim",
+        config = function()
+            require("openingh").setup()
+        end,
+    }
+
     use {
         "lukas-reineke/indent-blankline.nvim",
         config = function()
