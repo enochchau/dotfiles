@@ -1,9 +1,8 @@
 local has = vim.fn.has
 
-vim.g.aurora_italic = 1
-vim.g.aurora_bold = 1
+vim.g.gruvbox_contrast_light = "soft"
 
-vim.opt.bg = "dark"
+vim.opt.bg = "light"
 local theme = "tokyonight"
 
 if theme == "oxocarbon-lua" then

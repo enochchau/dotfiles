@@ -22,6 +22,8 @@ return require("packer").startup(function(use)
     use "kaiuri/nvim-juliana"
     use "B4mbus/oxocarbon-lua.nvim"
     use "Mofiqul/adwaita.nvim"
+    use "mhartington/oceanic-next"
+    use "morhetz/gruvbox"
 
     use "xiyaowong/nvim-transparent"
 
