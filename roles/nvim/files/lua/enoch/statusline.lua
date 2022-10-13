@@ -13,8 +13,9 @@ end
 
 local winbar = {
     lualine_c = {
-        "filetype",
-        "%f",
+        function()
+            return vim.fn.expand "%:~:."
+        end,
     },
 }
 
