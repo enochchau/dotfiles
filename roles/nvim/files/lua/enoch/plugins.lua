@@ -21,13 +21,7 @@ return require("packer").startup(function(use)
     use "NTBBloodbath/doom-one.nvim"
     use "folke/tokyonight.nvim"
     use "kaiuri/nvim-juliana"
-    use "B4mbus/oxocarbon-lua.nvim"
-    use "Mofiqul/adwaita.nvim"
-    use "mhartington/oceanic-next"
-    use "morhetz/gruvbox"
-    use "Mofiqul/vscode.nvim"
-
-    use "xiyaowong/nvim-transparent"
+    use "EdenEast/nightfox.nvim"
 
     -- preview
     use {
