@@ -47,12 +47,13 @@ end
 --- create cmp-nvim-lsp client capabilities
 ---@param opts table?
 local function create_capabilities(opts)
-    local capabilities = vim.lsp.protocol.make_client_capabilities()
+    local capabilities = cmp_nvim_lsp.default_capabilities()
     if opts and opts.add_snippet_support then
         capabilities.textDocument.completion.completionItem.snippetSupport =
             true
     end
-    return cmp_nvim_lsp.update_capabilities(capabilities)
+
+    return capabilities
 end
 
 ---create default lsp client opts

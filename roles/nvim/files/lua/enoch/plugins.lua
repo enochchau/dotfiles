@@ -16,6 +16,7 @@ return require("packer").startup(function(use)
     use "numToStr/Comment.nvim"
 
     -- themes
+    --
     use "navarasu/onedark.nvim"
     use "NTBBloodbath/doom-one.nvim"
     use "folke/tokyonight.nvim"
@@ -24,6 +25,7 @@ return require("packer").startup(function(use)
     use "Mofiqul/adwaita.nvim"
     use "mhartington/oceanic-next"
     use "morhetz/gruvbox"
+    use "Mofiqul/vscode.nvim"
 
     use "xiyaowong/nvim-transparent"
 

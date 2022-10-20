@@ -7,6 +7,7 @@ M.default_fmt_omit = {
     ["tsserver"] = true,
     ["jsonls"] = true,
     ["yammls"] = true,
+    ["eslint"] = true,
     ["sumneko_lua"] = true,
 }
 
