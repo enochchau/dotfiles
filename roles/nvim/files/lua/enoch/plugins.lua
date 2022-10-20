@@ -21,8 +21,6 @@ return require("packer").startup(function(use)
     use "NTBBloodbath/doom-one.nvim"
     use "folke/tokyonight.nvim"
     use "kaiuri/nvim-juliana"
-    use "EdenEast/nightfox.nvim"
-
     use { "EdenEast/nightfox.nvim", run = ":NightfoxCompile" }
 
     -- preview
