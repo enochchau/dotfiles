@@ -23,6 +23,8 @@ return require("packer").startup(function(use)
     use "kaiuri/nvim-juliana"
     use "EdenEast/nightfox.nvim"
 
+    use { "EdenEast/nightfox.nvim", run = ":NightfoxCompile" }
+
     -- preview
     use {
         "iamcco/markdown-preview.nvim",
