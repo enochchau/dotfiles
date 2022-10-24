@@ -124,18 +124,6 @@ function M.eslint()
         opts.cmd = pnp_checker.get_eslint_pnp_cmd(pnp_path)
     end
 
-    opts.filetypes = {
-        "javascript",
-        "javascriptreact",
-        "javascript.jsx",
-        "typescript",
-        "typescriptreact",
-        "typescript.tsx",
-        "vue",
-        "astro",
-        "svelte",
-    }
-
     return opts
 end
 
