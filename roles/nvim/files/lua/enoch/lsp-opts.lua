@@ -3,6 +3,7 @@ local schemastore = require "schemastore"
 local telescope_builtin = require "telescope.builtin"
 local nmap = require("enoch.helpers").nmap
 local xmap = require("enoch.helpers").xmap
+local map = require("enoch.helpers").map
 local fmt = require "enoch.format"
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
 
@@ -18,8 +19,7 @@ function M.common_on_attach(client, bufnr)
     nmap("gr", telescope_builtin.lsp_references)
     nmap("gs", telescope_builtin.lsp_document_symbols)
 
-    xmap("<leader>f", ":<C-U>lua vim.lsp.buf.range_formatting()<CR>")
-    nmap("<leader>f", function()
+    local function format()
         vim.lsp.buf.format {
             filter = function(fmt_client)
                 if client.name == "astro" then
@@ -29,8 +29,11 @@ function M.common_on_attach(client, bufnr)
                 end
                 return fmt.format_filter(fmt.default_fmt_omit)(fmt_client.name)
             end,
+            async = true,
         }
-    end)
+    end
+
+    map({ "x", "n" }, "<leader>f", format)
 
     nmap("[g", vim.diagnostic.goto_prev)
     nmap("g]", vim.diagnostic.goto_next)
