@@ -3,7 +3,7 @@ local autocmd = vim.api.nvim_create_autocmd
 
 local M = {}
 
-M.default_fmt_omit = {
+local default_fmt_omit = {
     ["tsserver"] = true,
     ["jsonls"] = true,
     ["yammls"] = true,
@@ -11,17 +11,14 @@ M.default_fmt_omit = {
     ["sumneko_lua"] = true,
 }
 
-M.astro_fmt_omit = {
+local astro_fmt_omit = {
     ["astro"] = true,
     ["eslint"] = true,
 }
-
-local fmt_on_save = augroup("FmtOnSave", {})
-
 --- format filter on omitted clients
 ---@param omit_client_set table Set like table
 ---@return fun(client: table):boolean filter callback for vim.lsp.buf.format
-function M.format_filter(omit_client_set)
+local function format_filter(omit_client_set)
     return function(fmt_client_name)
         if omit_client_set[fmt_client_name] then
             return false
@@ -30,34 +27,33 @@ function M.format_filter(omit_client_set)
     end
 end
 
-local function fmt(omit_clients)
+function M.format(client_name)
     vim.lsp.buf.format {
-        filter = M.format_filter(omit_clients),
-    }
-end
-
-function M.fmt_astro()
-    fmt(M.astro_fmt_omit)
-end
-
-function M.fmt_default()
-    fmt(M.default_fmt_omit)
-end
-
-local function format_filetype(pattern, omit_clients)
-    omit_clients = omit_clients or {}
-    autocmd("BufWritePre", {
-        group = fmt_on_save,
-        pattern = pattern,
-        callback = function()
-            fmt(omit_clients)
+        filter = function(fmt_client)
+            if client_name == "astro" then
+                return format_filter(astro_fmt_omit)(fmt_client.name)
+            end
+            return format_filter(default_fmt_omit)(fmt_client.name)
         end,
-    })
+        async = true,
+    }
 end
 
 local enable_autocmd = false
 if enable_autocmd then
-    format_filetype({
+    local fmt_on_save = augroup("FmtOnSave", {})
+
+    local function format_filetype(pattern, client_name)
+        autocmd("BufWritePre", {
+            group = fmt_on_save,
+            pattern = pattern,
+            callback = function()
+                M.format(client_name)
+            end,
+        })
+    end
+
+    format_filetype {
         "*.js",
         "*.ts",
         "*.jsx",
@@ -73,11 +69,9 @@ if enable_autocmd then
         "*.lua",
         "*.go",
         "*.fnl",
-    }, M.default_fmt_omit)
+    }
 
-    format_filetype({
-        "*.astro",
-    }, M.astro_fmt_omit)
+    format_filetype({ "*.astro" }, "astro")
 end
 
 return M

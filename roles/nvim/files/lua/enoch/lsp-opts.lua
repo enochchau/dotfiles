@@ -19,21 +19,9 @@ function M.common_on_attach(client, bufnr)
     nmap("gr", telescope_builtin.lsp_references)
     nmap("gs", telescope_builtin.lsp_document_symbols)
 
-    local function format()
-        vim.lsp.buf.format {
-            filter = function(fmt_client)
-                if client.name == "astro" then
-                    return fmt.format_filter(fmt.astro_fmt_omit)(
-                        fmt_client.name
-                    )
-                end
-                return fmt.format_filter(fmt.default_fmt_omit)(fmt_client.name)
-            end,
-            async = true,
-        }
-    end
-
-    map({ "x", "n" }, "<leader>f", format)
+    map({ "x", "n" }, "<leader>f", function()
+        fmt.format(client.name)
+    end)
 
     nmap("[g", vim.diagnostic.goto_prev)
     nmap("g]", vim.diagnostic.goto_next)
