@@ -16,30 +16,11 @@ return require("packer").startup(function(use)
     use "numToStr/Comment.nvim"
 
     -- themes
-    --
     use "navarasu/onedark.nvim"
     use "NTBBloodbath/doom-one.nvim"
     use "folke/tokyonight.nvim"
     use "kaiuri/nvim-juliana"
     use { "EdenEast/nightfox.nvim", run = ":NightfoxCompile" }
-
-    -- preview
-    use {
-        "iamcco/markdown-preview.nvim",
-        ft = { "markdown" },
-        run = "cd app && yarn install",
-        config = function()
-            require("enoch.helpers").nmap("<CR>", ":MarkdownPreviewToggle<CR>")
-        end,
-    }
-    use {
-        "~/code/mjml-preview.nvim",
-        ft = "mjml",
-        run = "cd app && npm install",
-        config = function()
-            require("enoch.helpers").nmap("<CR>", ":MjmlPreviewToggle<CR>")
-        end,
-    }
 
     -- yarn pnp
     use {
@@ -126,16 +107,36 @@ return require("packer").startup(function(use)
         },
     }
 
-    -- markdown code block syntax highlighting
+    -- markdown
+    -- code block syntax highlighting
     use {
         "AckslD/nvim-FeMaco.lua",
+        ft = "markdown",
         config = function()
             require("femaco").setup()
         end,
     }
+    use {
+        "iamcco/markdown-preview.nvim",
+        ft = { "markdown" },
+        run = "cd app && yarn install",
+        config = function()
+            require("enoch.helpers").nmap("<CR>", ":MarkdownPreviewToggle<CR>")
+        end,
+    }
+
+    -- mjml
+    use "amadeus/vim-mjml"
+    use {
+        "~/code/mjml-preview.nvim",
+        ft = "mjml",
+        run = "cd app && npm install",
+        config = function()
+            require("enoch.helpers").nmap("<CR>", ":MjmlPreviewToggle<CR>")
+        end,
+    }
 
     -- additional language support
-    use "amadeus/vim-mjml"
     use "pearofducks/ansible-vim"
     use "vim-crystal/vim-crystal"
 
@@ -149,7 +150,6 @@ return require("packer").startup(function(use)
             require("openingh").setup()
         end,
     }
-
     use {
         "lukas-reineke/indent-blankline.nvim",
         config = function()
