@@ -41,5 +41,7 @@ local function tuxsays(message)
     return message
 end
 
+-- vim.pretty_print(vim.fn.json_decode(vim.fn.readfile("~/.config/nvim/q.json")))
+
 startify.section.header.val = cowsays(get_fortune())
 alpha.setup(startify.config)
