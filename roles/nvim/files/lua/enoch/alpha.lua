@@ -1,6 +1,7 @@
 local alpha = require "alpha"
 local startify = require "alpha.themes.startify"
-local get_fortune = require "alpha.fortune"
+-- local get_fortune = require "alpha.fortune"
+local quotes = require "enoch.quotes"
 
 ---@param message table
 local function cowsays(message)
@@ -41,7 +42,13 @@ local function tuxsays(message)
     return message
 end
 
--- vim.pretty_print(vim.fn.json_decode(vim.fn.readfile("~/.config/nvim/q.json")))
-
-startify.section.header.val = cowsays(get_fortune())
+math.randomseed(os.time())
+local rand = math.random(1,#quotes)
+local msg = {} -- get_fortune()
+for _, str in ipairs(quotes[rand]) do
+    for _, sstr in ipairs(vim.fn.split(str, "\n")) do
+        table.insert(msg, sstr)
+    end
+end
+startify.section.header.val = cowsays(msg)
 alpha.setup(startify.config)
