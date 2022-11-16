@@ -1,5 +1,5 @@
 local has = vim.fn.has
 
-vim.opt.bg = "light"
+vim.opt.bg = "dark"
 
-vim.cmd.colorscheme "tokyonight"
+vim.cmd.colorscheme "onedark"
