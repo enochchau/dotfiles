@@ -2,4 +2,4 @@ local has = vim.fn.has
 
 vim.opt.bg = "light"
 
-vim.cmd.colorscheme "onedark"
+vim.cmd.colorscheme "tokyonight"
