@@ -32,6 +32,7 @@ local servers = {
     "crystalline",
     "eslint",
     "prismals",
+    "pyright",
     "gopls",
     "html",
     "jsonls",
@@ -71,5 +72,7 @@ null_ls.setup {
         formatting.stylua,
         formatting.fnlfmt,
         diagnostics.shellcheck,
+        formatting.black,
+        diagnostics.mypy
     },
 }
