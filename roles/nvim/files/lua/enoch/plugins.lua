@@ -43,7 +43,9 @@ return require("packer").startup(function(use)
         "williamboman/mason-lspconfig.nvim",
         "b0o/schemastore.nvim",
         "onsails/lspkind.nvim",
+        "jayp0521/mason-null-ls.nvim"
     }
+
     use {
         "vigoux/notifier.nvim",
         config = function()

@@ -3,6 +3,7 @@ local mason = require "mason"
 local lsp_opts = require "enoch.lsp-opts"
 local nmap = require("enoch.helpers").nmap
 local null_ls = require "null-ls"
+local mason_null_ls = require "mason-null-ls"
 
 local function enable_icon_signs()
     local signs =
@@ -73,6 +74,8 @@ null_ls.setup {
         formatting.fnlfmt,
         diagnostics.shellcheck,
         formatting.black,
-        diagnostics.mypy
+        diagnostics.mypy,
     },
 }
+
+mason_null_ls.setup { automatic_installation = true }
