@@ -113,9 +113,9 @@ vim.api.nvim_create_user_command("BufClear", "%bd|e#|bd#", {})
 -- Format cmd
 vim.api.nvim_create_user_command("Format", function()
     if vim.opt_local.filetype == "astro" then
-        fmt.fmt_astro()
+        fmt.format "astro"
     else
-        fmt.fmt_default()
+        fmt.format()
     end
 end, {})
 
