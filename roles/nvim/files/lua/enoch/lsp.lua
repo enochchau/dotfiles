@@ -46,6 +46,12 @@ local servers = {
     "zls",
 }
 
+if vim.env["TERMUX"] == nil then
+    require("mason-lspconfig").setup {
+        ensure_installed = servers,
+    }
+end
+
 -- setup
 for _, server in ipairs(servers) do
     if lsp_opts[server] then
@@ -54,10 +60,6 @@ for _, server in ipairs(servers) do
         lspconfig[server].setup(lsp_opts.create_default_opts())
     end
 end
-
-require("mason-lspconfig").setup {
-    ensure_installed = table.insert(servers, "html-lsp"),
-}
 
 local formatting = null_ls.builtins.formatting
 local diagnostics = null_ls.builtins.diagnostics

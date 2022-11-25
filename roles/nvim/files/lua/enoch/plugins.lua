@@ -118,25 +118,30 @@ return require("packer").startup(function(use)
             require("femaco").setup()
         end,
     }
-    use {
-        "iamcco/markdown-preview.nvim",
-        ft = { "markdown" },
-        run = "cd app && yarn install",
-        config = function()
-            require("enoch.helpers").nmap("<CR>", ":MarkdownPreviewToggle<CR>")
-        end,
-    }
+
+    if vim.env["TERMUX"] == nil then
+        use {
+            "iamcco/markdown-preview.nvim",
+            ft = { "markdown" },
+            run = "cd app && yarn install",
+            config = function()
+                require("enoch.helpers").nmap("<CR>", ":MarkdownPreviewToggle<CR>")
+            end,
+        }
+    end
 
     -- mjml
     use "amadeus/vim-mjml"
-    use {
-        "~/code/mjml-preview.nvim",
-        ft = "mjml",
-        run = "cd app && npm install",
-        config = function()
-            require("enoch.helpers").nmap("<CR>", ":MjmlPreviewToggle<CR>")
-        end,
-    }
+    if vim.env["TERMUX"] == nil then
+        use {
+            "~/code/mjml-preview.nvim",
+            ft = "mjml",
+            run = "cd app && npm install",
+            config = function()
+                require("enoch.helpers").nmap("<CR>", ":MjmlPreviewToggle<CR>")
+            end,
+        }
+    end
 
     -- additional language support
     use "pearofducks/ansible-vim"
