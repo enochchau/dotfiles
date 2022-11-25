@@ -14,14 +14,8 @@ fmt:
 
 .ONESHELL:
 $(LUA_SRC): $(FNL_SRC)
-	fnl=()
-	for f in $(FNL_SRC); do
-		fnl+=($$f)
-	done
-	lua=()
-	for l in $(LUA_SRC); do
-		lua+=($$l)
-	done
+	fnl=( $(FNL_SRC) )
+	lua=( $(LUA_SRC) )
 	for i in "$${!fnl[@]}"; do
 		fennel --compile "$${fnl[$$i]}" > "$${lua[$$i]}"
 	done
