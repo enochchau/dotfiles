@@ -2,17 +2,25 @@ return require("packer").startup(function(use)
     local has_termux = vim.env["TERMUX"] ~= nil
     local dev = not has_termux
 
-    function use_dev(plugin_name, config)
-        config = config or {}
+    --- Format my plugin's config to use local or remote
+    ---@param config table|string
+    ---@return
+    function d(config)
+        function configure_path(plugin_name)
+            if dev then
+                return "~/code/" .. plugin_name
+            end
 
-        if dev then
-            plugin_name = "~/code/" .. plugin_name
-        else
-            plugin_name = "ec965/" .. plugin_name
+            return "ec965/" .. plugin_name
         end
 
-        local u = vim.tbl_extend("keep", { plugin_name }, config)
-        use(u)
+        if type(config) == "string" then
+            return configure_path(config)
+        end
+
+        config[1] = configure_path(config[1])
+
+        return config
     end
 
     use "wbthomason/packer.nvim"
@@ -48,7 +56,7 @@ return require("packer").startup(function(use)
             "javascriptreact",
         },
     }
-    use_dev "nvim-pnp-checker"
+    use(d "nvim-pnp-checker")
 
     -- lsp
     use {
@@ -96,7 +104,7 @@ return require("packer").startup(function(use)
             "nvim-telescope/telescope-ui-select.nvim",
         },
     }
-    use_dev "telescope-node-workspace.nvim"
+    use(d "telescope-node-workspace.nvim")
 
     -- tree sitter
     use {
@@ -152,7 +160,8 @@ return require("packer").startup(function(use)
     -- mjml
     use "amadeus/vim-mjml"
     if not has_termux then
-        use_dev("mjml-preview.nvim", {
+        use(d {
+            "mjml-preview.nvim",
             ft = "mjml",
             run = "cd app && npm install",
             config = function()
