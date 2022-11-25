@@ -3,7 +3,7 @@ local autocmd = vim.api.nvim_create_autocmd
 
 local M = {}
 
-local default_fmt_omit = {
+local default_omit = {
     ["tsserver"] = true,
     ["jsonls"] = true,
     ["yammls"] = true,
@@ -11,29 +11,22 @@ local default_fmt_omit = {
     ["sumneko_lua"] = true,
 }
 
-local astro_fmt_omit = {
+local astro_omit = {
     ["astro"] = true,
     ["eslint"] = true,
 }
---- format filter on omitted clients
----@param omit_client_set table Set like table
----@return fun(client: table):boolean filter callback for vim.lsp.buf.format
-local function format_filter(omit_client_set)
-    return function(fmt_client_name)
-        if omit_client_set[fmt_client_name] then
-            return false
-        end
-        return true
-    end
-end
 
 function M.format(client_name)
     vim.lsp.buf.format {
         filter = function(fmt_client)
+            local omit
             if client_name == "astro" then
-                return format_filter(astro_fmt_omit)(fmt_client.name)
+                omit = astro_omit
+            else
+                omit = default_omit
             end
-            return format_filter(default_fmt_omit)(fmt_client.name)
+
+            return not omit[fmt_client]
         end,
         async = true,
     }

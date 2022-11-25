@@ -138,7 +138,7 @@ function M.jsonls()
     return opts
 end
 
-function M.yammls()
+function M.yamlls()
     local opts = M.create_default_opts {}
 
     local jsonls_schemas = schemastore.json.schemas()

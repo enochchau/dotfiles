@@ -8,7 +8,9 @@ local mason_null_ls = require "mason-null-ls"
 mason.setup()
 
 -- enable icon signs
-for type, icon in pairs({ Error = "¿ ", Warn = "¿ ", Hint = "¿ ", Info = "¿ " }) do
+local signs = { Error = "ï™ ", Warn = "ï”© ", Hint = "ï µ ", Info = "ï‘‰ " }
+
+for type, icon in pairs(signs) do
     local hl = "DiagnosticSign" .. type
     vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
 end

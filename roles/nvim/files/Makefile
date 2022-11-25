@@ -6,7 +6,7 @@ FNL_SRC := $(shell find fnl -name '*.fnl')
 LUA_SRC := $(patsubst fnl/%,lua/%,$(patsubst %.fnl,%.lua,$(FNL_SRC)))
 
 .PHONY: all
-all: $(LUA_SRC)
+all: $(LUA_SRC) fmt
 
 .PHONY: fmt
 .ONESHELL:
