@@ -1,4 +1,20 @@
 return require("packer").startup(function(use)
+    local has_termux = vim.env["TERMUX"] ~= nil
+    local dev = not has_termux
+
+    function use_dev(plugin_name, config)
+        config = config or {}
+
+        if dev then
+            plugin_name = "~/code/" .. plugin_name
+        else
+            plugin_name = "ec965/" .. plugin_name
+        end
+
+        local u = vim.tbl_extend("keep", { plugin_name }, config)
+        use(u)
+    end
+
     use "wbthomason/packer.nvim"
 
     -- editing
@@ -32,7 +48,7 @@ return require("packer").startup(function(use)
             "javascriptreact",
         },
     }
-    use "~/code/nvim-pnp-checker"
+    use_dev "nvim-pnp-checker"
 
     -- lsp
     use {
@@ -43,7 +59,7 @@ return require("packer").startup(function(use)
         "williamboman/mason-lspconfig.nvim",
         "b0o/schemastore.nvim",
         "onsails/lspkind.nvim",
-        "jayp0521/mason-null-ls.nvim"
+        "jayp0521/mason-null-ls.nvim",
     }
 
     use {
@@ -78,9 +94,9 @@ return require("packer").startup(function(use)
                 run = "make",
             },
             "nvim-telescope/telescope-ui-select.nvim",
-            "~/code/telescope-node-workspace.nvim",
         },
     }
+    use_dev "telescope-node-workspace.nvim"
 
     -- tree sitter
     use {
@@ -119,28 +135,30 @@ return require("packer").startup(function(use)
         end,
     }
 
-    if vim.env["TERMUX"] == nil then
+    if not has_termux then
         use {
             "iamcco/markdown-preview.nvim",
             ft = { "markdown" },
             run = "cd app && yarn install",
             config = function()
-                require("enoch.helpers").nmap("<CR>", ":MarkdownPreviewToggle<CR>")
+                require("enoch.helpers").nmap(
+                    "<CR>",
+                    ":MarkdownPreviewToggle<CR>"
+                )
             end,
         }
     end
 
     -- mjml
     use "amadeus/vim-mjml"
-    if vim.env["TERMUX"] == nil then
-        use {
-            "~/code/mjml-preview.nvim",
+    if not has_termux then
+        use_dev("mjml-preview.nvim", {
             ft = "mjml",
             run = "cd app && npm install",
             config = function()
                 require("enoch.helpers").nmap("<CR>", ":MjmlPreviewToggle<CR>")
             end,
-        }
+        })
     end
 
     -- additional language support
