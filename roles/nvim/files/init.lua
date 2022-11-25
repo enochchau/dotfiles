@@ -1,5 +1,9 @@
 pcall(require, "impatient")
-pcall(require, "bulb")
+
+if vim.env["FENNEL_COMPILE"] then
+    require "bulb"
+    return
+end
 
 local autocmd = vim.api.nvim_create_autocmd
 local has = vim.fn.has

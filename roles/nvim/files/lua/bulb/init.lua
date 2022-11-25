@@ -9,6 +9,7 @@ local function open_stream(filename)
             return c:byte()
         end
 
+        f:close()
         return nil
     end
 end
@@ -21,6 +22,7 @@ vim.api.nvim_create_user_command("FnlCompile", function(t)
     local stream = open_stream(in_path)
     local out = fennel.compileStream(stream)
 
-    local file = assert(io.open(out_path, "r"))
+    local file = assert(io.open(out_path, "w"))
     file:write(out)
+    file:close()
 end, { nargs = 1 })

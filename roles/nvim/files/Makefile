@@ -24,11 +24,7 @@ fmt:
 
 .ONESHELL:
 $(LUA_DIR)/%.lua: $(FNL_DIR)/%.fnl
-		temp_file='/tmp/nvim_fnl_compile'
-		if fennel --compile $< > $$temp_file; then
-			cat $$temp_file > $@
-		fi
-		rm $$temp_file
+	FENNEL_COMPILE=true nvim --headless -c 'FnlCompile $< $@' +q
 
 .PHONY: quotes.json
 quotes.json:
@@ -37,3 +33,4 @@ quotes.json:
 .PHONY: clean
 clean:
 	rm $(LUA_FILES)
+
