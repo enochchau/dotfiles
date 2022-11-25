@@ -1,10 +1,19 @@
-local function gen_map(modes)
-  local function _1_(lhs, rhs, buffer)
-    return vim.keymap.set(modes, lhs, rhs, {noremap = true, silent = true, buffer = buffer})
+local function _1_(lhs_2_auto, rhs_3_auto, buffer_4_auto)
+  return vim.keymap.set("n", lhs_2_auto, rhs_3_auto, {buffer = buffer_4_auto, noremap = true, silent = true})
+end
+local function _2_(lhs_2_auto, rhs_3_auto, buffer_4_auto)
+  return vim.keymap.set("v", lhs_2_auto, rhs_3_auto, {buffer = buffer_4_auto, noremap = true, silent = true})
+end
+local function _3_(lhs_2_auto, rhs_3_auto, buffer_4_auto)
+  return vim.keymap.set("x", lhs_2_auto, rhs_3_auto, {buffer = buffer_4_auto, noremap = true, silent = true})
+end
+local function _4_(lhs_2_auto, rhs_3_auto, buffer_4_auto)
+  return vim.keymap.set("t", lhs_2_auto, rhs_3_auto, {buffer = buffer_4_auto, noremap = true, silent = true})
+end
+local function _5_(modes, lhs, rhs, buffer)
+  local function _6_(lhs_2_auto, rhs_3_auto, buffer_4_auto)
+    return vim.keymap.set(modes, lhs_2_auto, rhs_3_auto, {buffer = buffer_4_auto, noremap = true, silent = true})
   end
-  return _1_
+  return _6_(lhs, rhs, buffer)
 end
-local function _2_(modes, lhs, rhs, buffer)
-  return gen_map(modes)(lhs, rhs, buffer)
-end
-return {nmap = gen_map("n"), vmap = gen_map("v"), xmap = gen_map("x"), tmap = gen_map("t"), map = _2_}
+return {nmap = _1_, vmap = _2_, xmap = _3_, tmap = _4_, map = _5_}
