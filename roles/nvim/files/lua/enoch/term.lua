@@ -1,9 +1,22 @@
-local nmap = require("enoch.helpers").nmap
-local fterm = require "FTerm"
-
-nmap([[<C-\>]], fterm.toggle)
-
-vim.api.nvim_create_user_command("FTermOpen", fterm.open, { bang = true })
-vim.api.nvim_create_user_command("FTermClose", fterm.close, { bang = true })
-vim.api.nvim_create_user_command("FTermExit", fterm.exit, { bang = true })
-vim.api.nvim_create_user_command("FTermToggle", fterm.toggle, { bang = true })
+local nmap = (require "enoch.helpers").nmap
+nmap("<C-\\>", (require "FTerm").toggle)
+vim.api.nvim_create_user_command(
+    "Open",
+    (require "FTerm").open,
+    { bang = true }
+)
+vim.api.nvim_create_user_command(
+    "Close",
+    (require "FTerm").close,
+    { bang = true }
+)
+vim.api.nvim_create_user_command(
+    "Exit",
+    (require "FTerm").exit,
+    { bang = true }
+)
+return vim.api.nvim_create_user_command(
+    "Toggle",
+    (require "FTerm").toggle,
+    { bang = true }
+)

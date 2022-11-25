@@ -4,9 +4,9 @@ return require("packer").startup(function(use)
 
     --- Format my plugin's config to use local or remote
     ---@param config table|string
-    ---@return
-    function d(config)
-        function configure_path(plugin_name)
+    ---@return table|string
+    local function d(config)
+        local function configure_path(plugin_name)
             if dev then
                 return "~/code/" .. plugin_name
             end

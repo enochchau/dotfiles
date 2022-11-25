@@ -35,25 +35,20 @@ function M.common_on_attach(client, bufnr)
     nmap("<leader>rn", vim.lsp.buf.rename)
 end
 
---- create cmp-nvim-lsp client capabilities
+---create default lsp client opts
 ---@param opts table?
-local function create_capabilities(opts)
+---@return table
+function M.create_default_opts(opts)
+    -- create cmp capabilities
     local capabilities = cmp_nvim_lsp.default_capabilities()
     if opts and opts.add_snippet_support then
         capabilities.textDocument.completion.completionItem.snippetSupport =
             true
     end
 
-    return capabilities
-end
-
----create default lsp client opts
----@param opts table?
----@return table
-function M.create_default_opts(opts)
     return {
         on_attach = M.common_on_attach,
-        capabilities = create_capabilities(opts),
+        capabilities = capabilities,
     }
 end
 
