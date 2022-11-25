@@ -7,7 +7,7 @@ LUA_DIR := $(patsubst ./fnl/%,./lua/%,$(FNL_DIR))
 LUA_FILES := $(patsubst ./fnl/%,./lua/%,$(patsubst %.fnl,%.lua,$(FNL_FILES)))
 
 .PHONY: all
-all: $(LUA_FILES) fmt
+all: $(LUA_FILES)
 
 .PHONY: fmt
 .ONESHELL:
