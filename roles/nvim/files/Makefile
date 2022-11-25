@@ -17,7 +17,12 @@ $(LUA_SRC): $(FNL_SRC)
 	fnl=( $(FNL_SRC) )
 	lua=( $(LUA_SRC) )
 	for i in "$${!fnl[@]}"; do
-		fennel --compile "$${fnl[$$i]}" > "$${lua[$$i]}"
+		if fennel --compile "$${fnl[$$i]}" > _tmp
+		then
+			cat _tmp > "$${lua[$$i]}"
+		fi
+		rm _tmp
+
 	done
 
 quotes.json:
