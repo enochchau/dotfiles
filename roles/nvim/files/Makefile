@@ -22,7 +22,6 @@ fmt:
 		fnlfmt --fix $$f
 	done
 
-.ONESHELL:
 $(LUA_DIR)/%.lua: $(FNL_DIR)/%.fnl
 	FENNEL_COMPILE=true nvim --headless -c 'FnlCompile $< $@' +q
 
