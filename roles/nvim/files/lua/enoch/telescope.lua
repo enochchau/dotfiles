@@ -10,20 +10,6 @@ local function cursor_theme()
     return base
 end
 
-telescope.setup {
-    extensions = {
-        fzf = {
-            fuzzy = true,
-            override_generic_sorter = true,
-            override_file_sorter = true,
-        },
-        ["ui-select"] = { cursor_theme() },
-        pickers = {
-            buffers = { mappings = { n = { dd = actions.delete_buffer } } },
-        },
-    },
-}
-
 telescope.load_extension "fzf"
 telescope.load_extension "ui-select"
 telescope.load_extension "node-workspace"
@@ -35,3 +21,19 @@ nmap("<leader>fh", builtin.help_tags)
 nmap("z=", builtin.spell_suggest)
 nmap("<leader>cdg", ":Telescope node-workspace<CR>")
 nmap("<leader>o", builtin.jumplist)
+
+telescope.setup {
+    extensions = {
+        fzf = {
+            fuzzy = true,
+            override_generic_sorter = true,
+            override_file_sorter = true,
+        },
+        ["ui-select"] = { cursor_theme() },
+    },
+    pickers = {
+        buffers = {
+            mappings = { n = { dd = actions.delete_buffer } },
+        },
+    },
+}
