@@ -80,4 +80,6 @@ null_ls.setup {
     },
 }
 
-mason_null_ls.setup { automatic_installation = true }
+if vim.env["TERMUX"] == nil then
+    mason_null_ls.setup { automatic_installation = true }
+end
