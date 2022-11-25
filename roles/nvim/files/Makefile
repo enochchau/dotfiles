@@ -9,6 +9,16 @@ LUA_FILES := $(patsubst ./fnl/%,./lua/%,$(patsubst %.fnl,%.lua,$(FNL_FILES)))
 .PHONY: all
 all: $(LUA_FILES)
 
+# build lua files
+$(LUA_DIR)/%.lua: $(FNL_DIR)/%.fnl
+	FENNEL_COMPILE=true nvim --headless -c 'FnlCompile $< $@' +q
+
+# clean lua files
+.PHONY: clean
+clean:
+	rm $(LUA_FILES)
+
+# format lua and fennel files
 .PHONY: fmt
 .ONESHELL:
 fmt:
@@ -22,17 +32,12 @@ fmt:
 		fnlfmt --fix $$f
 	done
 
-$(LUA_DIR)/%.lua: $(FNL_DIR)/%.fnl
-	FENNEL_COMPILE=true nvim --headless -c 'FnlCompile $< $@' +q
-
+# fetch notepad ++ quotes
 .PHONY: quotes.json
 quotes.json:
 	./scripts/nppp_quotes.sh
 
-.PHONY: clean
-clean:
-	rm $(LUA_FILES)
-
+# update fennel version to latest
 .ONESHELL:
 .PHONY: update_fennel
 update_fennel:
