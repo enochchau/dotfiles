@@ -9,8 +9,13 @@ LUA_SRC := $(patsubst fnl/%,lua/%,$(patsubst %.fnl,%.lua,$(FNL_SRC)))
 all: $(LUA_SRC)
 
 .PHONY: fmt
+.ONESHELL:
 fmt:
-	stylua . & fnlfmt --fix $(FNL_SRC)
+	stylua .
+	for f in $(FNL_SRC)
+	do
+		fnlfmt --fix $$f
+	done
 
 .ONESHELL:
 $(LUA_SRC): $(FNL_SRC)
