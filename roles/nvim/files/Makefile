@@ -12,7 +12,11 @@ all: $(LUA_FILES) fmt
 .PHONY: fmt
 .ONESHELL:
 fmt:
-	stylua .
+	omit_lua=( $(LUA_FILES) plugin/packer_compiled.lua )
+	omit_glob=$$(printf ",!%s" "$${omit_lua[@]}")
+	omit_glob="{./**/*.lua$${omit_glob}}"
+	echo $$omit_glob
+	stylua --glob "$$omit_glob" .
 	for f in $(FNL_FILES)
 	do
 		echo "Formatting: $$f"
