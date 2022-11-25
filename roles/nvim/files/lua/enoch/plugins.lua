@@ -36,9 +36,6 @@ return require("packer").startup(function(use)
     use "tpope/vim-surround"
     use "gpanders/editorconfig.nvim"
 
-    -- comments
-    use "numToStr/Comment.nvim"
-
     -- themes
     use "navarasu/onedark.nvim"
     use "NTBBloodbath/doom-one.nvim"
@@ -61,13 +58,17 @@ return require("packer").startup(function(use)
     -- lsp
     use {
         "neovim/nvim-lspconfig",
-        -- pin for now to fix client cmd type mismatch
-        "jose-elias-alvarez/null-ls.nvim",
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "b0o/schemastore.nvim",
-        "onsails/lspkind.nvim",
-        "jayp0521/mason-null-ls.nvim",
+        config = function()
+            require "enoch.lsp"
+        end,
+        requires = {
+            "jose-elias-alvarez/null-ls.nvim",
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+            "b0o/schemastore.nvim",
+            "onsails/lspkind.nvim",
+            "jayp0521/mason-null-ls.nvim",
+        },
     }
 
     use {
@@ -80,6 +81,9 @@ return require("packer").startup(function(use)
     -- completion
     use {
         "hrsh7th/nvim-cmp",
+        config = function()
+            require "enoch.cmp"
+        end,
         requires = {
             "hrsh7th/cmp-buffer",
             "hrsh7th/cmp-nvim-lsp",
@@ -95,6 +99,9 @@ return require("packer").startup(function(use)
     -- fuzzy finder
     use {
         "nvim-telescope/telescope.nvim",
+        config = function()
+            require "enoch.telescope"
+        end,
         requires = {
             "nvim-lua/plenary.nvim",
             {
@@ -109,8 +116,12 @@ return require("packer").startup(function(use)
     -- tree sitter
     use {
         "nvim-treesitter/nvim-treesitter",
+        config = function()
+            require "enoch.treesitter"
+        end,
         run = ":TSUpdate",
         requires = {
+            "numToStr/Comment.nvim",
             {
                 "windwp/nvim-autopairs",
                 config = function()
@@ -175,7 +186,12 @@ return require("packer").startup(function(use)
     use "vim-crystal/vim-crystal"
 
     -- status line
-    use "nvim-lualine/lualine.nvim"
+    use {
+        "nvim-lualine/lualine.nvim",
+        config = function()
+            require "enoch.statusline"
+        end,
+    }
 
     -- qol
     use {
@@ -208,8 +224,18 @@ return require("packer").startup(function(use)
             require("gitsigns").setup { current_line_blame = true }
         end,
     }
-    use "goolord/alpha-nvim"
-    use "numToStr/FTerm.nvim"
+    use {
+        "goolord/alpha-nvim",
+        config = function()
+            require "enoch.alpha"
+        end,
+    }
+    use {
+        "numToStr/FTerm.nvim",
+        config = function()
+            require "enoch.term"
+        end,
+    }
     use {
         "ggandor/leap.nvim",
         config = function()
@@ -245,6 +271,9 @@ return require("packer").startup(function(use)
     use {
         "kyazdani42/nvim-tree.lua",
         requires = { "kyazdani42/nvim-web-devicons" },
+        config = function()
+            require "enoch.filetree"
+        end,
     }
 
     -- window picker

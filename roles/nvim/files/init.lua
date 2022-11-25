@@ -1,10 +1,7 @@
 pcall(require, "impatient")
+pcall(require, "bulb")
 
-local nmap = require("enoch.helpers").nmap
-local vmap = require("enoch.helpers").vmap
 local autocmd = vim.api.nvim_create_autocmd
-local fmt = require "enoch.format"
-local augroup = vim.api.nvim_create_augroup
 local has = vim.fn.has
 local g = vim.g
 local opt = vim.opt
@@ -46,10 +43,6 @@ opt.hlsearch = true
 opt.cursorline = true
 opt.spelllang = "en_us"
 
--- move vertically by visual line, don't skip wrapped lines
-nmap("j", "gj")
-nmap("k", "gk")
-
 -- enable syntax and filetype detection
 cmd.syntax "enable"
 cmd.filetype "plugin indent on"
@@ -58,16 +51,6 @@ cmd.filetype "plugin indent on"
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
-
--- Hold visual mode after indent
-vmap(">", ">gv")
-vmap("<", "<gv")
-
--- Maps Alt-[h,j,k,l] to resizing a window split
-nmap("<A-h>", "<C-w><")
-nmap("<A-j>", "<C-w>-")
-nmap("<A-k>", "<C-w>+")
-nmap("<A-l>", "<C-w>>")
 
 -- auto resize
 autocmd("VimResized", { pattern = "*", command = "wincmd =" })
@@ -103,27 +86,6 @@ elseif has "wsl" == 1 then
 end
 opt.clipboard = "unnamedplus"
 
--- traverse buffers
-nmap("]b", ":bnext<CR>")
-nmap("[b", ":bprevious<CR>")
-
--- Clear all but the current buffer
-vim.api.nvim_create_user_command("BufClear", "%bd|e#|bd#", {})
-
--- Format cmd
-vim.api.nvim_create_user_command("Format", function()
-    if vim.opt_local.filetype == "astro" then
-        fmt.format "astro"
-    else
-        fmt.format()
-    end
-end, {})
-
--- swap nu to rnu and visa versa
-vim.api.nvim_create_user_command("SwapNu", function()
-    opt.relativenumber = not opt.relativenumber._value
-end, {})
-
 -- Configure additional filetypes
 vim.filetype.add {
     extension = {
@@ -139,17 +101,8 @@ vim.filetype.add {
 }
 
 require "enoch.plugins"
-
-require "enoch.alpha"
+require "enoch.keymaps"
+require "enoch.commands"
 require "enoch.theme"
-require "enoch.lsp"
-require "enoch.filetree"
-
-require "enoch.cmp"
-require "enoch.format"
-require "enoch.statusline"
-require "enoch.telescope"
-require "enoch.term"
-require "enoch.treesitter"
 
 vim.cmd "source ~/.config/nvim/rzip.vim"
