@@ -5,20 +5,26 @@ local nmap = require("enoch.helpers").nmap
 local null_ls = require "null-ls"
 local mason_null_ls = require "mason-null-ls"
 
-mason.setup()
+local function enable_icon_signs()
+    local signs =
+        { Error = "ï™™ ", Warn = "ï”© ", Hint = "ï µ ", Info = "ï‘‰ " }
 
--- enable icon signs
-for type, icon in pairs({ Error = "¿ ", Warn = "¿ ", Hint = "¿ ", Info = "¿ " }) do
-    local hl = "DiagnosticSign" .. type
-    vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    for type, icon in pairs(signs) do
+        local hl = "DiagnosticSign" .. type
+        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
+    end
 end
 
--- remap diagnostic
-vim.diagnostic.config { virtual_text = false }
-nmap("<leader>d", function()
-    vim.diagnostic.open_float(nil, { focus = false })
-end)
+local function remap_diagnostic()
+    vim.diagnostic.config { virtual_text = false }
+    nmap("<leader>d", function()
+        vim.diagnostic.open_float(nil, { focus = false })
+    end)
+end
 
+mason.setup()
+enable_icon_signs()
+remap_diagnostic()
 local servers = {
     "ansiblels",
     "astro",
