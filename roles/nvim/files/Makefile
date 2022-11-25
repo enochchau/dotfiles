@@ -1,3 +1,5 @@
+SHELL := /bin/bash
+
 # fennel files
 FNL_SRC := $(shell find fnl -name '*.fnl')
 # lua files
@@ -10,8 +12,22 @@ all: $(LUA_SRC)
 fmt:
 	stylua . & fnlfmt --fix $(FNL_SRC)
 
+.ONESHELL:
 $(LUA_SRC): $(FNL_SRC)
-	fennel --compile $< > $@
+	fnl=()
+	for f in $(FNL_SRC); do
+		fnl+=($$f)
+	done
+	lua=()
+	for l in $(LUA_SRC); do
+		lua+=($$l)
+	done
+	for i in "$${!fnl[@]}"; do
+		fennel --compile "$${fnl[$$i]}" > "$${lua[$$i]}"
+	done
+
+quotes.json:
+	./nppp_quotes.sh
 
 .PHONY: clean
 clean:

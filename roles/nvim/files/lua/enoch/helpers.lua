@@ -1,22 +1,10 @@
-local M = {}
-
-local function map(modes)
-    return function(lhs, rhs, buffer)
-        vim.keymap.set(
-            modes,
-            lhs,
-            rhs,
-            { noremap = true, silent = true, buffer = buffer }
-        )
-    end
+local function gen_map(modes)
+  local function _1_(lhs, rhs, buffer)
+    return vim.keymap.set(modes, lhs, rhs, {noremap = true, silent = true, buffer = buffer})
+  end
+  return _1_
 end
-
-M.nmap = map "n"
-M.vmap = map "v"
-M.xmap = map "x"
-M.tmap = map "t"
-M.map = function(modes, lhs, rhs, buffer)
-    map(modes)(lhs, rhs, buffer)
+local function _2_(modes, lhs, rhs, buffer)
+  return gen_map(modes)(lhs, rhs, buffer)
 end
-
-return M
+return {nmap = gen_map("n"), vmap = gen_map("v"), xmap = gen_map("x"), tmap = gen_map("t"), map = _2_}
