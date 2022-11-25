@@ -30,8 +30,9 @@ $(LUA_SRC): $(FNL_SRC)
 
 	done
 
+.PHONY: quotes.json
 quotes.json:
-	./nppp_quotes.sh
+	./scripts/nppp_quotes.sh
 
 .PHONY: clean
 clean:
