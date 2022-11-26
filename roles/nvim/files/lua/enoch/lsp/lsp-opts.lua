@@ -1,11 +1,13 @@
 local pnp_checker = require "nvim-pnp-checker"
 local schemastore = require "schemastore"
 local telescope_builtin = require "telescope.builtin"
-local nmap = require("enoch.helpers").nmap
-local xmap = require("enoch.helpers").xmap
-local map = require("enoch.helpers").map
 local fmt = require "enoch.format"
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
+
+local helpers = require "enoch.helpers"
+local nmap = helpers.nmap
+local xmap = helpers.xmap
+local map = helpers.map
 
 local M = {}
 

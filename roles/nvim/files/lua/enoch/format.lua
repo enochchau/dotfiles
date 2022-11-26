@@ -1,6 +1,3 @@
-local augroup = vim.api.nvim_create_augroup
-local autocmd = vim.api.nvim_create_autocmd
-
 local M = {}
 
 local default_omit = {
@@ -34,6 +31,9 @@ end
 
 local enable_autocmd = false
 if enable_autocmd then
+    local augroup = vim.api.nvim_create_augroup
+    local autocmd = vim.api.nvim_create_autocmd
+
     local fmt_on_save = augroup("FmtOnSave", {})
 
     local function format_filetype(pattern, client_name)

@@ -1,9 +1,11 @@
 local lspconfig = require "lspconfig"
 local mason = require "mason"
-local lsp_opts = require "enoch.lsp-opts"
+local lsp_opts = require "enoch.lsp.lsp-opts"
 local nmap = require("enoch.helpers").nmap
 local null_ls = require "null-ls"
 local mason_null_ls = require "mason-null-ls"
+
+local has_termux = vim.env.TERMUX ~= nil
 
 local function enable_icon_signs()
     local signs =
@@ -46,19 +48,20 @@ local servers = {
     "zls",
 }
 
-if vim.env["TERMUX"] == nil then
-    require("mason-lspconfig").setup {
-        ensure_installed = servers,
-    }
+if not has_termux then
+    require("mason-lspconfig").setup { ensure_installed = servers }
 end
 
 -- setup
 for _, server in ipairs(servers) do
+    local config
     if lsp_opts[server] then
-        lspconfig[server].setup(lsp_opts[server]())
+        config = lsp_opts[server]()
     else
-        lspconfig[server].setup(lsp_opts.create_default_opts())
+        config = lsp_opts.create_default_opts()
     end
+
+    lspconfig[server].setup(config)
 end
 
 local formatting = null_ls.builtins.formatting
@@ -80,6 +83,6 @@ null_ls.setup {
     },
 }
 
-if vim.env["TERMUX"] == nil then
+if not has_termux then
     mason_null_ls.setup { automatic_installation = true }
 end
