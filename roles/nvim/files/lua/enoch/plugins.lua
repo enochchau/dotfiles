@@ -9,18 +9,17 @@ return require("packer").startup(function(use)
         local function configure_path(plugin_name)
             if dev then
                 return "~/code/" .. plugin_name
+            else
+                return "ec965/" .. plugin_name
             end
-
-            return "ec965/" .. plugin_name
         end
 
         if type(config) == "string" then
             return configure_path(config)
+        else
+            config[1] = configure_path(config[1])
+            return config
         end
-
-        config[1] = configure_path(config[1])
-
-        return config
     end
 
     use "wbthomason/packer.nvim"
