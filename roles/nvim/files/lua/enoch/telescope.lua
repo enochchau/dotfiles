@@ -5,7 +5,7 @@ local actions = require "telescope.actions"
 local nmap = require("enoch.helpers").nmap
 
 local function cursor_theme()
-    local base = .get_dropdown()
+    local base = themes.get_dropdown()
     base.layout_strategy = "cursor"
     return base
 end
