@@ -29,42 +29,4 @@ function M.format(client_name)
     }
 end
 
-local enable_autocmd = false
-if enable_autocmd then
-    local augroup = vim.api.nvim_create_augroup
-    local autocmd = vim.api.nvim_create_autocmd
-
-    local fmt_on_save = augroup("FmtOnSave", {})
-
-    local function format_filetype(pattern, client_name)
-        autocmd("BufWritePre", {
-            group = fmt_on_save,
-            pattern = pattern,
-            callback = function()
-                M.format(client_name)
-            end,
-        })
-    end
-
-    format_filetype {
-        "*.js",
-        "*.ts",
-        "*.jsx",
-        "*.tsx",
-        "*.cjs",
-        "*.mjs",
-        "*.css",
-        "*.scss",
-        "*.md",
-        "*.yaml",
-        "*.yml",
-        "*.json",
-        "*.lua",
-        "*.go",
-        "*.fnl",
-    }
-
-    format_filetype({ "*.astro" }, "astro")
-end
-
 return M
