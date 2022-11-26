@@ -108,5 +108,3 @@ require "enoch.plugins"
 require "enoch.keymaps"
 require "enoch.commands"
 require "enoch.theme"
-
-vim.cmd "source ~/.config/nvim/rzip.vim"

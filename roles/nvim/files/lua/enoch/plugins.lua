@@ -51,6 +51,9 @@ return require("packer").startup(function(use)
             "typescriptreact",
             "javascriptreact",
         },
+        config = function()
+            vim.cmd "source ~/.config/nvim/rzip.vim"
+        end,
     }
     use(d "nvim-pnp-checker")
 

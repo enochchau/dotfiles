@@ -1,6 +1,3 @@
-local treesitter = require "nvim-treesitter.configs"
-local comment = require "Comment"
-
 local langs = {
     "astro",
     "bash",
@@ -43,7 +40,7 @@ local langs = {
     "zig",
 }
 
-treesitter.setup {
+require("nvim-treesitter.configs").setup {
     ensure_installed = langs,
     sync_install = false,
     highlight = { enable = true, additional_vim_regex_highlighting = false },
@@ -75,7 +72,7 @@ treesitter.setup {
     },
 }
 
-comment.setup {
+require("Comment").setup {
     ignore = "^$",
     pre_hook = function(ctx)
         local U = require "Comment.utils"
@@ -96,4 +93,5 @@ comment.setup {
         }
     end,
 }
+
 require("treesitter-context").setup()
