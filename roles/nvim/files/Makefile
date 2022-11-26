@@ -10,8 +10,12 @@ LUA_FILES := $(patsubst ./fnl/%,./lua/%,$(patsubst %.fnl,%.lua,$(FNL_FILES)))
 all: $(LUA_FILES)
 
 # build lua files
+.ONESHELL:
 $(LUA_DIR)/%.lua: $(FNL_DIR)/%.fnl
 	FENNEL_COMPILE=true nvim --headless -c 'FnlCompile $< $@' +q
+	if ! grep -q $@ .styluaignore ; then
+		echo $@ >> .styluaignore
+	fi
 
 # clean lua files
 .PHONY: clean
@@ -20,17 +24,8 @@ clean:
 
 # format lua and fennel files
 .PHONY: fmt
-.ONESHELL:
 fmt:
-	omit_lua=( $(LUA_FILES) plugin/packer_compiled.lua lua/bulb/fennel.lua )
-	omit_glob=$$(printf ",!%s" "$${omit_lua[@]}")
-	omit_glob="{./**/*.lua$${omit_glob}}"
-	stylua --glob "$$omit_glob" .
-	for f in $(FNL_FILES)
-	do
-		echo "Formatting: $$f"
-		fnlfmt --fix $$f
-	done
+	stylua .; $(foreach file,$(FNL_FILES),echo "Formatting " $(file); fnlfmt --fix $(file);)
 
 # fetch notepad ++ quotes
 .PHONY: quotes.json
