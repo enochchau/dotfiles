@@ -41,14 +41,4 @@ quotes.json:
 .ONESHELL:
 .PHONY: update_fennel
 update_fennel:
-	curl 'https://fennel-lang.org/downloads/' | \
-		grep --extended-regexp "fennel-[0-9]{1,2}\.[0-9]{1,2}\.[0-9]{1,2}\.tar\.gz<" | \
-		tail -1 | \
-		awk -F '"' '{print $$2}' | \
-		sed 's#^#https://fennel-lang.org/downloads/#' | \
-		xargs wget -O fennel.tar.gz
-	out=$$(tar -xvf fennel.tar.gz --wildcards "*/fennel.lua")
-	cp $$out ./lua/bulb/fennel.lua
-	rm -r $$(dirname $$out)
-	rm fennel.tar.gz
-
+	./scripts/update_fennel.sh
