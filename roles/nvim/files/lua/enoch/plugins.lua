@@ -264,6 +264,16 @@ return require("packer").startup(function(use)
                 },
             }
         end,
+        ft = {
+            "javascript",
+            "javascriptreact",
+            "svelte",
+            "astro",
+            "typescript",
+            "typescriptreact",
+            "css",
+            "scss",
+        },
     }
 
     -- make vim start faster
