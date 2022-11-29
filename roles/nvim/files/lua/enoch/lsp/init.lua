@@ -1,7 +1,6 @@
 local lspconfig = require "lspconfig"
 local mason = require "mason"
 local lsp_opts = require "enoch.lsp.lsp-opts"
-local nmap = require("enoch.helpers").nmap
 local null_ls = require "null-ls"
 local mason_null_ls = require "mason-null-ls"
 
@@ -17,16 +16,10 @@ local function enable_icon_signs()
     end
 end
 
-local function remap_diagnostic()
-    vim.diagnostic.config { virtual_text = false }
-    nmap("<leader>d", function()
-        vim.diagnostic.open_float(nil, { focus = false })
-    end)
-end
-
 mason.setup()
 enable_icon_signs()
-remap_diagnostic()
+vim.diagnostic.config { virtual_text = false }
+
 local servers = {
     "ansiblels",
     "astro",

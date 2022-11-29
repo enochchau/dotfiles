@@ -11,6 +11,10 @@ local g = vim.g
 local opt = vim.opt
 local cmd = vim.cmd
 
+-- theme
+vim.opt.bg = "light"
+vim.cmd.colorscheme "tokyonight"
+
 g.mapleader = ","
 opt.signcolumn = "yes:1"
 opt.laststatus = 3
@@ -107,4 +111,3 @@ vim.filetype.add {
 require "enoch.plugins"
 require "enoch.keymaps"
 require "enoch.commands"
-require "enoch.theme"

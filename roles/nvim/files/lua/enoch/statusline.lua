@@ -1,16 +1,5 @@
 local lualine = require "lualine"
 
-local function get_theme()
-    local theme = vim.g.colors_name
-    if theme == "one" then
-        return "onedark"
-    end
-    if theme == "doom-one" then
-        return "auto"
-    end
-    return theme
-end
-
 local winbar = {
     lualine_c = {
         function()
@@ -29,7 +18,16 @@ lualine.setup {
         lualine_c = { "%{ObsessionStatus('', '')}", "filename" },
     },
     options = {
-        theme = get_theme(),
+        theme = (function ()
+    local theme = vim.g.colors_name
+    if theme == "one" then
+        return "onedark"
+    end
+    if theme == "doom-one" then
+        return "auto"
+    end
+    return theme
+end)(),
         section_separators = "",
         component_separators = "│",
     },

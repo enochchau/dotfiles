@@ -136,10 +136,6 @@ return require("packer").startup(function(use)
                 "danymat/neogen",
                 config = function()
                     require("neogen").setup {}
-                    require("enoch.helpers").nmap(
-                        "<leader>nf",
-                        require("neogen").generate
-                    )
                 end,
             },
             "nvim-treesitter/nvim-treesitter-context",
@@ -162,9 +158,11 @@ return require("packer").startup(function(use)
             ft = { "markdown" },
             run = "cd app && yarn install",
             config = function()
-                require("enoch.helpers").nmap(
+                vim.keymap.set(
+                    "n",
                     "<CR>",
-                    ":MarkdownPreviewToggle<CR>"
+                    ":MarkdownPreviewToggle<CR>",
+                    { noremap = true, silent = true }
                 )
             end,
         }
@@ -178,7 +176,12 @@ return require("packer").startup(function(use)
             ft = "mjml",
             run = "cd app && npm install",
             config = function()
-                require("enoch.helpers").nmap("<CR>", ":MjmlPreviewToggle<CR>")
+                vim.keymap.set(
+                    "n",
+                    "<CR>",
+                    ":MjmlPreviewToggle<CR>",
+                    { noremap = true, silent = true }
+                )
             end,
         })
     end
@@ -232,12 +235,7 @@ return require("packer").startup(function(use)
             require "enoch.alpha"
         end,
     }
-    use {
-        "numToStr/FTerm.nvim",
-        config = function()
-            require "enoch.term"
-        end,
-    }
+    use "numToStr/FTerm.nvim"
     use {
         "ggandor/leap.nvim",
         config = function()
@@ -284,7 +282,29 @@ return require("packer").startup(function(use)
         "kyazdani42/nvim-tree.lua",
         requires = { "kyazdani42/nvim-web-devicons" },
         config = function()
-            require "enoch.filetree"
+            require("nvim-tree").setup {
+                sync_root_with_cwd = true,
+                view = {
+                    side = "right",
+                    relativenumber = true,
+                },
+                filters = {
+                    exclude = { ".DS_Store" },
+                },
+                renderer = {
+                    indent_markers = {
+                        enable = true,
+                    },
+                },
+                git = { ignore = false },
+                actions = {
+                    open_file = {
+                        window_picker = {
+                            chars = "FJDKSLA;CMRUEIWOQP",
+                        },
+                    },
+                },
+            }
         end,
     }
 
@@ -315,9 +335,6 @@ return require("packer").startup(function(use)
                     "p",
                 },
             }
-            require("enoch.helpers").nmap("<leader>w", function()
-                nvim_window.pick()
-            end)
         end,
     }
 end)

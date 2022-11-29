@@ -1,41 +1,10 @@
 local pnp_checker = require "nvim-pnp-checker"
 local schemastore = require "schemastore"
-local telescope_builtin = require "telescope.builtin"
-local fmt = require "enoch.format"
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
-
-local helpers = require "enoch.helpers"
-local nmap = helpers.nmap
-local xmap = helpers.xmap
-local map = helpers.map
 
 local M = {}
 
-function M.common_on_attach(client, bufnr)
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
-
-    nmap("gd", telescope_builtin.lsp_definitions)
-    nmap("K", vim.lsp.buf.hover)
-    nmap("gi", telescope_builtin.lsp_implementations)
-    nmap("gy", telescope_builtin.lsp_type_definitions)
-    nmap("gr", telescope_builtin.lsp_references)
-    nmap("gs", telescope_builtin.lsp_document_symbols)
-
-    map({ "x", "n" }, "<leader>f", function()
-        fmt.format(client.name)
-    end)
-
-    nmap("[g", vim.diagnostic.goto_prev)
-    nmap("g]", vim.diagnostic.goto_next)
-    nmap("ga", function()
-        telescope_builtin.diagnostics { bufnr = 0 }
-    end)
-    nmap("gw", telescope_builtin.diagnostics)
-
-    nmap("<leader>a", vim.lsp.buf.code_action)
-    xmap("<leader>a", ":<C-U>lua vim.lsp.buf.range_code_action()<CR>")
-    nmap("<leader>rn", vim.lsp.buf.rename)
-end
+M.common_on_attach = require('enoch.lsp.on-attach').on_attach
 
 ---create default lsp client opts
 ---@param opts table?

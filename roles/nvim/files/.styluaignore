@@ -1,7 +1,8 @@
 plugin/packer_compiled.lua
 lua/bulb/fennel.lua
-lua/enoch/term.lua
-lua/enoch/quotes.lua
 lua/enoch/cmp_source_groups.lua
-lua/enoch/helpers.lua
+lua/enoch/lsp/on-attach.lua
+lua/enoch/commands.lua
+lua/enoch/keymaps.lua
+lua/enoch/alpha/quotes.lua
 

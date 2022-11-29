@@ -1,6 +1,6 @@
 local alpha = require "alpha"
 local startify = require "alpha.themes.startify"
-local rand_quote = require("enoch.quotes")["rand-quote"]
+local rand_quote = require("enoch.alpha.quotes")["rand-quote"]
 
 ---@param message table
 local function cowsays(message)
