@@ -1,21 +1,22 @@
 SHELL := /bin/bash
 
-FNL_DIR := $(shell find . -name '*.fnl' -exec dirname "{}" \; | uniq)
-FNL_FILES := $(foreach dir,$(FNL_DIR),$(wildcard $(dir)/*.fnl))
+FNL_FILES := $(shell find . -name '*.fnl' -type f)
+LUA_FILES := $(patsubst %.fnl,%.lua,$(FNL_FILES))
 
-LUA_DIR := $(patsubst ./fnl/%,./lua/%,$(FNL_DIR))
-LUA_FILES := $(patsubst ./fnl/%,lua/%,$(patsubst %.fnl,%.lua,$(FNL_FILES)))
+STYLUA_IGNORE := plugin/packer_compiled.lua lua/bulb/fennel.lua $(subst ./,,$(LUA_FILES)) 
+
+null :=
+space := $(null) #
 
 .PHONY: all
 all: $(LUA_FILES) .styluaignore
 
 # build lua files
-$(LUA_DIR)/%.lua: $(FNL_DIR)/%.fnl
+%.lua: %.fnl
 	FENNEL_COMPILE=true nvim --headless -c 'FnlCompile $< $@' +q
 
-.styluaignore: $(LUA_FILES)
-	echo -e "plugin/packer_compiled.lua\nlua/bulb/fennel.lua" > .styluaignore ;\
-	$(foreach file,$(LUA_FILES),echo $(file) >> .styluaignore;)
+.styluaignore: $(STYLUA_IGNORE)
+	echo -e "$(subst  $(space),\n,$(STYLUA_IGNORE))" > .styluaignore
 
 # clean lua files
 .PHONY: clean

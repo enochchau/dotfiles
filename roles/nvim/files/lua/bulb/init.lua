@@ -1,6 +1,3 @@
-local fennel = require "bulb.fennel"
-debug.traceback = fennel.traceback
-
 local function open_stream(filename)
     local f = assert(io.open(filename, "rb"))
 
@@ -16,6 +13,12 @@ local function open_stream(filename)
 end
 
 vim.api.nvim_create_user_command("FnlCompile", function(t)
+    local fennel = require "bulb.fennel"
+
+    if debug.traceback ~= fennel.traceback then
+        debug.traceback = fennel.traceback
+    end
+
     local in_path, out_path = unpack(vim.fn.split(t.args, " "))
     assert(in_path, "missing input path")
     assert(out_path, "missing output path")
