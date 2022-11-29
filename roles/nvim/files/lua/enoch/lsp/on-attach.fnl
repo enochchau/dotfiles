@@ -17,4 +17,4 @@
   (xmap! :<leader>a ":<C-U>lua vim.lsp.buf.range_code_action()<CR>")
   (nmap! :<leader>rn vim.lsp.buf.rename))
 
-{:on_attach on-attach}
+{: on-attach}

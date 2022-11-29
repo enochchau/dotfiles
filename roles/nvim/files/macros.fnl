@@ -10,7 +10,7 @@
 (fn tmap! [lhrs rhs buffer]
   `(vim.keymap.set :t ,lhs ,rhs {:noremap true :silent true :buffer ,buffer}))
 
-(fn map! [modes lhrs rhs buffer]
+(fn map! [modes lhs rhs buffer]
   `(vim.keymap.set ,modes ,lhs ,rhs {:noremap true :silent true :buffer ,buffer}))
 
 (fn req! [lib val]

@@ -9,7 +9,7 @@ local function on_attach(client, bufnr)
   local function _1_()
     return (require("enoch.format")).format(client.name)
   end
-  vim.keymap.set({"x", "n"}, "<Plug>(leap-backward-x)", _1_, {noremap = true, silent = true})
+  vim.keymap.set({"x", "n"}, "<leader>f", _1_, {noremap = true, silent = true})
   vim.keymap.set("n", "[g", vim.diagnostic.goto_prev, {noremap = true, silent = true})
   vim.keymap.set("n", "g]", vim.diagnostic.goto_next, {noremap = true, silent = true})
   local function _2_()
@@ -21,4 +21,4 @@ local function on_attach(client, bufnr)
   vim.keymap.set("x", "<Plug>(leap-backward-x)", ":<C-U>lua vim.lsp.buf.range_code_action()<CR>", {noremap = true, silent = true})
   return vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {noremap = true, silent = true})
 end
-return {on_attach = on_attach}
+return {["on-attach"] = on_attach}
