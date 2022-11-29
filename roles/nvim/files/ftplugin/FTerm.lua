@@ -1,4 +1,1 @@
-local tmap = require("enoch.helpers").tmap
-tmap([[<C-\><C-\>]], function()
-    require("FTerm").toggle()
-end)
+return vim.keymap.set("t", "<Plug>(leap-backward-x)", (require("FTerm")).toggle, {noremap = true, silent = true})

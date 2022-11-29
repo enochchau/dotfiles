@@ -1,5 +1,6 @@
 plugin/packer_compiled.lua
 lua/bulb/fennel.lua
+ftplugin/FTerm.lua
 lua/enoch/alpha/quotes.lua
 lua/enoch/cmp_source_groups.lua
 lua/enoch/commands.lua

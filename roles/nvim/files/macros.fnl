@@ -7,6 +7,9 @@
 (fn xmap! [lhrs rhs buffer]
   `(vim.keymap.set :x ,lhs ,rhs {:noremap true :silent true :buffer ,buffer}))
 
+(fn tmap! [lhrs rhs buffer]
+  `(vim.keymap.set :t ,lhs ,rhs {:noremap true :silent true :buffer ,buffer}))
+
 (fn map! [modes lhrs rhs buffer]
   `(vim.keymap.set ,modes ,lhs ,rhs {:noremap true :silent true :buffer ,buffer}))
 
@@ -17,4 +20,4 @@
   (let [o (if (= opts nil) {} opts)]
     `(vim.api.nvim_create_user_command ,name ,command ,o)))
 
-{: nmap! : vmap! : req! : map! : command! : xmap!}
+{: nmap! : vmap! : req! : map! : command! : xmap! : tmap!}
