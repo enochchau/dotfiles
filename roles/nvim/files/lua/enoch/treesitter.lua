@@ -21,6 +21,7 @@ local langs = {
     "jsonc",
     "julia",
     "lua",
+    "make",
     "markdown",
     "markdown_inline",
     "prisma",
