@@ -1,7 +1,7 @@
 (import-macros {: req! : command!} :macros)
 
 (macro command-fterm! [name]
-  (let [cmd (string.gsub name "^%l" string.upper)]
+  (let [cmd (.. :FTerm (string.gsub name "^%l" string.upper))]
     `(vim.api.nvim_create_user_command ,cmd (. (require :FTerm) ,name)
                                        {:bang true})))
 
