@@ -20,10 +20,7 @@ vim.keymap.set("n", "z=", (require("telescope.builtin")).spell_suggest, {noremap
 vim.keymap.set("n", "<leader>o", (require("telescope.builtin")).jumplist, {noremap = true, silent = true})
 vim.keymap.set("n", "<leader>cdg", ":Telescope node-workspace<CR>", {noremap = true, silent = true})
 vim.keymap.set("n", "<leader>nf", (require("neogen")).generate, {noremap = true, silent = true})
-local function _2_()
-  return (require("nvim-window")).pick
-end
-vim.keymap.set("n", "<leader>w", _2_, {noremap = true, silent = true})
+vim.keymap.set("n", "<leader>w", (require("nvim-window")).pick, {noremap = true, silent = true})
 vim.keymap.set("n", "<leader>n", ":NvimTreeFindFile<CR>", {noremap = true, silent = true})
 vim.keymap.set("n", "<C-n>", ":NvimTreeToggle<CR>", {noremap = true, silent = true})
 return vim.keymap.set("n", "<C-\\>", (require("FTerm")).toggle, {noremap = true, silent = true})

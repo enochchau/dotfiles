@@ -34,7 +34,7 @@
 (nmap! :<leader>nf (req! :neogen :generate))
 
 ;; window picker
-(nmap! :<leader>w #(req! :nvim-window :pick))
+(nmap! :<leader>w (req! :nvim-window :pick))
 
 ;; Neotree
 (nmap! :<leader>n ":NvimTreeFindFile<CR>")
