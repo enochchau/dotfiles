@@ -1,13 +1,14 @@
 (macro get-quotes! [filename]
   (fn json-read [filename]
     "Read a json file as a table"
-    (let [f (vim.fn.expand filename)
-          j (vim.fn.json_decode (vim.fn.readfile f))]
-      j))
+    (-> filename
+        (vim.fn.expand)
+        (vim.fn.readfile)
+        (vim.fn.json_decode)))
 
   (fn split-80 [str]
     "Split a string at 80 if it's more than 80 chars"
-    [(string.sub str 1 80) (vim.trim (string.sub str 81))])
+    [(string.sub str 1 80) (-> str (string.sub 81) (vim.trim))])
 
   (fn format-quote [q]
     "Format a quote into a table of strings"
