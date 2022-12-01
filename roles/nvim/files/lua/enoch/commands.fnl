@@ -9,9 +9,7 @@
 (command! :BufClear "%bd|e#|bd#")
 
 ;; Format cmd
-(command! :Format #(if (= vim.opt_local.filetype :astro)
-                       ((req! :enoch.format :format) :astro)
-                       ((req! :enoch.format :format))))
+(command! :Format #((req! :enoch.format :format) vim.opt_local.filetype))
 
 ;; swap nu to rnu and visa versa
 (command! :SwapNu #(set opt.relativenumber (not opt.relativenumber._value)))
@@ -21,3 +19,5 @@
 (command-fterm! :close)
 (command-fterm! :exit)
 (command-fterm! :toggle)
+
+(command! :Cdg #(vim.api.nvim_set_current_dir (vim.trim (vim.fn.system "git rev-parse --show-toplevel"))))
