@@ -123,7 +123,7 @@ return require("packer").startup(function(use)
         end,
         run = ":TSUpdate",
         requires = {
-            "nvim-treesitter/playground",
+            { "nvim-treesitter/playground", cmd = "TSPlaygroundToggle" },
             "numToStr/Comment.nvim",
             {
                 "windwp/nvim-autopairs",
