@@ -1,25 +1,21 @@
 local M = {}
 
-local default_omit = {
-    ["tsserver"] = true,
-    ["jsonls"] = true,
-    ["yammls"] = true,
-    ["eslint"] = true,
-    ["sumneko_lua"] = true,
-}
-
-local astro_omit = {
-    ["astro"] = true,
-    ["eslint"] = true,
+local client_omit = {
+    astro = {
+        ["astro"] = true,
+        ["eslint"] = true,
+    },
+    default = {
+        ["tsserver"] = true,
+        ["jsonls"] = true,
+        ["yammls"] = true,
+        ["eslint"] = true,
+        ["sumneko_lua"] = true,
+    },
 }
 
 function M.format(client_name)
-    local omit
-    if client_name == "astro" then
-        omit = astro_omit
-    else
-        omit = default_omit
-    end
+    local omit = client_omit[client_name] or client_omit.default
 
     vim.lsp.buf.format {
         filter = function(fmt_client)

@@ -4,7 +4,7 @@ local cmp_nvim_lsp = require "cmp_nvim_lsp"
 
 local M = {}
 
-M.common_on_attach = require('enoch.lsp.on-attach')['on-attach']
+M.common_on_attach = require("enoch.lsp.on-attach")["on-attach"]
 
 ---create default lsp client opts
 ---@param opts table?

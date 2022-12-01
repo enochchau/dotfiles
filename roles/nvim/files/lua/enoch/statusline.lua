@@ -18,16 +18,16 @@ lualine.setup {
         lualine_c = { "%{ObsessionStatus('', '')}", "filename" },
     },
     options = {
-        theme = (function ()
-    local theme = vim.g.colors_name
-    if theme == "one" then
-        return "onedark"
-    end
-    if theme == "doom-one" then
-        return "auto"
-    end
-    return theme
-end)(),
+        theme = (function()
+            local theme = vim.g.colors_name
+            if theme == "one" then
+                return "onedark"
+            end
+            if theme == "doom-one" then
+                return "auto"
+            end
+            return theme
+        end)(),
         section_separators = "",
         component_separators = "│",
     },

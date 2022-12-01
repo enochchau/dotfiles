@@ -24,7 +24,10 @@ vim.api.nvim_create_user_command("FnlCompile", function(t)
     assert(out_path, "missing output path")
 
     local stream = open_stream(in_path)
-    local out = fennel.compileStream(stream, { ["compiler-env"] = _G })
+    local out = fennel.compileStream(
+        stream,
+        { ["compiler-env"] = _G, correlate = false }
+    )
 
     local file = assert(io.open(out_path, "w"))
     file:write(out)

@@ -1,6 +1,6 @@
 local telescope = require "telescope"
 local actions = require "telescope.actions"
-local themes = require("telescope.themes")
+local themes = require "telescope.themes"
 
 telescope.setup {
     extensions = {
@@ -10,7 +10,7 @@ telescope.setup {
             override_file_sorter = true,
         },
         ["ui-select"] = {
-            themes.get_cursor()
+            themes.get_cursor(),
         },
     },
     pickers = {
