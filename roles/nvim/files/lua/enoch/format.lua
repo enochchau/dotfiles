@@ -14,16 +14,16 @@ local astro_omit = {
 }
 
 function M.format(client_name)
+    local omit
+    if client_name == "astro" then
+        omit = astro_omit
+    else
+        omit = default_omit
+    end
+
     vim.lsp.buf.format {
         filter = function(fmt_client)
-            local omit
-            if client_name == "astro" then
-                omit = astro_omit
-            else
-                omit = default_omit
-            end
-
-            return not omit[fmt_client]
+            return not omit[fmt_client.name]
         end,
         async = true,
     }
