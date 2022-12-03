@@ -1,1 +1,1 @@
-return vim.keymap.set("t", "<Plug>(leap-backward-x)", (require("FTerm")).toggle, {noremap = true, silent = true})
+return vim.keymap.set("n", "<C-t>", (require("FTerm")).toggle, {noremap = true, silent = true})

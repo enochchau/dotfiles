@@ -1,3 +1,3 @@
-(import-macros {: tmap! : req!} :macros)
+(import-macros {: nmap! : req!} :macros)
 
-(tmap! "<C-\\><C-\\>" (req! :FTerm :toggle))
+(nmap! "<C-t>" (req! "FTerm" :toggle))
