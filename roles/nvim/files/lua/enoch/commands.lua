@@ -1,6 +1,6 @@
 vim.api.nvim_create_user_command("BufClear", "%bd|e#|bd#", {})
 local function _1_()
-  return (require("enoch.format")).format(vim.opt_local.filetype)
+  return (require("enoch.format")).format(vim.bo.filetype._value)
 end
 vim.api.nvim_create_user_command("Format", _1_, {})
 local function _2_()

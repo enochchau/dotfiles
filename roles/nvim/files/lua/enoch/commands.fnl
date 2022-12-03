@@ -9,7 +9,7 @@
 (command! :BufClear "%bd|e#|bd#")
 
 ;; Format cmd
-(command! :Format #((req! :enoch.format :format) vim.opt_local.filetype))
+(command! :Format #((req! :enoch.format :format) vim.bo.filetype._value))
 
 ;; swap nu to rnu and visa versa
 (command! :SwapNu #(set opt.relativenumber (not opt.relativenumber._value)))
