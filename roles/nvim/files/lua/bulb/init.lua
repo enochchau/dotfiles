@@ -23,7 +23,8 @@ local function fnl_compile(stream)
 end
 
 local function print_stdout(message)
-    vim.fn.writefile({ message }, "/dev/stdout")
+    message = vim.fn.split(message, "\n")
+    vim.fn.writefile(message, "/dev/stdout")
 end
 
 command("FnlCompile", function(t)
@@ -49,6 +50,6 @@ end, { nargs = 1 })
 command("FnlRun", function(t)
     local in_path = unpack(vim.fn.split(t.args, " "))
     assert(in_path, "missing input path")
-    local res = fennel.dofile(in_path)
-    print_stdout(res)
+    local out = fennel.dofile(in_path)
+    print_stdout(out)
 end, { nargs = 1 })
