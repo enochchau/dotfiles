@@ -86,7 +86,7 @@
     - role: git
       tags: git
       vars:
-        - git_email: 22567131+ec965@users.noreply.github.com
+        - git_email: enoch965@gmail.com
         - git_user: ec965
     - role: asdf
       tags: asdf
