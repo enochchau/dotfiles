@@ -12,15 +12,14 @@ def run_nvim(*commands: str):
     env = os.environ.copy()
     env["FENNEL_COMPILE"] = "true"
 
-    with subprocess.Popen(
-        cmd, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, env=env, text=True
-    ) as p:
-        if p.stdout:
-            while True:
-                l = p.stdout.readline()
-                if not l:
-                    break
-                print(l)
+    p = subprocess.run(
+        cmd,
+        stdout=subprocess.PIPE,
+        stderr=subprocess.STDOUT,
+        env=env,
+        text=True
+    )
+    print(p.stdout)
 
 
 parser = argparse.ArgumentParser(
