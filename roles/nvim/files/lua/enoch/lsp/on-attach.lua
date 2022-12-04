@@ -18,7 +18,7 @@ local function on_attach(client, bufnr)
   vim.keymap.set("n", "ga", _2_, {noremap = true, silent = true})
   vim.keymap.set("n", "gw", (require("telescope.builtin")).diagnostics, {noremap = true, silent = true})
   vim.keymap.set("n", "<leader>a", vim.lsp.buf.code_action, {noremap = true, silent = true})
-  vim.keymap.set("x", "<Plug>(leap-backward-x)", ":<C-U>lua vim.lsp.buf.range_code_action()<CR>", {noremap = true, silent = true})
+  vim.keymap.set("x", "<leader>a", ":<C-U>lua vim.lsp.buf.range_code_action()<CR>", {noremap = true, silent = true})
   return vim.keymap.set("n", "<leader>rn", vim.lsp.buf.rename, {noremap = true, silent = true})
 end
 return {["on-attach"] = on_attach}

@@ -1,11 +1,48 @@
-local M = {}
+local M = {
+    rtp_updated = false,
+}
 
 local command = vim.api.nvim_create_user_command
 
-local cfg = { compiler_options = { ["compiler-env"] = _G, correlate = false } }
+local cfg = {
+    compiler_options = { compilerEnv = _G, correlate = false },
+    debug = false,
+}
 
-local function open_stream(filename)
-    local f = assert(io.open(filename, "rb"))
+--- Update `fennel.path` and `fennel.macro-path` with runtimepaths
+local function update_fnl_rtp()
+    if M.rtp_updated then
+        return
+    end
+
+    local fennel = require "bulb.fennel"
+    local rtps = vim.api.nvim_list_runtime_paths()
+    local lua_templates = {
+        ";%s/lua/?.fnl",
+        ";%s/lua/?/init.fnl",
+    }
+    local fnl_templates = {
+        ";%s/fnl/?.fnl",
+        ";%s/fnl/?/init.fnl",
+    }
+    for _, rtp in ipairs(rtps) do
+        for _, template in ipairs(lua_templates) do
+            fennel["macro-path"] = fennel["macro-path"]
+                .. string.format(template, rtp)
+            fennel.path = fennel.path .. string.format(template, rtp)
+        end
+        for _, template in ipairs(fnl_templates) do
+            fennel["macro-path"] = fennel["macro-path"]
+                .. string.format(template, rtp)
+            fennel.path = fennel.path .. string.format(template, rtp)
+        end
+    end
+
+    M.rtp_updated = true
+end
+
+local function read_stream(filepath)
+    local f = assert(io.open(filepath, "rb"))
 
     return function()
         local c = f:read(1)
@@ -23,6 +60,13 @@ local function print_stdout(message)
     vim.fn.writefile(message, "/dev/stdout")
 end
 
+local function compile_file(filepath)
+    local stream = read_stream(filepath)
+    local out =
+        require("bulb.fennel").compileStream(stream, cfg.compiler_options)
+    return out
+end
+
 --- Configure bulb
 ---@param user_config table
 function M.setup(user_config)
@@ -31,16 +75,31 @@ function M.setup(user_config)
 
     local fennel = require "bulb.fennel"
 
-    if debug.traceback ~= fennel.traceback then
+    -- add fennel tracebacks if debug is enabled
+    if cfg.debug and debug.traceback ~= fennel.traceback then
         debug.traceback = fennel.traceback
     end
 
+    -- add vim rtp to fennel searchers
+    update_fnl_rtp()
+
+    local _fnl_macro_searcher = fennel.macroSearchers[1]
+
+    -- tap into searcher
+    fennel.macroSearchers[1] = function(module_name)
+        -- cache macros here!
+        local result, filename = _fnl_macro_searcher(module_name)
+        print("Found macro: ", filename)
+        vim.pretty_print(string.dump(result))
+        print "-----------------------------"
+        return result, filename
+    end
+
     command("FnlCompile", function(t)
-        local in_path, out_path = unpack(vim.fn.split(t.args, " "))
+        local in_path, out_path = unpack(t.fargs)
         assert(in_path, "missing input path")
 
-        local stream = open_stream(in_path)
-        local out = fennel.compileStream(stream, cfg.compiler_options)
+        local out = compile_file(in_path)
 
         if out_path ~= nil then
             local file = assert(io.open(out_path, "w"))
@@ -49,15 +108,15 @@ function M.setup(user_config)
         else
             print_stdout(out)
         end
-    end, { nargs = 1 })
+    end, { nargs = "+" })
 
     command("FnlRun", function(t)
-        local in_path = unpack(vim.fn.split(t.args, " "))
+        local in_path = t.args
         assert(in_path, "missing input path")
 
         local out = fennel.dofile(in_path, cfg.compiler_options)
         print "\n"
-        print_stdout(vim.inspect(out))
+        print_stdout(fennel.view(out))
     end, { nargs = 1 })
 end
 

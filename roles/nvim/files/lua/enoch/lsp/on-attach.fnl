@@ -1,4 +1,4 @@
-(import-macros {: xmap! : nmap! : map! : req!} :macros)
+(import-macros {: xmap! : nmap! : map! : req!} :enoch.macros)
 
 (fn on-attach [client bufnr]
   (vim.api.nvim_buf_set_option bufnr :omnifunc "v:lua.vim.lsp.omnifunc")

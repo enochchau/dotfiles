@@ -1,4 +1,4 @@
-(import-macros {: req! : command!} :macros)
+(import-macros {: req! : command!} :enoch.macros)
 
 (macro command-fterm! [name]
   (let [cmd (.. :FTerm (string.gsub name "^%l" string.upper))]

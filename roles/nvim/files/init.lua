@@ -1,7 +1,8 @@
 pcall(require, "impatient")
 
+require("bulb").setup { debug = true }
+
 if vim.env["FENNEL_COMPILE"] then
-    require("bulb").setup()
     return
 end
 

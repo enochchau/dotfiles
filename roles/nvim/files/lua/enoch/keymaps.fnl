@@ -1,4 +1,4 @@
-(import-macros {: nmap! : vmap! : req!} :macros)
+(import-macros {: nmap! : vmap! : req!} :enoch.macros)
 
 ;; move vertically by visual line, don't skip wrapped lines
 (nmap! :j :gj)

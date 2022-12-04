@@ -1,1 +1,1 @@
-return vim.keymap.set("n", "<C-t>", (require("FTerm")).toggle, {noremap = true, silent = true})
+return vim.keymap.set("t", "<C-\\><C-\\>", (require("FTerm")).toggle, {noremap = true, silent = true})
