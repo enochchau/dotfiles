@@ -6,4 +6,3 @@ lua/enoch/cmp_source_groups.lua
 lua/enoch/commands.lua
 lua/enoch/keymaps.lua
 lua/enoch/lsp/on-attach.lua
-
