@@ -142,5 +142,4 @@ function M.tsserver()
     return opts
 end
 
-
 return M

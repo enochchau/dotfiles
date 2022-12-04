@@ -55,4 +55,17 @@ local function open_plugin_link()
     return nil
   end
 end
-return vim.api.nvim_create_user_command("PackerOpen", open_plugin_link, {})
+vim.api.nvim_create_user_command("PackerOpen", open_plugin_link, {})
+local function _9_()
+  local runners = {fennel = {vim.fn.expand("~/.config/nvim/scripts/fnl-nvim"), "-e"}, javascript = {"node"}, lua = {"lua"}}
+  local buf = vim.api.nvim_buf_get_name(0)
+  local ft = vim.filetype.match({filename = buf})
+  local exec = runners[ft]
+  if (nil ~= exec) then
+    table.insert(exec, buf)
+    return (require("FTerm")).scratch({cmd = exec})
+  else
+    return nil
+  end
+end
+return vim.api.nvim_create_user_command("Run", _9_, {bang = true})

@@ -12,7 +12,8 @@
 (command! :Format #((req! :enoch.format :format) vim.bo.filetype._value))
 
 ;; swap nu to rnu and visa versa
-(command! :SwapNu #(set vim.opt.relativenumber (not vim.opt.relativenumber._value)))
+(command! :SwapNu #(set vim.opt.relativenumber
+                        (not vim.opt.relativenumber._value)))
 
 ;; FTerm
 (command-fterm! :open)
@@ -62,3 +63,17 @@
         (github? text) (open-url (.. "https://github.com/" text)))))
 
 (command! :PackerOpen open-plugin-link)
+
+;; Run a buffer
+(command! :Run #(let [runners {:fennel [(vim.fn.expand "~/.config/nvim/scripts/fnl-nvim")
+                                        :-e]
+                               :javascript [:node]
+                               :lua [:lua]}
+                      buf (vim.api.nvim_buf_get_name 0)
+                      ft (vim.filetype.match {:filename buf})
+                      exec (. runners ft)]
+                  (if (not= nil exec)
+                      (do
+                        (table.insert exec buf)
+                        ((req! :FTerm :scratch) {:cmd exec}))))
+          {:bang true})
