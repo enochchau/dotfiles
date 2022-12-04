@@ -4,6 +4,9 @@ local lsp_opts = require "enoch.lsp.lsp-opts"
 local null_ls = require "null-ls"
 local mason_null_ls = require "mason-null-ls"
 
+-- setup additional lsp configs before loading lspconfig
+require "enoch.lsp.configs"
+
 local has_termux = vim.env.TERMUX ~= nil
 
 local function enable_icon_signs()
@@ -21,32 +24,38 @@ enable_icon_signs()
 vim.diagnostic.config { virtual_text = false }
 
 local servers = {
-    "ansiblels",
-    "astro",
-    "bashls",
-    "cssls",
-    "crystalline",
-    "eslint",
-    "prismals",
-    "pyright",
-    "gopls",
-    "html",
-    "jsonls",
-    "rust_analyzer",
-    "sumneko_lua",
-    "terraformls",
-    "tsserver",
-    "vimls",
-    "yamlls",
-    "zls",
+    ["ansiblels"] = true,
+    ["astro"] = true,
+    ["bashls"] = true,
+    ["cssls"] = true,
+    ["crystalline"] = true,
+    ["eslint"] = true,
+    ["fennel-language-server"] = false,
+    -- ["fennel-ls"] = false,
+    ["prismals"] = true,
+    ["pyright"] = true,
+    ["gopls"] = true,
+    ["html"] = true,
+    ["jsonls"] = true,
+    ["rust_analyzer"] = true,
+    ["sumneko_lua"] = true,
+    ["terraformls"] = true,
+    ["tsserver"] = true,
+    ["vimls"] = true,
+    ["yamlls"] = true,
+    ["zls"] = true,
 }
 
 if not has_termux then
-    require("mason-lspconfig").setup { ensure_installed = servers }
+    require("mason-lspconfig").setup {
+        ensure_installed = vim.tbl_filter(function(val)
+            return servers[val]
+        end, vim.tbl_keys(servers)),
+    }
 end
 
 -- setup
-for _, server in ipairs(servers) do
+for _, server in ipairs(vim.tbl_keys(servers)) do
     local config
     if lsp_opts[server] then
         config = lsp_opts[server]()
