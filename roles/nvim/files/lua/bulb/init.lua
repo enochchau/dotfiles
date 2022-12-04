@@ -1,10 +1,8 @@
-local fennel = require "bulb.fennel"
-local command = vim.api.nvim_create_user_command
-if debug.traceback ~= fennel.traceback then
-    debug.traceback = fennel.traceback
-end
+local M = {}
 
-local compiler_options = { ["compiler-env"] = _G, correlate = false }
+local command = vim.api.nvim_create_user_command
+
+local cfg = { compiler_options = { ["compiler-env"] = _G, correlate = true } }
 
 local function open_stream(filename)
     local f = assert(io.open(filename, "rb"))
@@ -25,27 +23,42 @@ local function print_stdout(message)
     vim.fn.writefile(message, "/dev/stdout")
 end
 
-command("FnlCompile", function(t)
-    local in_path, out_path = unpack(vim.fn.split(t.args, " "))
-    assert(in_path, "missing input path")
+--- Configure bulb
+---@param user_config table
+function M.setup(user_config)
+    user_config = user_config or {}
+    cfg = vim.tbl_deep_extend("keep", user_config, cfg)
 
-    local stream = open_stream(in_path)
-    local out = fennel.compileStream(stream, compiler_options)
+    local fennel = require "bulb.fennel"
 
-    if out_path ~= nil then
-        local file = assert(io.open(out_path, "w"))
-        file:write(out)
-        file:close()
-    else
-        print_stdout(out)
+    if debug.traceback ~= fennel.traceback then
+        debug.traceback = fennel.traceback
     end
-end, { nargs = 1 })
 
-command("FnlRun", function(t)
-    local in_path = unpack(vim.fn.split(t.args, " "))
-    assert(in_path, "missing input path")
+    command("FnlCompile", function(t)
+        local in_path, out_path = unpack(vim.fn.split(t.args, " "))
+        assert(in_path, "missing input path")
 
-    local out = fennel.dofile(in_path, compiler_options)
-    print "\n"
-    print_stdout(vim.inspect(out))
-end, { nargs = 1 })
+        local stream = open_stream(in_path)
+        local out = fennel.compileStream(stream, cfg.compiler_options)
+
+        if out_path ~= nil then
+            local file = assert(io.open(out_path, "w"))
+            file:write(out)
+            file:close()
+        else
+            print_stdout(out)
+        end
+    end, { nargs = 1 })
+
+    command("FnlRun", function(t)
+        local in_path = unpack(vim.fn.split(t.args, " "))
+        assert(in_path, "missing input path")
+
+        local out = fennel.dofile(in_path, cfg.compiler_options)
+        print "\n"
+        print_stdout(vim.inspect(out))
+    end, { nargs = 1 })
+end
+
+return M
