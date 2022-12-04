@@ -2,7 +2,7 @@ local M = {}
 
 local command = vim.api.nvim_create_user_command
 
-local cfg = { compiler_options = { ["compiler-env"] = _G, correlate = true } }
+local cfg = { compiler_options = { ["compiler-env"] = _G, correlate = false } }
 
 local function open_stream(filename)
     local f = assert(io.open(filename, "rb"))

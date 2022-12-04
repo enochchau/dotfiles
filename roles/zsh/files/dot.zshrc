@@ -45,8 +45,7 @@ alias vi="nvim"
 alias vim="nvim"
 alias vimrc="nvim ~/.config/nvim --cmd 'cd ~/.config/nvim'"
 alias conf="~/code/dev-scripts/config.sh"
-alias fnl-compile="~/.config/nvim/scripts/fennel_compile.sh"
-alias fnl-run="~/.config/nvim/scripts/fennel_run.sh"
+alias fnl-nvim="~/.config/nvim/scripts/fnl-nvim"
 alias python="python3"
 
 cdg() { cd "$(git rev-parse --show-toplevel)/$1" }
