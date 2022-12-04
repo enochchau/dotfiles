@@ -58,12 +58,12 @@ end
 vim.api.nvim_create_user_command("PackerOpen", open_plugin_link, {})
 local function _9_()
   local runners = {fennel = {vim.fn.expand("~/.config/nvim/scripts/fnl-nvim"), "-e"}, javascript = {"node"}, lua = {"lua"}}
-  local buf = vim.api.nvim_buf_get_name(0)
-  local ft = vim.filetype.match({filename = buf})
-  local exec = runners[ft]
-  if (nil ~= exec) then
-    table.insert(exec, buf)
-    return (require("FTerm")).scratch({cmd = exec})
+  local buf_name = vim.api.nvim_buf_get_name(0)
+  local cmd = runners[vim.filetype.match({filename = buf_name})]
+  if (nil ~= cmd) then
+    table.insert(cmd, buf_name)
+    vim.pretty_print(cmd)
+    return (require("FTerm")).scratch({cmd = cmd})
   else
     return nil
   end

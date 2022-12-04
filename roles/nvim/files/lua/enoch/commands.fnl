@@ -69,11 +69,11 @@
                                         :-e]
                                :javascript [:node]
                                :lua [:lua]}
-                      buf (vim.api.nvim_buf_get_name 0)
-                      ft (vim.filetype.match {:filename buf})
-                      exec (. runners ft)]
-                  (if (not= nil exec)
+                      buf_name (vim.api.nvim_buf_get_name 0)
+                      cmd (. runners (vim.filetype.match {:filename buf_name}))]
+                  (if (not= nil cmd)
                       (do
-                        (table.insert exec buf)
-                        ((req! :FTerm :scratch) {:cmd exec}))))
+                        (table.insert cmd buf_name)
+                        (vim.pretty_print cmd)
+                        ((req! :FTerm :scratch) {: cmd}))))
           {:bang true})
