@@ -12,7 +12,7 @@
 (command! :Format #((req! :enoch.format :format) vim.bo.filetype._value))
 
 ;; swap nu to rnu and visa versa
-(command! :SwapNu #(set opt.relativenumber (not opt.relativenumber._value)))
+(command! :SwapNu #(set vim.opt.relativenumber (not vim.opt.relativenumber._value)))
 
 ;; FTerm
 (command-fterm! :open)
@@ -30,12 +30,18 @@
 
   (fn open-url [url]
     "Open a url in the browser"
-    (let [has vim.fn.has
-          system vim.fn.system]
-      (if (has :mac) (system (.. "open " url))
-          (has :wsl) (system (.. "explorer.exe " url))
-          (has :win32) (system (.. "start " url))
-          (has :linux) (system (.. "xdg-open " url)))))
+    (macro sys-open-url [sys-cmd url]
+      (fn step [i]
+        (if (<= i (length sys-cmd))
+            (let [(sys cmd) (unpack (. sys-cmd i))]
+              `(if (= (vim.fn.has ,sys) 1) (vim.fn.system (.. ,cmd " " ,url))
+                   ,(step (+ i 1))))))
+
+      (step 1))
+    (sys-open-url [[:mac :open]
+                   [:wsl :explorer.exe]
+                   [:win32 :start]
+                   [:linux :xdg-open]] url))
 
   (fn get-text-at-cursor []
     "Get text under cursor"

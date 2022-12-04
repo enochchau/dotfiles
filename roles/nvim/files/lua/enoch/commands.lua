@@ -4,7 +4,7 @@ local function _1_()
 end
 vim.api.nvim_create_user_command("Format", _1_, {})
 local function _2_()
-  opt.relativenumber = not opt.relativenumber._value
+  vim.opt.relativenumber = not vim.opt.relativenumber._value
   return nil
 end
 vim.api.nvim_create_user_command("SwapNu", _2_, {})
@@ -19,18 +19,22 @@ vim.api.nvim_create_user_command("Cdg", _3_, {})
 local function open_plugin_link()
   local ts_utils = require("nvim-treesitter.ts_utils")
   local function open_url(url)
-    local has = vim.fn.has
-    local system = vim.fn.system
-    if has("mac") then
-      return system(("open " .. url))
-    elseif has("wsl") then
-      return system(("explorer.exe " .. url))
-    elseif has("win32") then
-      return system(("start " .. url))
-    elseif has("linux") then
-      return system(("xdg-open " .. url))
+    if (vim.fn.has("mac") == 1) then
+      return vim.fn.system(("open" .. " " .. url))
     else
-      return nil
+      if (vim.fn.has("wsl") == 1) then
+        return vim.fn.system(("explorer.exe" .. " " .. url))
+      else
+        if (vim.fn.has("win32") == 1) then
+          return vim.fn.system(("start" .. " " .. url))
+        else
+          if (vim.fn.has("linux") == 1) then
+            return vim.fn.system(("xdg-open" .. " " .. url))
+          else
+            return nil
+          end
+        end
+      end
     end
   end
   local function get_text_at_cursor()
