@@ -1,7 +1,7 @@
 (fn nmap! [lhs rhs buffer]
   `(vim.keymap.set :n ,lhs ,rhs {:noremap true :silent true :buffer ,buffer}))
 
-(fn vmap! [lhrs rhs buffer]
+(fn vmap! [lhs rhs buffer]
   `(vim.keymap.set :v ,lhs ,rhs {:noremap true :silent true :buffer ,buffer}))
 
 (fn xmap! [lhrs rhs buffer]
