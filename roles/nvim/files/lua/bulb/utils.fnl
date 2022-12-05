@@ -3,4 +3,4 @@
   (let [msg (vim.fn.split msg "\n")]
     (vim.fn.writefile msg :/dev/stdout)))
 
-{ : print-stdout }
+{: print-stdout}

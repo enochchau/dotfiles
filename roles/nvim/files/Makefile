@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-FNL_FILES := $(shell find . \( -name '*.fnl' ! -name 'macros.fnl' \) -type f | sort)
+FNL_FILES := $(shell find . \( -name '*.fnl' ! -name 'bulb/' \) -type f | sort)
 LUA_FILES := $(patsubst %.fnl,%.lua,$(FNL_FILES))
 
 STYLUA_IGNORE := plugin/packer_compiled.lua lua/bulb/fennel.lua $(subst ./,,$(LUA_FILES)) 
@@ -26,7 +26,7 @@ clean:
 # format lua and fennel files
 .PHONY: fmt
 fmt:
-	stylua .; $(foreach file,$(FNL_FILES) macros.fnl,echo "Formatting " $(file); fnlfmt --fix $(file);)
+	stylua .; $(foreach file,$(FNL_FILES),echo "Formatting " $(file); fnlfmt --fix $(file);)
 
 # fetch notepad ++ quotes
 .PHONY: quotes.json
