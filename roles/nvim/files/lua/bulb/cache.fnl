@@ -26,11 +26,11 @@ end
 (fn M.gen-preload-cache []
   "Generate the preload file for all the files in the first runtime path"
   (let [{: get-fnl-files} (require :bulb.fs)
-        {: compile-file} (require :bulb.compiler)
+        {: compile-file : activate-compiler-env} (require :bulb.compiler)
         {: add-module : write-cache : cache} (require :bulb.cache)
-        {: get-module-name} (require :bulb)
+        {: get-module-name} (require :bulb.lutil)
         fnl-files (get-fnl-files (vim.fn.stdpath :config))]
-    (vim.pretty_print fnl-files)
+    (activate-compiler-env)
     (each [_ filename (ipairs fnl-files)]
       (if ;; if this is a macro, we don't want to compile it
           ;; the macro searcher should always fine our macro files before we start compiling

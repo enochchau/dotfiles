@@ -7,7 +7,7 @@ _G.__bulb_internal = {
 -- We compile and preload all of bulb's fennel files here to bootstrap it
 -- Then we get access to compilation tools to create the cache
 local function bootstrap()
-    local lutil = require("bulb.lutil")
+    local lutil = require "bulb.lutil"
     local fennel = require "bulb.fennel"
     -- this file should be at ./lua/bulb/bootstrap.lua
     local targetpath = debug.getinfo(1, "S").source:match "@?(.*)"
@@ -36,20 +36,19 @@ local function bootstrap()
         debug.traceback = fennel.traceback
     end
 
-    lutil['update-fnl-macro-rtp']()
+    lutil["update-fnl-macro-rtp"]()
 
     for _, fnl_file in ipairs(files) do
         local f = assert(io.open(fnl_file, "r"))
         local input_fnl = f:read "*a"
         f:close()
 
-
         local result = fennel.compileString(
             input_fnl,
             { filename = fnl_file, compilerEnv = _G }
         )
 
-        local module_name = lutil['get-module-name'](fnl_file)
+        local module_name = lutil["get-module-name"](fnl_file)
 
         -- preload files here
         package.preload[module_name] = package.preload[module_name]
@@ -70,10 +69,18 @@ end
 --- we have to wrap this function b/c we don't know if bulb.setup will be
 --- compiled yet
 local function setup(user_config)
+    if user_config.bootstrap then
+        bootstrap()
+        require("bulb.setup").setup(user_config)
+        vim.cmd("BulbPreload")
+        assert(loadfile(require("bulb.config").cfg["cache-path"])())
+        print "Finished bootstrapping"
+else
     require("bulb.setup").setup(user_config)
+    end
+
 end
 
 return {
     setup = setup,
-    bootstrap = bootstrap,
 }
