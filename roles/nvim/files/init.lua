@@ -1,13 +1,7 @@
 pcall(require, "impatient")
 
--- if vim.env["FENNEL_COMPILE"] then
-    require("bulb").setup {
-        ["compiler-options"] = { compilerEnv = _G },
-        debug = true,
-        bootstrap = true
-    }
---     return
--- end
+require("bulb").bootstrap()
+-- require("bulb").setup { bootstrap = vim.env.BULB_BOOTSTRAP ~= nil }
 
 local autocmd = vim.api.nvim_create_autocmd
 local has = vim.fn.has
@@ -16,7 +10,7 @@ local opt = vim.opt
 local cmd = vim.cmd
 
 -- theme
-vim.opt.bg = "light"
+vim.opt.bg = "dark"
 vim.cmd.colorscheme "tokyonight"
 
 g.mapleader = ","

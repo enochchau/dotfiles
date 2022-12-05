@@ -4,63 +4,10 @@ _G.__bulb_internal = {
     plugin_name = "bulb",
 }
 
---- Update `fennel.macro-path` and `fennel.path` with runtimepaths
---- We call this function during bootstrap and setup
-local function update_fnl_macro_rtp()
-    -- stop rtp from being updated multiple times
-    if _G.__bulb_internal.rtp_updated then
-        return
-    end
-
-    local fennel = require "bulb.fennel"
-    local rtps = vim.api.nvim_list_runtime_paths()
-    local templates = {
-        -- lua base dir
-        ";%s/lua/?.fnl",
-        ";%s/lua/?/init.fnl",
-        -- fnl base dir
-        ";%s/fnl/?.fnl",
-        ";%s/fnl/?/init.fnl",
-    }
-    for _, rtp in ipairs(rtps) do
-        for _, template in ipairs(templates) do
-            fennel["macro-path"] = fennel["macro-path"]
-                .. string.format(template, rtp)
-            -- TODO: figure out if we actually have to update this path
-            fennel.path = fennel.path .. string.format(template, rtp)
-        end
-    end
-
-    _G.__bulb_internal.rtp_updated = true
-end
-
---- Get the `.` separated module name from the fnl file name
----@param fnl_file string
----@return string|nil
-local function get_module_name(fnl_file)
-    -- check both the fnl/ and lua/ directories
-
-    local module_partial = nil
-    local matchers = { "fnl/(.+)%.fnl$", "lua/(.+)%.fnl$" }
-    for _, matcher in ipairs(matchers) do
-        module_partial = string.match(fnl_file, matcher)
-        if module_partial ~= nil then
-            break
-        end
-    end
-
-    if module_partial == nil then
-        -- assert(module_partial, "Coudn't get module name for: " .. fnl_file)
-        return nil
-    end
-
-    local module_name = string.gsub(module_partial, "/", ".")
-    return module_name
-end
-
 -- We compile and preload all of bulb's fennel files here to bootstrap it
 -- Then we get access to compilation tools to create the cache
 local function bootstrap()
+    local lutil = require("bulb.lutil")
     local fennel = require "bulb.fennel"
     -- this file should be at ./lua/bulb/bootstrap.lua
     local targetpath = debug.getinfo(1, "S").source:match "@?(.*)"
@@ -89,24 +36,27 @@ local function bootstrap()
         debug.traceback = fennel.traceback
     end
 
+    lutil['update-fnl-macro-rtp']()
+
     for _, fnl_file in ipairs(files) do
         local f = assert(io.open(fnl_file, "r"))
         local input_fnl = f:read "*a"
         f:close()
+
 
         local result = fennel.compileString(
             input_fnl,
             { filename = fnl_file, compilerEnv = _G }
         )
 
-        local module_name = get_module_name(fnl_file)
+        local module_name = lutil['get-module-name'](fnl_file)
 
         -- preload files here
         package.preload[module_name] = package.preload[module_name]
             or function()
                 return assert(
                     loadstring(result, module_name)(),
-                    "Failed to load module: " .. module_name
+                    "bulb: Failed to load module " .. module_name
                 )
             end
     end
@@ -117,18 +67,13 @@ local function bootstrap()
     end
 end
 
+--- we have to wrap this function b/c we don't know if bulb.setup will be
+--- compiled yet
 local function setup(user_config)
-    if user_config.bootstrap then
-        bootstrap()
-    end
-
-    update_fnl_macro_rtp()
-
-    -- everything after bootstrap can come from a fennel file
     require("bulb.setup").setup(user_config)
 end
 
 return {
     setup = setup,
-    ["get-module-name"] = get_module_name,
+    bootstrap = bootstrap,
 }
