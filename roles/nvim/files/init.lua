@@ -1,13 +1,13 @@
 pcall(require, "impatient")
 
-if vim.env["FENNEL_COMPILE"] then
+-- if vim.env["FENNEL_COMPILE"] then
     require("bulb").setup {
-        ["compiler-options"] = { compileEnv = _G },
+        ["compiler-options"] = { compilerEnv = _G },
         debug = true,
         bootstrap = true
     }
-    return
-end
+--     return
+-- end
 
 local autocmd = vim.api.nvim_create_autocmd
 local has = vim.fn.has

@@ -1,6 +1,6 @@
 SHELL := /bin/bash
 
-FNL_FILES := $(shell find . -name '*.fnl' -not -path './lua/bulb/*' -type f | sort)
+FNL_FILES := $(shell find . -name '*.fnl' -not -path './lua/bulb/*' -not -name 'macros.fnl' -type f | sort)
 LUA_FILES := $(patsubst %.fnl,%.lua,$(FNL_FILES))
 
 STYLUA_IGNORE := plugin/packer_compiled.lua lua/bulb/fennel.lua $(subst ./,,$(LUA_FILES)) 
