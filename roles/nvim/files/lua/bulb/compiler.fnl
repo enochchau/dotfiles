@@ -10,8 +10,8 @@
               nil))))))
 
 (fn get-compiler-options [filename]
-  (let [{: cfg} (require :bulb.config)]
-    (vim.tbl_extend :keep cfg.compiler-options {: filename})))
+  (let [config (require :bulb.config)]
+    (vim.tbl_extend :keep config.cfg.compiler-options {: filename})))
 
 (fn compile-file [filename]
   "Compile a file"

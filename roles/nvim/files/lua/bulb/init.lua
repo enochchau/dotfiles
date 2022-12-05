@@ -10,10 +10,14 @@ _G.__bulb_internal = {
 local function load_cache()
     local cache_path = require("bulb.config").cfg["cache-path"]
     local ok, f = pcall(loadfile, cache_path)
-    if ok then
-        f()
+    if ok and f ~= nil then
+        local ok, err = pcall(f)
+        if ok then
+            return true
+        end
+        vim.notify("bulb: " .. err)
     end
-    return ok
+    return false
 end
 
 -- We compile and preload all of bulb's fennel files here to bootstrap it

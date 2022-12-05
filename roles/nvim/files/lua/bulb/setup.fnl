@@ -8,11 +8,11 @@
         user-config (or user-config {})]
     ;; apply user configs
     (tset config :cfg (vim.tbl_deep_extend :keep user-config config.cfg))
-    ;; create user commands as strings for lazy loading
-    (command :BulbCompile "lua require'bulb.headless'['headless-compile']"
+    ;; create user commands
+    (command :BulbCompile (. (require :bulb.headless) :headless-compile)
              {:nargs "+"})
-    (command :BulbRun "lua require'bulb.headless'['headless-run']" {:nargs 1})
-    (command :BulbPreload "lua require'bulb.cache'['gen-preload-cache']" {})
-    (command :BulbClean "lua require'bulb.cache'['clear-cache']")))
+    (command :BulbRun (. (require :bulb.headless) :headless-run) {:nargs 1})
+    (command :BulbPreload "lua require'bulb.cache'['gen-preload-cache']()")
+    (command :BulbClean "lua require'bulb.cache'['clear-cache']()")))
 
 {: setup}

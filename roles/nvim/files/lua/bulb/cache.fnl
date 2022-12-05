@@ -18,7 +18,7 @@ end
   "Reset the cache"
   (tset cache :module {})
   (tset cache :macro {})
-  (vim.loop.unlink (. (require :bulb.config) :cache-path)))
+  (vim.loop.fs_unlink (. (require :bulb.config) :cfg :cache-path)))
 
 (fn add [cache-type]
   (fn [filename module-name code]
