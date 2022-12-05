@@ -12,30 +12,14 @@ local function bootstrap()
     local fennel = require "bulb.fennel"
     -- this file should be at ./lua/bulb/bootstrap.lua
     local targetpath = debug.getinfo(1, "S").source:match "@?(.*)"
-    -- lets go up to ./
-    for _ = 1, 3 do
-        targetpath = vim.fs.dirname(targetpath)
-    end
+    -- lets go up to ./lua
+    targetpath = vim.fs.dirname(vim.fs.dirname(targetpath))
 
-    -- only compile bulb, we don't get full path names in `vim.fs.find`
-    -- so we have to filter again
-    local files = vim.fs.find(function(filename)
-        return string.match(filename, "%.fnl$") ~= nil
-    end, { path = targetpath, type = "file", limit = math.huge })
+    local files = vim.fn.glob(targetpath .. "/**/bulb/*.fnl", vim.NIL, true)
 
-    files = vim.tbl_filter(function(filename)
-        return string.match(
-            filename,
-            string.format("/%s/", _G.__bulb_internal.plugin_name)
-        ) ~= nil
-    end, files)
-
+    -- set fennel debugger
     local _debug_traceback = debug.traceback
-
-    -- set debugger
-    if debug.traceback ~= fennel.traceback then
-        debug.traceback = fennel.traceback
-    end
+    debug.traceback = fennel.traceback
 
     lutil["update-fnl-macro-rtp"]()
 
@@ -62,10 +46,8 @@ local function bootstrap()
             end
     end
 
-    -- reset debugger
-    if debug.traceback == fennel.traceback then
-        debug.traceback = _debug_traceback
-    end
+    -- unset debugger
+    debug.traceback = _debug_traceback
 end
 
 --- we have to wrap this function b/c we don't know if bulb.setup will be
