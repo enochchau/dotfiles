@@ -1,5 +1,9 @@
 # Nvim bulb fennel compiler
 
+Just compiles everything in the Neovim config dir.
+
+## How it works
+
 Need to add runtimepaths to fennel.path and fennel.macro-path
 
 1. Look for all fennel files in runtimepath
@@ -18,6 +22,8 @@ Need to add runtimepaths to fennel.path and fennel.macro-path
 
 ## TODO
 
-1. handle caching of macro modules
+1. store the bulb cache in a seperate preload file so that it doesn't
+   add to the runtime when loading the general preload file
 2. Parallel compilation
 3. There's a way to load ftplugins from lua's `require`. might wanna look into that.
+4. Do people lazy load parts of their configs?
