@@ -54,10 +54,11 @@ local function bootstrap()
         -- preload files here
         package.preload[module_name] = package.preload[module_name]
             or function()
-                return assert(
-                    loadstring(result, module_name)(),
+                local f = assert(
+                    loadstring(result, module_name),
                     "bulb: Failed to load module " .. module_name
                 )
+                return f()
             end
     end
 
@@ -70,13 +71,20 @@ end
 --- we have to wrap this function b/c we don't know if bulb.setup will be
 --- compiled yet
 local function setup(user_config)
+    local function load_cache()
+        local cache_path = require("bulb.config").cfg["cache-path"]
+        local f = assert(loadfile(cache_path), "bulb: Failed to load cache")
+        return f()
+    end
+
     if user_config.bootstrap then
         bootstrap()
         require("bulb.setup").setup(user_config)
-        -- vim.cmd "BulbPreload"
-        -- assert(loadfile(require("bulb.config").cfg["cache-path"])())
+        vim.cmd "BulbPreload"
+        load_cache()
+    elseif user_config.loadonly then
+        load_cache()
     else
-        -- assert(loadfile(require("bulb.config").cfg["cache-path"])())
         require("bulb.setup").setup(user_config)
     end
 end

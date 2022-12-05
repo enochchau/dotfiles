@@ -14,9 +14,11 @@ end
 
 ;; caching fucntions
 
-(fn reset-cache [cache-type]
+(fn clear-cache []
   "Reset the cache"
-  (tset cache cache-type {}))
+  (tset cache :module {})
+  (tset cache :macro {})
+  (vim.loop.unlink (. (require :builb.config) :cache-path)))
 
 (fn add [cache-type]
   (fn [filename module-name code]
@@ -40,7 +42,6 @@ end
         {: compile-file} (require :bulb.compiler)
         {: get-module-name} (require :bulb.lutil)
         fnl-files (get-fnl-files (vim.fn.stdpath :config))]
-    (reset-cache :module)
     (each [_ filename (ipairs fnl-files)]
       (let [module-name (get-module-name filename)]
         ;; if this is a macro, we don't want to compile it
@@ -50,4 +51,4 @@ end
                  (add-module filename module-name))))))
   (write-cache))
 
-{: gen-preload-cache : add-macro}
+{: gen-preload-cache : add-macro : clear-cache}

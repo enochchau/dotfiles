@@ -34,6 +34,7 @@
     (command :BulbCompile (. (require :bulb.headless) :headless-compile)
              {:nargs "+"})
     (command :BulbRun (. (require :bulb.headless) :headless-run) {:nargs 1})
-    (command :BulbPreload (. (require :bulb.cache) :gen-preload-cache) {})))
+    (command :BulbPreload (. (require :bulb.cache) :gen-preload-cache) {})
+    (command :BulbClean (. (require :bulb.cache) :clear-cache) {})))
 
 {: setup}
