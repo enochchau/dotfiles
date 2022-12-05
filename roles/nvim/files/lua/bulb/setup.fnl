@@ -1,0 +1,28 @@
+(fn tap-macro-searcher []
+  (let [fennel (require :bulb.fennel)
+        default-macro-searcher (. fennel.macro-searchers 1)]
+    (fn tapped-searcher [module-name]
+      "Tap into the default macro searcher to do caching"
+      (let [(result filename) (default-macro-searcher module-name)]
+        ;; TODO: implement caching for macros
+        (print "Found Macro:" filename)
+        (values result filename)))
+
+    (tset fennel.macro-searchers 1 tapped-searcher)))
+
+(fn setup [user-config]
+  "Setup bulb"
+  (let [fennel (require :bulb.fennel)
+        config (require :bulb.config)
+        command vim.api.nvim_create_user_command]
+    (tset config :cfg (vim.tbl_deep_extend :keep user-config config.cfg))
+    (if (and config.cfg.debug (not= debug.traceback fennel.traceback))
+        (tset debug :traceback fennel.traceback))
+    ;; tap into macro searcher
+    (tap-macro-searcher)
+    ;; create user commands
+    (command :FnlCompile (. (require :bulb.commands) :cmd-fnl-compile)
+             {:nargs "+"})
+    (command :FnlRun (. (require :bulb.commands) :cmd-fnl-run) {:nargs 1})))
+
+{: setup}

@@ -1,8 +1,10 @@
 pcall(require, "impatient")
 
-require("bulb").setup { debug = true }
-
 if vim.env["FENNEL_COMPILE"] then
+    require("bulb").setup {
+        ["compiler-options"] = { compileEnv = _G },
+        debug = true,
+    }
     return
 end
 

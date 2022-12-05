@@ -4,3 +4,4 @@ packer_compiled.lua
 .DS_Store
 Session.vim
 user.nix
+.mypy_cache

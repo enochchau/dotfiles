@@ -1,20 +1,35 @@
-local M = {
+local uv = vim.loop
+local command = vim.api.nvim_create_user_command
+
+_G.__bulb_internal = {
     rtp_updated = false,
 }
 
-local command = vim.api.nvim_create_user_command
-
-local cfg = {
-    compiler_options = { compilerEnv = _G, correlate = false },
-    debug = false,
+local plugin_meta = {
+    name = "bulb",
+    version = "0.0.0",
 }
+
+local boostrap_compiler_options = {
+    compilerEnv = _G,
+}
+
+local function read_stream(filepath)
+    local f = assert(io.open(filepath, "rb"))
+
+    return function()
+        local c = f:read(1)
+        if c ~= nil then
+            return c:byte()
+        end
+
+        f:close()
+        return nil
+    end
+end
 
 --- Update `fennel.path` and `fennel.macro-path` with runtimepaths
 local function update_fnl_rtp()
-    if M.rtp_updated then
-        return
-    end
-
     local fennel = require "bulb.fennel"
     local rtps = vim.api.nvim_list_runtime_paths()
     local lua_templates = {
@@ -37,87 +52,94 @@ local function update_fnl_rtp()
             fennel.path = fennel.path .. string.format(template, rtp)
         end
     end
-
-    M.rtp_updated = true
 end
 
-local function read_stream(filepath)
-    local f = assert(io.open(filepath, "rb"))
+--- Get the `.` separated module name from the fnl file name
+---@param fnl_file string
+---@return string
+local function get_module_name(fnl_file)
+    -- check both the fnl/ and lua/ directories
+    local module_partial = string.match(fnl_file, "fnl/(.+)%.fnl$")
+    if module_partial == nil then
+        module_partial = string.match(fnl_file, "lua/(.+)%.fnl$")
+    end
 
-    return function()
-        local c = f:read(1)
-        if c ~= nil then
-            return c:byte()
+    assert(module_partial, "Coudn't get module name for: " .. fnl_file)
+    local module_name = string.gsub(module_partial, "/", ".")
+    return module_name
+end
+
+-- We compile and preload all of bulb's fennel files here to bootstrap it
+-- Then we get access to compilation tools to create the cache
+local function bootstrap()
+    -- we activate the bootstrap with an ENV var
+    if vim.env.FENNEL_COMPILE then
+        local fennel = require "bulb.fennel"
+        -- this file should be at ./lua/bulb/bootstrap.lua
+        local targetpath = debug.getinfo(1, "S").source:match "@?(.*)"
+        -- lets go up to ./
+        for _ = 1, 3 do
+            targetpath = vim.fs.dirname(targetpath)
         end
 
-        f:close()
-        return nil
-    end
-end
+        -- and compile all the fnl files
+        local files = vim.fs.find(function(filename)
+            return string.match(filename, "%.fnl$") ~= nil
+        end, { path = targetpath, type = "file", limit = math.huge })
 
-local function print_stdout(message)
-    message = vim.fn.split(message, "\n")
-    vim.fn.writefile(message, "/dev/stdout")
-end
+        -- only compile bulb
+        files = vim.tbl_filter(function(filename)
+            return string.match(filename, "/bulb/") ~= nil
+        end, files)
 
-local function compile_file(filepath)
-    local stream = read_stream(filepath)
-    local out =
-        require("bulb.fennel").compileStream(stream, cfg.compiler_options)
-    return out
-end
+        local _debug_traceback = debug.traceback
 
---- Configure bulb
----@param user_config table
-function M.setup(user_config)
-    user_config = user_config or {}
-    cfg = vim.tbl_deep_extend("keep", user_config, cfg)
+        update_fnl_rtp()
 
-    local fennel = require "bulb.fennel"
-
-    -- add fennel tracebacks if debug is enabled
-    if cfg.debug and debug.traceback ~= fennel.traceback then
-        debug.traceback = fennel.traceback
-    end
-
-    -- add vim rtp to fennel searchers
-    update_fnl_rtp()
-
-    local _fnl_macro_searcher = fennel.macroSearchers[1]
-
-    -- tap into searcher
-    fennel.macroSearchers[1] = function(module_name)
-        -- cache macros here!
-        local result, filename = _fnl_macro_searcher(module_name)
-        print("Found macro: ", filename)
-        vim.pretty_print(string.dump(result))
-        print "-----------------------------"
-        return result, filename
-    end
-
-    command("FnlCompile", function(t)
-        local in_path, out_path = unpack(t.fargs)
-        assert(in_path, "missing input path")
-
-        local out = compile_file(in_path)
-
-        if out_path ~= nil then
-            local file = assert(io.open(out_path, "w"))
-            file:write(out)
-            file:close()
-        else
-            print_stdout(out)
+        -- set debugger
+        if debug.traceback ~= fennel.traceback then
+            debug.traceback = fennel.traceback
         end
-    end, { nargs = "+" })
 
-    command("FnlRun", function(t)
-        local in_path = t.args
-        assert(in_path, "missing input path")
+        for _, fnl_file in ipairs(files) do
+            local f = assert(io.open(fnl_file, "r"))
+            local input_fnl = f:read "*a"
+            f:close()
 
-        local out = fennel.dofile(in_path, cfg.compiler_options)
-        print "\n"
-        print_stdout(fennel.view(out))
-    end, { nargs = 1 })
+            local result = fennel.compileString(
+                input_fnl,
+                { filename = fnl_file, compilerEnv = _G }
+            )
+
+            local module_name = get_module_name(fnl_file)
+
+            -- preload files here
+            package.preload[module_name] = package.preload[module_name]
+                or function()
+                    return assert(
+                        loadstring(result, module_name)(),
+                        "Failed to load module: " .. module_name
+                    )
+                end
+        end
+
+        -- reset debugger
+        if debug.traceback == fennel.traceback then
+            debug.traceback = _debug_traceback
+        end
+    end
 end
 
-return M
+local function setup(user_config)
+    bootstrap()
+
+    -- everything after bootstrap can come from a fennel file
+    require("bulb.setup").setup(user_config)
+end
+
+return {
+    bootstrap = bootstrap,
+    update_fnl_rtp = update_fnl_rtp,
+    ["update-fnl-rtp"] = update_fnl_rtp,
+    setup = setup,
+}
