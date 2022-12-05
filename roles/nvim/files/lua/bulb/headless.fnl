@@ -7,7 +7,7 @@
 
 (fn headless-compile [t]
   "Command for compiling a file in headless mode"
-  (let [{: compile-file } (require :bulb.compiler)
+  (let [{: compile-file} (require :bulb.compiler)
         {: write-file} (require :bulb.fs)
         (in-path out-path) (unpack t.fargs)]
     (assert in-path "Missing input path")
@@ -16,7 +16,7 @@
 
 (fn headless-run [t]
   "Command for running a file in headless mode"
-  (let [{: do-file } (require :bulb.compiler)
+  (let [{: do-file} (require :bulb.compiler)
         fennel (require :bulb.fennel)
         in-path t.args]
     (assert in-path "Missing input path")

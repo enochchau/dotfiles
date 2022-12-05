@@ -1,27 +1,6 @@
 SHELL := /bin/bash
 
-FNL_FILES := $(shell find . -name '*.fnl' -not -path './lua/bulb/*' -not -name 'macros.fnl' -type f | sort)
-LUA_FILES := $(patsubst %.fnl,%.lua,$(FNL_FILES))
-
-STYLUA_IGNORE := plugin/packer_compiled.lua lua/bulb/fennel.lua $(subst ./,,$(LUA_FILES)) 
-
-null :=
-space := $(null) #
-
-.PHONY: all
-all: $(LUA_FILES) .styluaignore
-
-# build lua files
-%.lua: %.fnl
-	FENNEL_COMPILE=true nvim --headless -c 'FnlCompile $< $@' +q
-
-.styluaignore: $(STYLUA_IGNORE)
-	echo -e "$(subst  $(space),\n,$(STYLUA_IGNORE))" > .styluaignore
-
-# clean lua files
-.PHONY: clean
-clean:
-	rm $(LUA_FILES) .styluaignore
+FNL_FILES := $(shell find . -name '*.fnl' -type f | sort)
 
 # format lua and fennel files
 .PHONY: fmt

@@ -25,4 +25,4 @@
         compiler-options (get-compiler-options filename)]
     (fennel.dofile filename compiler-options)))
 
-{: compile-file : do-file }
+{: compile-file : do-file}

@@ -20,3 +20,4 @@ Need to add runtimepaths to fennel.path and fennel.macro-path
 
 1. handle caching of macro modules
 2. Parallel compilation
+3. There's a way to load ftplugins from lua's `require`. might wanna look into that.

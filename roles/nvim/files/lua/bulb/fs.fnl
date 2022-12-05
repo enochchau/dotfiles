@@ -13,8 +13,8 @@
 
   (accumulate [files [] _ path (ipairs [...])]
     (do
-        (each [_ file (ipairs (find-fnl path))]
-          (table.insert files file))
-        files)))
+      (each [_ file (ipairs (find-fnl path))]
+        (table.insert files file))
+      files)))
 
-  {: write-file : get-fnl-files}
+{: write-file : get-fnl-files}
