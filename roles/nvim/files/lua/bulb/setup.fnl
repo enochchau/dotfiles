@@ -24,8 +24,8 @@
     ;; TODO: tap into regular fnl searcher as well!
     (tap-macro-searcher)
     ;; create user commands
-    (command :FnlCompile (. (require :bulb.commands) :cmd-fnl-compile)
+    (command :FnlCompile (. (require :bulb.headless) :headless-compile)
              {:nargs "+"})
-    (command :FnlRun (. (require :bulb.commands) :cmd-fnl-run) {:nargs 1})))
+    (command :FnlRun (. (require :bulb.headless) :headless-run) {:nargs 1})))
 
 {: setup}

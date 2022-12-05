@@ -1,12 +1,13 @@
 _G.__bulb_internal = {
-    -- stop rtp from being updated multiple times
     rtp_updated = false,
     version = "0.0.0",
+    plugin_name = "bulb",
 }
 
 --- Update `fennel.path` and `fennel.macro-path` with runtimepaths
 --- We call this function during bootstrap and setup
 local function update_fnl_rtp()
+    -- stop rtp from being updated multiple times
     if _G.__bulb_internal.rtp_updated then
         return
     end
@@ -63,14 +64,16 @@ local function bootstrap()
         targetpath = vim.fs.dirname(targetpath)
     end
 
-    -- and compile all the fnl files
+    -- only compile bulb, we don't get full path names in `vim.fs.find`
+    -- so we have to filter again
     local files = vim.fs.find(function(filename)
         return string.match(filename, "%.fnl$") ~= nil
     end, { path = targetpath, type = "file", limit = math.huge })
-
-    -- only compile bulb
     files = vim.tbl_filter(function(filename)
-        return string.match(filename, "/bulb/") ~= nil
+        return string.match(
+            filename,
+            string.format("/%s/", _G.__bulb_internal.plugin_name)
+        ) ~= nil
     end, files)
 
     local _debug_traceback = debug.traceback

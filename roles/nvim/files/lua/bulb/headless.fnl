@@ -1,10 +1,12 @@
+;; functions for commands in headless mode
+
 (fn write-file [filename contents]
   "write a file to disk"
   (let [file (assert (io.open filename :w))]
     (file:write contents)
     (file:close)))
 
-(fn cmd-fnl-compile [t]
+(fn headless-compile [t]
   (let [{: compile-file} (require :bulb.compiler)
         {: print-stdout} (require :bulb.utils)
         (in-path out-path) (unpack t.fargs)]
@@ -12,7 +14,7 @@
     (let [output (compile-file in-path)]
       (if (= nil out-path) (print-stdout output) (write-file out-path output)))))
 
-(fn cmd-fnl-run [t]
+(fn headless-run [t]
   (let [{: do-file} (require :bulb.compiler)
         {: print-stdout} (require :bulb.utils)
         fennel (require :bulb.fennel)
@@ -23,4 +25,4 @@
       (print "\n")
       (print-stdout (fennel.view output)))))
 
-{: cmd-fnl-compile : cmd-fnl-run}
+{: headless-compile : headless-run}
