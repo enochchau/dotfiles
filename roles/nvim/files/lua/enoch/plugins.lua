@@ -338,4 +338,5 @@ return require("packer").startup(function(use)
             }
         end,
     }
+    use "ms-jpq/lua-async-await"
 end)
