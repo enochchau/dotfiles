@@ -19,6 +19,7 @@
     (command :BulbRun (lazy-req :bulb.headless :headless-run) {:nargs 1})
     (command :BulbPreload (lazy-req :bulb.cache :gen-preload-cache))
     (command :BulbClean (lazy-req :bulb.cache :clear-cache))
+    (command :BulbOpen (lazy-req :bulb.cache :open-cache) {:nargs "?"})
     nil))
 
 {: setup}

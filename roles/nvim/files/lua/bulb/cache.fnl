@@ -52,4 +52,11 @@ end
                  (add-module filename module-name))))))
   (write-cache))
 
-{: gen-preload-cache : add-macro : clear-cache}
+(fn open-cache [t]
+  (let [module-name t.args
+        config (require :bulb.config)]
+    (vim.cmd (.. "e " config.cfg.cache-path))
+    (if (not= nil t.args)
+        (vim.cmd (.. "/" module-name)))))
+
+{: gen-preload-cache : add-macro : clear-cache : open-cache}
