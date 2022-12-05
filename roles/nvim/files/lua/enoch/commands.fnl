@@ -76,3 +76,20 @@
                         (table.insert cmd buf_name)
                         ((req! :FTerm :scratch) {: cmd}))))
           {:bang true})
+
+(command! :MpackInpsect
+          (fn [t]
+            (let [filename t.args
+                  uv vim.loop]
+              (uv.fs_open filename :r 438
+                          (fn [err fd]
+                            (assert (not err) err)
+                            (uv.fs_fstat fd
+                                         (fn [err stat]
+                                           (assert (not err) err)
+                                           (uv.fs_read fd stat.size 0
+                                                       (fn [err data]
+                                                         (assert (not err) err)
+                                                         (-> (vim.mpack.decode data)
+                                                             (vim.pretty_print))))))))))
+          {:nargs 1 :complete :file})
