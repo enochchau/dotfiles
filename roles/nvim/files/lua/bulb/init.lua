@@ -4,9 +4,9 @@ _G.__bulb_internal = {
     plugin_name = "bulb",
 }
 
---- Update `fennel.path` and `fennel.macro-path` with runtimepaths
+--- Update `fennel.macro-path` and `fennel.path` with runtimepaths
 --- We call this function during bootstrap and setup
-local function update_fnl_rtp()
+local function update_fnl_macro_rtp()
     -- stop rtp from being updated multiple times
     if _G.__bulb_internal.rtp_updated then
         return
@@ -14,23 +14,19 @@ local function update_fnl_rtp()
 
     local fennel = require "bulb.fennel"
     local rtps = vim.api.nvim_list_runtime_paths()
-    local lua_templates = {
+    local templates = {
+        -- lua base dir
         ";%s/lua/?.fnl",
         ";%s/lua/?/init.fnl",
-    }
-    local fnl_templates = {
+        -- fnl base dir
         ";%s/fnl/?.fnl",
         ";%s/fnl/?/init.fnl",
     }
     for _, rtp in ipairs(rtps) do
-        for _, template in ipairs(lua_templates) do
+        for _, template in ipairs(templates) do
             fennel["macro-path"] = fennel["macro-path"]
                 .. string.format(template, rtp)
-            fennel.path = fennel.path .. string.format(template, rtp)
-        end
-        for _, template in ipairs(fnl_templates) do
-            fennel["macro-path"] = fennel["macro-path"]
-                .. string.format(template, rtp)
+            -- TODO: figure out if we actually have to update this path
             fennel.path = fennel.path .. string.format(template, rtp)
         end
     end
@@ -40,15 +36,24 @@ end
 
 --- Get the `.` separated module name from the fnl file name
 ---@param fnl_file string
----@return string
+---@return string|nil
 local function get_module_name(fnl_file)
     -- check both the fnl/ and lua/ directories
-    local module_partial = string.match(fnl_file, "fnl/(.+)%.fnl$")
-    if module_partial == nil then
-        module_partial = string.match(fnl_file, "lua/(.+)%.fnl$")
+
+    local module_partial = nil
+    local matchers = { "fnl/(.+)%.fnl$", "lua/(.+)%.fnl$" }
+    for _, matcher in ipairs(matchers) do
+        module_partial = string.match(fnl_file, matcher)
+        if module_partial ~= nil then
+            break
+        end
     end
 
-    assert(module_partial, "Coudn't get module name for: " .. fnl_file)
+    if module_partial == nil then
+        -- assert(module_partial, "Coudn't get module name for: " .. fnl_file)
+        return nil
+    end
+
     local module_name = string.gsub(module_partial, "/", ".")
     return module_name
 end
@@ -69,6 +74,7 @@ local function bootstrap()
     local files = vim.fs.find(function(filename)
         return string.match(filename, "%.fnl$") ~= nil
     end, { path = targetpath, type = "file", limit = math.huge })
+
     files = vim.tbl_filter(function(filename)
         return string.match(
             filename,
@@ -116,7 +122,7 @@ local function setup(user_config)
         bootstrap()
     end
 
-    update_fnl_rtp()
+    update_fnl_macro_rtp()
 
     -- everything after bootstrap can come from a fennel file
     require("bulb.setup").setup(user_config)
@@ -124,4 +130,5 @@ end
 
 return {
     setup = setup,
+    ["get-module-name"] = get_module_name,
 }

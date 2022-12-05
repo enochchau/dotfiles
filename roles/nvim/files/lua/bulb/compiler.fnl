@@ -14,7 +14,7 @@
     (vim.tbl_extend :keep cfg.compiler-options {: filename})))
 
 (fn compile-file [filename]
-  "Compile a file stream"
+  "Compile a file"
   (let [fennel (require :bulb.fennel)
         compiler-options (get-compiler-options filename)]
     (fennel.compile-stream (stream-file filename) compiler-options)))
@@ -23,6 +23,6 @@
   "Evaluate a file"
   (let [fennel (require :bulb.fennel)
         compiler-options (get-compiler-options filename)]
-    (fennel.do-file filename compiler-options)))
+    (fennel.dofile filename compiler-options)))
 
 {: compile-file : do-file}
