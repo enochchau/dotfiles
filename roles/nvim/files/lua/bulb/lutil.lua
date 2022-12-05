@@ -1,7 +1,7 @@
 -- Lua utils
 -- we need these in lua b/c they're part of the boostrap operation
 
---- Update `fennel.macro-path` and `fennel.path` with runtimepaths
+--- Update `fennel.macro-path` with runtimepaths
 --- We call this function during bootstrap and setup
 local function update_fnl_macro_rtp()
     -- stop rtp from being updated multiple times
@@ -23,8 +23,6 @@ local function update_fnl_macro_rtp()
         for _, template in ipairs(templates) do
             fennel["macro-path"] = fennel["macro-path"]
                 .. string.format(template, rtp)
-            -- TODO: figure out if we actually have to update this path
-            fennel.path = fennel.path .. string.format(template, rtp)
         end
     end
 

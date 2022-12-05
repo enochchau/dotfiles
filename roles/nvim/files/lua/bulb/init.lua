@@ -1,5 +1,6 @@
 _G.__bulb_internal = {
     rtp_updated = false,
+    macro_searcher_updated = false,
     version = "0.0.0",
     plugin_name = "bulb",
 }
@@ -72,13 +73,12 @@ local function setup(user_config)
     if user_config.bootstrap then
         bootstrap()
         require("bulb.setup").setup(user_config)
-        vim.cmd("BulbPreload")
-        assert(loadfile(require("bulb.config").cfg["cache-path"])())
-        print "Finished bootstrapping"
-else
-    require("bulb.setup").setup(user_config)
+        -- vim.cmd "BulbPreload"
+        -- assert(loadfile(require("bulb.config").cfg["cache-path"])())
+    else
+        -- assert(loadfile(require("bulb.config").cfg["cache-path"])())
+        require("bulb.setup").setup(user_config)
     end
-
 end
 
 return {
