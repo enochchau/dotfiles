@@ -18,7 +18,7 @@
   `(. (require ,lib) ,val))
 
 (fn command! [name command opts]
-  (let [o (if (= opts nil) {} opts)]
-    `(vim.api.nvim_create_user_command ,name ,command ,o)))
+  (let [opts (or opts {})]
+    `(vim.api.nvim_create_user_command ,name ,command ,opts)))
 
 {: nmap! : vmap! : req! : map! : command! : xmap! : tmap!}

@@ -5,6 +5,17 @@ _G.__bulb_internal = {
     plugin_name = "bulb",
 }
 
+--- Safely load the cache
+---@return boolean
+local function load_cache()
+    local cache_path = require("bulb.config").cfg["cache-path"]
+    local ok, f = pcall(loadfile, cache_path)
+    if ok then
+        f()
+    end
+    return ok
+end
+
 -- We compile and preload all of bulb's fennel files here to bootstrap it
 -- Then we get access to compilation tools to create the cache
 local function bootstrap()
@@ -53,21 +64,14 @@ end
 --- we have to wrap this function b/c we don't know if bulb.setup will be
 --- compiled yet
 local function setup(user_config)
-    local function load_cache()
-        local cache_path = require("bulb.config").cfg["cache-path"]
-        local f = assert(loadfile(cache_path), "bulb: Failed to load cache")
-        return f()
-    end
-
-    if user_config.bootstrap then
+    local res = load_cache()
+    if not res then
+        vim.notify("bulb: Cache not found, bootstrapping...")
         bootstrap()
         require("bulb.setup").setup(user_config)
         vim.cmd "BulbPreload"
         load_cache()
-    elseif user_config.loadonly then
-        load_cache()
     else
-        load_cache()
         require("bulb.setup").setup(user_config)
     end
 end

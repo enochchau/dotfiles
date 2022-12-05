@@ -25,4 +25,30 @@
         compiler-options (get-compiler-options filename)]
     (fennel.dofile filename compiler-options)))
 
-{: compile-file : do-file}
+(fn setup-compiler []
+  "Setup things that the compiler needs to run"
+  (fn tap-macro-searcher []
+    "Tap into the default fnl macro searcher to do caching"
+    (if (not _G.__bulb_internal.macro_searcher_updated)
+        (let [{: add-macro} (require :bulb.cache)
+              fennel (require :bulb.fennel)
+              _macro-searcher (. fennel.macro-searchers 1)
+              tapped-searcher (fn [module-name]
+                                (let [(result filename) (_macro-searcher module-name)]
+                                  (add-macro filename module-name
+                                             (string.dump result))
+                                  (values result filename)))]
+          (tset fennel.macro-searchers 1 tapped-searcher)
+          (tset _G.__bulb_internal :macro_searcher_updated true))))
+
+  (fn enable-debug []
+    "Enable fennel debug mode"
+    (let [fennel (require :bulb.fennel)]
+      (if (not= debug.traceback fennel.traceback)
+          (tset debug :traceback fennel.traceback))))
+
+  ((. (require :bulb.lutil) :update-fnl-macro-rtp))
+  (tap-macro-searcher)
+  (enable-debug))
+
+{: compile-file : do-file : setup-compiler}
