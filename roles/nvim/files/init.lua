@@ -2,7 +2,7 @@ pcall(require, "impatient")
 
 require("bulb").setup {
     bootstrap = vim.env.BULB_BOOTSTRAP ~= nil,
-    loadonly = true
+    loadonly = true,
 }
 
 local autocmd = vim.api.nvim_create_autocmd

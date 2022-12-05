@@ -15,3 +15,8 @@ Need to add runtimepaths to fennel.path and fennel.macro-path
    We can reuse the cache file to store module metadata (deps, modify time) on global object similar to packer.
 2. Using luv async functions for fs operations.
 3. Using worker threads to do parallel compilation
+
+## TODO
+
+1. handle caching of macro modules
+2. Parallel compilation

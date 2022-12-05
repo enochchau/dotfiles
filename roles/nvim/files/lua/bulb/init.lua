@@ -85,6 +85,7 @@ local function setup(user_config)
     elseif user_config.loadonly then
         load_cache()
     else
+        load_cache()
         require("bulb.setup").setup(user_config)
     end
 end
