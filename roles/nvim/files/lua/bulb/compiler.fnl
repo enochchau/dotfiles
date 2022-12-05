@@ -9,16 +9,20 @@
               (file-handle:close)
               nil))))))
 
+(fn get-compiler-options [filename]
+  (let [{: cfg} (require :bulb.config)]
+    (vim.tbl_extend :keep cfg.compiler-options {: filename})))
+
 (fn compile-file [filename]
   "Compile a file stream"
   (let [fennel (require :bulb.fennel)
-        {: cfg} (require :bulb.config)]
-    (fennel.compile-stream (stream-file filename) cfg.compiler-options)))
+        compiler-options (get-compiler-options filename)]
+    (fennel.compile-stream (stream-file filename) compiler-options)))
 
 (fn do-file [filename]
   "Evaluate a file"
   (let [fennel (require :bulb.fennel)
-        {: cfg} (require :bulb.config)]
-    (fennel.do-file filename cfg.compiler-options)))
+        compiler-options (get-compiler-options filename)]
+    (fennel.do-file filename compiler-options)))
 
 {: compile-file : do-file}

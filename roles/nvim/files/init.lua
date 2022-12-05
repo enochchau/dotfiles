@@ -4,6 +4,7 @@ if vim.env["FENNEL_COMPILE"] then
     require("bulb").setup {
         ["compiler-options"] = { compileEnv = _G },
         debug = true,
+        bootstrap = true
     }
     return
 end

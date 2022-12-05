@@ -14,16 +14,14 @@
   "Setup bulb"
   (let [fennel (require :bulb.fennel)
         config (require :bulb.config)
-        command vim.api.nvim_create_user_command
-        {: update-fnl-rtp} (require :bulb)]
+        command vim.api.nvim_create_user_command]
     ;; apply user configs
     (tset config :cfg (vim.tbl_deep_extend :keep user-config config.cfg))
     ;; attach traceback debugger if requested
     (if (and config.cfg.debug (not= debug.traceback fennel.traceback))
         (tset debug :traceback fennel.traceback))
-    ;; apply vim rtp to fennel searchers
-    (update-fnl-rtp)
     ;; tap into macro searcher
+    ;; TODO: tap into regular fnl searcher as well!
     (tap-macro-searcher)
     ;; create user commands
     (command :FnlCompile (. (require :bulb.commands) :cmd-fnl-compile)

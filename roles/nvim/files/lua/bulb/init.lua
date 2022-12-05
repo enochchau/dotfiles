@@ -75,8 +75,6 @@ local function bootstrap()
 
     local _debug_traceback = debug.traceback
 
-    update_fnl_rtp()
-
     -- set debugger
     if debug.traceback ~= fennel.traceback then
         debug.traceback = fennel.traceback
@@ -111,17 +109,16 @@ local function bootstrap()
 end
 
 local function setup(user_config)
-    if user_config.boostrap then
+    if user_config.bootstrap then
         bootstrap()
     end
+
+    update_fnl_rtp()
 
     -- everything after bootstrap can come from a fennel file
     require("bulb.setup").setup(user_config)
 end
 
 return {
-    bootstrap = bootstrap,
-    update_fnl_rtp = update_fnl_rtp,
-    ["update-fnl-rtp"] = update_fnl_rtp,
     setup = setup,
 }
