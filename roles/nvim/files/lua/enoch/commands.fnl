@@ -74,6 +74,5 @@
                   (if (not= nil cmd)
                       (do
                         (table.insert cmd buf_name)
-                        (vim.pretty_print cmd)
                         ((req! :FTerm :scratch) {: cmd}))))
           {:bang true})

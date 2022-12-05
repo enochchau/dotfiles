@@ -62,7 +62,6 @@ local function _9_()
   local cmd = runners[vim.filetype.match({filename = buf_name})]
   if (nil ~= cmd) then
     table.insert(cmd, buf_name)
-    vim.pretty_print(cmd)
     return (require("FTerm")).scratch({cmd = cmd})
   else
     return nil
