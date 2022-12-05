@@ -2,6 +2,11 @@
   (let [opts (or opts {})]
     `(vim.api.nvim_create_user_command ,name ,command ,opts)))
 
+(macro lazy-req [module-name key]
+  "Lazy load command functions by wrapping them in another function"
+  `(fn [t#]
+     ((. (require ,module-name) ,key) t#)))
+
 (fn setup [user-config]
   "Setup bulb"
   (let [config (require :bulb.config)
@@ -9,10 +14,11 @@
     ;; apply user configs
     (tset config :cfg (vim.tbl_deep_extend :keep user-config config.cfg))
     ;; create user commands
-    (command :BulbCompile (. (require :bulb.headless) :headless-compile)
+    (command :BulbCompile (lazy-req :bulb.headless :headless-compile)
              {:nargs "+"})
-    (command :BulbRun (. (require :bulb.headless) :headless-run) {:nargs 1})
-    (command :BulbPreload "lua require'bulb.cache'['gen-preload-cache']()")
-    (command :BulbClean "lua require'bulb.cache'['clear-cache']()")))
+    (command :BulbRun (lazy-req :bulb.headless :headless-run) {:nargs 1})
+    (command :BulbPreload (lazy-req :bulb.cache :gen-preload-cache))
+    (command :BulbClean (lazy-req :bulb.cache :clear-cache))
+    nil))
 
 {: setup}
