@@ -15,8 +15,9 @@
     (tset config :cfg (vim.tbl_deep_extend :keep user-config config.cfg))
     ;; create user commands
     (command :BulbCompile (lazy-req :bulb.headless :headless-compile)
-             {:nargs "+"})
-    (command :BulbRun (lazy-req :bulb.headless :headless-run) {:nargs 1})
+             {:nargs "+" :complete :file})
+    (command :BulbRun (lazy-req :bulb.headless :headless-run)
+             {:nargs 1 :complete :file})
     (command :BulbPreload (lazy-req :bulb.cache :gen-preload-cache))
     (command :BulbClean (lazy-req :bulb.cache :clear-cache))
     (command :BulbOpen (lazy-req :bulb.cache :open-cache) {:nargs "?"})
