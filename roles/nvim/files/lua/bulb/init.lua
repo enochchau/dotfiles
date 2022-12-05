@@ -70,7 +70,7 @@ end
 local function setup(user_config)
     local res = load_cache()
     if not res then
-        vim.notify("bulb: Cache not found, bootstrapping...")
+        vim.notify "bulb: Cache not found, bootstrapping..."
         bootstrap()
         require("bulb.setup").setup(user_config)
         vim.cmd "BulbPreload"
