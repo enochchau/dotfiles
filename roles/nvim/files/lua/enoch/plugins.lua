@@ -338,5 +338,10 @@ return require("packer").startup(function(use)
             }
         end,
     }
-    use "ms-jpq/lua-async-await"
+    use {
+        "ec965/async-uv.nvim",
+        requires = {
+            "ms-jpq/lua-async-await",
+        },
+    }
 end)
