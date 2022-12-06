@@ -11,8 +11,3 @@ fmt:
 .PHONY: quotes.json
 quotes.json:
 	./scripts/nppp_quotes.sh
-
-# update fennel version to latest
-.PHONY: update_fennel
-update_fennel:
-	./scripts/update_fennel.sh
