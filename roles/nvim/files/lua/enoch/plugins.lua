@@ -344,4 +344,5 @@ return require("packer").startup(function(use)
             "ms-jpq/lua-async-await",
         },
     }
+    use "ec965/bulb.nvim"
 end)

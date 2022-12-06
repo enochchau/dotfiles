@@ -1,5 +1,4 @@
 pcall(require, "impatient")
-
 require("bulb").setup()
 
 local autocmd = vim.api.nvim_create_autocmd
