@@ -1,13 +1,13 @@
 return require("packer").startup(function(use)
     local has_termux = vim.env["TERMUX"] ~= nil
-    local dev = not has_termux
-
     --- Format my plugin's config to use local or remote
     ---@param config table|string
+    ---@param use_local boolean? - if this is true then we will use the local plugin
     ---@return table|string
-    local function d(config)
+    local function ec965(config, use_local)
         local function configure_path(plugin_name)
-            if dev then
+            -- we never want to use local plugins in Termux
+            if use_local and not has_termux then
                 return "~/code/" .. plugin_name
             else
                 return "ec965/" .. plugin_name
@@ -55,7 +55,7 @@ return require("packer").startup(function(use)
             vim.cmd "source ~/.config/nvim/rzip.vim"
         end,
     }
-    use(d "nvim-pnp-checker")
+    use(ec965("nvim-pnp-checker", true))
 
     -- lsp
     use {
@@ -93,7 +93,12 @@ return require("packer").startup(function(use)
             "hrsh7th/cmp-cmdline",
             "f3fora/cmp-spell",
             -- snippets
-            "L3MON4D3/LuaSnip",
+            {
+                "L3MON4D3/LuaSnip",
+                requires = {
+                    "rafamadriz/friendly-snippets",
+                },
+            },
             "saadparwaiz1/cmp_luasnip",
         },
     }
@@ -113,7 +118,7 @@ return require("packer").startup(function(use)
             "nvim-telescope/telescope-ui-select.nvim",
         },
     }
-    use(d "telescope-node-workspace.nvim")
+    use(ec965("telescope-node-workspace.nvim", true))
 
     -- tree sitter
     use {
@@ -172,7 +177,7 @@ return require("packer").startup(function(use)
     -- mjml
     use "amadeus/vim-mjml"
     if not has_termux then
-        use(d {
+        use(ec965({
             "mjml-preview.nvim",
             ft = "mjml",
             run = "cd app && npm install",
@@ -184,7 +189,7 @@ return require("packer").startup(function(use)
                     { noremap = true, silent = true }
                 )
             end,
-        })
+        }, true))
     end
 
     -- additional language support
@@ -339,10 +344,10 @@ return require("packer").startup(function(use)
         end,
     }
     use {
-        "ec965/async-uv.nvim",
+        ec965 "async-uv.nvim",
         requires = {
             "ms-jpq/lua-async-await",
         },
     }
-    use "ec965/bulb.nvim"
+    use(ec965("bulb.nvim", true))
 end)

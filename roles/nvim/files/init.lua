@@ -8,8 +8,8 @@ local opt = vim.opt
 local cmd = vim.cmd
 
 -- theme
-vim.opt.bg = "dark"
-vim.cmd.colorscheme "tokyonight"
+vim.opt.bg = "light"
+vim.cmd.colorscheme "onedark"
 
 g.mapleader = ","
 opt.signcolumn = "yes:1"
