@@ -9,7 +9,7 @@ local cmd = vim.cmd
 
 -- theme
 vim.opt.bg = "light"
-vim.cmd.colorscheme "onedark"
+vim.cmd.colorscheme "juliana"
 
 g.mapleader = ","
 opt.signcolumn = "yes:1"
