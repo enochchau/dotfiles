@@ -131,6 +131,7 @@ return require("packer").startup(function(use)
                 config = function()
                     require("neogen").setup {}
                 end,
+                cmd = "Neogen"
             },
             "nvim-treesitter/nvim-treesitter-context",
         },
@@ -151,6 +152,7 @@ return require("packer").startup(function(use)
             "iamcco/markdown-preview.nvim",
             ft = { "markdown" },
             run = "cd app && yarn install",
+            cmd = "MarkdownPreviewToggle",
             config = function()
                 vim.keymap.set(
                     "n",
@@ -169,6 +171,7 @@ return require("packer").startup(function(use)
             "mjml-preview.nvim",
             ft = "mjml",
             run = "cd app && npm install",
+            cmd = "MjmlPreviewToggle",
             config = function()
                 vim.keymap.set(
                     "n",
@@ -331,11 +334,6 @@ return require("packer").startup(function(use)
             }
         end,
     }
-    use {
-        ec965 "async-uv.nvim",
-        requires = {
-            "ms-jpq/lua-async-await",
-        },
-    }
     use(ec965("bulb.nvim", true))
+    use "ms-jpq/lua-async-await"
 end)

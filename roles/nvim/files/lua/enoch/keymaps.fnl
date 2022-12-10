@@ -31,7 +31,7 @@
 (nmap! :<leader>cdg ":Telescope node-workspace<CR>")
 
 ;; neogen
-(nmap! :<leader>nf (req! :neogen :generate))
+(nmap! :<leader>nf ":Neogen<CR>")
 
 ;; window picker
 (nmap! :<leader>w (req! :nvim-window :pick))
