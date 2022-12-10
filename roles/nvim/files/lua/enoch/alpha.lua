@@ -1,6 +1,6 @@
 local alpha = require "alpha"
 local startify = require "alpha.themes.startify"
-local fortune = require("alpha.fortune")
+local fortune = require "alpha.fortune"
 
 -- ---@param message table
 local function cowsays(message)

@@ -3,9 +3,7 @@ local actions = require "telescope.actions"
 local themes = require "telescope.themes"
 
 telescope.setup {
-    builtin = {
-
-    },
+    builtin = {},
     extensions = {
         fzf = {
             fuzzy = true,
@@ -21,8 +19,13 @@ telescope.setup {
             mappings = { n = { dd = actions.delete_buffer } },
         },
         find_files = {
-            find_command = {"fd", "--no-ignore-vcs", "--ignore-file", "node_modules"}
-        }
+            find_command = {
+                "fd",
+                "--no-ignore-vcs",
+                "--ignore-file",
+                "node_modules",
+            },
+        },
     },
 }
 
