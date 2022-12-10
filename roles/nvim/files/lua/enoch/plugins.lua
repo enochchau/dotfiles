@@ -43,18 +43,6 @@ return require("packer").startup(function(use)
     use { "EdenEast/nightfox.nvim", run = ":NightfoxCompile" }
 
     -- yarn pnp
-    use {
-        "lbrayner/vim-rzip",
-        ft = {
-            "javascript",
-            "typescript",
-            "typescriptreact",
-            "javascriptreact",
-        },
-        config = function()
-            vim.cmd "source ~/.config/nvim/rzip.vim"
-        end,
-    }
     use(ec965("nvim-pnp-checker", true))
 
     -- lsp
