@@ -6,8 +6,3 @@ FNL_FILES := $(shell find . -name '*.fnl' -type f | sort)
 .PHONY: fmt
 fmt:
 	stylua .; $(foreach file,$(FNL_FILES),echo "Formatting " $(file); fnlfmt --fix $(file);)
-
-# fetch notepad ++ quotes
-.PHONY: quotes.json
-quotes.json:
-	./scripts/nppp_quotes.sh
