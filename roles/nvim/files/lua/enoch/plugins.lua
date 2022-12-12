@@ -55,10 +55,8 @@ return require("packer").startup(function(use)
         requires = {
             "jose-elias-alvarez/null-ls.nvim",
             "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
             "b0o/schemastore.nvim",
-            "onsails/lspkind.nvim",
-            "jayp0521/mason-null-ls.nvim",
+            "onsails/lspkind.nvim"
         },
     }
 
