@@ -32,12 +32,11 @@
 
 ;; netrw
 (nmap! :<C-n> ":Explore<CR>")
+;; terminal
+(nmap! :<C-\> ":vs|:term<CR>")
 
 ;; neogen
 (nmap! :<leader>nf ":Neogen<CR>")
 
 ;; window picker
 (nmap! :<leader>w (req! :nvim-window :pick))
-
-;; FTerm
-(nmap! "<C-\\>" (req! :FTerm :toggle))

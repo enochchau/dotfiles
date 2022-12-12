@@ -1,10 +1,5 @@
 (import-macros {: req! : command!} :enoch.macros)
 
-(macro command-fterm! [name]
-  (let [cmd (.. :FTerm (string.gsub name "^%l" string.upper))]
-    `(vim.api.nvim_create_user_command ,cmd (. (require :FTerm) ,name)
-                                       {:bang true})))
-
 ;; Clear all but the current buffer
 (command! :BufClear "%bd|e#|bd#")
 
@@ -14,12 +9,6 @@
 ;; swap nu to rnu and visa versa
 (command! :SwapNu #(set vim.opt.relativenumber
                         (not vim.opt.relativenumber._value)))
-
-;; FTerm
-(command-fterm! :open)
-(command-fterm! :close)
-(command-fterm! :exit)
-(command-fterm! :toggle)
 
 (command! :Cdg #(-> (vim.fn.system "git rev-parse --show-toplevel")
                     (vim.trim)
@@ -63,16 +52,3 @@
         (github? text) (open-url (.. "https://github.com/" text)))))
 
 (command! :PackerOpen open-plugin-link)
-
-;; Run a buffer
-(command! :Run #(let [runners {:fennel [(vim.fn.expand "~/.config/nvim/scripts/fnl-nvim")
-                                        :-e]
-                               :javascript [:node]
-                               :lua [:lua]}
-                      buf_name (vim.api.nvim_buf_get_name 0)
-                      cmd (. runners (vim.filetype.match {:filename buf_name}))]
-                  (if (not= nil cmd)
-                      (do
-                        (table.insert cmd buf_name)
-                        ((req! :FTerm :scratch) {: cmd}))))
-          {:bang true})

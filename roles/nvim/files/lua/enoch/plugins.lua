@@ -199,6 +199,7 @@ return require("packer").startup(function(use)
     -- qol
     use {
         "almo7aya/openingh.nvim",
+        cmd = { "OpenInGHFile", "OpenInGHRepo" },
         config = function()
             require("openingh").setup()
         end,
@@ -231,13 +232,6 @@ return require("packer").startup(function(use)
         "goolord/alpha-nvim",
         config = function()
             require "enoch.alpha"
-        end,
-    }
-    use "numToStr/FTerm.nvim"
-    use {
-        "ggandor/leap.nvim",
-        config = function()
-            require("leap").set_default_keymaps()
         end,
     }
     use {

@@ -8,8 +8,8 @@ local opt = vim.opt
 local cmd = vim.cmd
 
 -- theme
-opt.bg = "light"
-vim.cmd.colorscheme "juliana"
+opt.bg = "dark"
+vim.cmd.colorscheme "kanagawa"
 
 g.netrw_liststyle = 3
 
