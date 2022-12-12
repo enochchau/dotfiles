@@ -41,6 +41,7 @@ return require("packer").startup(function(use)
     use "folke/tokyonight.nvim"
     use "kaiuri/nvim-juliana"
     use { "EdenEast/nightfox.nvim", run = ":NightfoxCompile" }
+    use "rebelot/kanagawa.nvim"
 
     -- yarn pnp
     use(ec965("nvim-pnp-checker", true))
@@ -131,7 +132,7 @@ return require("packer").startup(function(use)
                 config = function()
                     require("neogen").setup {}
                 end,
-                cmd = "Neogen"
+                cmd = "Neogen",
             },
             "nvim-treesitter/nvim-treesitter-context",
         },
@@ -274,36 +275,7 @@ return require("packer").startup(function(use)
     -- make vim start faster
     use "lewis6991/impatient.nvim"
 
-    -- file tree
-    use {
-        "kyazdani42/nvim-tree.lua",
-        requires = { "kyazdani42/nvim-web-devicons" },
-        config = function()
-            require("nvim-tree").setup {
-                sync_root_with_cwd = true,
-                view = {
-                    side = "right",
-                    relativenumber = true,
-                },
-                filters = {
-                    exclude = { ".DS_Store" },
-                },
-                renderer = {
-                    indent_markers = {
-                        enable = true,
-                    },
-                },
-                git = { ignore = false },
-                actions = {
-                    open_file = {
-                        window_picker = {
-                            chars = "FJDKSLA;CMRUEIWOQP",
-                        },
-                    },
-                },
-            }
-        end,
-    }
+    use "kyazdani42/nvim-web-devicons"
 
     -- window picker
     use {
@@ -334,6 +306,6 @@ return require("packer").startup(function(use)
             }
         end,
     }
+
     use(ec965("bulb.nvim", true))
-    use "ms-jpq/lua-async-await"
 end)

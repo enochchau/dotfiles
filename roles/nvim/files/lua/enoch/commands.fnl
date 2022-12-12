@@ -5,8 +5,6 @@
     `(vim.api.nvim_create_user_command ,cmd (. (require :FTerm) ,name)
                                        {:bang true})))
 
-(local a (require :async))
-
 ;; Clear all but the current buffer
 (command! :BufClear "%bd|e#|bd#")
 
@@ -78,19 +76,3 @@
                         (table.insert cmd buf_name)
                         ((req! :FTerm :scratch) {: cmd}))))
           {:bang true})
-
-(command! :MpackInpsect
-          (fn [t]
-            (let [filename t.args
-                  uv vim.loop
-                  fs {:open (a.wrap uv.fs_open)
-                      :fstat (a.wrap uv.fs_fstat)
-                      :read (a.wrap uv.fs_read)}]
-              ((a.sync #(let [(err fd) (a.wait (fs.open filename :r 438))]
-                          (assert (not err) err)
-                          (let [(err stat) (a.wait (fs.fstat fd))]
-                            (assert (not err) err)
-                            (let [(err data) (a.wait (fs.read fd stat.size 0))]
-                              (assert (not err) err)
-                              (vim.pretty_print (vim.mpack.decode data)))))))))
-          {:nargs 1 :complete :file})

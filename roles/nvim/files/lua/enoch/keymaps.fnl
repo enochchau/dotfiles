@@ -30,15 +30,14 @@
 (nmap! :<leader>o (req! :telescope.builtin :jumplist))
 (nmap! :<leader>cdg ":Telescope node-workspace<CR>")
 
+;; netrw
+(nmap! :<C-n> ":Explore<CR>")
+
 ;; neogen
 (nmap! :<leader>nf ":Neogen<CR>")
 
 ;; window picker
 (nmap! :<leader>w (req! :nvim-window :pick))
-
-;; Neotree
-(nmap! :<leader>n ":NvimTreeFindFile<CR>")
-(nmap! :<C-n> ":NvimTreeToggle<CR>")
 
 ;; FTerm
 (nmap! "<C-\\>" (req! :FTerm :toggle))

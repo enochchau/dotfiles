@@ -24,6 +24,8 @@ telescope.setup {
                 "--no-ignore-vcs",
                 "--ignore-file",
                 "node_modules",
+                "--type",
+                "file"
             },
         },
     },
