@@ -56,7 +56,7 @@ return require("packer").startup(function(use)
             "jose-elias-alvarez/null-ls.nvim",
             "williamboman/mason.nvim",
             "b0o/schemastore.nvim",
-            "onsails/lspkind.nvim"
+            "onsails/lspkind.nvim",
         },
     }
 
@@ -85,6 +85,9 @@ return require("packer").startup(function(use)
                 requires = {
                     "rafamadriz/friendly-snippets",
                 },
+                config = function()
+                    require("luasnip.loaders.from_vscode").lazy_load()
+                end,
             },
             "saadparwaiz1/cmp_luasnip",
         },

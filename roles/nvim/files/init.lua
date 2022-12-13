@@ -11,8 +11,6 @@ local cmd = vim.cmd
 opt.bg = "dark"
 vim.cmd.colorscheme "kanagawa"
 
-g.netrw_liststyle = 3
-
 g.mapleader = ","
 opt.signcolumn = "yes:1"
 opt.laststatus = 3
@@ -57,6 +55,11 @@ cmd.filetype "plugin indent on"
 opt.tabstop = 2
 opt.shiftwidth = 2
 opt.expandtab = true
+
+-- netrw
+g.netrw_liststyle = 3
+g.netrw_bufsettings = 'nu rnu'
+
 
 -- auto resize
 autocmd("VimResized", { pattern = "*", command = "wincmd =" })
