@@ -47,6 +47,6 @@ args = parser.parse_args()
 file_name = args.file
 
 if args.compile:
-    run_nvim("-c", f"BulbCompile {file_name}")
+    run_nvim("-c", f"FnlNvimCompile {file_name}")
 elif args.eval:
-    run_nvim("-c", f"BulbRun {file_name}")
+    run_nvim("-c", f"FnlNvimRun {file_name}")

@@ -302,5 +302,5 @@ return require("packer").startup(function(use)
         end,
     }
 
-    use(ec965("bulb.nvim", true))
+    use(ec965("fnlnvim", true))
 end)
