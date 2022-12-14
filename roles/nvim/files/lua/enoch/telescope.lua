@@ -22,7 +22,7 @@ telescope.setup {
             find_command = {
                 "fd",
                 "--no-ignore-vcs",
-                "--ignore-file",
+                "--exclude",
                 "node_modules",
                 "--type",
                 "file",
