@@ -1,7 +1,6 @@
 local luasnip = require "luasnip"
 local lspkind = require "lspkind"
 local cmp = require "cmp"
-local source_groups = require "enoch.cmp_source_groups"
 
 local function has_words_before()
     local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -14,12 +13,15 @@ local function has_words_before()
 end
 
 cmp.setup.cmdline("/", {
-    sources = source_groups.buffer,
+    sources = { { name = "buffer" } },
     mapping = cmp.mapping.preset.cmdline(),
 })
 
 cmp.setup.cmdline(":", {
-    sources = cmp.config.sources(source_groups.path, source_groups.cmdline),
+    sources = cmp.config.sources(
+        { { name = "path" } },
+        { { name = "cmdline" } }
+    ),
     mapping = cmp.mapping.preset.cmdline(),
 })
 
@@ -53,10 +55,10 @@ cmp.setup {
         ["<CR>"] = cmp.mapping.confirm { select = true },
     },
     sources = cmp.config.sources(
-        source_groups.lsp,
-        source_groups.buffer,
-        source_groups.path,
-        source_groups.spell
+        { { name = "nvim_lsp" }, { name = "luasnip" } },
+        { { name = "buffer" } },
+        { { name = "path" } },
+        { { name = "spell" } }
     ),
     formatting = {
         format = lspkind.cmp_format {
