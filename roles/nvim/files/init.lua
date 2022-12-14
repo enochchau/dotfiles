@@ -53,8 +53,7 @@ opt.expandtab = true
 
 -- netrw
 g.netrw_liststyle = 3
-g.netrw_bufsettings = 'nu rnu'
-
+g.netrw_bufsettings = "nu rnu"
 
 -- auto resize
 autocmd("VimResized", { pattern = "*", command = "wincmd =" })

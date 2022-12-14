@@ -25,7 +25,7 @@ telescope.setup {
                 "--ignore-file",
                 "node_modules",
                 "--type",
-                "file"
+                "file",
             },
         },
     },
