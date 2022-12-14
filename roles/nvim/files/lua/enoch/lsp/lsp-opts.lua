@@ -4,7 +4,38 @@ local cmp_nvim_lsp = require "cmp_nvim_lsp"
 
 local M = {}
 
-M.common_on_attach = require("enoch.lsp.on-attach")["on-attach"]
+function M.common_on_attach(client, bufnr)
+    local kset = vim.keymap.set
+    local kopts = { noremap = true, silent = true }
+
+    local telescope = require "telescope.builtin"
+
+    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+
+    kset("n", "K", vim.lsp.buf.hover, kopts)
+    kset("n", "gd", telescope.lsp_definitions, kopts)
+    kset("n", "gi", telescope.lsp_implementations, kopts)
+    kset("n", "gy", telescope.lsp_type_definitions, kopts)
+    kset("n", "gr", telescope.lsp_references, kopts)
+    kset("n", "gs", telescope.lsp_document_symbols, kopts)
+    kset({ "x", "n" }, "<leader>f", function()
+        require("enoch.format").format(client.name)
+    end, kopts)
+    kset("n", "[g", vim.diagnostic.goto_prev, kopts)
+    kset("n", "g]", vim.diagnostic.goto_next, kopts)
+    kset("n", "ga", function()
+        return telescope.diagnostics { bufnr = 0 }
+    end, kopts)
+    kset("n", "gw", telescope.diagnostics, kopts)
+    kset("n", "<leader>a", vim.lsp.buf.code_action, kopts)
+    kset(
+        "x",
+        "<leader>a",
+        ":<C-U>lua vim.lsp.buf.range_code_action()<CR>",
+        kopts
+    )
+    return kset("n", "<leader>rn", vim.lsp.buf.rename, kopts)
+end
 
 ---create default lsp client opts
 ---@param opts table?
