@@ -1,7 +1,6 @@
 local pnp_checker = require "nvim-pnp-checker"
 local schemastore = require "schemastore"
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
-local yamlschemas = require "enoch.lsp.yamlschemas"
 
 local M = {}
 
@@ -112,7 +111,13 @@ end
 
 function M.yamlls()
     local opts = M.create_default_opts {}
-    opts.settings = { schemas = yamlschemas }
+    local jsonschemas = schemastore.json.schemas()
+    local schemas = {}
+
+    for _, schema in ipairs(jsonschemas) do
+        schemas[schema.url] = schema.fileMatch
+    end
+    opts.settings = { schemas = schemas }
     return opts
 end
 
