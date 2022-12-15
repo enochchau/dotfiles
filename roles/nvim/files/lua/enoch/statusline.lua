@@ -12,7 +12,7 @@ lualine.setup {
     sections = {
         lualine_b = {
             "branch",
-            "b:gitsigns_status",
+            "diff",
             { "diagnostics", sources = { "nvim_diagnostic" } },
         },
         lualine_c = { "%{ObsessionStatus('', '')}", "filename" },
