@@ -5,36 +5,36 @@ local cmp_nvim_lsp = require "cmp_nvim_lsp"
 local M = {}
 
 function M.common_on_attach(client, bufnr)
-    local kset = vim.keymap.set
-    local kopts = { noremap = true, silent = true }
+    local map = vim.keymap.set
+    local map_opts = { noremap = true, silent = true }
 
     local telescope = require "telescope.builtin"
 
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-    kset("n", "K", vim.lsp.buf.hover, kopts)
-    kset("n", "gd", telescope.lsp_definitions, kopts)
-    kset("n", "gi", telescope.lsp_implementations, kopts)
-    kset("n", "gy", telescope.lsp_type_definitions, kopts)
-    kset("n", "gr", telescope.lsp_references, kopts)
-    kset("n", "gs", telescope.lsp_document_symbols, kopts)
-    kset({ "x", "n" }, "<leader>f", function()
+    map("n", "K", vim.lsp.buf.hover, map_opts)
+    map("n", "gd", telescope.lsp_definitions, map_opts)
+    map("n", "gi", telescope.lsp_implementations, map_opts)
+    map("n", "gy", telescope.lsp_type_definitions, map_opts)
+    map("n", "gr", telescope.lsp_references, map_opts)
+    map("n", "gs", telescope.lsp_document_symbols, map_opts)
+    map({ "x", "n" }, "<leader>f", function()
         require("enoch.format").format(client.name)
-    end, kopts)
-    kset("n", "[g", vim.diagnostic.goto_prev, kopts)
-    kset("n", "g]", vim.diagnostic.goto_next, kopts)
-    kset("n", "ga", function()
+    end, map_opts)
+    map("n", "[g", vim.diagnostic.goto_prev, map_opts)
+    map("n", "g]", vim.diagnostic.goto_next, map_opts)
+    map("n", "ga", function()
         return telescope.diagnostics { bufnr = 0 }
-    end, kopts)
-    kset("n", "gw", telescope.diagnostics, kopts)
-    kset("n", "<leader>a", vim.lsp.buf.code_action, kopts)
-    kset(
+    end, map_opts)
+    map("n", "gw", telescope.diagnostics, map_opts)
+    map("n", "<leader>a", vim.lsp.buf.code_action, map_opts)
+    map(
         "x",
         "<leader>a",
         ":<C-U>lua vim.lsp.buf.range_code_action()<CR>",
-        kopts
+        map_opts
     )
-    return kset("n", "<leader>rn", vim.lsp.buf.rename, kopts)
+    return map("n", "<leader>rn", vim.lsp.buf.rename, map_opts)
 end
 
 ---create default lsp client opts
