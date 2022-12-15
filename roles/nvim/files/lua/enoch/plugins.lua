@@ -95,20 +95,27 @@ return require("packer").startup(function(use)
 
     -- fuzzy finder
     use {
-        "nvim-telescope/telescope.nvim",
+        "ibhagwan/fzf-lua",
         config = function()
-            require "enoch.telescope"
+            require("fzf-lua").register_ui_select()
         end,
-        requires = {
-            "nvim-lua/plenary.nvim",
-            {
-                "nvim-telescope/telescope-fzf-native.nvim",
-                run = "make",
-            },
-            "nvim-telescope/telescope-ui-select.nvim",
-        },
     }
-    use(ec965("telescope-node-workspace.nvim", true))
+    -- use {
+    --     "nvim-telescope/telescope.nvim",
+    --     config = function()
+    --         require "enoch.telescope"
+    --     end,
+    --     disable = true,
+    --     requires = {
+    --         "nvim-lua/plenary.nvim",
+    --         {
+    --             "nvim-telescope/telescope-fzf-native.nvim",
+    --             run = "make",
+    --         },
+    --         "nvim-telescope/telescope-ui-select.nvim",
+    --     },
+    -- }
+    -- use(ec965("telescope-node-workspace.nvim", true))
 
     -- tree sitter
     use {
@@ -264,7 +271,8 @@ return require("packer").startup(function(use)
     -- make vim start faster
     use "lewis6991/impatient.nvim"
 
-    use "kyazdani42/nvim-web-devicons"
+    use "nvim-tree/nvim-web-devicons"
+    use "nvim-lua/plenary.nvim"
 
     -- window picker
     use {

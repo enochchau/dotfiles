@@ -8,25 +8,35 @@ function M.common_on_attach(client, bufnr)
     local map = vim.keymap.set
     local map_opts = { noremap = true, silent = true }
 
-    local telescope = require "telescope.builtin"
-
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
+    -- local telescope = require "telescope.builtin"
+    -- map("n", "gd", telescope.lsp_definitions, map_opts)
+    -- map("n", "gi", telescope.lsp_implementations, map_opts)
+    -- map("n", "gy", telescope.lsp_type_definitions, map_opts)
+    -- map("n", "gr", telescope.lsp_references, map_opts)
+    -- map("n", "gs", telescope.lsp_document_symbols, map_opts)
+    -- map("n", "ga", function()
+    --     return telescope.diagnostics { bufnr = 0 }
+    -- end, map_opts)
+    -- map("n", "gw", telescope.diagnostics, map_opts)
+
+    local fzf = require "fzf-lua"
+
+    map("n", "gd", fzf.lsp_definitions, map_opts)
+    map("n", "gi", fzf.lsp_implementations, map_opts)
+    map("n", "gy", fzf.lsp_typedefs, map_opts)
+    map("n", "gr", fzf.lsp_references, map_opts)
+    map("n", "gs", fzf.lsp_document_symbols, map_opts)
+    map("n", "ga", fzf.diagnostics_document, map_opts)
+    map("n", "gw", fzf.diagnostics_workspace, map_opts)
+
     map("n", "K", vim.lsp.buf.hover, map_opts)
-    map("n", "gd", telescope.lsp_definitions, map_opts)
-    map("n", "gi", telescope.lsp_implementations, map_opts)
-    map("n", "gy", telescope.lsp_type_definitions, map_opts)
-    map("n", "gr", telescope.lsp_references, map_opts)
-    map("n", "gs", telescope.lsp_document_symbols, map_opts)
     map({ "x", "n" }, "<leader>f", function()
         require("enoch.format").format(client.name)
     end, map_opts)
     map("n", "[g", vim.diagnostic.goto_prev, map_opts)
     map("n", "g]", vim.diagnostic.goto_next, map_opts)
-    map("n", "ga", function()
-        return telescope.diagnostics { bufnr = 0 }
-    end, map_opts)
-    map("n", "gw", telescope.diagnostics, map_opts)
     map("n", "<leader>a", vim.lsp.buf.code_action, map_opts)
     map(
         "x",

@@ -3,7 +3,6 @@ local actions = require "telescope.actions"
 local themes = require "telescope.themes"
 
 telescope.setup {
-    builtin = {},
     extensions = {
         fzf = {
             fuzzy = true,

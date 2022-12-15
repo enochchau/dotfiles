@@ -1,5 +1,7 @@
+local fzf = require('fzf-lua')
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
+
 map("n", "j", "gj", opts)
 map("n", "k", "gk", opts)
 map("v", ">", ">gv", opts)
@@ -13,15 +15,27 @@ map("n", "[b", ":bprevious<CR>", opts)
 map("n", "<leader>d", function()
     return vim.diagnostic.open_float(nil, { focus = false })
 end, opts)
-map("n", "<C-p>", (require "telescope.builtin").find_files, opts)
-map("n", "<C-f>", (require "telescope.builtin").live_grep, opts)
-map("n", "<C-b>", (require "telescope.builtin").buffers, opts)
-map("n", "<leader>fh", (require "telescope.builtin").help_tags, opts)
-map("n", "z=", (require "telescope.builtin").spell_suggest, opts)
-map("n", "<leader>o", (require "telescope.builtin").jumplist, opts)
-map("n", "<leader>nw", ":Telescope node-workspace<CR>", opts)
+-- map("n", "<C-p>", (require "telescope.builtin").find_files, opts)
+-- map("n", "<C-f>", (require "telescope.builtin").live_grep, opts)
+-- map("n", "<C-b>", (require "telescope.builtin").buffers, opts)
+-- map("n", "<leader>fh", (require "telescope.builtin").help_tags, opts)
+-- map("n", "z=", (require "telescope.builtin").spell_suggest, opts)
+-- map("n", "<leader>o", (require "telescope.builtin").jumplist, opts)
+-- map("n", "<leader>nw", ":Telescope node-workspace<CR>", opts)
+
+
+map("n", "<C-p>", fzf.files, opts)
+map("n", "<C-f>", fzf.live_grep, opts)
+map("n", "<C-b>", fzf.buffers, opts)
+map("n", "<leader>fh", fzf.help_tags, opts)
+map("n", "z=", fzf.spell_suggest, opts)
+map("n", "<leader>o", fzf.jumps, opts)
+map("n", "<leader>'", fzf.marks, opts)
+
+
 map("n", "<leader>cdg", ":Cdg<CR>:pwd<CR>", opts)
 map("n", "<C-n>", ":Explore<CR>", opts)
 map("n", "<C-\\>", ":vs|:term<CR>", opts)
+
 map("n", "<leader>nf", ":Neogen<CR>", opts)
 map("n", "<leader>w", (require "nvim-window").pick, opts)
