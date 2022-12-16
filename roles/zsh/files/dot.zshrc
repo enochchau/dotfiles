@@ -25,7 +25,6 @@ plugins=(
   ripgrep
   fd
   zsh-syntax-highlighting
-  zsh-autosuggestions
   yarn
   npm
   zoxide

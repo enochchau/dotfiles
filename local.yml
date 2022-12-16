@@ -20,8 +20,6 @@
         omz_plugins:
           - repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
             path: plugins/zsh-syntax-highlighting
-          - repo: https://github.com/zsh-users/zsh-autosuggestions
-            path: plugins/zsh-autosuggestions
           - repo: https://github.com/romkatv/powerlevel10k.git
             path: themes/powerlevel10k
     - role: tmux
