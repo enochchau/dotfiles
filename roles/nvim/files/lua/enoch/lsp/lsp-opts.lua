@@ -10,17 +10,6 @@ function M.common_on_attach(client, bufnr)
 
     vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
 
-    -- local telescope = require "telescope.builtin"
-    -- map("n", "gd", telescope.lsp_definitions, map_opts)
-    -- map("n", "gi", telescope.lsp_implementations, map_opts)
-    -- map("n", "gy", telescope.lsp_type_definitions, map_opts)
-    -- map("n", "gr", telescope.lsp_references, map_opts)
-    -- map("n", "gs", telescope.lsp_document_symbols, map_opts)
-    -- map("n", "ga", function()
-    --     return telescope.diagnostics { bufnr = 0 }
-    -- end, map_opts)
-    -- map("n", "gw", telescope.diagnostics, map_opts)
-
     local fzf = require "fzf-lua"
 
     map("n", "gd", fzf.lsp_definitions, map_opts)

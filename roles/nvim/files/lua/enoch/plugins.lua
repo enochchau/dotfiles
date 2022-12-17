@@ -100,22 +100,6 @@ return require("packer").startup(function(use)
             require("fzf-lua").register_ui_select()
         end,
     }
-    -- use {
-    --     "nvim-telescope/telescope.nvim",
-    --     config = function()
-    --         require "enoch.telescope"
-    --     end,
-    --     disable = true,
-    --     requires = {
-    --         "nvim-lua/plenary.nvim",
-    --         {
-    --             "nvim-telescope/telescope-fzf-native.nvim",
-    --             run = "make",
-    --         },
-    --         "nvim-telescope/telescope-ui-select.nvim",
-    --     },
-    -- }
-    -- use(ec965("telescope-node-workspace.nvim", true))
 
     -- tree sitter
     use {
