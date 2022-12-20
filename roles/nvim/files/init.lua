@@ -88,7 +88,6 @@ elseif has "wsl" == 1 then
         },
     }
 end
-opt.clipboard = "unnamedplus"
 
 -- Configure additional filetypes
 vim.filetype.add {
