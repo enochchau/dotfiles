@@ -24,6 +24,7 @@ map("n", "<leader>fh", fzf.help_tags, opts)
 map("n", "z=", fzf.spell_suggest, opts)
 map("n", "<leader>o", fzf.jumps, opts)
 map("n", "<leader>'", fzf.marks, opts)
+map("n", "<leader>nw", require('enoch.fzf').fzf_node_workspaces, opts)
 
 map("n", "<leader>cdg", ":Cdg<CR>:pwd<CR>", opts)
 map("n", "<C-n>", ":Explore<CR>", opts)
