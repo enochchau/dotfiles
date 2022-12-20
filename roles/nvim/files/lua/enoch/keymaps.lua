@@ -32,7 +32,7 @@ map("n", "<leader>'", fzf.marks, opts)
 map("n", "<leader>nw", require("enoch.fzf").fzf_node_workspaces, opts)
 
 map("n", "<leader>cdg", ":Cdg<CR>:pwd<CR>", opts)
-map("n", "<C-n>", ":Explore<CR>", opts)
+map("n", "<C-n>", require("enoch.netrw").toggle_netrw, opts)
 map("n", "<C-\\>", ":vs|:term<CR>", opts)
 
 map("n", "<leader>nf", ":Neogen<CR>", opts)
