@@ -1,4 +1,4 @@
-require('enoch.plugins')
+require "enoch.lazy"
 
 local autocmd = vim.api.nvim_create_autocmd
 local has = vim.fn.has
@@ -102,7 +102,6 @@ vim.filetype.add {
         ["skhdrc"] = "config",
     },
 }
-
 
 require "enoch.keymaps"
 require "enoch.commands"

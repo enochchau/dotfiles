@@ -1,20 +1,4 @@
-local lazypath = vim.fn.stdpath "data" .. "/lazy/lazy.nvim"
-if not vim.loop.fs_stat(lazypath) then
-    vim.fn.system {
-        "git",
-        "clone",
-        "--filter=blob:none",
-        "--single-branch",
-        "https://github.com/folke/lazy.nvim.git",
-        lazypath,
-    }
-end
-vim.opt.runtimepath:prepend(lazypath)
-
-local has_termux = vim.env["TERMUX"] ~= nil
-
-require("lazy").setup({
-
+return {
     -- editing
     "tpope/vim-obsession",
     {
@@ -37,43 +21,11 @@ require("lazy").setup({
     -- yarn pnp
     { "ec965/nvim-pnp-checker" },
 
-    -- lsp
-    {
-        "neovim/nvim-lspconfig",
-        config = function()
-            require "enoch.lsp"
-        end,
-        dependencies = {
-            "jose-elias-alvarez/null-ls.nvim",
-            "williamboman/mason.nvim",
-            "b0o/schemastore.nvim",
-            "onsails/lspkind.nvim",
-        },
-    },
     {
         "vigoux/notifier.nvim",
         config = function()
             require("notifier").setup {}
         end,
-    },
-
-    -- completion
-    {
-        "hrsh7th/nvim-cmp",
-        config = function()
-            require "enoch.cmp"
-        end,
-        dependencies = {
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-path",
-            "hrsh7th/cmp-cmdline",
-            "f3fora/cmp-spell",
-            -- snippets
-            "L3MON4D3/LuaSnip",
-            "rafamadriz/friendly-snippets",
-            "saadparwaiz1/cmp_luasnip",
-        },
     },
 
     -- fuzzy finder
@@ -82,24 +34,6 @@ require("lazy").setup({
         config = function()
             require("fzf-lua").register_ui_select()
         end,
-    },
-
-    -- tree sitter
-    {
-        "nvim-treesitter/nvim-treesitter",
-        config = function()
-            require "enoch.treesitter"
-        end,
-        build = ":TSUpdate",
-        dependencies = {
-            "nvim-treesitter/playground",
-            "numToStr/Comment.nvim",
-            "windwp/nvim-autopairs",
-            "windwp/nvim-ts-autotag",
-            "JoosepAlviste/nvim-ts-context-commentstring",
-            "danymat/neogen",
-            "nvim-treesitter/nvim-treesitter-context",
-        },
     },
 
     -- markdown
@@ -149,13 +83,6 @@ require("lazy").setup({
     -- additional language support
     { "pearofducks/ansible-vim" },
 
-    -- status line
-    {
-        "nvim-lualine/lualine.nvim",
-        config = function()
-            require "enoch.statusline"
-        end,
-    },
 
     -- qol
     {
@@ -181,12 +108,6 @@ require("lazy").setup({
                 space_char_blankline = " ",
                 show_current_context = true,
             }
-        end,
-    },
-    {
-        "goolord/alpha-nvim",
-        config = function()
-            require "enoch.alpha"
         end,
     },
     {
@@ -253,17 +174,4 @@ require("lazy").setup({
         end,
     },
     { "ec965/fnlnvim" },
-}, {
-    performance = {
-        rtp = {
-            disabled_plugins = {
-                "tutor",
-                "tohtml",
-            },
-        },
-    },
-    dev = {
-        path = "~/code",
-        patterns = {"ec965"},
-    },
-})
+}
