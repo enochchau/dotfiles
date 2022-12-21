@@ -1,4 +1,4 @@
-pcall(require, "impatient")
+require('enoch.plugins')
 
 local autocmd = vim.api.nvim_create_autocmd
 local has = vim.fn.has
@@ -103,7 +103,7 @@ vim.filetype.add {
     },
 }
 
-require "enoch.plugins"
+
 require "enoch.keymaps"
 require "enoch.commands"
 
