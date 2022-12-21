@@ -60,7 +60,6 @@ require("lazy").setup {
         "hrsh7th/nvim-cmp",
         config = function()
             require "enoch.cmp"
-            require("luasnip.loaders.from_vscode").lazy_load()
         end,
         dependencies = {
             "hrsh7th/cmp-buffer",
@@ -87,8 +86,6 @@ require("lazy").setup {
     {
         "nvim-treesitter/nvim-treesitter",
         config = function()
-            require("nvim-autopairs").setup { check_ts = true }
-            require("neogen").setup {}
             require "enoch.treesitter"
         end,
         build = ":TSUpdate",

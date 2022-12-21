@@ -97,3 +97,6 @@ require("Comment").setup {
 }
 
 require("treesitter-context").setup()
+
+require("nvim-autopairs").setup { check_ts = true }
+require("neogen").setup {}
