@@ -18,6 +18,7 @@ lualine.setup {
         lualine_c = { "%{ObsessionStatus('', '')}", "filename" },
     },
     options = {
+        globalstatus = true,
         theme = (function()
             local theme = vim.g.colors_name
             if theme == "one" then

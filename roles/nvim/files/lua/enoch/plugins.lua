@@ -11,7 +11,9 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
-require("lazy").setup {
+local has_termux = vim.env["TERMUX"] ~= nil
+
+require("lazy").setup({
 
     -- editing
     "tpope/vim-obsession",
@@ -112,6 +114,7 @@ require("lazy").setup {
 
     {
         "iamcco/markdown-preview.nvim",
+        enabled = not has_termux,
         ft = { "markdown" },
         run = "cd app && yarn install",
         cmd = { "MarkdownPreviewToggle" },
@@ -129,6 +132,7 @@ require("lazy").setup {
     { "amadeus/vim-mjml" },
     {
         "ec965/mjml-preview.nvim",
+        enabled = not has_termux,
         ft = { "mjml" },
         build = "cd app && npm install",
         cmd = { "MjmlPreviewToggle" },
@@ -250,4 +254,17 @@ require("lazy").setup {
         end,
     },
     { "ec965/fnlnvim" },
-}
+}, {
+    performance = {
+        rtp = {
+            disabled_plugins = {
+                "tutor",
+                "tohtml",
+            },
+        },
+    },
+    dev = {
+        path = "~/code",
+        patterns = {"ec965"},
+    },
+})
