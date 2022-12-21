@@ -1,3 +1,4 @@
+local has_termux = vim.env["TERMUX"] ~= nil
 return {
     -- editing
     "tpope/vim-obsession",

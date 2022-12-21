@@ -11,8 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
-local has_termux = vim.env["TERMUX"] ~= nil
-
 require("lazy").setup("enoch.plugins", {
     performance = {
         rtp = {
