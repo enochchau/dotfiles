@@ -25,7 +25,6 @@ local servers = {
     ["astro"] = true,
     ["bashls"] = true,
     ["cssls"] = true,
-    ["crystalline"] = true,
     ["eslint"] = true,
     ["fennel-language-server"] = false,
     -- ["fennel-ls"] = false,
@@ -38,7 +37,6 @@ local servers = {
     ["sumneko_lua"] = true,
     ["terraformls"] = true,
     ["tsserver"] = true,
-    ["vimls"] = true,
     ["yamlls"] = true,
     ["zls"] = true,
 }

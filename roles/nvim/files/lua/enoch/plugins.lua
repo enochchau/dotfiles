@@ -148,7 +148,6 @@ require("lazy").setup({
 
     -- additional language support
     { "pearofducks/ansible-vim" },
-    { "vim-crystal/vim-crystal" },
 
     -- status line
     {
