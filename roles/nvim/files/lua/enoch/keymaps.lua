@@ -1,3 +1,6 @@
+local open = require "enoch.open"
+local colo = require "enoch.colorscheme"
+
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
@@ -26,10 +29,8 @@ map("n", "<C-\\>", ":vs|:term<CR>", opts)
 
 map("n", "<leader>nf", ":Neogen<CR>", opts)
 
-local colo = require "enoch.colorscheme"
-map("n", "]c", colo.cycle_colors_next, {})
-map("n", "[c", colo.cycle_colors_prev, {})
---- Save the current color scheme in colo.txt
--- map("n", "<leader>c", function()
---     vim.fn.system("echo " .. vim.g.colors_name .. " >> " .. vim.fn.stdpath("config") .. "/colo.txt")
--- end)
+map("n", "]c", colo.cycle_colors_next, opts)
+map("n", "[c", colo.cycle_colors_prev, opts)
+map("n", "<leader>c", colo.save_color, opts)
+
+map("n", "<leader>op", open.plugin_link, opts)

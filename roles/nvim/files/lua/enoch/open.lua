@@ -1,6 +1,3 @@
-local M = {}
-
---- Open a URL in the browser
 ---@param url string
 local function open_url(url)
     if vim.fn.has "mac" == 1 then
@@ -30,15 +27,20 @@ local function is_github(str)
     return str:match "^([a-zA-Z0-9-_.]+)/([a-zA-Z0-9-_.]+)$"
 end
 
---- Open the plugin under the cursor's homepage
-function M.open_plugin_link()
+--- Use treesitter to get the text of the string under the cursor
+--- Only works forlanguages that use " or ' as strings
+local function ts_string_under_cursor()
     local ts_utils = require "nvim-treesitter.ts_utils"
-
-    local text = string.gsub(
+    return string.gsub(
         vim.treesitter.query.get_node_text(ts_utils.get_node_at_cursor(), 0),
         "^[\"'](.*)[\"']$",
         "%1"
     )
+end
+
+--- Open the (plugin under the cursor)'s homepage
+local function plugin_link()
+    local text = ts_string_under_cursor()
 
     if is_url(text) then
         return open_url(text)
@@ -49,4 +51,4 @@ function M.open_plugin_link()
     end
 end
 
-return M
+return { plugin_link = plugin_link }
