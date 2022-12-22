@@ -20,9 +20,6 @@ local plugins = {
     { "EdenEast/nightfox.nvim", build = ":NightfoxCompile" },
     "rebelot/kanagawa.nvim",
 
-    -- yarn pnp
-    "ec965/nvim-pnp-checker",
-
     {
         "vigoux/notifier.nvim",
         config = function()
