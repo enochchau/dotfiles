@@ -23,15 +23,7 @@ local plugins = {
     {
         "vigoux/notifier.nvim",
         config = function()
-            require("notifier").setup {}
-        end,
-    },
-
-    -- fuzzy finder
-    {
-        "ibhagwan/fzf-lua",
-        config = function()
-            require("fzf-lua").register_ui_select()
+            require("notifier").setup { }
         end,
     },
 
@@ -44,7 +36,6 @@ local plugins = {
             require("femaco").setup()
         end,
     },
-
     {
         "iamcco/markdown-preview.nvim",
         enabled = not has_termux,
@@ -146,6 +137,7 @@ local plugins = {
     -- window picker
     {
         url = "https://gitlab.com/yorickpeterse/nvim-window.git",
+        keys = { "<leader>w" },
         config = function()
             require("nvim-window").setup {
                 chars = {
@@ -169,6 +161,13 @@ local plugins = {
                     "p",
                 },
             }
+
+            vim.keymap.set(
+                "n",
+                "<leader>w",
+                (require "nvim-window").pick,
+                { noremap = true, silent = true }
+            )
         end,
     },
     { "ec965/fnlnvim", cmd = { "FnlNvimCompile", "FnlNvimEval" } },

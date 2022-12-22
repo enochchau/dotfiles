@@ -121,7 +121,7 @@ local function find_root(path)
     return "Node workspace not found", ""
 end
 
-function M.fzf_node_workspaces()
+function M.node_workspaces()
     local root, package_manager = find_root(uv.cwd())
     if package_manager == "" then
         print(root)
