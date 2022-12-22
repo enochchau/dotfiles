@@ -1,5 +1,6 @@
 local has_termux = vim.env["TERMUX"] ~= nil
-return {
+---@type (string | LazyPlugin)[]
+local plugins = {
     -- editing
     "tpope/vim-obsession",
     {
@@ -8,19 +9,19 @@ return {
             require("guess-indent").setup {}
         end,
     },
-    { "tpope/vim-surround" },
-    { "gpanders/editorconfig.nvim" },
+    "tpope/vim-surround",
+    "gpanders/editorconfig.nvim",
 
     -- themes
-    { "navarasu/onedark.nvim" },
-    { "NTBBloodbath/doom-one.nvim" },
-    { "folke/tokyonight.nvim" },
-    { "kaiuri/nvim-juliana" },
+    "navarasu/onedark.nvim",
+    "NTBBloodbath/doom-one.nvim",
+    "folke/tokyonight.nvim",
+    "kaiuri/nvim-juliana",
     { "EdenEast/nightfox.nvim", build = ":NightfoxCompile" },
-    { "rebelot/kanagawa.nvim" },
+    "rebelot/kanagawa.nvim",
 
     -- yarn pnp
-    { "ec965/nvim-pnp-checker" },
+    "ec965/nvim-pnp-checker",
 
     {
         "vigoux/notifier.nvim",
@@ -64,7 +65,7 @@ return {
     },
 
     -- mjml
-    { "amadeus/vim-mjml" },
+    "amadeus/vim-mjml",
     {
         "ec965/mjml-preview.nvim",
         enabled = not has_termux,
@@ -82,8 +83,7 @@ return {
     },
 
     -- additional language support
-    { "pearofducks/ansible-vim" },
-
+    "pearofducks/ansible-vim",
 
     -- qol
     {
@@ -143,8 +143,8 @@ return {
         },
     },
 
-    { "nvim-tree/nvim-web-devicons" },
-    { "nvim-lua/plenary.nvim" },
+    "nvim-tree/nvim-web-devicons",
+    "nvim-lua/plenary.nvim",
 
     -- window picker
     {
@@ -174,5 +174,6 @@ return {
             }
         end,
     },
-    { "ec965/fnlnvim" },
+    "ec965/fnlnvim",
 }
+return plugins
