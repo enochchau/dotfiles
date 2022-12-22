@@ -147,7 +147,16 @@ function M.yamlls()
     for _, schema in ipairs(jsonschemas) do
         schemas[schema.url] = schema.fileMatch
     end
-    opts.settings = { schemas = schemas }
+
+    opts.settings = {
+        yaml = {
+            schemas = schemas,
+            -- schemaStore = {
+            --     enable = true,
+            --     url = "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/api/json/catalog.json",
+            -- },
+        },
+    }
     return opts
 end
 

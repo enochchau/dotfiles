@@ -16,9 +16,7 @@ function M.config()
     local mason = require "mason"
     local lsp_opts = require "enoch.plugins.lsp.lsp-opts"
     local null_ls = require "null-ls"
-
-    -- setup additional lsp configs before loading lspconfig
-    require "enoch.plugins.lsp.configs"
+    local additional_lspconfig = require "enoch.plugins.lsp.configs"
 
     local function enable_icon_signs()
         local signs =
@@ -57,6 +55,11 @@ function M.config()
 
     -- setup
     for _, server in ipairs(vim.tbl_keys(servers)) do
+        -- setup additional lsp server configs
+        if additional_lspconfig[server] then
+            additional_lspconfig[server]()
+        end
+
         local config
         if lsp_opts[server] then
             config = lsp_opts[server]()

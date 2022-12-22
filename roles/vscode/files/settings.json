@@ -58,5 +58,5 @@
   "terminal.integrated.fontSize": 13,
   "editor.rulers": [80],
   "update.showReleaseNotes": false,
-  "workbench.colorTheme": "Tokyo Night Light"
+  "workbench.colorTheme": "Tokyo Night Light",
 }
