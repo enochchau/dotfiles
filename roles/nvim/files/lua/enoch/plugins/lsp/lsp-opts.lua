@@ -25,7 +25,7 @@ function M.common_on_attach(client, bufnr)
         require("enoch.format").format(client.name)
     end, map_opts)
     map("n", "[g", vim.diagnostic.goto_prev, map_opts)
-    map("n", "g]", vim.diagnostic.goto_next, map_opts)
+    map("n", "]g", vim.diagnostic.goto_next, map_opts)
     map("n", "<leader>a", vim.lsp.buf.code_action, map_opts)
     map(
         "x",

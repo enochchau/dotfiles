@@ -14,6 +14,7 @@ local plugins = {
     "gpanders/editorconfig.nvim",
 
     -- themes
+    "RRethy/nvim-base16",
     "navarasu/onedark.nvim",
     "NTBBloodbath/doom-one.nvim",
     "folke/tokyonight.nvim",
