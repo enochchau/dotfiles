@@ -56,4 +56,4 @@ local function open_plugin_link()
         return nil
     end
 end
-return command("PackerOpen", open_plugin_link, {})
+return command("PluginOpen", open_plugin_link, {})

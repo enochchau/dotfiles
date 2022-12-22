@@ -1,12 +1,13 @@
 local has_termux = vim.env["TERMUX"] ~= nil
+
 ---@type (string | LazyPlugin)[]
 local plugins = {
     -- editing
     "tpope/vim-obsession",
     {
-        "nmac427/guess-indent.nvim",
+        "Darazaki/indent-o-matic",
         config = function()
-            require("guess-indent").setup {}
+            require("indent-o-matic").setup({})
         end,
     },
     "tpope/vim-surround",
@@ -23,7 +24,7 @@ local plugins = {
     {
         "vigoux/notifier.nvim",
         config = function()
-            require("notifier").setup { }
+            require("notifier").setup {}
         end,
     },
 
@@ -84,53 +85,13 @@ local plugins = {
     {
         "lukas-reineke/indent-blankline.nvim",
         config = function()
-            vim.g.indent_blankline_filetype_exclude = {
-                "alpha",
-                "lspinfo",
-                "packer",
-                "checkhealth",
-                "help",
-                "man",
-                "",
-            }
+            table.insert(vim.g.indent_blankline_filetype_exclude, "alpha")
             require("indent_blankline").setup {
                 space_char_blankline = " ",
                 show_current_context = true,
             }
         end,
     },
-    {
-        "NvChad/nvim-colorizer.lua",
-        config = function()
-            require("colorizer").setup {
-                filetypes = {
-                    "javascript",
-                    "javascriptreact",
-                    "svelte",
-                    "astro",
-                    "typescript",
-                    "typescriptreact",
-                    "css",
-                    "scss",
-                },
-                user_default_options = {
-                    names = false,
-                    mode = "virtualtext",
-                },
-            }
-        end,
-        ft = {
-            "javascript",
-            "javascriptreact",
-            "svelte",
-            "astro",
-            "typescript",
-            "typescriptreact",
-            "css",
-            "scss",
-        },
-    },
-
     "nvim-tree/nvim-web-devicons",
     "nvim-lua/plenary.nvim",
 
