@@ -26,32 +26,10 @@ map("n", "<C-\\>", ":vs|:term<CR>", opts)
 
 map("n", "<leader>nf", ":Neogen<CR>", opts)
 
-
-local colorschemes = vim.fn.getcompletion("", "color")
-local i = 1
-
-local function cycle_colors_next()
-    i = i + 1
-    if i > #colorschemes then
-        i = 1
-    end
-    local c = colorschemes[i]
-    print(c, i)
-    vim.cmd.colorscheme(c)
-end
-
-local function cycle_colors_prev()
-    i = i - 1
-    if i < 1 then
-        i = #colorschemes
-    end
-    local c = colorschemes[i]
-    vim.cmd.colorscheme(c)
-    print(c, i)
-end
-
-vim.keymap.set("n", "]c", cycle_colors_next, {})
-vim.keymap.set("n", "[c", cycle_colors_prev, {})
--- vim.keymap.set("n", "<leader>c", function()
+local colo = require "enoch.colorscheme"
+map("n", "]c", colo.cycle_colors_next, {})
+map("n", "[c", colo.cycle_colors_prev, {})
+--- Save the current color scheme in colo.txt
+-- map("n", "<leader>c", function()
 --     vim.fn.system("echo " .. vim.g.colors_name .. " >> " .. vim.fn.stdpath("config") .. "/colo.txt")
 -- end)

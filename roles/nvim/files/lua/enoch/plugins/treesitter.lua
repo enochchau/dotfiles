@@ -1,4 +1,5 @@
-return {
+---@type LazyPlugin
+local M = {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     dependencies = {
@@ -56,11 +57,13 @@ return {
         require("nvim-treesitter.configs").setup {
             ensure_installed = langs,
             sync_install = false,
-            playground = { enable = true },
+            auto_install = true,
+
             highlight = {
                 enable = true,
                 additional_vim_regex_highlighting = false,
             },
+            playground = { enable = true },
             autotag = {
                 enable = true,
                 filetypes = {
@@ -114,8 +117,9 @@ return {
         }
 
         require("treesitter-context").setup()
-
         require("nvim-autopairs").setup { check_ts = true }
         require("neogen").setup {}
     end,
 }
+
+return M
