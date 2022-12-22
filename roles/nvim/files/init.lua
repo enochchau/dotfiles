@@ -1,5 +1,3 @@
-require "enoch.lazy"
-
 local autocmd = vim.api.nvim_create_autocmd
 local has = vim.fn.has
 local g = vim.g
@@ -103,6 +101,7 @@ vim.filetype.add {
     },
 }
 
+require "enoch.lazy"
 require "enoch.keymaps"
 require "enoch.commands"
 

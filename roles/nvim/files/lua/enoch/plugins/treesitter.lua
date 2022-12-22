@@ -2,7 +2,6 @@ return {
     "nvim-treesitter/nvim-treesitter",
     build = ":TSUpdate",
     dependencies = {
-        "nvim-treesitter/playground",
         "numToStr/Comment.nvim",
         "windwp/nvim-autopairs",
         "windwp/nvim-ts-autotag",

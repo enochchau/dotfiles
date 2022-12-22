@@ -174,6 +174,11 @@ local plugins = {
             }
         end,
     },
-    "ec965/fnlnvim",
+    { "ec965/fnlnvim", cmd = { "FnlNvimCompile", "FnlNvimEval" } },
+    {
+        "nvim-treesitter/playground",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
+        cmd = "TSPlaygroundToggle",
+    },
 }
 return plugins
