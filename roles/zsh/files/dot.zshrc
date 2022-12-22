@@ -43,7 +43,8 @@ alias wtb='~/code/dev-scripts/bootstrap-worktree.sh'
 alias vi="nvim"
 alias vim="nvim"
 alias vimrc="nvim ~/.config/nvim --cmd 'cd ~/.config/nvim'"
-alias conf="~/code/dev-scripts/config.sh"
+alias conf="~/code/dev-scripts/project.sh $XDG_CONFIG_HOME"
+alias dot="~/code/dev-scripts/project.sh $HOME/dotfiles $HOME/dotfiles/roles"
 alias fnl-nvim="~/.config/nvim/scripts/fnl-nvim"
 alias python="python3"
 

@@ -1,5 +1,5 @@
 # Apps
-alt - t : open -n /Applications/Alacritty.app
+alt - t : if [[ $(~/.config/skhd/alacritty.applescript) == "0" ]]; then; alacritty msg create-window; fi 
 # alt - t : open -n /Applications/WezTerm.app
 alt - b : open -n /Applications/Google\ Chrome.app --args --profile-directory="Default"   
 alt - f : open -n /Applications/Firefox.app

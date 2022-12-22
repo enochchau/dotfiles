@@ -1,12 +1,5 @@
-- name: Create directory
-  ansible.builtin.file:
-    path: ~/.config/skhd
-    state: directory
-    mode: "0755"
-    recurse: true
-
 - name: Link Skhdrc
   ansible.builtin.file:
-    src: "{{ ansible_env.PWD }}/roles/skhd/files/skhdrc"
-    path: ~/.config/skhd/skhdrc
+    src: "{{ ansible_env.PWD }}/roles/skhd/files"
+    path: ~/.config/skhd
     state: link
