@@ -15,7 +15,6 @@ local M = {
         map("n", "<leader>o", fzf.jumps, opts)
         map("n", "<leader>'", fzf.marks, opts)
         map("n", "<leader>nw", require("enoch.fzf").node_workspaces, opts)
-
-    end
+    end,
 }
 return M

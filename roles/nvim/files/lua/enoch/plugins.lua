@@ -7,7 +7,7 @@ local plugins = {
     {
         "Darazaki/indent-o-matic",
         config = function()
-            require("indent-o-matic").setup({})
+            require("indent-o-matic").setup {}
         end,
     },
     "tpope/vim-surround",

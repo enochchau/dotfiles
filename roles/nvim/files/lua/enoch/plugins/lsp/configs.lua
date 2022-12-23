@@ -20,7 +20,7 @@ local function fennel_root_dir(dir)
 end
 
 --- https://git.sr.ht/~xerool/fennel-ls
-M['fennel-ls'] = function ()
+M["fennel-ls"] = function()
     require("lspconfig.configs")["fennel-ls"] = {
         default_config = {
             cmd = { vim.fn.expand "~/code/fennel-ls/fennel-ls" },
@@ -32,7 +32,7 @@ M['fennel-ls'] = function ()
 end
 
 --- https://github.com/rydesun/fennel-language-server
-M['fennel-language-server'] = function()
+M["fennel-language-server"] = function()
     require("lspconfig.configs")["fennel-language-server"] = {
         default_config = {
             -- replace it with true path
