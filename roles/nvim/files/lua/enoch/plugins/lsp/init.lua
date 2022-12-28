@@ -5,9 +5,7 @@ local M = {
         "jose-elias-alvarez/null-ls.nvim",
         "williamboman/mason.nvim",
         "b0o/schemastore.nvim",
-        "onsails/lspkind.nvim",
-        -- yarn pnp
-        "ec965/nvim-pnp-checker",
+        "onsails/lspkind.nvim"
     },
 }
 

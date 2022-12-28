@@ -1,4 +1,3 @@
-local pnp_checker = require "nvim-pnp-checker"
 local schemastore = require "schemastore"
 local cmp_nvim_lsp = require "cmp_nvim_lsp"
 
@@ -104,11 +103,6 @@ function M.eslint()
     opts.on_attach = function(client, bufnr)
         client.server_capabilities.documentFormattingProvider = true
         M.common_on_attach(client, bufnr)
-    end
-
-    local pnp_path = pnp_checker.find_pnp()
-    if pnp_path then
-        opts.cmd = pnp_checker.get_eslint_pnp_cmd(pnp_path)
     end
 
     return opts

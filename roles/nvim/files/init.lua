@@ -107,4 +107,4 @@ require "enoch.commands"
 
 -- theme
 opt.bg = "light"
-vim.cmd.colorscheme "base16-stella"
+vim.cmd.colorscheme "tokyonight"
