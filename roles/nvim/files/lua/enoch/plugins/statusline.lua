@@ -1,9 +1,6 @@
 ---@type LazyPlugin
 local M = {
     "nvim-lualine/lualine.nvim",
-    dependencies = {
-        "RRethy/nvim-base16",
-    },
     config = function()
         local lualine = require "lualine"
 

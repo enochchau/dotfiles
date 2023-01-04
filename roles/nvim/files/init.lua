@@ -106,5 +106,5 @@ require "enoch.keymaps"
 require "enoch.commands"
 
 -- theme
-opt.bg = "light"
-vim.cmd.colorscheme "tokyonight"
+opt.bg = "dark"
+vim.cmd.colorscheme "onedark"
