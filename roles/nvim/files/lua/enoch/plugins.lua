@@ -2,6 +2,12 @@ local has_termux = vim.env["TERMUX"] ~= nil
 
 ---@type (string | LazyPlugin)[]
 local plugins = {
+    {
+        "kylechui/nvim-surround",
+        config = function()
+            require("nvim-surround").setup {}
+        end,
+    },
     -- editing
     "tpope/vim-obsession",
     {
@@ -10,7 +16,6 @@ local plugins = {
             require("indent-o-matic").setup {}
         end,
     },
-    "tpope/vim-surround",
     "gpanders/editorconfig.nvim",
 
     -- themes

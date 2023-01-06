@@ -9,6 +9,7 @@ local M = {
     },
 }
 
+
 function M.config()
     local lspconfig = require "lspconfig"
     local mason = require "mason"
