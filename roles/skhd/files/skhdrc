@@ -1,10 +1,10 @@
 # Apps
 alt - t : if [[ $(~/.config/skhd/alacritty.applescript) == "0" ]]; then; alacritty msg create-window; fi 
 # alt - t : open -n /Applications/WezTerm.app
-alt - b : open -n /Applications/Google\ Chrome.app --args --profile-directory="Default"   
-alt - f : open -n /Applications/Firefox.app
-alt - s : open /Applications/Slack.app
-alt - u : open /Applications/Spotify.app
+alt - b : open -a 'Google Chrome'
+alt - f : open -a Firefox
+alt - s : open -a Slack
+alt - u : open -a Spotify
 
 # Yabai
 
