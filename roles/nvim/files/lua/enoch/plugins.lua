@@ -12,6 +12,9 @@ local plugins = {
     "tpope/vim-obsession",
     {
         "Darazaki/indent-o-matic",
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
         config = function()
             require("indent-o-matic").setup {}
         end,
