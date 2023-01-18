@@ -22,6 +22,7 @@ local plugins = {
     "gpanders/editorconfig.nvim",
 
     -- themes
+    "savq/melange-nvim",
     "navarasu/onedark.nvim",
     "NTBBloodbath/doom-one.nvim",
     "folke/tokyonight.nvim",
