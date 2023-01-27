@@ -5,10 +5,9 @@ local M = {
         "jose-elias-alvarez/null-ls.nvim",
         "williamboman/mason.nvim",
         "b0o/schemastore.nvim",
-        "onsails/lspkind.nvim"
+        "onsails/lspkind.nvim",
     },
 }
-
 
 function M.config()
     local lspconfig = require "lspconfig"

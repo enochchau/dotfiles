@@ -107,4 +107,4 @@ require "enoch.commands"
 
 -- theme
 opt.bg = "dark"
-vim.cmd.colorscheme "melange"
+vim.cmd.colorscheme "onedark"
