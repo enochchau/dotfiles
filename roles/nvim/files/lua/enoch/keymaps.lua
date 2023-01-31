@@ -33,4 +33,4 @@ map("n", "]c", colo.cycle_colors_next, opts)
 map("n", "[c", colo.cycle_colors_prev, opts)
 map("n", "<leader>c", colo.save_color, opts)
 
-map("n", "<leader>oe", open.plugin_link, opts)
+map("n", "<leader>op", open.plugin_link, opts)
