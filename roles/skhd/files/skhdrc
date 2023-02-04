@@ -1,5 +1,6 @@
 # Apps
-alt - t : if [[ $(~/.config/skhd/alacritty.applescript) == "0" ]]; then; alacritty msg create-window; fi 
+# alt - t : if [[ $(~/.config/skhd/alacritty.applescript) == "0" ]]; then; alacritty msg create-window && ~/.config/skhd/bringtofront.applescript; fi 
+alt - t: ~/.config/skhd/alacritty.applescript
 # alt - t : open -n /Applications/WezTerm.app
 alt - b : open -a 'Google Chrome'
 alt - f : open -a Firefox
