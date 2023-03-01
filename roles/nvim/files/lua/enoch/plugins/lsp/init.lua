@@ -44,7 +44,7 @@ function M.config()
         ["html"] = true,
         ["jsonls"] = true,
         ["rust_analyzer"] = true,
-        ["sumneko_lua"] = true,
+        ["lua_ls"] = true,
         ["terraformls"] = true,
         ["tsserver"] = true,
         ["yamlls"] = true,

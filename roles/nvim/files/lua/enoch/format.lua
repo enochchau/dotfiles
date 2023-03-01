@@ -10,7 +10,7 @@ local client_omit = {
         ["jsonls"] = true,
         ["yammls"] = true,
         ["eslint"] = true,
-        ["sumneko_lua"] = true,
+        ["lua_ls"] = true,
     },
 }
 

@@ -52,7 +52,7 @@ function M.create_default_opts(opts)
     }
 end
 
-function M.sumneko_lua()
+function M.lua_ls()
     local function get_runtime_path()
         local runtime_path = vim.split(package.path, ";")
         table.insert(runtime_path, "lua/?.lua")
