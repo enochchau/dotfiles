@@ -1,7 +1,10 @@
 ---@type LazyPlugin
 local M = {
     "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
+    --  https://github.com/MDeiml/tree-sitter-markdown
+    -- set $EXTENSION_TAGS to enable tag parsing for markdown grammer
+    build = [[:let $EXTENSION_TAGS='true'
+:TSUpdate]],
     dependencies = {
         "numToStr/Comment.nvim",
         "windwp/nvim-autopairs",
