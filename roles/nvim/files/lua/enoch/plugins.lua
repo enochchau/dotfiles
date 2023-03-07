@@ -23,6 +23,14 @@ local plugins = {
 
     -- themes
     "savq/melange-nvim",
+    {
+        "marko-cerovac/material.nvim",
+        config = function()
+            vim.g.material_style = "palenight"
+            vim.cmd.colorscheme "material"
+            vim.opt.bg = "dark"
+        end,
+    },
     "navarasu/onedark.nvim",
     "NTBBloodbath/doom-one.nvim",
     "folke/tokyonight.nvim",

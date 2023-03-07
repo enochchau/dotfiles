@@ -21,6 +21,7 @@
   "lualine.nvim": { "branch": "master", "commit": "e99d733e0213ceb8f548ae6551b04ae32e590c80" },
   "markdown-preview.nvim": { "branch": "master", "commit": "02cc3874738bc0f86e4b91f09b8a0ac88aef8e96" },
   "mason.nvim": { "branch": "main", "commit": "3ee3174e30e33c9d58fa07b0a73a6e180474b59c" },
+  "material.nvim": { "branch": "main", "commit": "bd945ff7374dedebd0868f262aa8452d5f0f1910" },
   "melange-nvim": { "branch": "master", "commit": "2c8250c435279638b5a244acfaf9fcdb702a45cc" },
   "neogen": { "branch": "main", "commit": "93d997dbddfe084e77ba4541c54a7b8bfd754fb1" },
   "nightfox.nvim": { "branch": "main", "commit": "3f647a560306306cb35854d639b39717f5390175" },

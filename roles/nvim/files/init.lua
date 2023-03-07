@@ -101,13 +101,10 @@ vim.filetype.add {
     },
 }
 
+
 require "enoch.lazy"
 require "enoch.keymaps"
 require "enoch.commands"
-
--- theme
-opt.bg = "dark"
-vim.cmd.colorscheme "onedark"
 
 -- use floating input for renaming stuff
 vim.ui.input = function(opts, on_confirm)
