@@ -17,7 +17,6 @@ function M.config()
     local luasnip = require "luasnip"
     local lspkind = require "lspkind"
     local cmp = require "cmp"
-    local cmp_autopairs = require "nvim-autopairs.completion.cmp"
 
     local function has_words_before()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -85,7 +84,6 @@ function M.config()
         },
     }
 
-    cmp.event:on("confirm_done", cmp_autopairs.on_confirm_done())
     require("luasnip.loaders.from_vscode").lazy_load()
 end
 
