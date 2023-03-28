@@ -55,6 +55,13 @@ _cdg_completion()
 }
 complete -F _cdg_completion cdg
 
+_mov_to_mp4_completion()
+{
+  local res=$(ls -b | grep '.*\.mov$')
+  COMPREPLY="$res"
+}
+complete -o filenames -F _mov_to_mp4_completion mov-to-mp4
+
 if test -f $ZDOTDIR/machine.zshrc; then 
   source $ZDOTDIR/machine.zshrc
 fi
