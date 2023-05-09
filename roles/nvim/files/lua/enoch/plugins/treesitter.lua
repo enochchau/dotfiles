@@ -10,7 +10,6 @@ local M = {
         "windwp/nvim-autopairs",
         "windwp/nvim-ts-autotag",
         "JoosepAlviste/nvim-ts-context-commentstring",
-        "danymat/neogen",
         "nvim-treesitter/nvim-treesitter-context",
     },
     config = function()
@@ -121,7 +120,6 @@ local M = {
 
         require("treesitter-context").setup()
         require("nvim-autopairs").setup { check_ts = true }
-        require("neogen").setup {}
     end,
 }
 

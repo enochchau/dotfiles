@@ -154,5 +154,10 @@ local plugins = {
         dependencies = { "nvim-treesitter/nvim-treesitter" },
         cmd = "TSPlaygroundToggle",
     },
+    {
+        "danymat/neogen",
+        dependencies = "nvim-treesitter/nvim-treesitter",
+        config = true,
+    },
 }
 return plugins
