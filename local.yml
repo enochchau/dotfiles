@@ -130,13 +130,13 @@
       tags: alacritty
       vars:
         - font_size: 14
-        - font: FantasqueSansMono NF
+        - font: FantasqueSansM Nerd Font
         - opacity: 0.85
     - role: wezterm
       tags: wezterm
       vars:
         - font_size: 14
-        - font: FantasqueSansMono NF
+        - font: FantasqueSansM Nerd Font
         - opacity: 0.9
     - role: hammerspoon
       tags: hammerspoon
