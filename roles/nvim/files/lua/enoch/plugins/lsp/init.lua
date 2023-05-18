@@ -17,8 +17,12 @@ function M.config()
     local additional_lspconfig = require "enoch.plugins.lsp.configs"
 
     local function enable_icon_signs()
-        local signs =
-            { Error = " ", Warn = " ", Hint = " ", Info = " " }
+        local signs = {
+            Error = "󰅚 ", -- x000f015a
+            Warn = "󰀪 ", -- x000f002a
+            Info = "󰋽 ", -- x000f02fd
+            Hint = "󰌶 ", -- x000f0336
+        }
 
         for type, icon in pairs(signs) do
             local hl = "DiagnosticSign" .. type

@@ -27,7 +27,6 @@ local plugins = {
         "marko-cerovac/material.nvim",
         config = function()
             vim.g.material_style = "palenight"
-            vim.cmd.colorscheme "material"
             vim.opt.bg = "dark"
         end,
     },
@@ -35,7 +34,13 @@ local plugins = {
     "NTBBloodbath/doom-one.nvim",
     "folke/tokyonight.nvim",
     "kaiuri/nvim-juliana",
-    { "EdenEast/nightfox.nvim", build = ":NightfoxCompile" },
+    {
+        "EdenEast/nightfox.nvim",
+        build = ":NightfoxCompile",
+        config = function()
+            vim.cmd.colorscheme "duskfox"
+        end,
+    },
     "rebelot/kanagawa.nvim",
 
     {
