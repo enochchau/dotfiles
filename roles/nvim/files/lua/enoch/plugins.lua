@@ -19,7 +19,6 @@ local plugins = {
             require("indent-o-matic").setup {}
         end,
     },
-    "gpanders/editorconfig.nvim",
 
     -- themes
     "savq/melange-nvim",
@@ -51,14 +50,6 @@ local plugins = {
     },
 
     -- markdown
-    -- code block syntax highlighting
-    {
-        "AckslD/nvim-FeMaco.lua",
-        ft = { "markdown" },
-        config = function()
-            require("femaco").setup()
-        end,
-    },
     {
         "iamcco/markdown-preview.nvim",
         enabled = not has_termux,
@@ -154,11 +145,6 @@ local plugins = {
         end,
     },
     { "ec965/fnlnvim", cmd = { "FnlNvimCompile", "FnlNvimEval" } },
-    {
-        "nvim-treesitter/playground",
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
-        cmd = "TSPlaygroundToggle",
-    },
     {
         "danymat/neogen",
         dependencies = "nvim-treesitter/nvim-treesitter",
