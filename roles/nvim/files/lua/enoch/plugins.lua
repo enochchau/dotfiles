@@ -26,19 +26,21 @@ local plugins = {
         "marko-cerovac/material.nvim",
         config = function()
             vim.g.material_style = "palenight"
-            vim.opt.bg = "dark"
         end,
     },
     "navarasu/onedark.nvim",
     "NTBBloodbath/doom-one.nvim",
-    "folke/tokyonight.nvim",
+    {
+        "folke/tokyonight.nvim",
+        config = function()
+            vim.opt.bg = "light"
+            vim.cmd.colorscheme "tokyonight"
+        end,
+    },
     "kaiuri/nvim-juliana",
     {
         "EdenEast/nightfox.nvim",
         build = ":NightfoxCompile",
-        config = function()
-            vim.cmd.colorscheme "duskfox"
-        end,
     },
     "rebelot/kanagawa.nvim",
 
@@ -150,5 +152,17 @@ local plugins = {
         dependencies = "nvim-treesitter/nvim-treesitter",
         config = true,
     },
+
+    -- copilot
+    {
+        "zbirenbaum/copilot.lua",
+        config = function()
+            require("copilot").setup {
+                suggestion = { enabled = false },
+                panel = { enabled = false },
+            }
+        end,
+    },
 }
+
 return plugins

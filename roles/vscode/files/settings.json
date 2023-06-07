@@ -53,10 +53,9 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.guides.highlightActiveIndentation": true,
-  "editor.fontFamily": "FantasqueSansMono NF, Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontSize": 14,
   "terminal.integrated.fontSize": 13,
   "editor.rulers": [80],
   "update.showReleaseNotes": false,
-  "workbench.colorTheme": "Tokyo Night Light",
+  "editor.fontFamily": "'FantasqueSansM Nerd Font', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14
 }

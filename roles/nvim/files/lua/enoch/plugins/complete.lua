@@ -11,20 +11,25 @@ local M = {
         "L3MON4D3/LuaSnip",
         "rafamadriz/friendly-snippets",
         "saadparwaiz1/cmp_luasnip",
+        -- copilot
+        "zbirenbaum/copilot-cmp",
     },
 }
 function M.config()
     local luasnip = require "luasnip"
     local lspkind = require "lspkind"
     local cmp = require "cmp"
+    require("copilot_cmp").setup()
 
     local function has_words_before()
+        if vim.api.nvim_buf_get_option(0, "buftype") == "prompt" then
+            return false
+        end
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
         return col ~= 0
             and vim.api
-                    .nvim_buf_get_lines(0, line - 1, line, true)[1]
-                    :sub(col, col)
-                    :match "%s"
+                    .nvim_buf_get_text(0, line - 1, 0, line - 1, col, {})[1]
+                    :match "^%s*$"
                 == nil
     end
 
@@ -71,6 +76,7 @@ function M.config()
             ["<CR>"] = cmp.mapping.confirm { select = true },
         },
         sources = cmp.config.sources(
+            { { name = "copilot" } },
             { { name = "nvim_lsp" }, { name = "luasnip" } },
             { { name = "buffer" } },
             { { name = "path" } },
@@ -80,6 +86,8 @@ function M.config()
             format = lspkind.cmp_format {
                 preset = "default",
                 mode = "symbol_text",
+
+                symbol_map = { Copilot = "" },
             },
         },
     }
