@@ -158,6 +158,7 @@ local plugins = {
         "zbirenbaum/copilot.lua",
         config = function()
             require("copilot").setup {
+                filetypes = {ocaml = false},
                 suggestion = { enabled = false },
                 panel = { enabled = false },
             }

@@ -39,6 +39,7 @@ local M = {
             "make",
             "markdown",
             "markdown_inline",
+            "ocaml",
             "prisma",
             "python",
             "query",

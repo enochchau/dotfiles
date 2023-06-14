@@ -53,6 +53,7 @@ function M.config()
         ["tsserver"] = true,
         ["yamlls"] = true,
         ["zls"] = true,
+        ["ocamllsp"] = true
     }
 
     -- setup
@@ -83,6 +84,7 @@ function M.config()
                 },
                 extra_filetypes = { "astro", "html" },
             },
+            formatting.ocamlformat,
             formatting.stylua,
             formatting.fnlfmt,
             diagnostics.shellcheck,
