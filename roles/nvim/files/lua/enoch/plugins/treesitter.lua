@@ -28,7 +28,6 @@ local M = {
             "gowork",
             "graphql",
             "hcl",
-            "help",
             "html",
             "javascript",
             "jsdoc",
