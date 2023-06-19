@@ -101,7 +101,6 @@ vim.filetype.add {
     },
 }
 
-
 require "enoch.lazy"
 require "enoch.keymaps"
 require "enoch.commands"

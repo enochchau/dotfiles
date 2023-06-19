@@ -1,23 +1,13 @@
 local has_termux = vim.env["TERMUX"] ~= nil
-
 ---@type (string | LazyPlugin)[]
 local plugins = {
-    {
-        "kylechui/nvim-surround",
-        config = function()
-            require("nvim-surround").setup {}
-        end,
-    },
+    { "kylechui/nvim-surround", config = true },
     -- editing
     "tpope/vim-obsession",
     {
         "Darazaki/indent-o-matic",
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
-        config = function()
-            require("indent-o-matic").setup {}
-        end,
+        config = true,
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
     },
 
     -- themes
@@ -38,64 +28,20 @@ local plugins = {
         end,
     },
     "kaiuri/nvim-juliana",
-    {
-        "EdenEast/nightfox.nvim",
-        build = ":NightfoxCompile",
-    },
+    { "EdenEast/nightfox.nvim", build = ":NightfoxCompile" },
     "rebelot/kanagawa.nvim",
 
-    {
-        "vigoux/notifier.nvim",
-        config = function()
-            require("notifier").setup {}
-        end,
-    },
-
-    -- markdown
-    {
-        "iamcco/markdown-preview.nvim",
-        enabled = not has_termux,
-        ft = { "markdown" },
-        run = "cd app && yarn install",
-        cmd = { "MarkdownPreviewToggle" },
-        config = function()
-            vim.keymap.set(
-                "n",
-                "<CR>",
-                ":MarkdownPreviewToggle<CR>",
-                { noremap = true, silent = true }
-            )
-        end,
-    },
-
-    -- mjml
-    "amadeus/vim-mjml",
-    {
-        "ec965/mjml-preview.nvim",
-        enabled = not has_termux,
-        ft = { "mjml" },
-        build = "cd app && npm install",
-        cmd = { "MjmlPreviewToggle" },
-        config = function()
-            vim.keymap.set(
-                "n",
-                "<CR>",
-                ":MjmlPreviewToggle<CR>",
-                { noremap = true, silent = true }
-            )
-        end,
-    },
+    { "vigoux/notifier.nvim", config = true },
 
     -- additional language support
     "pearofducks/ansible-vim",
+    "amadeus/vim-mjml",
 
     -- qol
     {
         "almo7aya/openingh.nvim",
         cmd = { "OpenInGHFile", "OpenInGHRepo" },
-        config = function()
-            require("openingh").setup()
-        end,
+        config = true,
     },
     {
         "lukas-reineke/indent-blankline.nvim",
@@ -158,11 +104,28 @@ local plugins = {
         "zbirenbaum/copilot.lua",
         config = function()
             require("copilot").setup {
-                filetypes = {ocaml = false},
+                filetypes = { ocaml = false },
                 suggestion = { enabled = false },
                 panel = { enabled = false },
             }
         end,
+    },
+    {
+        "NvChad/nvim-colorizer.lua",
+        opts = {
+            filetypes = {
+                "javascript",
+                "javascriptreact",
+                "svelte",
+                "astro",
+                "html",
+                "typescript",
+                "typescriptreact",
+                "css",
+                "scss",
+            },
+            user_default_options = { mode = "virtualtext" },
+        },
     },
 }
 

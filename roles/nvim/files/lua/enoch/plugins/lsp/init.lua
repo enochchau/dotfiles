@@ -53,7 +53,7 @@ function M.config()
         ["tsserver"] = true,
         ["yamlls"] = true,
         ["zls"] = true,
-        ["ocamllsp"] = true
+        ["ocamllsp"] = true,
     }
 
     -- setup
