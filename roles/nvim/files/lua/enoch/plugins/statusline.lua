@@ -19,7 +19,7 @@ local M = {
                     "diff",
                     { "diagnostics", sources = { "nvim_diagnostic" } },
                 },
-                lualine_c = { "%{ObsessionStatus('', '')}", "filename" },
+                lualine_c = { "%{ObsessionStatus('󰆓 ', '󰆓 ')}", "filename" },
             },
             options = {
                 globalstatus = true,
