@@ -1,5 +1,6 @@
 local autocmd = vim.api.nvim_create_autocmd
 local has = vim.fn.has
+local api = vim.api
 local g = vim.g
 local opt = vim.opt
 local cmd = vim.cmd
@@ -98,6 +99,7 @@ vim.filetype.add {
     filename = {
         ["yabairc"] = "sh",
         ["skhdrc"] = "config",
+        [".swcrc"] = "json"
     },
 }
 
