@@ -1,0 +1,5 @@
+#compdef cdg
+local git_root=$(git rev-parse --show-toplevel)
+if [[ -n "$git_root" ]]; then
+  _arguments "1:first:_path_files -W $git_root -/"
+fi

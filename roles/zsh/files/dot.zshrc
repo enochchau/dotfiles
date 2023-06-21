@@ -5,6 +5,20 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
+# load completions
+fpath=(~/dotfiles/roles/zsh/files/completions $fpath)
+
+cdg() {
+  local git_root=$(git rev-parse --show-toplevel)
+  if [[ -n "$git_root" ]]; then
+    cd "$git_root/$1" 
+  fi
+}
+
+export PATH=~/dotfiles/roles/zsh/files/scripts:$PATH
+export PATH=~/.local/bin:$PATH
+export PATH=~/.luarocks/bin:$PATH
+
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 export BAT_PAGER='less'
@@ -31,7 +45,6 @@ plugins=(
 source $ZSH/oh-my-zsh.sh
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always {}'"
 
-
 alias cddot='cd ~/dotfiles'
 alias cdnvim='cd ~/.config/nvim'
 alias gcol='git branch | fzf | sed '\''s/^.* //'\'' | xargs git checkout'
@@ -48,21 +61,6 @@ alias python="python3"
 if test -f $ZDOTDIR/machine.zshrc; then 
   source $ZDOTDIR/machine.zshrc
 fi
-
-cdg() {
-  local git_root=$(git rev-parse --show-toplevel)
-  if [[ -n "$git_root" ]]; then
-    cd "$git_root/$1" 
-  fi
-}
-
-export PATH=~/dotfiles/roles/zsh/files/scripts:$PATH
-export PATH=~/.local/bin:$PATH
-export PATH=~/.luarocks/bin:$PATH
-
-for completion in ~/dotfiles/roles/zsh/files/completions/*; do
-  source "$completion"
-done
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
