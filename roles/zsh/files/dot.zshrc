@@ -1,12 +1,9 @@
-# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.config/zsh/.zshrc.
+# Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
   source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
-
-bindkey '^I'   complete-word       # tab          | complete
-bindkey '^[[Z' autosuggest-accept  # shift + tab  | autosuggest
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
@@ -48,27 +45,24 @@ alias dot="~/code/dev-scripts/project.sh $HOME/dotfiles $HOME/dotfiles/roles"
 alias fnl-nvim="~/.config/nvim/scripts/fnl-nvim"
 alias python="python3"
 
-cdg() { cd "$(git rev-parse --show-toplevel)/$1" }
-_cdg_completion()
-{
-  COMPREPLY="$(ls $(git rev-parse --show-toplevel || echo "$HOME")/)" 
-}
-complete -F _cdg_completion cdg
-
-_mov_to_mp4_completion()
-{
-  local res=$(ls -b | grep '.*\.mov$')
-  COMPREPLY="$res"
-}
-complete -o filenames -F _mov_to_mp4_completion mov-to-mp4
-
 if test -f $ZDOTDIR/machine.zshrc; then 
   source $ZDOTDIR/machine.zshrc
 fi
 
+cdg() {
+  local git_root=$(git rev-parse --show-toplevel)
+  if [[ -n "$git_root" ]]; then
+    cd "$git_root/$1" 
+  fi
+}
+
 export PATH=~/dotfiles/roles/zsh/files/scripts:$PATH
 export PATH=~/.local/bin:$PATH
 export PATH=~/.luarocks/bin:$PATH
+
+for completion in ~/dotfiles/roles/zsh/files/completions/*; do
+  source "$completion"
+done
 
 # To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
 [[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
