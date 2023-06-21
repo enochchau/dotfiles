@@ -111,6 +111,13 @@ local plugins = {
         end,
     },
     {
+        "zbirenbaum/copilot-cmp",
+        config = function()
+            require("copilot_cmp").setup()
+        end,
+    },
+
+    {
         "NvChad/nvim-colorizer.lua",
         opts = {
             filetypes = {

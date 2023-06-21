@@ -99,7 +99,7 @@ vim.filetype.add {
     filename = {
         ["yabairc"] = "sh",
         ["skhdrc"] = "config",
-        [".swcrc"] = "json"
+        [".swcrc"] = "json",
     },
 }
 

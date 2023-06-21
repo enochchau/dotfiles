@@ -6,6 +6,7 @@ local M = {
         "williamboman/mason.nvim",
         "b0o/schemastore.nvim",
         "onsails/lspkind.nvim",
+        "ibhagwan/fzf-lua",
     },
 }
 

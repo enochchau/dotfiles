@@ -19,7 +19,6 @@ function M.config()
     local luasnip = require "luasnip"
     local lspkind = require "lspkind"
     local cmp = require "cmp"
-    require("copilot_cmp").setup()
 
     local function has_words_before()
         local line, col = unpack(vim.api.nvim_win_get_cursor(0))
@@ -105,7 +104,7 @@ function M.config()
         },
     }
 
-    require("luasnip.loaders.from_vscode").lazy_load()
+    vim.defer_fn(require("luasnip.loaders.from_vscode").lazy_load, 0)
 end
 
 return M
