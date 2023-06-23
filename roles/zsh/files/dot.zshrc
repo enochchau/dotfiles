@@ -7,6 +7,10 @@ fi
 
 # load completions
 fpath=(~/dotfiles/roles/zsh/files/completions $fpath)
+if [ -d "$HOME/code/dev-scripts/" ]; then
+  export PATH=~/code/dev-scripts:$PATH
+  fpath=(~/code/dev-scripts/completions $fpath)
+fi
 
 cdg() {
   local git_root=$(git rev-parse --show-toplevel)
