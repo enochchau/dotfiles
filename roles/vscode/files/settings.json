@@ -36,6 +36,10 @@
     {
       "before": ["<leader>", "n"],
       "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["editor.action.formatDocument"]
     }
   ],
   "vim.useSystemClipboard": true,
