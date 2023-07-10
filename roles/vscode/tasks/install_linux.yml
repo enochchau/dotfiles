@@ -7,6 +7,9 @@
 
 - name: Link VSCode settings
   ansible.builtin.file:
-    src: "{{ ansible_env.PWD }}/roles/vscode/files/settings.json"
-    path: ~/.config/Code/User/settings.json
+    src: "{{ ansible_env.PWD }}/roles/vscode/files/{{ item }}"
+    path: ~/.config/Code/User/{{ item }}
     state: link
+  loop: 
+    - settings.json
+    - keybindings.json
