@@ -7,9 +7,7 @@
   },
   "files.autoSave": "afterDelay",
   "editor.inlineSuggest.enabled": true,
-  "editor.wordWrap": "on",
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "editor.formatOnSave": true,
   "workbench.iconTheme": "material-icon-theme",
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
@@ -61,5 +59,7 @@
   "editor.rulers": [80],
   "update.showReleaseNotes": false,
   "editor.fontFamily": "'FantasqueSansM Nerd Font', Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontSize": 14
+  "editor.fontSize": 14,
+  "editor.lineNumbers": "relative",
+  "editor.wordWrap": "on"
 }
