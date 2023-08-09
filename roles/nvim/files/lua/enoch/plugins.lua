@@ -18,16 +18,15 @@ local plugins = {
             vim.g.material_style = "palenight"
         end,
     },
-    "navarasu/onedark.nvim",
-    "NTBBloodbath/doom-one.nvim",
     {
-        "folke/tokyonight.nvim",
+        "navarasu/onedark.nvim",
         config = function()
-            vim.opt.bg = "light"
-            vim.cmd.colorscheme "tokyonight"
+            vim.opt.bg = "dark"
+            vim.cmd.colorscheme "onedark"
         end,
     },
-    "kaiuri/nvim-juliana",
+    "NTBBloodbath/doom-one.nvim",
+    "folke/tokyonight.nvim",
     { "EdenEast/nightfox.nvim", build = ":NightfoxCompile" },
     "rebelot/kanagawa.nvim",
 

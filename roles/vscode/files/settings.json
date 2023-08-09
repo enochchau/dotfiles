@@ -38,6 +38,10 @@
     {
       "before": ["<leader>", "f"],
       "commands": ["editor.action.formatDocument"]
+    },
+    {
+      "before": ["<leader>", "a"],
+      "commands": ["editor.action.quickFix"]
     }
   ],
   "vim.useSystemClipboard": true,
