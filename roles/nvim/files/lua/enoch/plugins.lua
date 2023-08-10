@@ -18,17 +18,16 @@ local plugins = {
             vim.g.material_style = "palenight"
         end,
     },
+    "navarasu/onedark.nvim",
     {
-        "navarasu/onedark.nvim",
+        "kvrohit/rasmus.nvim",
+
         config = function()
             vim.opt.bg = "dark"
-            vim.cmd.colorscheme "onedark"
+            vim.cmd.colorscheme "rasmus"
         end,
     },
-    "NTBBloodbath/doom-one.nvim",
     "folke/tokyonight.nvim",
-    { "EdenEast/nightfox.nvim", build = ":NightfoxCompile" },
-    "rebelot/kanagawa.nvim",
 
     { "vigoux/notifier.nvim", config = true },
 

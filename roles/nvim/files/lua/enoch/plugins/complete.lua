@@ -12,10 +12,7 @@ local M = {
         "rafamadriz/friendly-snippets",
         "saadparwaiz1/cmp_luasnip",
         -- copilot
-        {
-            "zbirenbaum/copilot-cmp",
-            commit = "c2cdb3c0f5078b0619055af192295830a7987790",
-        },
+        "zbirenbaum/copilot-cmp",
     },
 }
 function M.config()
