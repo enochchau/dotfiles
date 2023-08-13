@@ -5,7 +5,6 @@
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "files.autoSave": "afterDelay",
   "editor.inlineSuggest.enabled": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
   "workbench.iconTheme": "material-icon-theme",
@@ -16,6 +15,7 @@
   "editor.minimap.enabled": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "vim.leader": ",",
+  "vim.hlsearch": true,
   "vim.visualModeKeyBindings": [
     {
       "commands": ["editor.action.indentLines"],
@@ -42,6 +42,10 @@
     {
       "before": ["<leader>", "a"],
       "commands": ["editor.action.quickFix"]
+    },
+    {
+      "before": ["<leader>", "r", "n"],
+      "commands": ["editor.action.rename"]
     }
   ],
   "vim.useSystemClipboard": true,
@@ -65,5 +69,6 @@
   "editor.fontFamily": "'FantasqueSansM Nerd Font', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 14,
   "editor.lineNumbers": "relative",
-  "editor.wordWrap": "on"
+  "editor.wordWrap": "on",
+  "editor.cursorBlinking": "solid"
 }
