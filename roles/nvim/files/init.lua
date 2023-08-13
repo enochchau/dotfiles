@@ -95,7 +95,7 @@ vim.filetype.add {
         ["mdx"] = "markdown",
         ["pro"] = "prolog",
         ["tf"] = "terraform",
-        ["zshrc"] = "zsh"
+        ["zshrc"] = "zsh",
     },
     filename = {
         ["yabairc"] = "sh",
@@ -107,3 +107,6 @@ vim.filetype.add {
 require "enoch.lazy"
 require "enoch.keymaps"
 require "enoch.commands"
+
+vim.opt.bg = "dark"
+vim.cmd.colorscheme "tokyonight-storm"

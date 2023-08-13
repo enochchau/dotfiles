@@ -19,14 +19,6 @@ local plugins = {
         end,
     },
     "navarasu/onedark.nvim",
-    {
-        "kvrohit/rasmus.nvim",
-
-        config = function()
-            vim.opt.bg = "dark"
-            vim.cmd.colorscheme "rasmus"
-        end,
-    },
     "folke/tokyonight.nvim",
 
     { "vigoux/notifier.nvim", config = true },
