@@ -70,5 +70,8 @@
   "editor.fontSize": 14,
   "editor.lineNumbers": "relative",
   "editor.wordWrap": "on",
-  "editor.cursorBlinking": "solid"
+  "editor.cursorBlinking": "solid",
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  }
 }
