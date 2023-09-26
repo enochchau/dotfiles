@@ -1,5 +1,5 @@
 local has_termux = vim.env["TERMUX"] ~= nil
----@type (string | LazyPlugin)[]
+---@type (string | LazySpec)[]
 local plugins = {
     { "kylechui/nvim-surround", config = true },
     -- editing
