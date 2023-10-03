@@ -27,6 +27,7 @@ export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
 export BAT_PAGER='less'
 export BAT_THEME='ansi'
+export LESS='--mouse --wheel-lines=3'
 
 export ZSH=$HOME/.config/zsh/oh-my-zsh
 export ZSH_THEME="powerlevel10k/powerlevel10k"
