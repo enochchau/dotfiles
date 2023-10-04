@@ -29,6 +29,10 @@ export BAT_PAGER='less'
 export BAT_THEME='ansi'
 export LESS='--mouse --wheel-lines=3'
 
+if [[ "$OSTYPE" == "darwin"* ]]; then
+  export HOMEBREW_NO_ANALYTICS=1
+fi
+
 export ZSH=$HOME/.config/zsh/oh-my-zsh
 export ZSH_THEME="powerlevel10k/powerlevel10k"
 plugins=( 
