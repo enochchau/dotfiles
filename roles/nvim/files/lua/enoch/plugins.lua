@@ -35,11 +35,18 @@ local plugins = {
     },
     {
         "lukas-reineke/indent-blankline.nvim",
+        main = "ibl",
+        opts = {},
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
         config = function()
-            table.insert(vim.g.indent_blankline_filetype_exclude, "alpha")
-            require("indent_blankline").setup {
-                space_char_blankline = " ",
-                show_current_context = true,
+            require("ibl").setup {
+                indent = { char = "│" },
+                scope = {
+                    enabled = true,
+                    show_start = false,
+                    show_end = false,
+                },
+                exclude = { filetypes = { "alpha" } },
             }
         end,
     },
