@@ -13,6 +13,11 @@
         - zsh
       vars:
         zdotdir: ~/.config/zsh
+    - role: git
+      tags: git
+      vars:
+        - git_email: enoch965@gmail.com
+        - git_user: ec965
     - role: omz
       tags: omz
       vars:
@@ -81,11 +86,6 @@
           - zoxide
           - wget
           - zip
-    - role: git
-      tags: git
-      vars:
-        - git_email: enoch965@gmail.com
-        - git_user: ec965
     - role: asdf
       tags: asdf
       vars:

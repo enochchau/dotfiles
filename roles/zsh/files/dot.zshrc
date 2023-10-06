@@ -65,6 +65,7 @@ alias vimrc="nvim ~/.config/nvim --cmd 'cd ~/.config/nvim'"
 alias conf="~/code/dev-scripts/project.sh $XDG_CONFIG_HOME"
 alias dot="~/code/dev-scripts/project.sh $HOME/dotfiles $HOME/dotfiles/roles"
 alias opengh="~/code/dev-scripts/open-gh.sh"
+alias allpanes="~/code/dev-scripts/tmux-send-keys-all-panes"
 alias fnl-nvim="~/.config/nvim/scripts/fnl-nvim"
 alias python="python3"
 
