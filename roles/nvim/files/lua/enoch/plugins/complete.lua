@@ -1,21 +1,4 @@
----@type LazyPlugin
-local M = {
-    "hrsh7th/nvim-cmp",
-    dependencies = {
-        "hrsh7th/cmp-buffer",
-        "hrsh7th/cmp-nvim-lsp",
-        "hrsh7th/cmp-path",
-        "hrsh7th/cmp-cmdline",
-        "f3fora/cmp-spell",
-        -- snippets
-        "L3MON4D3/LuaSnip",
-        "rafamadriz/friendly-snippets",
-        "saadparwaiz1/cmp_luasnip",
-        -- copilot
-        "zbirenbaum/copilot-cmp",
-    },
-}
-function M.config()
+local function config()
     local luasnip = require "luasnip"
     local lspkind = require "lspkind"
     local cmp = require "cmp"
@@ -107,4 +90,21 @@ function M.config()
     vim.defer_fn(require("luasnip.loaders.from_vscode").lazy_load, 0)
 end
 
-return M
+---@type LazySpec
+return {
+    "hrsh7th/nvim-cmp",
+    dependencies = {
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-cmdline",
+        "f3fora/cmp-spell",
+        -- snippets
+        "L3MON4D3/LuaSnip",
+        "rafamadriz/friendly-snippets",
+        "saadparwaiz1/cmp_luasnip",
+        -- copilot
+        "zbirenbaum/copilot-cmp",
+    },
+    config = config,
+}

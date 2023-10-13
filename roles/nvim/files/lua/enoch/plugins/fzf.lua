@@ -1,5 +1,5 @@
----@type LazyPlugin
-local M = {
+---@type LazySpec
+return {
     "ibhagwan/fzf-lua",
     config = function()
         local fzf = require "fzf-lua"
@@ -17,4 +17,3 @@ local M = {
         map("n", "<leader>nw", require("enoch.fzf").node_workspaces, opts)
     end,
 }
-return M

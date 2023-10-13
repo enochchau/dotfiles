@@ -1,16 +1,4 @@
----@type LazyPlugin
-local M = {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-        "jose-elias-alvarez/null-ls.nvim",
-        "williamboman/mason.nvim",
-        "b0o/schemastore.nvim",
-        "onsails/lspkind.nvim",
-        "ibhagwan/fzf-lua",
-    },
-}
-
-function M.config()
+local function config()
     local lspconfig = require "lspconfig"
     local mason = require "mason"
     local lsp_opts = require "enoch.plugins.lsp.lsp-opts"
@@ -94,4 +82,17 @@ function M.config()
         },
     }
 end
-return M
+
+---@type LazySpec
+return {
+    "neovim/nvim-lspconfig",
+    dependencies = {
+        "jose-elias-alvarez/null-ls.nvim",
+        "williamboman/mason.nvim",
+        "b0o/schemastore.nvim",
+        "onsails/lspkind.nvim",
+        "ibhagwan/fzf-lua",
+    },
+    config = config
+}
+

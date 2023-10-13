@@ -1,5 +1,5 @@
----@type LazyPlugin
-local M = {
+---@type LazySpec
+return {
     "nvim-treesitter/nvim-treesitter",
     --  https://github.com/MDeiml/tree-sitter-markdown
     -- set $EXTENSION_TAGS to enable tag parsing for markdown grammer
@@ -57,9 +57,11 @@ local M = {
         }
 
         require("nvim-treesitter.configs").setup {
+            ignore_install = {},
             ensure_installed = langs,
             sync_install = false,
             auto_install = true,
+            modules = {},
 
             highlight = {
                 enable = true,
@@ -122,5 +124,3 @@ local M = {
         require("nvim-autopairs").setup { check_ts = true }
     end,
 }
-
-return M
