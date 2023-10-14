@@ -8,6 +8,7 @@ part1: install
 
 tag:
 	ansible-playbook --ask-become-pass -i hosts local.yml --tags $(TAG)
+.PHONY: tags
 
 update:
 	ansible-playbook --ask-become-pass -i hosts local.yml
