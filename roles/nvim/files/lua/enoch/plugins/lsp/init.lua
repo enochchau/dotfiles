@@ -93,6 +93,5 @@ return {
         "onsails/lspkind.nvim",
         "ibhagwan/fzf-lua",
     },
-    config = config
+    config = config,
 }
-

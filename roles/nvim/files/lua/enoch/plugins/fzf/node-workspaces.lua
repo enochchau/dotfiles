@@ -1,39 +1,36 @@
+local mpack = vim.mpack
 local uv = vim.loop
+local json = vim.json
 local fs = vim.fs
-local builtin = require "fzf-lua.previewer.builtin"
 
 local M = {}
+
+---@class ExecOpts
+---@field public lines boolean set this to true to output lines as a table
+--
+--- Execute a command
+---@param cmd string
+---@param _opt? ExecOpts
+---@return table|string
+local function exec(cmd, _opt)
+    local f = assert(io.popen(cmd))
+    local opt = _opt or {}
+    if opt.lines then
+        local lines = {}
+        for line in f:lines() do
+            table.insert(lines, line)
+        end
+        return lines
+    end
+
+    return f:read "*a"
+end
 
 --- List workspaces as path, name pairs
 ---@param root string
 ---@param package_manager string
 ---@return string table encoded as mpack
 local function list_workspaces(root, package_manager)
-    local mpack = vim.mpack
-    local uv = vim.loop
-    local json = vim.json
-
-    ---@class ExecOpts
-    ---@field public lines boolean set this to true to output lines as a table
-
-    --- Execute a command
-    ---@param cmd string
-    ---@param _opt? ExecOpts
-    ---@return table|string
-    local function exec(cmd, _opt)
-        local f = assert(io.popen(cmd))
-        local opt = _opt or {}
-        if opt.lines then
-            local lines = {}
-            for line in f:lines() do
-                table.insert(lines, line)
-            end
-            return lines
-        end
-
-        return f:read "*a"
-    end
-
     local workspaces
     if package_manager == "pnpm" then
         local raw = exec "pnpm ls -json -r"
@@ -47,6 +44,7 @@ local function list_workspaces(root, package_manager)
         local v2 = uv.fs_lstat(root .. "/.yarnrc.yml")
 
         if v2 ~= nil then
+            ---@type table
             local lines = exec("yarn workspaces list --json", { lines = true })
 
             workspaces = {}
