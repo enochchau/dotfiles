@@ -22,6 +22,7 @@ cdg() {
 export PATH=~/dotfiles/roles/zsh/files/scripts:$PATH
 export PATH=~/.local/bin:$PATH
 export PATH=~/.luarocks/bin:$PATH
+export PATH="/usr/local/sbin:$PATH"
 
 export MANPAGER="sh -c 'col -bx | bat -l man -p'"
 export MANROFFOPT="-c"
