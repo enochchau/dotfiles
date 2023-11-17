@@ -73,5 +73,6 @@
   "editor.cursorBlinking": "solid",
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "workbench.colorTheme": "Tokyo Night"
 }

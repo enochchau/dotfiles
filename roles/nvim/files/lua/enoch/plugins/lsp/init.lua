@@ -63,6 +63,7 @@ local function config()
     end
 
     local formatting = null_ls.builtins.formatting
+    local code_actions = null_ls.builtins.code_actions
     local diagnostics = null_ls.builtins.diagnostics
     null_ls.setup {
         on_attach = lsp_opts.common_on_attach,
@@ -76,7 +77,7 @@ local function config()
             formatting.ocamlformat,
             formatting.stylua,
             formatting.fnlfmt,
-            diagnostics.shellcheck,
+            formatting.shfmt,
             formatting.black,
             diagnostics.mypy,
         },
