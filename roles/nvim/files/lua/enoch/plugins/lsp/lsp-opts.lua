@@ -11,7 +11,9 @@ function M.common_on_attach(client, bufnr)
 
     local fzf = require "fzf-lua"
 
-    map("n", "gd", fzf.lsp_definitions, map_opts)
+    map("n", "gd", function()
+        fzf.lsp_definitions { fzf_opts = { ["--tac"] = "" } }
+    end, map_opts)
     map("n", "gi", fzf.lsp_implementations, map_opts)
     map("n", "gy", fzf.lsp_typedefs, map_opts)
     map("n", "gr", fzf.lsp_references, map_opts)
