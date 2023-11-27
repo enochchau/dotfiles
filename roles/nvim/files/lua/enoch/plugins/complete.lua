@@ -104,7 +104,7 @@ return {
         "rafamadriz/friendly-snippets",
         "saadparwaiz1/cmp_luasnip",
         -- copilot
-        "zbirenbaum/copilot-cmp",
+        -- "zbirenbaum/copilot-cmp",
     },
     config = config,
 }

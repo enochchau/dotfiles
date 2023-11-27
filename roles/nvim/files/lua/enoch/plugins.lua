@@ -89,7 +89,7 @@ local plugins = {
             )
         end,
     },
-    { "ec965/fnlnvim", cmd = { "FnlNvimCompile", "FnlNvimEval" } },
+    -- { "ec965/fnlnvim", cmd = { "FnlNvimCompile", "FnlNvimEval" } },
     {
         "danymat/neogen",
         dependencies = "nvim-treesitter/nvim-treesitter",
@@ -97,22 +97,22 @@ local plugins = {
     },
 
     -- copilot
-    {
-        "zbirenbaum/copilot.lua",
-        config = function()
-            require("copilot").setup {
-                filetypes = { ocaml = false },
-                suggestion = { enabled = false },
-                panel = { enabled = false },
-            }
-        end,
-    },
-    {
-        "zbirenbaum/copilot-cmp",
-        config = function()
-            require("copilot_cmp").setup()
-        end,
-    },
+    -- {
+    --     "zbirenbaum/copilot.lua",
+    --     config = function()
+    --         require("copilot").setup {
+    --             filetypes = { ocaml = false },
+    --             suggestion = { enabled = false },
+    --             panel = { enabled = false },
+    --         }
+    --     end,
+    -- },
+    -- {
+    --     "zbirenbaum/copilot-cmp",
+    --     config = function()
+    --         require("copilot_cmp").setup()
+    --     end,
+    -- },
 
     {
         "NvChad/nvim-colorizer.lua",
