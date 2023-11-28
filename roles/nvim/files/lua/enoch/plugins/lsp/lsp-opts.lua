@@ -159,18 +159,25 @@ end
 function M.tsserver()
     local opts = M.create_default_opts {}
 
-    local inlayHints = {
-        includeInlayParameterNameHints = "all",
-        includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-        includeInlayFunctionParameterTypeHints = true,
-        includeInlayVariableTypeHints = true,
-        includeInlayPropertyDeclarationTypeHints = true,
-        includeInlayFunctionLikeReturnTypeHints = true,
-        includeInlayEnumMemberValueHints = true,
+    -- local inlayHints = {
+    --     includeInlayParameterNameHints = "all",
+    --     includeInlayParameterNameHintsWhenArgumentMatchesName = false,
+    --     includeInlayFunctionParameterTypeHints = true,
+    --     includeInlayVariableTypeHints = true,
+    --     includeInlayPropertyDeclarationTypeHints = true,
+    --     includeInlayFunctionLikeReturnTypeHints = true,
+    --     includeInlayEnumMemberValueHints = true,
+    -- }
+
+    opts.init_options = {
+        maxTsServerMemory = 4096,
+        npmLocation = "npm",
     }
     opts.settings = {
-        typescript = { inlayHints = inlayHints },
-        javascript = { inlayHints = inlayHints },
+        typescript = { --[[ inlayHints = inlayHints ]]
+        },
+        javascript = { --[[ inlayHints = inlayHints ]]
+        },
     }
 
     return opts
