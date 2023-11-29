@@ -1,0 +1,5 @@
+# cd into repo/packages or any subdirectory
+local gitroot=$(git rev-parse --show-toplevel)
+if [[ -n "$gitroot" ]]; then
+    cd "$gitroot/packages/$1"
+fi

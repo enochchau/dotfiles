@@ -7,19 +7,13 @@
         state: present
       when: ansible_facts['os_family'] == "RedHat"
   roles:
-    - role: zsh
-      tags:
-        - part1
-        - zsh
-      vars:
-        zdotdir: ~/.config/zsh
     - role: git
       tags: git
       vars:
         git_email: enoch965@gmail.com
         git_user: ec965
-    - role: antidote
-      tags: antidote
+    - role: zsh
+      tags: zsh
       vars:
         zdotdir: ~/.config/zsh
     - role: tmux

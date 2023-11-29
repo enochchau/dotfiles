@@ -4,15 +4,14 @@ For Fedora, Ubuntu, and MacOS
 
 ## Dependencies
 
-- `python3`
-- `pip3`
+- `ansible`
 
 ## Installation
 
 First, configure zsh
 
 ```sh
-make part1
+make tag TAG=zsh
 ```
 
 Then restart your terminal session and run

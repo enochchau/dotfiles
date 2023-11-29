@@ -1,0 +1,13 @@
+romkatv/powerlevel10k kind:fpath
+
+# omz lib
+ohmyzsh/ohmyzsh path:lib/functions.zsh
+ohmyzsh/ohmyzsh path:lib/completion.zsh
+ohmyzsh/ohmyzsh path:lib/history.zsh
+ohmyzsh/ohmyzsh path:lib/termsupport.zsh
+ohmyzsh/ohmyzsh path:lib/theme-and-appearance.zsh
+
+# omz plugins
+ohmyzsh/ohmyzsh path:plugins/vi-mode
+
+zsh-users/zsh-syntax-highlighting kind:defer
