@@ -7,8 +7,10 @@ if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]
     source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# load dev-scripts
+# load completions
 fpath=(~/dotfiles/roles/zsh/files/completions $fpath)
+
+# load dev-scripts
 if [ -d "$HOME/code/dev-scripts/" ]; then
     export PATH=~/code/dev-scripts:$PATH
     fpath=(~/code/dev-scripts/completions $fpath)
@@ -55,7 +57,6 @@ alias allpanes="~/code/dev-scripts/tmux-send-keys-all-panes"
 alias fnl-nvim="~/.config/nvim/scripts/fnl-nvim"
 alias python="python3"
 
-
 autoload -Uz compinit && compinit
 
 if test -f $ZDOTDIR/machine.zsh; then
@@ -64,7 +65,8 @@ fi
 
 antidote load
 
-autoload -Uz promptinit && promptinit && prompt powerlevel10k
-source ~/.config/zsh/.p10k.zsh
-
 compinit
+
+autoload -Uz promptinit && promptinit && prompt powerlevel10k
+
+source ~/.config/zsh/.p10k.zsh
