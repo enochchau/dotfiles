@@ -31,3 +31,4 @@ ohmyzsh/ohmyzsh path:plugins/fd kind:fpath
 docker/cli path:contrib/completion/zsh kind:fpath
 
 zsh-users/zsh-syntax-highlighting
+zsh-users/zsh-completions

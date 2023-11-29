@@ -22,7 +22,6 @@ export PULSAR_CPP_DIR="/usr/local/Cellar/libpulsar/3.4.0"
 [[ ! -r /Users/enochchau/.opam/opam-init/init.zsh ]] || source /Users/enochchau/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 export PATH="/usr/local/opt/mongodb-community@5.0/bin:$PATH"
-export PATH="$HOME/.local/share/nvim/mason/bin:$PATH"
 
 ###-begin-gatsby-completions-###
 #

@@ -1,6 +1,6 @@
 - name: Install brew packages
-  homebrew:
+  community.general.homebrew:
     name: "{{ homebrew_pkgs }}"
 - name: Install casks
-  homebrew_cask:
+  community.general.homebrew_cask:
     name: "{{ homebrew_casks }}"
