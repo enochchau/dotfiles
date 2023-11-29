@@ -21,14 +21,13 @@ ohmyzsh/ohmyzsh path:plugins/vi-mode
 ohmyzsh/ohmyzsh path:plugins/docker-compose
 ohmyzsh/ohmyzsh path:plugins/kubectl
 
-ohmyzsh/ohmyzsh path:plugins/yarn
 ohmyzsh/ohmyzsh path:plugins/npm
-ohmyzsh/ohmyzsh path:plugins/zoxide
 ohmyzsh/ohmyzsh path:plugins/fzf
 
 ohmyzsh/ohmyzsh path:plugins/ripgrep kind:fpath
 ohmyzsh/ohmyzsh path:plugins/fd kind:fpath
 docker/cli path:contrib/completion/zsh kind:fpath
+ohmyzsh/ohmyzsh path:plugins/yarn kind:fpath
 
 zsh-users/zsh-syntax-highlighting
 zsh-users/zsh-completions

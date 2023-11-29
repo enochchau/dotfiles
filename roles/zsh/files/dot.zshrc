@@ -66,3 +66,5 @@ antidote load
 
 autoload -Uz promptinit && promptinit && prompt powerlevel10k
 source ~/.config/zsh/.p10k.zsh
+
+compinit

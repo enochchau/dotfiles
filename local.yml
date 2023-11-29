@@ -46,7 +46,6 @@
           - shellcheck
           - stylua
           - vale
-          - zoxide
         homebrew_casks:
           - alacritty
           - wezterm
