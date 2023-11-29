@@ -30,8 +30,15 @@
     path: "{{ zdotdir }}/.zshrc"
     state: link
 
-- name: change user shell to zsh
+- name: Change user shell to zsh
   become: true
   ansible.builtin.user:
     name: "{{ ansible_env.USER }}"
     shell: /bin/zsh
+
+- name: Link MacMachine.zshrc
+  ansible.builtin.file:
+    src: "{{ ansible_env.PWD }}/roles/zsh/files/macmachine.zsh"
+    path: "{{ zdotdir }}/machine.zsh"
+    state: link
+  when: ansible_facts['os_family'] == "Darwin"

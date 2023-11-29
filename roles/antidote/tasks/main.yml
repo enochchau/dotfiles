@@ -1,0 +1,13 @@
+- name: Install Antidote
+  ansible.builtin.git:
+    repo: https://github.com/mattmc3/antidote.git
+    dest: "{{ zdotdir }}/antidote"
+    depth: 1
+    version: HEAD
+    update: true
+
+- name: Link zsh-plugins.txt
+  ansible.builtin.file:
+    src: "{{ ansible_env.PWD }}/roles/antidote/files/dot.zsh_plugins.txt"
+    path: "{{ zdotdir }}/.zsh_plugins.txt"
+    state: link

@@ -1,22 +1,26 @@
+source ${ZDOTDIR:-~}/antidote/antidote.zsh
+
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
 # confirmations, etc.) must go above this block; everything else may go below.
 if [[ -r "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh" ]]; then
-  source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
+    source "${XDG_CACHE_HOME:-$HOME/.cache}/p10k-instant-prompt-${(%):-%n}.zsh"
 fi
 
-# load completions
+# load dev-scripts
 fpath=(~/dotfiles/roles/zsh/files/completions $fpath)
 if [ -d "$HOME/code/dev-scripts/" ]; then
-  export PATH=~/code/dev-scripts:$PATH
-  fpath=(~/code/dev-scripts/completions $fpath)
+    export PATH=~/code/dev-scripts:$PATH
+    fpath=(~/code/dev-scripts/completions $fpath)
+    fpath=(~/code/dev-scripts/functions $fpath)
+    autoload -Uz ~/code/dev-scripts/functions/*(.:t)
 fi
 
 cdg() {
-  local git_root=$(git rev-parse --show-toplevel)
-  if [[ -n "$git_root" ]]; then
-    cd "$git_root/$1" 
-  fi
+    local git_root=$(git rev-parse --show-toplevel)
+    if [[ -n "$git_root" ]]; then
+        cd "$git_root/$1"
+    fi
 }
 
 export PATH=~/dotfiles/roles/zsh/files/scripts:$PATH
@@ -31,28 +35,9 @@ export BAT_THEME='ansi'
 export LESS='--mouse --wheel-lines=3'
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
-  export HOMEBREW_NO_ANALYTICS=1
+    export HOMEBREW_NO_ANALYTICS=1
 fi
 
-export ZSH=$HOME/.config/zsh/oh-my-zsh
-export ZSH_THEME="powerlevel10k/powerlevel10k"
-plugins=( 
-  asdf
-  git 
-  vi-mode
-  docker
-  docker-compose
-  kubectl
-  ripgrep
-  fd
-  zsh-syntax-highlighting
-  yarn
-  npm
-  zoxide
-  fzf
-)
-
-source $ZSH/oh-my-zsh.sh
 export FZF_CTRL_T_OPTS="--preview 'bat --color=always {}'"
 
 alias cddot='cd ~/dotfiles'
@@ -70,9 +55,14 @@ alias allpanes="~/code/dev-scripts/tmux-send-keys-all-panes"
 alias fnl-nvim="~/.config/nvim/scripts/fnl-nvim"
 alias python="python3"
 
-if test -f $ZDOTDIR/machine.zshrc; then 
-  source $ZDOTDIR/machine.zshrc
+
+autoload -Uz compinit && compinit
+
+if test -f $ZDOTDIR/machine.zsh; then
+    source $ZDOTDIR/machine.zsh
 fi
 
-# To customize prompt, run `p10k configure` or edit ~/.config/zsh/.p10k.zsh.
-[[ ! -f ~/.config/zsh/.p10k.zsh ]] || source ~/.config/zsh/.p10k.zsh
+antidote load
+
+autoload -Uz promptinit && promptinit && prompt powerlevel10k
+source ~/.config/zsh/.p10k.zsh

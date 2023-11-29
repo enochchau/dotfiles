@@ -18,15 +18,19 @@
       vars:
         - git_email: enoch965@gmail.com
         - git_user: ec965
-    - role: omz
-      tags: omz
+    - role: antidote
+      tags: antidote
       vars:
-        oh_my_zsh_path: ~/.config/zsh/oh-my-zsh
-        omz_plugins:
-          - repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
-            path: plugins/zsh-syntax-highlighting
-          - repo: https://github.com/romkatv/powerlevel10k.git
-            path: themes/powerlevel10k
+        zdotdir: ~/.config/zsh
+    # - role: omz
+    #   tags: omz
+    #   vars:
+    #     oh_my_zsh_path: ~/.config/zsh/oh-my-zsh
+    #     omz_plugins:
+    #       - repo: https://github.com/zsh-users/zsh-syntax-highlighting.git
+    #         path: plugins/zsh-syntax-highlighting
+    #       - repo: https://github.com/romkatv/powerlevel10k.git
+    #         path: themes/powerlevel10k
     - role: tmux
       tags: tmux
     - role: devtools
