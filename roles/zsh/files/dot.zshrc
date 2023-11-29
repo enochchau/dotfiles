@@ -1,4 +1,4 @@
-source ${ZDOTDIR:-~}/antidote/antidote.zsh
+source $ZDOTDIR/antidote/antidote.zsh
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -21,7 +21,6 @@ setopt interactivecomments  # recognize comments
 # You can override DOT_FILES if it's cloned to a different location
 DOT_FILES=${DOT_FILES:-~/dotfiles}
 DOT_FILES_ZSH=$DOT_FILES/roles/zsh/files
-
 fpath=($DOT_FILES_ZSH/functions $DOT_FILES_ZSH/completions $fpath)
 autoload -Uz $DOT_FILES_ZSH/functions/*(.:t)
 
@@ -70,6 +69,7 @@ alias la='ls -lAh'
 
 autoload -Uz compinit zrecompile promptinit
 
+# load plugins
 antidote load
 
 # fzf keybinds and completion - must be loaded after ohmyzsh vi-mode plugin

@@ -11,3 +11,4 @@ ohmyzsh/ohmyzsh path:lib/theme-and-appearance.zsh
 ohmyzsh/ohmyzsh path:plugins/vi-mode
 
 zsh-users/zsh-syntax-highlighting kind:defer
+zsh-users/zsh-completions
