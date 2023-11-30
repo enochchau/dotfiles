@@ -29,10 +29,6 @@ return {
                 section_separators = "",
                 component_separators = "│",
             },
-            extensions = {
-                "neo-tree",
-                "toggleterm",
-            },
             winbar = winbar,
             inactive_winbar = winbar,
         }

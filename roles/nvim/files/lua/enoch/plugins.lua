@@ -11,7 +11,6 @@ local plugins = {
     },
 
     -- themes
-    "savq/melange-nvim",
     {
         "marko-cerovac/material.nvim",
         config = function()
