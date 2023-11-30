@@ -52,9 +52,11 @@ alias gco='git checkout'
 alias gcp='git cherry-pick'
 alias gd='git diff'
 alias gf='git fetch'
+alias gfa='git fetch --all'
 alias gl='git pull'
 alias gm='git merge'
 alias gp='git push'
+alias gpf='git push --force'
 alias gpsup='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
 alias grb='git rebase'
 # directory aliases
@@ -70,15 +72,6 @@ alias la='ls -lAh'
 
 autoload -Uz compinit zrecompile promptinit
 
-# load plugins
-antidote load
-
-# fzf keybinds and completion - must be loaded after ohmyzsh vi-mode plugin
-FZF_BASE=$(brew --prefix)/opt/fzf
-source $FZF_BASE/shell/key-bindings.zsh
-source $FZF_BASE/shell/completion.zsh
-
-# compinit - should not be called until all completions are on the fpath
 # speed up compinit
 dump=$ZSH_COMPDUMP
 if [[ -s $dump(#qN.mh+24) && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
@@ -87,10 +80,20 @@ if [[ -s $dump(#qN.mh+24) && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; t
 fi
 compinit -C
 
+# load plugins
+antidote load
+
+# fzf keybinds and completion - must be loaded after ohmyzsh vi-mode plugin
+FZF_BASE=$(brew --prefix)/opt/fzf
+source $FZF_BASE/shell/key-bindings.zsh
+source $FZF_BASE/shell/completion.zsh
+
 # machine specific configuration
 if test -f $ZDOTDIR/machine.zsh; then
     source $ZDOTDIR/machine.zsh
 fi
+
+compinit
 
 # prompt
 promptinit && prompt powerlevel10k
