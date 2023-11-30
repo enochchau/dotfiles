@@ -137,20 +137,17 @@ end
 
 function M.yamlls()
     local opts = M.create_default_opts {}
-    local jsonschemas = schemastore.json.schemas()
-    local schemas = {}
-
-    for _, schema in ipairs(jsonschemas) do
-        schemas[schema.url] = schema.fileMatch
-    end
 
     opts.settings = {
         yaml = {
-            schemas = schemas,
-            -- schemaStore = {
-            --     enable = true,
-            --     url = "https://raw.githubusercontent.com/SchemaStore/schemastore/master/src/api/json/catalog.json",
-            -- },
+            schemaStore = {
+                -- You must disable built-in schemaStore support if you want to use
+                -- this plugin and its advanced options like `ignore`.
+                enable = false,
+                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                url = "",
+            },
+            schemas = schemastore.yaml.schemas(),
         },
     }
     return opts
