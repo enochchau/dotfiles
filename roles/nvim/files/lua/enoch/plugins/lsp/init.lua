@@ -87,7 +87,7 @@ end
 return {
     "neovim/nvim-lspconfig",
     dependencies = {
-        "jose-elias-alvarez/null-ls.nvim",
+        "nvimtools/none-ls.nvim",
         "williamboman/mason.nvim",
         "b0o/schemastore.nvim",
         "onsails/lspkind.nvim",
