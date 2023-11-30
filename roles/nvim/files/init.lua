@@ -105,6 +105,8 @@ vim.filetype.add {
     },
 }
 
+vim.g.skip_ts_context_commentstring_module = true
+
 require "enoch.lazy"
 require "enoch.keymaps"
 require "enoch.commands"

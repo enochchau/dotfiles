@@ -90,10 +90,19 @@ local plugins = {
         end,
     },
     -- { "ec965/fnlnvim", cmd = { "FnlNvimCompile", "FnlNvimEval" } },
+
+    -- Editing
     {
         "danymat/neogen",
         dependencies = "nvim-treesitter/nvim-treesitter",
         config = true,
+    },
+    "JoosepAlviste/nvim-ts-context-commentstring",
+    { "numToStr/Comment.nvim", lazy = false, opts = {} },
+    {
+        "windwp/nvim-autopairs",
+        event = "InsertEnter",
+        opts = { check_ts = true },
     },
 
     -- copilot
