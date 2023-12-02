@@ -35,13 +35,16 @@ alias cdnvim='cd ~/.config/nvim'
 alias gcol='git branch | fzf | sed '\''s/^.* //'\'' | xargs git checkout'
 alias vi="nvim"
 alias vim="nvim"
-# dev script aliases
+# dev script
 dev_scripts_base=~/code/dev-scripts
-alias gitdel="$dev_scripts_base/git-delete.sh"
-alias wtb="$dev_scripts_base/bootstrap-worktree.sh"
-alias conf="$dev_scripts_base/project.sh $XDG_CONFIG_HOME"
-alias dot="$dev_scripts_base/project.sh $HOME/dotfiles $HOME/dotfiles/roles"
-alias opengh="$dev_scripts_base/open-gh.sh"
+if test -d $dev_scripts_base; then
+    export PATH="$dev_scripts_base:$PATH"
+    alias gitdel="$dev_scripts_base/git-delete.sh"
+    alias wtb="$dev_scripts_base/bootstrap-worktree.sh"
+    alias conf="$dev_scripts_base/project.sh $XDG_CONFIG_HOME"
+    alias dot="$dev_scripts_base/project.sh $HOME/dotfiles $HOME/dotfiles/roles"
+    alias opengh="$dev_scripts_base/open-gh.sh"
+fi
 # docker-compose v2 alias so that completions work
 alias docker-compose='docker compose'
 # git aliases
