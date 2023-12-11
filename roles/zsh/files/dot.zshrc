@@ -62,6 +62,7 @@ alias gp='git push'
 alias gpf='git push --force'
 alias gpsup='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
 alias grb='git rebase'
+alias ga="git add"
 # directory aliases
 alias -g ...='../..'
 alias -g ....='../../..'

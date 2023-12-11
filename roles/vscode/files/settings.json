@@ -74,6 +74,6 @@
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "workbench.colorTheme": "Tokyo Night",
+  "workbench.colorTheme": "Default Dark+",
   "typescript.tsserver.maxTsServerMemory": 4096
 }
