@@ -46,9 +46,21 @@
     {
       "before": ["<leader>", "r", "n"],
       "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["g", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    // move as visual lines
+    {
+      "before": ["j"],
+      "after": ["g", "j"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g", "k"]
     }
   ],
-  "vim.useSystemClipboard": true,
   "[typescriptreact]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
@@ -69,11 +81,13 @@
   "editor.fontFamily": "'FantasqueSansM Nerd Font', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontSize": 14,
   "editor.lineNumbers": "relative",
-  "editor.wordWrap": "on",
   "editor.cursorBlinking": "solid",
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "workbench.colorTheme": "Default Dark+",
-  "typescript.tsserver.maxTsServerMemory": 4096
+  "typescript.tsserver.maxTsServerMemory": 4096,
+  "editor.lineHeight": 1.2,
+  "editor.wordWrap": "on",
+  "editor.wrappingIndent": "none"
 }
