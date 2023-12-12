@@ -89,5 +89,6 @@
   "typescript.tsserver.maxTsServerMemory": 4096,
   "editor.lineHeight": 1.2,
   "editor.wordWrap": "on",
-  "editor.wrappingIndent": "none"
+  "editor.wrappingIndent": "none",
+  "workbench.editor.splitSizing": "distribute"
 }
