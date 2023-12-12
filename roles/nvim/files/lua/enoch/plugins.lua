@@ -1,4 +1,3 @@
-local has_termux = vim.env["TERMUX"] ~= nil
 ---@type (string | LazySpec)[]
 local plugins = {
     { "kylechui/nvim-surround", config = true },
@@ -11,16 +10,10 @@ local plugins = {
     },
 
     -- themes
-    {
-        "marko-cerovac/material.nvim",
-        config = function()
-            vim.g.material_style = "palenight"
-        end,
-    },
     "navarasu/onedark.nvim",
     "folke/tokyonight.nvim",
 
-    { "vigoux/notifier.nvim", config = true },
+    { "j-hui/fidget.nvim", opts = {} },
 
     -- additional language support
     "pearofducks/ansible-vim",
