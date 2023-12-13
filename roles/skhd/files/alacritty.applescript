@@ -2,15 +2,9 @@
 
 set appName to "Alacritty"
 
-if not application appName is running then
-  tell application id (id of application appName)
-    tell application appName to activate
-  end tell
-else
+if application appName is running
   do shell script "alacritty msg create-window"
-  tell application "System Events"
-    tell application process appName
-      set frontmost to true
-    end tell
-  end tell
+  tell application appName to activate
+else
+  tell application appName to activate
 end if
