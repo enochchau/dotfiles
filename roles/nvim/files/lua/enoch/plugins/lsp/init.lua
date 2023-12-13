@@ -21,7 +21,7 @@ local function config()
 
     mason.setup()
     enable_icon_signs()
-    vim.diagnostic.config { virtual_text = true }
+    vim.diagnostic.config { virtual_text = false }
 
     local servers = {
         ["ansiblels"] = true,

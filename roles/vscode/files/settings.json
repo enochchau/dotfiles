@@ -85,7 +85,6 @@
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "workbench.colorTheme": "Default Dark+",
   "typescript.tsserver.maxTsServerMemory": 4096,
   "editor.lineHeight": 1.2,
   "editor.wordWrap": "on",

@@ -112,4 +112,4 @@ require "enoch.keymaps"
 require "enoch.commands"
 
 vim.opt.bg = "dark"
-vim.cmd.colorscheme "tokyonight-storm"
+vim.cmd.colorscheme "onedark"
