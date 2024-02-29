@@ -76,7 +76,6 @@ local function config()
             formatting.ocamlformat,
             formatting.stylua,
             formatting.fnlfmt,
-            formatting.beautysh,
             formatting.black,
             diagnostics.mypy,
         },
