@@ -1,6 +1,5 @@
 {
   "telemetry.telemetryLevel": "off",
-  "workbench.sideBar.location": "right",
   "editor.accessibilitySupport": "off",
   "[jsonc]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -59,6 +58,9 @@
     {
       "before": ["k"],
       "after": ["g", "k"]
+    }, {
+      "before": ["g", "w"],
+      "commands": ["workbench.actions.view.problems"]
     }
   ],
   "[typescriptreact]": {
@@ -89,5 +91,9 @@
   "editor.lineHeight": 1.2,
   "editor.wordWrap": "on",
   "editor.wrappingIndent": "none",
-  "workbench.editor.splitSizing": "distribute"
+  "workbench.editor.splitSizing": "distribute",
+  "window.autoDetectColorScheme": true,
+  "workbench.editor.showTabs": "single",
+  "workbench.sideBar.location": "right",
+  "workbench.colorTheme": "Default Light Modern"
 }
