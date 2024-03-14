@@ -31,6 +31,11 @@
       "commands": ["editor.action.showHover"]
     },
     {
+      "before": ["<leader>", "b"],
+      "commands": ["workbench.action.showAllEditors"]
+
+    },
+    {
       "before": ["<leader>", "n"],
       "commands": ["workbench.action.toggleSidebarVisibility"]
     },
