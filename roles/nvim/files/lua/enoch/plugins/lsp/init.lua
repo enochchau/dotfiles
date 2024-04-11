@@ -69,7 +69,7 @@ return {
         "williamboman/mason.nvim",
         "b0o/schemastore.nvim",
         "onsails/lspkind.nvim",
-        "ibhagwan/fzf-lua"
+        "ibhagwan/fzf-lua",
     },
     config = config,
 }

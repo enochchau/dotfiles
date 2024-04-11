@@ -1,8 +1,13 @@
 ---@type (string | LazySpec)[]
 local plugins = {
-    { "kylechui/nvim-surround", config = true },
     -- editing
     "tpope/vim-obsession",
+    {
+        "kylechui/nvim-surround",
+        version = "*",
+        event = "VeryLazy",
+        config = true,
+    },
     {
         "Darazaki/indent-o-matic",
         config = true,
@@ -81,7 +86,6 @@ local plugins = {
             )
         end,
     },
-    -- { "ec965/fnlnvim", cmd = { "FnlNvimCompile", "FnlNvimEval" } },
 
     -- Editing
     {
@@ -90,30 +94,23 @@ local plugins = {
         config = true,
     },
     "JoosepAlviste/nvim-ts-context-commentstring",
-    { "numToStr/Comment.nvim", lazy = false, opts = {} },
+    {
+        "echasnovski/mini.comment",
+        version = "*",
+        opts = {
+            options = {
+                custom_commentstring = function()
+                    return require("ts_context_commentstring").calculate_commentstring()
+                        or vim.bo.commentstring
+                end,
+            },
+        },
+    },
     {
         "windwp/nvim-autopairs",
         event = "InsertEnter",
         opts = { check_ts = true },
     },
-
-    -- copilot
-    -- {
-    --     "zbirenbaum/copilot.lua",
-    --     config = function()
-    --         require("copilot").setup {
-    --             filetypes = { ocaml = false },
-    --             suggestion = { enabled = false },
-    --             panel = { enabled = false },
-    --         }
-    --     end,
-    -- },
-    -- {
-    --     "zbirenbaum/copilot-cmp",
-    --     config = function()
-    --         require("copilot_cmp").setup()
-    --     end,
-    -- },
 
     {
         "NvChad/nvim-colorizer.lua",

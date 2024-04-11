@@ -71,7 +71,6 @@ local function config()
             {
                 { name = "nvim_lsp" },
                 { name = "luasnip" },
-                { name = "copilot" },
             },
             { { name = "buffer" } },
             { { name = "path" } },
@@ -81,8 +80,6 @@ local function config()
             format = lspkind.cmp_format {
                 preset = "default",
                 mode = "symbol_text",
-
-                symbol_map = { Copilot = "" },
             },
         },
     }
@@ -103,8 +100,6 @@ return {
         "L3MON4D3/LuaSnip",
         "rafamadriz/friendly-snippets",
         "saadparwaiz1/cmp_luasnip",
-        -- copilot
-        -- "zbirenbaum/copilot-cmp",
     },
     config = config,
 }

@@ -96,7 +96,7 @@ vim.filetype.add {
         ["pro"] = "prolog",
         ["tf"] = "terraform",
         ["zshrc"] = "zsh",
-        ["zshenv"] = "zsh"
+        ["zshenv"] = "zsh",
     },
     filename = {
         ["yabairc"] = "sh",
