@@ -1,5 +1,6 @@
 ---@type (string | LazySpec)[]
 local plugins = {
+    { "williamboman/mason.nvim", config = true },
     -- editing
     "tpope/vim-obsession",
 
@@ -22,38 +23,41 @@ local plugins = {
     -- window picker
     {
         url = "https://gitlab.com/yorickpeterse/nvim-window.git",
-        keys = { "<leader>w" },
-        config = function()
-            require("nvim-window").setup {
-                chars = {
-                    "f",
-                    "j",
-                    "d",
-                    "k",
-                    "s",
-                    "l",
-                    "a",
-                    ";",
-                    "c",
-                    "m",
-                    "r",
-                    "u",
-                    "e",
-                    "i",
-                    "w",
-                    "o",
-                    "q",
-                    "p",
-                },
-            }
+        opts = {
+            chars = {
 
-            vim.keymap.set(
-                "n",
+                "f",
+                "j",
+                "d",
+                "k",
+                "s",
+                "l",
+                "a",
+                ";",
+                "c",
+                "m",
+                "r",
+                "u",
+                "e",
+                "i",
+                "w",
+                "o",
+                "q",
+                "p",
+            },
+        },
+        keys = {
+            {
+
                 "<leader>w",
-                (require "nvim-window").pick,
-                { noremap = true, silent = true }
-            )
-        end,
+                function()
+                    (require "nvim-window").pick()
+                end,
+                mode = "",
+                desc = "Pick window",
+                noremap=true
+            },
+        },
     },
 }
 

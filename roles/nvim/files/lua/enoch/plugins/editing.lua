@@ -47,6 +47,7 @@ return {
                     }
                 end,
                 mode = "",
+                noremap=true,
                 desc = "Format buffer",
             },
         },
