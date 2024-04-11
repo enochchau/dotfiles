@@ -1,10 +1,7 @@
 ---@type LazySpec
 return {
     "nvim-treesitter/nvim-treesitter",
-    --  https://github.com/MDeiml/tree-sitter-markdown
-    -- set $EXTENSION_TAGS to enable tag parsing for markdown grammer
-    build = [[:let $EXTENSION_TAGS='true'
-:TSUpdate]],
+    build = ":TSUpdate",
     dependencies = {
         "windwp/nvim-ts-autotag",
         "nvim-treesitter/nvim-treesitter-context",
