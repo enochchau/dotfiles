@@ -6,7 +6,7 @@
 
 - name: Create directory
   ansible.builtin.file:
-    path: "~/code"
+    path: ~/code
     state: directory
     mode: "0755"
 

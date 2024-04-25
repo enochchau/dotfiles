@@ -1,9 +1,11 @@
-- name: Install asdf
-  ansible.builtin.git:
-    repo: https://github.com/asdf-vm/asdf.git
-    version: "v0.9.0"
-    dest: "~/.asdf"
-    update: true
+- name: Add vfox repo
+  ansible.builtin.shell: |
+    set -o pipefail
+    if ! test -f /etc/apt/sources.list.d/versionfox.list; then
+      echo "deb [trusted=yes] https://apt.fury.io/versionfox/ /" | sudo tee /etc/apt/sources.list.d/versionfox.list
+    fi
+  when: ansible_facts['os_family'] == "Debian"
+  become: true
 
 - name: Install dnf Packages
   ansible.builtin.package:

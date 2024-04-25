@@ -102,3 +102,4 @@ compinit
 # prompt
 promptinit && prompt powerlevel10k
 source ~/.config/zsh/.p10k.zsh
+eval "$(vfox activate zsh)"

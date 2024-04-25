@@ -1,0 +1,3 @@
+#compdef aws-sso
+local subcmds=("stag" "prod" "shared")
+_describe 'command' subcmds

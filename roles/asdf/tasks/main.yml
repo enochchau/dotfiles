@@ -1,3 +1,0 @@
-- name: Install asdf plugin
-  include_tasks: asdf.yml
-  loop: "{{ programs }}"

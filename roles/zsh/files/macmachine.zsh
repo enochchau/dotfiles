@@ -19,6 +19,7 @@ alias rung="$dev_scripts_base/rungatsby"
 alias killg="$dev_scripts_base/killgatsby"
 alias cdgadved="cdgp ui-gen2/src/components/AdvancedEditor/"
 alias python="python3"
+alias awsso="$dev_scripts_base/awsso"
 
 export PULSAR_CPP_DIR="/usr/local/Cellar/libpulsar/3.4.0"
 
