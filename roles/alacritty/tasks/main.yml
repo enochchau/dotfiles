@@ -6,17 +6,17 @@
     recurse: true
 
 - name: Check if alacritty config exists
-  ansible.builtin.stat: path="~/.config/alacritty/alacritty.yml"
+  ansible.builtin.stat: path="~/.config/alacritty/alacritty.toml"
   register: alacritty_stat
 
 - name: Back up config
-  ansible.builtin.command: mv ~/.config/alacritty/alacritty.yml ~/.config/alacritty/alacritty.yml.bak
+  ansible.builtin.command: mv ~/.config/alacritty/alacritty.toml ~/.config/alacritty/alacritty.toml.bak
   args:
-    creates: "~/.config/alacritty/alacritty.yml.bak"
+    creates: "~/.config/alacritty/alacritty.toml.bak"
   when: alacritty_stat.stat.exists
 
 - name: Update alacritty config
   ansible.builtin.template:
     src: "alacritty.j2"
-    dest: ~/.config/alacritty/alacritty.yml
+    dest: ~/.config/alacritty/alacritty.toml
     mode: 0664
