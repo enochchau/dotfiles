@@ -22,6 +22,7 @@ setopt interactivecomments  # recognize comments
 DOT_FILES=${DOT_FILES:-~/dotfiles}
 DOT_FILES_ZSH=$DOT_FILES/roles/zsh/files
 fpath=($DOT_FILES_ZSH/functions $DOT_FILES_ZSH/completions $fpath)
+fpath+=${ZDOTDIR:-~}/.zsh_functions
 autoload -Uz $DOT_FILES_ZSH/functions/*(.:t)
 
 export PATH=$DOT_FILES_ZSH/scripts:$PATH
@@ -98,4 +99,3 @@ compinit
 promptinit && prompt powerlevel10k
 source ~/.config/zsh/.p10k.zsh
 eval "$(vfox activate zsh)"
-fpath+=${ZDOTDIR:-~}/.zsh_functions
