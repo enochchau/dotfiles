@@ -87,18 +87,6 @@ compinit -C
 # load plugins
 antidote load
 
-# fzf keybinds and completion - must be loaded after ohmyzsh vi-mode plugin
-
-FZF_BASE=""
-if [[ "$OSTYPE" == "linux-gnu"* ]]; then
-    FZF_BASE=/usr/share/doc/fzf/examples
-elif [[ "$OSTYPE" == "darwin"* ]]; then
-    FZF_BASE=$(brew --prefix)/opt/fzf/shell
-fi
-source $FZF_BASE/key-bindings.zsh
-source $FZF_BASE/completion.zsh
-
-
 # machine specific configuration
 if test -f $ZDOTDIR/machine.zsh; then
     source $ZDOTDIR/machine.zsh
@@ -110,3 +98,4 @@ compinit
 promptinit && prompt powerlevel10k
 source ~/.config/zsh/.p10k.zsh
 eval "$(vfox activate zsh)"
+fpath+=${ZDOTDIR:-~}/.zsh_functions

@@ -27,3 +27,9 @@ export PULSAR_CPP_DIR="/usr/local/Cellar/libpulsar/3.4.0"
 # [[ ! -r /Users/enochchau/.opam/opam-init/init.zsh ]] || source /Users/enochchau/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 
 export PATH="/usr/local/opt/mongodb-community@5.0/bin:$PATH"
+
+# fzf keybinds and completion - must be loaded after ohmyzsh vi-mode plugin
+FZF_BASE=$(brew --prefix)/opt/fzf/shell
+source $FZF_BASE/key-bindings.zsh
+source $FZF_BASE/completion.zsh
+

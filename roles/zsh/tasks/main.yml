@@ -56,3 +56,10 @@
     path: "{{ zdotdir }}/machine.zsh"
     state: link
   when: ansible_facts['os_family'] == "Darwin"
+
+- name: Link Linux.zshrc
+  ansible.builtin.file:
+    src: "{{ ansible_env.PWD }}/roles/zsh/files/linuxmachine.zsh"
+    path: "{{ zdotdir }}/machine.zsh"
+    state: link
+  when: ansible_facts['os_family'] == "Debian" or ansible_facts['os_family'] == "RedHat"
