@@ -2,7 +2,6 @@ local function config()
     local lspconfig = require "lspconfig"
     local lsp_opts = require "enoch.plugins.lsp.lsp-opts"
 
-
     local signs = {
         Error = "󰅚 ", -- x000f015a
         Warn = "󰀪 ", -- x000f002a
@@ -18,24 +17,24 @@ local function config()
     vim.diagnostic.config { virtual_text = false }
 
     local servers = {
-        ["ansiblels"] = true,
-        ["astro"] = true,
-        ["bashls"] = true,
-        ["cssls"] = true,
-        ["eslint"] = true,
-        ["pyright"] = true,
-        ["gopls"] = true,
-        ["html"] = true,
-        ["jsonls"] = true,
-        ["rust_analyzer"] = true,
-        ["lua_ls"] = true,
-        ["terraformls"] = true,
-        ["tsserver"] = true,
-        ["yamlls"] = true,
+        "ansiblels",
+        "astro",
+        "bashls",
+        "cssls",
+        "eslint",
+        "pyright",
+        "gopls",
+        "html",
+        "jsonls",
+        "rust_analyzer",
+        "lua_ls",
+        "terraformls",
+        "tsserver",
+        "yamlls",
     }
 
     -- setup
-    for _, server in ipairs(vim.tbl_keys(servers)) do
+    for _, server in ipairs(servers) do
         local config
         if lsp_opts[server] then
             config = lsp_opts[server]()
@@ -54,6 +53,7 @@ return {
         "b0o/schemastore.nvim",
         "onsails/lspkind.nvim",
         "ibhagwan/fzf-lua",
+        "williamboman/mason.nvim",
     },
     config = config,
 }
