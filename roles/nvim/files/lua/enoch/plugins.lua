@@ -55,7 +55,7 @@ local plugins = {
                 end,
                 mode = "",
                 desc = "Pick window",
-                noremap=true
+                noremap = true,
             },
         },
     },
