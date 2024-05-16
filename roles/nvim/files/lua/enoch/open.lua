@@ -1,18 +1,3 @@
----@param url string
-local function open_url(url)
-    if vim.fn.has "mac" == 1 then
-        return vim.fn.system(("open" .. " " .. url))
-    elseif vim.fn.has "wsl" == 1 then
-        return vim.fn.system(("explorer.exe" .. " " .. url))
-    elseif vim.fn.has "win32" == 1 then
-        return vim.fn.system(("start" .. " " .. url))
-    elseif vim.fn.has "linux" == 1 then
-        return vim.fn.system(("xdg-open" .. " " .. url))
-    else
-        return nil
-    end
-end
-
 --- Check if a string is a url (kind dumb but it works)
 ---@param url string
 ---@return boolean
@@ -32,7 +17,7 @@ end
 local function ts_string_under_cursor()
     local ts_utils = require "nvim-treesitter.ts_utils"
     return string.gsub(
-        vim.treesitter.query.get_node_text(ts_utils.get_node_at_cursor(), 0),
+        vim.treesitter.get_node_text(ts_utils.get_node_at_cursor(), 0),
         "^[\"'](.*)[\"']$",
         "%1"
     )
@@ -43,9 +28,9 @@ local function plugin_link()
     local text = ts_string_under_cursor()
 
     if is_url(text) then
-        return open_url(text)
+        return vim.ui.open(text)
     elseif is_github(text) then
-        return open_url(("https://github.com/" .. text))
+        return vim.ui.open(("https://github.com/" .. text))
     else
         return nil
     end

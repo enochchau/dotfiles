@@ -105,11 +105,12 @@ vim.filetype.add {
     },
 }
 
+-- Set vim.g.skip_ts_context_commentstring_module = true somewhere in your configuration to skip backwards compatibility routines and speed up loading.
 vim.g.skip_ts_context_commentstring_module = true
 
 require "enoch.lazy"
 require "enoch.keymaps"
 require "enoch.commands"
 
-vim.opt.bg = "dark"
-vim.cmd.colorscheme "onedark"
+opt.bg = "dark"
+cmd.colorscheme "onedark"

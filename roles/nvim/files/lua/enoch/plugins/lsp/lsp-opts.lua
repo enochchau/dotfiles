@@ -7,7 +7,7 @@ function M.common_on_attach(client, bufnr)
     local map = vim.keymap.set
     local map_opts = { noremap = true, silent = true }
 
-    vim.api.nvim_buf_set_option(bufnr, "omnifunc", "v:lua.vim.lsp.omnifunc")
+    vim.bo[bufnr].omnifunc = "v:lua.vim.lsp.omnifunc"
 
     local fzf = require "fzf-lua"
 
@@ -151,26 +151,37 @@ end
 function M.tsserver()
     local opts = M.create_default_opts {}
 
-    -- local inlayHints = {
-    --     includeInlayParameterNameHints = "all",
-    --     includeInlayParameterNameHintsWhenArgumentMatchesName = false,
-    --     includeInlayFunctionParameterTypeHints = true,
-    --     includeInlayVariableTypeHints = true,
-    --     includeInlayPropertyDeclarationTypeHints = true,
-    --     includeInlayFunctionLikeReturnTypeHints = true,
-    --     includeInlayEnumMemberValueHints = true,
-    -- }
-
     opts.init_options = {
         maxTsServerMemory = 4096,
         npmLocation = "npm",
     }
-    opts.settings = {
-        typescript = { --[[ inlayHints = inlayHints ]]
-        },
-        javascript = { --[[ inlayHints = inlayHints ]]
-        },
-    }
+    -- opts.settings = {
+    --     typescript = {
+    --         inlayHints = {
+    --             includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
+    --             includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+    --             includeInlayVariableTypeHints = true,
+    --             includeInlayFunctionParameterTypeHints = true,
+    --             includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+    --             includeInlayPropertyDeclarationTypeHints = true,
+    --             includeInlayFunctionLikeReturnTypeHints = true,
+    --             includeInlayEnumMemberValueHints = true,
+    --         },
+    --     },
+    --     javascript = {
+    --         inlayHints = {
+    --             includeInlayParameterNameHints = "all", -- 'none' | 'literals' | 'all'
+    --             includeInlayParameterNameHintsWhenArgumentMatchesName = true,
+    --             includeInlayVariableTypeHints = true,
+    --
+    --             includeInlayFunctionParameterTypeHints = true,
+    --             includeInlayVariableTypeHintsWhenTypeMatchesName = true,
+    --             includeInlayPropertyDeclarationTypeHints = true,
+    --             includeInlayFunctionLikeReturnTypeHints = true,
+    --             includeInlayEnumMemberValueHints = true,
+    --         },
+    --     },
+    -- }
 
     return opts
 end
