@@ -7,9 +7,7 @@ return {
         "nvim-treesitter/nvim-treesitter-context",
     },
     config = function()
-        local ft_to_parser =
-            require("nvim-treesitter.parsers").filetype_to_parsername
-        ft_to_parser.mdx = "markdown"
+        vim.treesitter.language.register("markdown", "mdx")
 
         local langs = {
             "astro",
