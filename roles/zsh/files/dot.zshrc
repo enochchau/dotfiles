@@ -1,3 +1,4 @@
+zstyle ':antidote:bundle' use-friendly-names 'yes'
 source $ZDOTDIR/antidote/antidote.zsh
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
