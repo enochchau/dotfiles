@@ -35,90 +35,90 @@ return {
             },
             user_default_options = { mode = "virtualtext" },
         },
-        {
-            "goolord/alpha-nvim",
-            config = function()
-                local alpha = require "alpha"
-                local startify = require "alpha.themes.startify"
-                local fortune = require "alpha.fortune"
+    },
+    {
+        "goolord/alpha-nvim",
+        config = function()
+            local alpha = require "alpha"
+            local startify = require "alpha.themes.startify"
+            local fortune = require "alpha.fortune"
 
-                -- ---@param message table
-                local function cowsays(message)
-                    local says = {
-                        "                         ",
-                        "    o                    ",
-                        "     o   ^__^            ",
-                        "      o  (oo)\\_______    ",
-                        "         (__)\\       )\\/\\",
-                        "             ||----w |   ",
-                        "             ||     ||   ",
-                    }
+            -- ---@param message table
+            local function cowsays(message)
+                local says = {
+                    "                         ",
+                    "    o                    ",
+                    "     o   ^__^            ",
+                    "      o  (oo)\\_______    ",
+                    "         (__)\\       )\\/\\",
+                    "             ||----w |   ",
+                    "             ||     ||   ",
+                }
 
-                    for _, str in ipairs(says) do
-                        table.insert(message, str)
-                    end
-
-                    return message
+                for _, str in ipairs(says) do
+                    table.insert(message, str)
                 end
 
-                -- ---@param message table
-                -- local function tuxsays(message)
-                --     local says = {
-                --         "    o              ",
-                --         "     o     .--.    ",
-                --         "      o   |o_o |   ",
-                --         "          |:_/ |   ",
-                --         "         //   \\ \\  ",
-                --         "        (|     | ) ",
-                --         "       /'\\_   _/`\\ ",
-                --         "       \\___)=(___/ ",
-                --     }
+                return message
+            end
 
-                --     for _, str in ipairs(says) do
-                --         table.insert(message, str)
-                --     end
+            -- ---@param message table
+            -- local function tuxsays(message)
+            --     local says = {
+            --         "    o              ",
+            --         "     o     .--.    ",
+            --         "      o   |o_o |   ",
+            --         "          |:_/ |   ",
+            --         "         //   \\ \\  ",
+            --         "        (|     | ) ",
+            --         "       /'\\_   _/`\\ ",
+            --         "       \\___)=(___/ ",
+            --     }
 
-                --     return message
-                -- end
+            --     for _, str in ipairs(says) do
+            --         table.insert(message, str)
+            --     end
 
-                startify.section.header.val = cowsays(fortune())
-                alpha.setup(startify.config)
-            end,
-        },
-        {
-            "nvim-lualine/lualine.nvim",
-            config = function()
-                local lualine = require "lualine"
+            --     return message
+            -- end
 
-                local winbar = {
+            startify.section.header.val = cowsays(fortune())
+            alpha.setup(startify.config)
+        end,
+    },
+    {
+        "nvim-lualine/lualine.nvim",
+        config = function()
+            local lualine = require "lualine"
+
+            local winbar = {
+                lualine_c = {
+                    function()
+                        return vim.fn.expand "%:~:."
+                    end,
+                },
+            }
+
+            lualine.setup {
+                sections = {
+                    lualine_b = {
+                        "branch",
+                        "diff",
+                        { "diagnostics", sources = { "nvim_diagnostic" } },
+                    },
                     lualine_c = {
-                        function()
-                            return vim.fn.expand "%:~:."
-                        end,
+                        "%{ObsessionStatus('󰆓 ', '󰆓 ')}",
+                        "filename",
                     },
-                }
-
-                lualine.setup {
-                    sections = {
-                        lualine_b = {
-                            "branch",
-                            "diff",
-                            { "diagnostics", sources = { "nvim_diagnostic" } },
-                        },
-                        lualine_c = {
-                            "%{ObsessionStatus('󰆓 ', '󰆓 ')}",
-                            "filename",
-                        },
-                    },
-                    options = {
-                        globalstatus = true,
-                        section_separators = "",
-                        component_separators = "│",
-                    },
-                    winbar = winbar,
-                    inactive_winbar = winbar,
-                }
-            end,
-        },
+                },
+                options = {
+                    globalstatus = true,
+                    section_separators = "",
+                    component_separators = "│",
+                },
+                winbar = winbar,
+                inactive_winbar = winbar,
+            }
+        end,
     },
 }
