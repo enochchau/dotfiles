@@ -1,5 +1,0 @@
-- name: Link Hammerspoon
-  ansible.builtin.file:
-    src: "{{ ansible_env.PWD }}/roles/hammerspoon/files/hammerspoon"
-    path: ~/.hammerspoon
-    state: link

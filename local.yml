@@ -23,72 +23,54 @@
       vars:
         homebrew_pkgs:
           - ansible
-          - ansible-lint
-          - asdf
           - bat
           - fd
           - fzf
           - git-delta
           - jq
-          - kubectx
-          - luajit
-          - luarocks
           - python
           - ripgrep
           - stylua
           - vfox
+          - kubectx
         homebrew_casks:
           - alacritty
-          - wezterm
           - linearmouse
           - rectangle
           - spaceid
         dnf_pkgs:
-          - ShellCheck
           - bat
           - fd-find
           - fzf
-          - g++
           - git-delta
           - jq
-          - luajit
-          - luarocks
           - podman
           - podman-compose
           - python
           - ripgrep
           - wget
-          - zoxide
           - zip
         apt_pkgs:
           - bat
           - fd-find
           - fzf
           - jq
-          - luajit
-          - luarocks
           - ripgrep
-          - shellcheck
           - vfox
           - wget
           - zip
-          - zoxide
     - role: vfox
       tags: vfox
       vars:
         vfox_programs:
           - name: nodejs
-          - name: golang
-          - name: kubectl
     - role: nodejs
       tags: nodejs
       vars:
         npm_global_packages:
-          - eslint
           - prettier
           - typescript
           - yarn
-          - "@fsouza/prettierd"
     - role: nvim
       tags: nvim
     - role: vscode
@@ -101,18 +83,6 @@
         font_size: 14
         font: FantasqueSansM Nerd Font
         opacity: 0.85
-    - role: wezterm
-      tags: wezterm
-      vars:
-        font_size: 14
-        font: FantasqueSansM Nerd Font
-        opacity: 0.9
-    - role: hammerspoon
-      tags: hammerspoon
-      when: ansible_facts['os_family'] == "Darwin"
     - role: skhd
       tags: skhd
-      when: ansible_facts['os_family'] == "Darwin"
-    - role: yabai
-      tags: yabai
       when: ansible_facts['os_family'] == "Darwin"
