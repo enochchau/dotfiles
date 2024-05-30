@@ -8,15 +8,15 @@ on run argv
   set browser to item 1 of argv
   do shell script "defaultbrowser " & browser
 
-  tell application "System Events"
-    tell application process "CoreServicesUIAgent"
-      tell window 1
-        tell (first button whose name starts with "use")
-          perform action "AXPress"
+  try
+    tell application "System Events"
+      tell application process "CoreServicesUIAgent"
+        tell window 1
+          tell (first button whose name starts with "use")
+            perform action "AXPress"
+          end tell
         end tell
       end tell
     end tell
-  end tell
+  end try
 end run
-
-# do shell script "defaultbrowser"
