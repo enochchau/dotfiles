@@ -2,6 +2,10 @@ alt - b [
   * : open -a 'Google Chrome'
   "Google Chrome" : ~/.config/skhd/switchChromeProfile.applescript
 ]
+
+alt + shift - b : ~/.config/skhd/defaultbrowser.applescript chrome
+alt + shift - f : ~/.config/skhd/defaultbrowser.applescript firefox
+
 alt - f : open -a Firefox
 alt - s : open -a Slack
 alt - u : open -a Spotify

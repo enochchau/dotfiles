@@ -33,6 +33,7 @@
           - stylua
           - vfox
           - kubectx
+          - defaultbrowser
         homebrew_casks:
           - alacritty
           - linearmouse
@@ -80,7 +81,7 @@
     - role: alacritty
       tags: alacritty
       vars:
-        font_size: 14
+        font_size: 15
         font: FantasqueSansM Nerd Font
         opacity: 0.85
     - role: skhd

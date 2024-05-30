@@ -97,6 +97,7 @@ vim.filetype.add {
         ["tf"] = "terraform",
         ["zshrc"] = "zsh",
         ["zshenv"] = "zsh",
+        ["applescript"] = "applescript"
     },
     filename = {
         ["yabairc"] = "sh",
