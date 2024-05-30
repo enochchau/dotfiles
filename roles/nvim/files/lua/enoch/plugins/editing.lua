@@ -23,7 +23,6 @@ return {
                 typescript = { prettier_fmt },
                 typescriptreact = { prettier_fmt },
                 javascriptreact = { prettier_fmt },
-                astro = { prettier_fmt },
                 css = { prettier_fmt },
                 scss = { prettier_fmt },
                 less = { prettier_fmt },

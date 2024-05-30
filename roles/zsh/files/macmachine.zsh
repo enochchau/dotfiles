@@ -14,7 +14,7 @@ export PATH=$PATH:$ANDROID_HOME/platform-tools
 export JAVA_HOME=/Library/Java/JavaVirtualMachines/zulu-11.jdk/Contents/Home
 
 dev_scripts_base=~/code/dev-scripts
-alias proj="$dev_scripts_base/project.sh $HOME/Gatsby $HOME/code $HOME/Gatsby/repo"
+alias proj="$dev_scripts_base/project $HOME/Gatsby $HOME/code $HOME/Gatsby/repo"
 alias rung="$dev_scripts_base/rungatsby"
 alias killg="$dev_scripts_base/killgatsby"
 alias cdgadved="cdgp ui-gen2/src/components/AdvancedEditor/"

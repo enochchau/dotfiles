@@ -1,3 +1,0 @@
-#compdef rungatsby
-local subcmds=("storybook" "dev" "services" "ed")
-_describe 'command' subcmds
