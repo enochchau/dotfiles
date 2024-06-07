@@ -162,8 +162,15 @@ end
 
 ---@type LazySpec
 return {
-    { "neovim/nvim-lspconfig", config = config },
-    "b0o/schemastore.nvim",
-    "williamboman/mason.nvim",
-    "williamboman/mason-lspconfig.nvim",
+    {
+        "neovim/nvim-lspconfig",
+        config = config,
+        dependencies = {
+            "b0o/schemastore.nvim",
+            "williamboman/mason.nvim",
+            "williamboman/mason-lspconfig.nvim",
+            "hrsh7th/nvim-cmp",
+            "ibhagwan/fzf-lua",
+        },
+    },
 }

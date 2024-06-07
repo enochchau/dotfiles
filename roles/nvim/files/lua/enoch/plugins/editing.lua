@@ -60,7 +60,7 @@ return {
     },
     {
         "numToStr/Comment.nvim",
-        dependencies = {},
+        dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
         config = function()
             require("Comment").setup {
                 pre_hook = require(
@@ -79,19 +79,20 @@ return {
         config = true,
     },
 
-    "hrsh7th/cmp-buffer",
-    "hrsh7th/cmp-nvim-lsp",
-    "hrsh7th/cmp-path",
-    "hrsh7th/cmp-cmdline",
-    "f3fora/cmp-spell",
-    -- snippets
-    "L3MON4D3/LuaSnip",
-    "rafamadriz/friendly-snippets",
-    "saadparwaiz1/cmp_luasnip",
-    "onsails/lspkind.nvim",
-
     {
         "hrsh7th/nvim-cmp",
+        dependencies = {
+            "hrsh7th/cmp-buffer",
+            "hrsh7th/cmp-nvim-lsp",
+            "hrsh7th/cmp-path",
+            "hrsh7th/cmp-cmdline",
+            "f3fora/cmp-spell",
+            -- snippets
+            "L3MON4D3/LuaSnip",
+            "rafamadriz/friendly-snippets",
+            "saadparwaiz1/cmp_luasnip",
+            "onsails/lspkind.nvim",
+        },
         config = function()
             local luasnip = require "luasnip"
             local lspkind = require "lspkind"
