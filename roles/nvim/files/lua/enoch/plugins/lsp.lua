@@ -1,5 +1,3 @@
-local lsp_opts = {}
-
 local function on_attach(client, bufnr)
     local map = vim.keymap.set
     local map_opts = { noremap = true, silent = true, buffer = bufnr }
@@ -51,44 +49,47 @@ local function create_default_opts()
     }
 end
 
-function lsp_opts.jsonls()
-    local opts = create_default_opts()
+local lspconfig_opts = {
+    jsonls = function()
+        local opts = create_default_opts()
 
-    opts.settings = {
-        json = {
-            schemas = require("schemastore").json.schemas(),
-            validate = { enable = true },
-        },
-    }
-
-    return opts
-end
-
-function lsp_opts.yamlls()
-    local opts = create_default_opts()
-
-    opts.settings = {
-        yaml = {
-            schemaStore = {
-                -- You must disable built-in schemaStore support if you want to use
-                -- this plugin and its advanced options like `ignore`.
-                enable = false,
-                -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                url = "",
+        opts.settings = {
+            json = {
+                schemas = require("schemastore").json.schemas(),
+                validate = { enable = true },
             },
-            schemas = require("schemastore").yaml.schemas(),
-        },
-    }
-    return opts
-end
+        }
 
-function lsp_opts.tsserver()
+        return opts
+    end,
+
+    yamlls = function()
+        local opts = create_default_opts()
+
+        opts.settings = {
+            yaml = {
+                schemaStore = {
+                    -- You must disable built-in schemaStore support if you want to use
+                    -- this plugin and its advanced options like `ignore`.
+                    enable = false,
+                    -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
+                    url = "",
+                },
+                schemas = require("schemastore").yaml.schemas(),
+            },
+        }
+        return opts
+    end,
+}
+
+local function tsserver_opts()
     local opts = create_default_opts()
 
-    opts.init_options = {
-        maxTsServerMemory = 4096,
-        npmLocation = "npm",
-    }
+    -- options for typescript-language-server
+    -- opts.init_options = {
+    --     maxTsServerMemory = 4096,
+    --     npmLocation = "npm",
+    -- }
     -- opts.settings = {
     --     typescript = {
     --         inlayHints = {
@@ -142,22 +143,19 @@ local function config()
 
     vim.diagnostic.config { virtual_text = false }
 
-    local servers = mason_lspconfig.get_installed_servers()
+    local servers = vim.tbl_filter(function(server)
+        return server ~= "tsserver"
+    end, mason_lspconfig.get_installed_servers())
+    vim.print(servers)
 
     -- setup
+    require("typescript-tools").setup(tsserver_opts())
     for _, server in ipairs(servers) do
-        local opts = lsp_opts[server] and lsp_opts[server]()
+        local opts = lspconfig_opts[server] and lspconfig_opts[server]()
             or create_default_opts()
 
         lspconfig[server].setup(opts)
     end
-
-    vim.api.nvim_create_autocmd("LspAttach", {
-        callback = function(ev)
-            local client = vim.lsp.get_client_by_id(ev.data.client_id)
-            on_attach(client, ev.buf)
-        end,
-    })
 end
 
 ---@type LazySpec
@@ -171,6 +169,11 @@ return {
             "williamboman/mason-lspconfig.nvim",
             "hrsh7th/nvim-cmp",
             "ibhagwan/fzf-lua",
+            "pmizio/typescript-tools.nvim",
         },
+    },
+    {
+        "pmizio/typescript-tools.nvim",
+        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     },
 }

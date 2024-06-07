@@ -21,6 +21,7 @@ return {
             require("enoch.plugins.fzf.node-workspaces").node_workspaces,
             opts
         )
+        -- <C-m> is mapped to <CR> so they both get mapped here
         map("n", "<C-m>", require("enoch.plugins.fzf.mru").mru, opts)
     end,
 }
