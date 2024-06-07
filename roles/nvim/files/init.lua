@@ -40,8 +40,8 @@ opt.hlsearch = true
 opt.cursorline = true
 opt.spelllang = "en_us"
 
--- enable syntax and filetype detection
-cmd.syntax "enable"
+-- don't enable syntax because it causes issues with lsp starting
+-- cmd.syntax "enable"
 cmd.filetype "plugin indent on"
 
 -- set tabs to 2 spaces
