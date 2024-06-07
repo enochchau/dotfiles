@@ -80,6 +80,18 @@ return {
     },
 
     {
+        "L3MON4D3/LuaSnip",
+        -- follow latest release.
+        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
+        -- install jsregexp (optional!).
+        build = "make install_jsregexp",
+        dependencies = { "rafamadriz/friendly-snippets" },
+        config = function()
+            require("luasnip.loaders.from_vscode").lazy_load()
+        end,
+    },
+
+    {
         "hrsh7th/nvim-cmp",
         dependencies = {
             "hrsh7th/cmp-buffer",
@@ -89,7 +101,6 @@ return {
             "f3fora/cmp-spell",
             -- snippets
             "L3MON4D3/LuaSnip",
-            "rafamadriz/friendly-snippets",
             "saadparwaiz1/cmp_luasnip",
             "onsails/lspkind.nvim",
         },
@@ -98,36 +109,6 @@ return {
             local lspkind = require "lspkind"
             local cmp = require "cmp"
 
-            local function has_words_before()
-                local line, col = unpack(vim.api.nvim_win_get_cursor(0))
-                return col ~= 0
-                    and vim.api
-                            .nvim_buf_get_lines(0, line - 1, line, true)[1]
-                            :sub(col, col)
-                            :match "%s"
-                        == nil
-            end
-
-            local function has_words_before_prompt()
-                if vim.bo[0].buftype == "prompt" then
-                    return false
-                end
-                return has_words_before()
-            end
-
-            cmp.setup.cmdline("/", {
-                sources = { { name = "buffer" } },
-                mapping = cmp.mapping.preset.cmdline(),
-            })
-
-            cmp.setup.cmdline(":", {
-                sources = cmp.config.sources(
-                    { { name = "path" } },
-                    { { name = "cmdline" } }
-                ),
-                mapping = cmp.mapping.preset.cmdline(),
-            })
-
             cmp.setup {
                 snippet = {
                     expand = function(args)
@@ -135,32 +116,38 @@ return {
                     end,
                 },
                 mapping = {
-                    ["<Tab>"] = cmp.mapping(
-                        vim.schedule_wrap(function(fallback)
-                            if cmp.visible() and has_words_before_prompt() then
-                                cmp.select_next_item {
-                                    behavior = cmp.SelectBehavior.Select,
-                                }
-                            elseif luasnip.expand_or_jumpable() then
-                                luasnip.expand_or_jump()
-                            elseif has_words_before() then
-                                cmp.complete()
+                    ["<CR>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            if luasnip.expandable() then
+                                luasnip.expand()
                             else
-                                fallback()
+                                cmp.confirm {
+                                    select = true,
+                                }
                             end
-                        end),
-                        { "i", "s" }
-                    ),
+                        else
+                            fallback()
+                        end
+                    end),
+
+                    ["<Tab>"] = cmp.mapping(function(fallback)
+                        if cmp.visible() then
+                            cmp.select_next_item()
+                        elseif luasnip.locally_jumpable(1) then
+                            luasnip.jump(1)
+                        else
+                            fallback()
+                        end
+                    end, { "i", "s" }),
                     ["<S-Tab>"] = cmp.mapping(function(fallback)
                         if cmp.visible() then
                             cmp.select_prev_item()
-                        elseif luasnip.jumpable(-1) then
+                        elseif luasnip.locally_jumpable(-1) then
                             luasnip.jump(-1)
                         else
                             fallback()
                         end
                     end, { "i", "s" }),
-                    ["<CR>"] = cmp.mapping.confirm { select = true },
                 },
                 sources = cmp.config.sources(
                     {
@@ -179,7 +166,24 @@ return {
                 },
             }
 
-            require("luasnip.loaders.from_vscode").lazy_load()
+            -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
+            cmp.setup.cmdline({ "/", "?" }, {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = {
+                    { name = "buffer" },
+                },
+            })
+
+            -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
+            cmp.setup.cmdline(":", {
+                mapping = cmp.mapping.preset.cmdline(),
+                sources = cmp.config.sources({
+                    { name = "path" },
+                }, {
+                    { name = "cmdline" },
+                }),
+                matching = { disallow_symbol_nonprefix_matching = false },
+            })
         end,
     },
 }

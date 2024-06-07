@@ -146,7 +146,6 @@ local function config()
     local servers = vim.tbl_filter(function(server)
         return server ~= "tsserver"
     end, mason_lspconfig.get_installed_servers())
-    vim.print(servers)
 
     -- setup
     require("typescript-tools").setup(tsserver_opts())
