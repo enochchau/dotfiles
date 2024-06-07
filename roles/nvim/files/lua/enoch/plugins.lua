@@ -1,6 +1,5 @@
 ---@type (string | LazySpec)[]
 local plugins = {
-    { "williamboman/mason.nvim", config = true },
     -- editing
     "tpope/vim-obsession",
 
@@ -20,6 +19,15 @@ local plugins = {
         config = true,
     },
     "nvim-lua/plenary.nvim",
+
+    {
+        "ggandor/leap.nvim",
+        config = function()
+            require("leap").create_default_mappings()
+        end,
+    },
+
+    "tpope/vim-eunuch",
 
     -- window picker
     {

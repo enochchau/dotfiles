@@ -34,6 +34,9 @@ return {
                 ["markdown.mdx"] = { prettier_fmt },
                 graphql = { prettier_fmt },
                 handlebars = { prettier_fmt },
+                bash = { "beautysh", "shellcheck" },
+                sh = { "beautysh", "shellcheck" },
+                zsh = { "beautysh" },
             },
         },
         keys = {
@@ -90,6 +93,7 @@ return {
             "L3MON4D3/LuaSnip",
             "rafamadriz/friendly-snippets",
             "saadparwaiz1/cmp_luasnip",
+            "onsails/lspkind.nvim",
         },
         config = function()
             local luasnip = require "luasnip"

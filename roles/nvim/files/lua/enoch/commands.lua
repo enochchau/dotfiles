@@ -22,3 +22,14 @@ end, {})
 
 command("PluginOpen", open.plugin_link, {})
 command("SaveColor", colorscheme.save_color, {})
+
+command("Redir", function(ctx)
+    local result = vim.api.nvim_exec2(ctx.args, { output = true })
+    local lines = vim.split(result.output, "\n", { plain = true })
+
+    local buf = vim.api.nvim_create_buf(true, false)
+    vim.api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+
+    local win = vim.api.nvim_get_current_win()
+    vim.api.nvim_win_set_buf(win, buf)
+end, { nargs = "+", complete = "command" })

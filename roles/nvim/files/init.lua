@@ -1,6 +1,5 @@
 local autocmd = vim.api.nvim_create_autocmd
 local has = vim.fn.has
-local api = vim.api
 local g = vim.g
 local opt = vim.opt
 local cmd = vim.cmd
@@ -97,7 +96,7 @@ vim.filetype.add {
         ["tf"] = "terraform",
         ["zshrc"] = "zsh",
         ["zshenv"] = "zsh",
-        ["applescript"] = "applescript"
+        ["applescript"] = "applescript",
     },
     filename = {
         ["yabairc"] = "sh",

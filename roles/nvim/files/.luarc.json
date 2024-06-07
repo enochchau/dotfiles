@@ -1,5 +1,13 @@
 {
-  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
-  "Lua.diagnostics.globals": ["vim"],
-  "Lua.workspace.checkThirdParty": false
+  "$schema": "https://raw.githubusercontent.com/LuaLS/vscode-lua/master/setting/schema.json",
+  "runtime": {
+    "version": "LuaJIT"
+  },
+  "workspace": {
+    "library": ["$VIMRUNTIME", "~/.local/share/nvim/lazy"],
+    "checkThirdParty": false
+  },
+  "diagnostics": {
+    "unusedLocalExclude": ["_*"]
+  }
 }
