@@ -6,7 +6,6 @@ return {
         "lukas-reineke/indent-blankline.nvim",
         main = "ibl",
         opts = {},
-        dependencies = { "nvim-treesitter/nvim-treesitter" },
         config = function()
             require("ibl").setup {
                 indent = { char = "│" },
@@ -88,6 +87,7 @@ return {
     },
     {
         "nvim-lualine/lualine.nvim",
+        dependencies = { 'nvim-tree/nvim-web-devicons' },
         config = function()
             local lualine = require "lualine"
 

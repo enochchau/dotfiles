@@ -1,7 +1,3 @@
-local make_entry = require "fzf-lua.make_entry"
-local config = require "fzf-lua.config"
-local core = require "fzf-lua.core"
-local utils = require "fzf-lua.utils"
 local filereadable = vim.fn.filereadable
 local if_nil = vim.F.if_nil
 
@@ -32,6 +28,11 @@ local function oldfiles_filter(cwd, items_number)
 end
 
 function M.mru(opts)
+    local make_entry = require "fzf-lua.make_entry"
+    local config = require "fzf-lua.config"
+    local core = require "fzf-lua.core"
+    local utils = require "fzf-lua.utils"
+
     opts = config.normalize_opts(opts, config.globals.oldfiles)
     if not opts then
         return
@@ -48,7 +49,7 @@ function M.mru(opts)
             if bufnr then
                 local file = vim.api.nvim_buf_get_name(bufnr)
                 local fs_stat = not opts.stat_file and true
-                    or vim.loop.fs_stat(file)
+                    or vim.uv.fs_stat(file)
                 if #file > 0 and fs_stat and bufnr ~= current_buffer then
                     sess_map[file] = true
                     table.insert(sess_tbl, file)
@@ -101,7 +102,7 @@ function M.mru(opts)
     end
 
     -- for 'file_ignore_patterns' to work on relative paths
-    opts.cwd = opts.cwd or vim.loop.cwd()
+    opts.cwd = opts.cwd or vim.uv.cwd()
     opts = core.set_header(opts, opts.headers or { "cwd" })
     return core.fzf_exec(contents, opts)
 end

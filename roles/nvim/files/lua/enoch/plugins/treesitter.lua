@@ -1,32 +1,35 @@
----@type LazySpec
+---@type LazySpec[]
 return {
-    "nvim-treesitter/nvim-treesitter",
-    build = ":TSUpdate",
-    dependencies = {
-        "windwp/nvim-ts-autotag",
-        "nvim-treesitter/nvim-treesitter-context",
+    {
+        "nvim-treesitter/nvim-treesitter",
+        build = ":TSUpdate",
+        config = function()
+            vim.treesitter.language.register("markdown", "mdx")
+
+            require("nvim-treesitter.configs").setup {
+                ignore_install = {},
+                ensure_installed = {},
+                sync_install = false,
+                auto_install = true,
+                modules = {},
+
+                highlight = {
+                    enable = true,
+                    additional_vim_regex_highlighting = false,
+                },
+                context_commentstring = {
+                    enable = true,
+                    enable_autocmd = false,
+                },
+            }
+        end,
     },
-    config = function()
-        vim.treesitter.language.register("markdown", "mdx")
 
-        require("nvim-treesitter.configs").setup {
-            ignore_install = {},
-            ensure_installed = {},
-            sync_install = false,
-            auto_install = true,
-            modules = {},
+    { "windwp/nvim-ts-autotag", config = true },
+    {
+        "nvim-treesitter/nvim-treesitter-context",
 
-            highlight = {
-                enable = true,
-                additional_vim_regex_highlighting = false,
-            },
-            context_commentstring = {
-                enable = true,
-                enable_autocmd = false,
-            },
-        }
-
-        require("treesitter-context").setup {
+        opts = {
             enable = true, -- Enable this plugin (Can be enabled/disabled later via commands)
             max_lines = 0, -- How many lines the window should span. Values <= 0 mean no limit.
             min_window_height = 0, -- Minimum editor window height to enable context. Values <= 0 mean no limit.
@@ -45,6 +48,6 @@ return {
                 end
                 return true
             end,
-        }
-    end,
+        },
+    },
 }

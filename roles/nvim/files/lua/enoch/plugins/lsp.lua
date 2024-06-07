@@ -1,6 +1,5 @@
 local lsp_opts = {}
 
-
 local function on_attach(client, bufnr)
     local map = vim.keymap.set
     local map_opts = { noremap = true, silent = true, buffer = bufnr }
@@ -163,13 +162,8 @@ end
 
 ---@type LazySpec
 return {
-    "neovim/nvim-lspconfig",
-    dependencies = {
-        "b0o/schemastore.nvim",
-        "ibhagwan/fzf-lua",
-        "williamboman/mason.nvim",
-        "williamboman/mason-lspconfig.nvim",
-        "hrsh7th/nvim-cmp",
-    },
-    config = config,
+    { "neovim/nvim-lspconfig", config = config },
+    "b0o/schemastore.nvim",
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
 }

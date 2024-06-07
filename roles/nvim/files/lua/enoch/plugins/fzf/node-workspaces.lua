@@ -1,5 +1,5 @@
 local mpack = vim.mpack
-local uv = vim.loop
+local uv = vim.uv
 local json = vim.json
 local fs = vim.fs
 

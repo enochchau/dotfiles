@@ -18,7 +18,6 @@ local plugins = {
         cmd = { "OpenInGHFile", "OpenInGHRepo" },
         config = true,
     },
-    "nvim-lua/plenary.nvim",
 
     {
         "ggandor/leap.nvim",
