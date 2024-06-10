@@ -22,6 +22,7 @@ fi
 
 gatsby_scripts_base=~/Gatsby/scripts
 if test -d $gatsby_scripts_base; then
+    fpath+=$gatsby_scripts_base/completions
     alias aws-sso="$gatsby_scripts_base/aws-sso"
     alias aws-sso="$gatsby_scripts_base/aws-login"
     alias killg="$gatsby_scripts_base/gatsby-kill"

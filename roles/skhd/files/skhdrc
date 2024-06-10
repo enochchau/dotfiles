@@ -10,4 +10,4 @@ alt - f : open -a Firefox
 alt - s : open -a Slack
 alt - u : open -a Spotify
 alt - t : ~/.config/skhd/alacritty.applescript
-alt - l : ~/.config/skhd/lorem.applescript
+alt + shift - l : ~/.config/skhd/lorem.applescript
