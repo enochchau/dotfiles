@@ -92,10 +92,10 @@ local function config()
         tsserver = {
             capabilities = require("cmp_nvim_lsp").default_capabilities(),
             --- Settings for typescript-language-server, not tsserver
-            -- init_options = {
-            --     maxTsServerMemory = 4096,
-            --     npmLocation = "npm",
-            -- },
+            init_options = {
+                maxTsServerMemory = 4096,
+                npmLocation = "npm",
+            },
             -- settings = {
             --     typescript = {
             --         inlayHints = {
@@ -127,13 +127,13 @@ local function config()
     }
 
     ---@type string[]
-    local servers = vim.tbl_filter(function(server)
-        return server ~= "tsserver"
-    end, mason_lspconfig.get_installed_servers())
-
+    local servers = mason_lspconfig.get_installed_servers()
 
     -- setup
-    require("typescript-tools").setup(server_opts.tsserver)
+    -- servers = vim.tbl_filter(function(server)
+    --     return server ~= "tsserver"
+    -- end, servers)
+    -- require("typescript-tools").setup(server_opts.tsserver)
     for _, server in ipairs(servers) do
         local opts = server_opts[server]
             or {

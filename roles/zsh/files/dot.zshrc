@@ -45,7 +45,6 @@ if test -d $dev_scripts_base; then
     alias gitdel="$dev_scripts_base/git-delete"
     alias conf="$dev_scripts_base/project $XDG_CONFIG_HOME"
     alias dot="$dev_scripts_base/project $HOME/dotfiles $HOME/dotfiles/roles"
-    alias opengh="$dev_scripts_base/open-gh"
 fi
 # docker-compose v2 alias so that completions work
 alias docker-compose='docker compose'
