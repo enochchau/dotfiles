@@ -1,3 +1,0 @@
-- name: Install vfox
-  include_tasks: vfox.yaml
-  loop: "{{ vfox_programs }}"

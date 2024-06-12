@@ -98,7 +98,6 @@ compinit
 # prompt
 promptinit && prompt powerlevel10k
 source ~/.config/zsh/.p10k.zsh
-eval "$(vfox activate zsh)"
 
 # pnpm
 export PNPM_HOME="/Users/enochchau/.local/share/pnpm"
@@ -107,3 +106,5 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
+
+eval "$(mise activate zsh)"

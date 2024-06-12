@@ -1,0 +1,10 @@
+- name: Install mise Mac
+  when: ansible_facts['os_family'] == "Darwin"
+  community.general.homebrew:
+    name: "mise"
+
+- name: Link mise config
+  ansible.builtin.file:
+    src: "{{ ansible_env.PWD }}/roles/mise/files/"
+    path: "~/.config/mise"
+    state: link

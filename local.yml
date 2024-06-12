@@ -31,7 +31,6 @@
           - python
           - ripgrep
           - stylua
-          - vfox
           - kubectx
           - defaultbrowser
         homebrew_casks:
@@ -57,14 +56,8 @@
           - fzf
           - jq
           - ripgrep
-          - vfox
           - wget
           - zip
-    - role: vfox
-      tags: vfox
-      vars:
-        vfox_programs:
-          - name: nodejs
     - role: nodejs
       tags: nodejs
       vars:

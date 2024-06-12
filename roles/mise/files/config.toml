@@ -1,0 +1,7 @@
+[env]
+MISE_LEGACY_VERSION_FILE = 0
+
+[tools]
+node = "lts"
+terraform = "latest"
+usage = "latest"

@@ -1,9 +1,0 @@
-- name: Check for vfox plugin
-  ansible.builtin.shell: "vfox ls | grep -q '{{ item.name }}'"
-  register: check_plugin
-  changed_when: check_plugin.rc != 0
-  failed_when: check_plugin.rc not in [ 0, 1 ]
-
-- name: "Add vfox plugin"
-  ansible.builtin.command: 'vfox add {{ item.name }}'
-  when: check_plugin.rc != 0
