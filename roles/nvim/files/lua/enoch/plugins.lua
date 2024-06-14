@@ -1,6 +1,6 @@
 ---@type (string | LazySpec)[]
 local plugins = {
-    { "zbirenbaum/copilot.lua", config = true },
+    -- { "zbirenbaum/copilot.lua", config = true },
 
     -- editing
     "tpope/vim-obsession",

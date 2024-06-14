@@ -24,7 +24,7 @@ gatsby_scripts_base=~/Gatsby/scripts
 if test -d $gatsby_scripts_base; then
     fpath+=$gatsby_scripts_base/completions
     alias aws-sso="$gatsby_scripts_base/aws-sso"
-    alias aws-sso="$gatsby_scripts_base/aws-login"
+    alias aws-login="$gatsby_scripts_base/aws-login"
     alias killg="$gatsby_scripts_base/gatsby-kill"
     alias rung="$gatsby_scripts_base/gatsby-run"
     alias gatsby-worktree="$gatsby_scripts_base/tmux-worktree-add \$(git branch | grep '^  ' | sed 's/^  //' | fzf)"
