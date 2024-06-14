@@ -26,33 +26,34 @@ local function config()
             local map = vim.keymap.set
             local map_opts = { noremap = true, silent = true, buffer = ev.buf }
             local supports = client.supports_method
+            local method = vim.lsp.protocol.Methods
 
             vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
             local fzf = require "fzf-lua"
-            if supports "textDocument/rename" then
+            if supports(method.textDocument_rename) then
                 map("n", "<leader>rn", vim.lsp.buf.rename, map_opts)
             end
-            if supports "textDocument/definition" then
+            if supports(method.textDocument_definition) then
                 map("n", "gd", fzf.lsp_definitions, map_opts)
             end
-            if supports "textDocument/implementation" then
+            if supports(method.textDocument_implementation) then
                 map("n", "gi", fzf.lsp_implementations, map_opts)
             end
-            if supports "textDocument/typeDefinition" then
+            if supports(method.textDocument_typeDefinition) then
                 map("n", "gy", fzf.lsp_typedefs, map_opts)
             end
-            if supports "textDocument/references" then
+            if supports(method.textDocument_references) then
                 map("n", "gr", fzf.lsp_references, map_opts)
             end
-            if supports "textDocument/documentSymbol" then
+            if supports(method.textDocument_documentSymbol) then
                 map("n", "gs", fzf.lsp_document_symbols, map_opts)
             end
-            if supports "textDocument/diagnostic" then
+            if supports(method.textDocument_diagnostic) then
                 map("n", "ga", fzf.diagnostics_document, map_opts)
                 map("n", "gw", fzf.diagnostics_workspace, map_opts)
             end
-            if supports "textDocument/codeAction" then
+            if supports(method.textDocument_codeAction) then
                 map("n", "<leader>a", vim.lsp.buf.code_action, map_opts)
                 map(
                     "x",
@@ -137,7 +138,6 @@ local function config()
     for _, server in ipairs(servers) do
         local opts = server_opts[server]
             or {
-
                 capabilities = require("cmp_nvim_lsp").default_capabilities(),
             }
 
@@ -156,11 +156,6 @@ return {
             "williamboman/mason-lspconfig.nvim",
             "hrsh7th/nvim-cmp",
             "ibhagwan/fzf-lua",
-            "pmizio/typescript-tools.nvim",
         },
-    },
-    {
-        "pmizio/typescript-tools.nvim",
-        dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
     },
 }
