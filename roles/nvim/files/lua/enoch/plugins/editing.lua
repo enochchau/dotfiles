@@ -53,6 +53,7 @@ return {
                 desc = "Format buffer",
             },
         },
+        dependencies = { "williamboman/mason.nvim" },
     },
     {
         "JoosepAlviste/nvim-ts-context-commentstring",

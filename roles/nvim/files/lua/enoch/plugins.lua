@@ -69,6 +69,16 @@ local plugins = {
             },
         },
     },
+
+    {
+        "williamboman/mason.nvim",
+        config = true,
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        config = true,
+        dependencies = { "williamboman/mason.nvim" },
+    },
 }
 
 return plugins
