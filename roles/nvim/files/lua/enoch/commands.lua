@@ -20,6 +20,15 @@ command("Cdg", function()
     )
 end, {})
 
+command("Cdp", function()
+    local packageJSON =
+        vim.fs.find("package.json", { stop = vim.env.HOME, upward = true })
+    if #packageJSON == 1 then
+        return vim.api.nvim_set_current_dir(vim.fs.dirname(packageJSON[1]))
+    end
+    print("package.json not found")
+end, {})
+
 command("PluginOpen", open.plugin_link, {})
 command("SaveColor", colorscheme.save_color, {})
 
