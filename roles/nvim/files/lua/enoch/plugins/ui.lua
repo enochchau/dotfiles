@@ -4,19 +4,12 @@ return {
     { "j-hui/fidget.nvim", opts = {} },
     {
         "lukas-reineke/indent-blankline.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter" },
         main = "ibl",
-        opts = {},
-        config = function()
-            require("ibl").setup {
-                indent = { char = "│" },
-                scope = {
-                    enabled = true,
-                    show_start = false,
-                    show_end = false,
-                },
-                exclude = { filetypes = { "alpha" } },
-            }
-        end,
+        opts = {
+            scope = { enabled = true },
+            exclude = { filetypes = { "alpha" } },
+        },
     },
     {
         "NvChad/nvim-colorizer.lua",
