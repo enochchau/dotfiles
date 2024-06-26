@@ -2,20 +2,20 @@
 ---@param url string
 ---@return boolean
 local function is_url(url)
-    return url:match "^https://"
+    return url:match("^https://")
 end
 
 --- Check if a string is in github repo format of username/repo_name
 ---@param str string
 ---@return boolean
 local function is_github(str)
-    return str:match "^([a-zA-Z0-9-_.]+)/([a-zA-Z0-9-_.]+)$"
+    return str:match("^([a-zA-Z0-9-_.]+)/([a-zA-Z0-9-_.]+)$")
 end
 
 --- Use treesitter to get the text of the string under the cursor
 --- Only works forlanguages that use " or ' as strings
 local function ts_string_under_cursor()
-    local ts_utils = require "nvim-treesitter.ts_utils"
+    local ts_utils = require("nvim-treesitter.ts_utils")
     return string.gsub(
         vim.treesitter.get_node_text(ts_utils.get_node_at_cursor(), 0),
         "^[\"'](.*)[\"']$",

@@ -3,7 +3,7 @@ return {
     "ibhagwan/fzf-lua",
     dependencies = { "nvim-tree/nvim-web-devicons" },
     config = function()
-        local fzf = require "fzf-lua"
+        local fzf = require("fzf-lua")
         fzf.register_ui_select()
         local map = vim.keymap.set
         local opts = { noremap = true, silent = true }

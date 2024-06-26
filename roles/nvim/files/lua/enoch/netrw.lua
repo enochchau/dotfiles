@@ -15,11 +15,11 @@ api.nvim_create_autocmd({ "BufLeave" }, {
 
 function M.toggle_netrw()
     if not netrw_open then
-        vim.cmd 'exe "normal mN"'
-        vim.cmd "Explore"
+        vim.cmd('exe "normal mN"')
+        vim.cmd("Explore")
         netrw_open = true
     else
-        vim.cmd 'exe "normal `N"'
+        vim.cmd('exe "normal `N"')
         netrw_open = false
     end
 end

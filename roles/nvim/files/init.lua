@@ -32,7 +32,7 @@ opt.colorcolumn = "80"
 -- disable startup screen
 opt.shortmess = "I"
 -- true color
-if has "termguicolors" then
+if has("termguicolors") then
     opt.termguicolors = true
 end
 -- highlight all search pattern matches
@@ -42,7 +42,7 @@ opt.spelllang = "en_us"
 
 -- don't enable syntax because it causes issues with lsp starting
 -- cmd.syntax "enable"
-cmd.filetype "plugin indent on"
+cmd.filetype("plugin indent on")
 
 -- set tabs to 2 spaces
 opt.tabstop = 2
@@ -59,7 +59,7 @@ autocmd("VimResized", { pattern = "*", command = "wincmd =" })
 
 -- use system clipboard
 -- improved startup times by defining the unnamed clipboard
-if has "mac" == 1 then
+if has("mac") == 1 then
     g.clipboard = {
         name = "pbcopy",
         cache_enabled = 0,
@@ -72,7 +72,7 @@ if has "mac" == 1 then
             ["*"] = "pbpaste",
         },
     }
-elseif has "wsl" == 1 then
+elseif has("wsl") == 1 then
     g.clipboard = {
         cache_enabled = 0,
         name = "win32yank",
@@ -88,7 +88,7 @@ elseif has "wsl" == 1 then
 end
 
 -- Configure additional filetypes
-vim.filetype.add {
+vim.filetype.add({
     extension = {
         ["cr"] = "crystal",
         ["mdx"] = "mdx",
@@ -103,14 +103,14 @@ vim.filetype.add {
         ["skhdrc"] = "config",
         [".swcrc"] = "json",
     },
-}
+})
 
 -- Set vim.g.skip_ts_context_commentstring_module = true somewhere in your configuration to skip backwards compatibility routines and speed up loading.
 vim.g.skip_ts_context_commentstring_module = true
 
-require "enoch.lazy"
-require "enoch.keymaps"
-require "enoch.commands"
+require("enoch.lazy")
+require("enoch.keymaps")
+require("enoch.commands")
 
 opt.bg = "dark"
-cmd.colorscheme "onedark"
+cmd.colorscheme("onedark")

@@ -61,7 +61,7 @@ local plugins = {
 
                 "<leader>w",
                 function()
-                    (require "nvim-window").pick()
+                    (require("nvim-window")).pick()
                 end,
                 mode = "",
                 desc = "Pick window",

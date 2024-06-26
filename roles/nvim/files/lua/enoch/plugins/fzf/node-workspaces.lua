@@ -23,7 +23,7 @@ local function exec(cmd, _opt)
         return lines
     end
 
-    return f:read "*a"
+    return f:read("*a")
 end
 
 --- List workspaces as path, name pairs
@@ -33,7 +33,7 @@ end
 local function list_workspaces(root, package_manager)
     local workspaces
     if package_manager == "pnpm" then
-        local raw = exec "pnpm ls -json -r"
+        local raw = exec("pnpm ls -json -r")
         local j = json.decode(raw)
 
         workspaces = {}
@@ -125,7 +125,7 @@ function M.node_workspaces()
         print(root)
     else
         local ctx = uv.new_work(list_workspaces, function(encoded_workspaces)
-            local fzf_lua = require "fzf-lua"
+            local fzf_lua = require("fzf-lua")
             local workspaces = vim.mpack.decode(encoded_workspaces)
 
             vim.schedule(function()

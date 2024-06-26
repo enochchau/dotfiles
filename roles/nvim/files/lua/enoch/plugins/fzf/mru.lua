@@ -28,10 +28,10 @@ local function oldfiles_filter(cwd, items_number)
 end
 
 function M.mru(opts)
-    local make_entry = require "fzf-lua.make_entry"
-    local config = require "fzf-lua.config"
-    local core = require "fzf-lua.core"
-    local utils = require "fzf-lua.utils"
+    local make_entry = require("fzf-lua.make_entry")
+    local config = require("fzf-lua.config")
+    local core = require("fzf-lua.core")
+    local utils = require("fzf-lua.utils")
 
     opts = config.normalize_opts(opts, config.globals.oldfiles)
     if not opts then
@@ -44,8 +44,8 @@ function M.mru(opts)
     local sess_map = {}
 
     if opts.include_current_session then
-        for _, buffer in ipairs(vim.split(vim.fn.execute ":buffers! t", "\n")) do
-            local bufnr = tonumber(buffer:match "%s*(%d+)")
+        for _, buffer in ipairs(vim.split(vim.fn.execute(":buffers! t"), "\n")) do
+            local bufnr = tonumber(buffer:match("%s*(%d+)"))
             if bufnr then
                 local file = vim.api.nvim_buf_get_name(bufnr)
                 local fs_stat = not opts.stat_file and true

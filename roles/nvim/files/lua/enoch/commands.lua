@@ -1,7 +1,7 @@
 local command = vim.api.nvim_create_user_command
 local fn = vim.fn
-local open = require "enoch.open"
-local colorscheme = require "enoch.colorscheme"
+local open = require("enoch.open")
+local colorscheme = require("enoch.colorscheme")
 
 command("BufClear", "%bd|e#|bd#", {})
 
@@ -16,7 +16,7 @@ end, {})
 
 command("Cdg", function()
     return vim.api.nvim_set_current_dir(
-        vim.trim(fn.system "git rev-parse --show-toplevel")
+        vim.trim(fn.system("git rev-parse --show-toplevel"))
     )
 end, {})
 

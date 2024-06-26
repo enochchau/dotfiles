@@ -11,7 +11,7 @@ local function config()
         vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
     end
 
-    vim.diagnostic.config { virtual_text = false }
+    vim.diagnostic.config({ virtual_text = false })
 
     vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(ev)
@@ -23,7 +23,7 @@ local function config()
 
             vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-            local fzf = require "fzf-lua"
+            local fzf = require("fzf-lua")
             if supports(method.textDocument_rename) then
                 map("n", "<leader>rn", vim.lsp.buf.rename, map_opts)
             end

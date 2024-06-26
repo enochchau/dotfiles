@@ -43,10 +43,10 @@ return {
             {
                 "<leader>f",
                 function()
-                    require("conform").format {
+                    require("conform").format({
                         async = true,
                         lsp_fallback = true,
-                    }
+                    })
                 end,
                 mode = "",
                 noremap = true,
@@ -63,11 +63,11 @@ return {
         "numToStr/Comment.nvim",
         dependencies = { "JoosepAlviste/nvim-ts-context-commentstring" },
         config = function()
-            require("Comment").setup {
+            require("Comment").setup({
                 pre_hook = require(
                     "ts_context_commentstring.integrations.comment_nvim"
                 ).create_pre_hook(),
-            }
+            })
         end,
         lazy = false,
     },
@@ -106,11 +106,11 @@ return {
             "onsails/lspkind.nvim",
         },
         config = function()
-            local luasnip = require "luasnip"
-            local lspkind = require "lspkind"
-            local cmp = require "cmp"
+            local luasnip = require("luasnip")
+            local lspkind = require("lspkind")
+            local cmp = require("cmp")
 
-            cmp.setup {
+            cmp.setup({
                 snippet = {
                     expand = function(args)
                         luasnip.lsp_expand(args.body)
@@ -122,9 +122,9 @@ return {
                             if luasnip.expandable() then
                                 luasnip.expand()
                             else
-                                cmp.confirm {
+                                cmp.confirm({
                                     select = true,
-                                }
+                                })
                             end
                         else
                             fallback()
@@ -160,12 +160,12 @@ return {
                     { { name = "spell" } }
                 ),
                 formatting = {
-                    format = lspkind.cmp_format {
+                    format = lspkind.cmp_format({
                         preset = "default",
                         mode = "symbol_text",
-                    },
+                    }),
                 },
-            }
+            })
 
             -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
             cmp.setup.cmdline({ "/", "?" }, {

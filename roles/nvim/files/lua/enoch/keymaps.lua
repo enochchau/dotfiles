@@ -1,4 +1,4 @@
-local open = require "enoch.open"
+local open = require("enoch.open")
 
 local map = vim.keymap.set
 local opts = { noremap = true, silent = true }

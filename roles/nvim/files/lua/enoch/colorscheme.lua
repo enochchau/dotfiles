@@ -45,7 +45,7 @@ local function cycle_colors_prev()
 end
 
 local function save_color()
-    local full_path = vim.fn.stdpath "config" .. "/" .. color_save_filename
+    local full_path = vim.fn.stdpath("config") .. "/" .. color_save_filename
     local colors_name = vim.g.colors_name
     local already_saved =
         vim.trim(fn.system(string.format("grep %s %s", colors_name, full_path)))
