@@ -17,7 +17,7 @@ alias cdgadved="cdgp ui-gen2/src/components/AdvancedEditor/"
 
 dev_scripts_base=~/code/dev-scripts
 if test -d $dev_scripts_base; then
-    alias proj="$dev_scripts_base/project $HOME/Gatsby $HOME/code $HOME/Gatsby/repo"
+    alias proj="$dev_scripts_base/project $HOME/Gatsby $HOME/code $HOME/Gatsby/repo $HOME/Gatsby/code"
 fi
 
 gatsby_scripts_base=~/Gatsby/scripts
