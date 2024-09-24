@@ -30,8 +30,6 @@ if test -d $gatsby_scripts_base; then
     alias gatsby-worktree="$gatsby_scripts_base/tmux-worktree-add \$(git branch | grep '^  ' | sed 's/^  //' | fzf)"
 fi
 
-export PULSAR_CPP_DIR="/usr/local/Cellar/libpulsar/3.4.0"
-
 # opam configuration
 # [[ ! -r /Users/enochchau/.opam/opam-init/init.zsh ]] || source /Users/enochchau/.opam/opam-init/init.zsh  > /dev/null 2> /dev/null
 

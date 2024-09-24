@@ -101,5 +101,6 @@
   "window.autoDetectColorScheme": true,
   "workbench.sideBar.location": "right",
   "workbench.colorTheme": "Default Light Modern",
-  "window.density.editorTabHeight": "compact"
+  "color-highlight.markerType": "dot-after",
+  "workbench.preferredLightColorTheme": "Default Light+"
 }
