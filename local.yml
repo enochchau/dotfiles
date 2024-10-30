@@ -58,6 +58,8 @@
           - ripgrep
           - wget
           - zip
+    - role: mise
+      tags: mise
     - role: nodejs
       tags: nodejs
       vars:
