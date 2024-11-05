@@ -8,7 +8,7 @@ return {
 
             require("nvim-treesitter.configs").setup({
                 ignore_install = {},
-                ensure_installed = { "styled", "css" },
+                ensure_installed = { "styled", "css", "comment" },
                 sync_install = false,
                 auto_install = true,
                 modules = {},
