@@ -89,11 +89,6 @@ local function config()
                     },
                 },
             }
-        elseif server == "vtsls" then
-            require("lspconfig.configs").vtsls = require("vtsls").lspconfig
-            opts = {
-                capabilities = require("cmp_nvim_lsp").default_capabilities(),
-            }
         else
             opts = {
                 capabilities = require("cmp_nvim_lsp").default_capabilities(),
@@ -115,7 +110,6 @@ return {
             "williamboman/mason-lspconfig.nvim",
             "hrsh7th/nvim-cmp",
             "ibhagwan/fzf-lua",
-            "yioneko/nvim-vtsls",
         },
     },
 }

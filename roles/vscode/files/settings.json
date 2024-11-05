@@ -33,7 +33,6 @@
     {
       "before": ["<leader>", "b"],
       "commands": ["workbench.action.showAllEditors"]
-
     },
     {
       "before": ["<leader>", "n"],
@@ -63,9 +62,18 @@
     {
       "before": ["k"],
       "after": ["g", "k"]
-    }, {
+    },
+    {
       "before": ["g", "w"],
       "commands": ["workbench.actions.view.problems"]
+    },
+    {
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.nextInFiles"]
+    },
+    {
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prevInFiles"]
     }
   ],
   "editor.letterSpacing": 0.1,
@@ -102,5 +110,5 @@
   "workbench.sideBar.location": "right",
   "workbench.colorTheme": "Default Light Modern",
   "color-highlight.markerType": "dot-after",
-  "workbench.preferredLightColorTheme": "Default Light+"
+  "workbench.preferredLightColorTheme": "Default Dark Modern"
 }
