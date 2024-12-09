@@ -65,7 +65,6 @@ local function config()
         local opts
         if server == "jsonls" then
             opts = {
-                capabilities = require("cmp_nvim_lsp").default_capabilities(),
                 settings = {
                     json = {
                         schemas = require("schemastore").json.schemas(),
@@ -75,7 +74,6 @@ local function config()
             }
         elseif server == "yamlls" then
             opts = {
-                capabilities = require("cmp_nvim_lsp").default_capabilities(),
                 settings = {
                     yaml = {
                         schemaStore = {
@@ -90,10 +88,10 @@ local function config()
                 },
             }
         else
-            opts = {
-                capabilities = require("cmp_nvim_lsp").default_capabilities(),
-            }
+            opts = {}
         end
+        opts.capabilities =
+            require("blink.cmp").get_lsp_capabilities(opts.capabilities)
 
         require("lspconfig")[server].setup(opts)
     end
@@ -108,7 +106,7 @@ return {
             "b0o/schemastore.nvim",
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
-            "hrsh7th/nvim-cmp",
+            "saghen/blink.cmp",
             "ibhagwan/fzf-lua",
         },
     },

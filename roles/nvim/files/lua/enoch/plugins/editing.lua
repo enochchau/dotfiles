@@ -45,7 +45,7 @@ return {
                 function()
                     require("conform").format({
                         async = true,
-                        lsp_format = 'fallback',
+                        lsp_format = "fallback",
                     })
                 end,
                 mode = "",
@@ -91,100 +91,22 @@ return {
             require("luasnip.loaders.from_vscode").lazy_load()
         end,
     },
-
     {
-        "hrsh7th/nvim-cmp",
-        dependencies = {
-            "hrsh7th/cmp-buffer",
-            "hrsh7th/cmp-nvim-lsp",
-            "hrsh7th/cmp-path",
-            "hrsh7th/cmp-cmdline",
-            "f3fora/cmp-spell",
-            -- snippets
-            "L3MON4D3/LuaSnip",
-            "saadparwaiz1/cmp_luasnip",
-            "onsails/lspkind.nvim",
+        "saghen/blink.cmp",
+        lazy = false,
+        dependencies = "rafamadriz/friendly-snippets",
+        version = "v0.7.4",
+
+        ---@module 'blink.cmp'
+        ---@type blink.cmp.Config
+        opts = {
+            keymap = { preset = "super-tab" },
+            completion = {
+                documentation = {
+                    auto_show = true,
+                },
+            },
         },
-        config = function()
-            local luasnip = require("luasnip")
-            local lspkind = require("lspkind")
-            local cmp = require("cmp")
-
-            cmp.setup({
-                snippet = {
-                    expand = function(args)
-                        luasnip.lsp_expand(args.body)
-                    end,
-                },
-                mapping = {
-                    ["<CR>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            if luasnip.expandable() then
-                                luasnip.expand()
-                            else
-                                cmp.confirm({
-                                    select = true,
-                                })
-                            end
-                        else
-                            fallback()
-                        end
-                    end),
-
-                    ["<Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.select_next_item()
-                        elseif luasnip.locally_jumpable(1) then
-                            luasnip.jump(1)
-                        else
-                            fallback()
-                        end
-                    end, { "i", "s" }),
-                    ["<S-Tab>"] = cmp.mapping(function(fallback)
-                        if cmp.visible() then
-                            cmp.select_prev_item()
-                        elseif luasnip.locally_jumpable(-1) then
-                            luasnip.jump(-1)
-                        else
-                            fallback()
-                        end
-                    end, { "i", "s" }),
-                },
-                sources = cmp.config.sources(
-                    {
-                        { name = "nvim_lsp" },
-                        { name = "luasnip" },
-                    },
-                    { { name = "buffer" } },
-                    { { name = "path" } },
-                    { { name = "spell" } }
-                ),
-                formatting = {
-                    format = lspkind.cmp_format({
-                        preset = "default",
-                        mode = "symbol_text",
-                    }),
-                },
-            })
-
-            -- Use buffer source for `/` and `?` (if you enabled `native_menu`, this won't work anymore).
-            cmp.setup.cmdline({ "/", "?" }, {
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = {
-                    { name = "buffer" },
-                },
-            })
-
-            -- Use cmdline & path source for ':' (if you enabled `native_menu`, this won't work anymore).
-            cmp.setup.cmdline(":", {
-                mapping = cmp.mapping.preset.cmdline(),
-                sources = cmp.config.sources({
-                    { name = "path" },
-                }, {
-                    { name = "cmdline" },
-                }),
-                matching = { disallow_symbol_nonprefix_matching = false },
-            })
-        end,
+        opts_extend = { "sources.completion.enabled_providers" },
     },
 }
