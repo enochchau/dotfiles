@@ -81,21 +81,10 @@ return {
     },
 
     {
-        "L3MON4D3/LuaSnip",
-        -- follow latest release.
-        version = "v2.*", -- Replace <CurrentMajor> by the latest released major (first number of latest release)
-        -- install jsregexp (optional!).
-        build = "make install_jsregexp",
-        dependencies = { "rafamadriz/friendly-snippets" },
-        config = function()
-            require("luasnip.loaders.from_vscode").lazy_load()
-        end,
-    },
-    {
         "saghen/blink.cmp",
         lazy = false,
         dependencies = "rafamadriz/friendly-snippets",
-        version = "v0.7.4",
+        version = "v0.8.1",
 
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config

@@ -109,6 +109,5 @@
   "window.autoDetectColorScheme": true,
   "workbench.sideBar.location": "right",
   "workbench.colorTheme": "Default Light Modern",
-  "color-highlight.markerType": "dot-after",
-  "workbench.preferredLightColorTheme": "Default Dark Modern"
+  "color-highlight.markerType": "dot-after"
 }
