@@ -9,5 +9,5 @@ alt + shift - f : ~/.config/skhd/defaultbrowser.applescript firefox
 alt - f : open -a Firefox
 alt - s : open -a Slack
 alt - u : open -a Spotify
-alt - t : ~/.config/skhd/alacritty.applescript
+alt - t : open -a Ghostty
 alt + shift - l : ~/.config/skhd/lorem.applescript
