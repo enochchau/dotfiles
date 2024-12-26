@@ -58,7 +58,6 @@ local function config()
         end,
     })
 
-    ---@type string[]
     local servers = require("mason-lspconfig").get_installed_servers()
 
     for _, server in ipairs(servers) do
@@ -108,6 +107,21 @@ return {
             "williamboman/mason-lspconfig.nvim",
             "saghen/blink.cmp",
             "ibhagwan/fzf-lua",
+        },
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        ---@type MasonLspconfigSettings
+        config = {
+            ensure_installed = {
+                "jsonls",
+                "cssls",
+                "html",
+                "eslint",
+                "lua_ls",
+                "ts_ls",
+                "yamlls",
+            },
         },
     },
 }

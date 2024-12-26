@@ -21,13 +21,6 @@ local plugins = {
         config = true,
     },
 
-    -- {
-    --     "ggandor/leap.nvim",
-    --     config = function()
-    --         require("leap").create_default_mappings()
-    --     end,
-    -- },
-
     "tpope/vim-eunuch",
 
     -- window picker
@@ -35,7 +28,6 @@ local plugins = {
         url = "https://gitlab.com/yorickpeterse/nvim-window.git",
         opts = {
             chars = {
-
                 "f",
                 "j",
                 "d",
