@@ -102,6 +102,7 @@ vim.filetype.add({
         ["yabairc"] = "sh",
         ["skhdrc"] = "config",
         [".swcrc"] = "json",
+        [vim.env.XDG_CONFIG_HOME .. "/ghostty/config"] = "ini",
     },
 })
 

@@ -3,13 +3,6 @@
 - import_tasks: install_linux.yml
   when: ansible_facts['os_family'] == "Debian" or ansible_facts['os_family'] == "RedHat"
 
-- name: Download Vim Plug
-  ansible.builtin.git:
-    repo: https://github.com/wbthomason/packer.nvim
-    dest: ~/.local/share/nvim/site/pack/packer/start/packer.nvim
-    depth: 1
-    version: master
-
 - name: Make .config directory
   ansible.builtin.file:
     path: ~/.config

@@ -71,14 +71,8 @@
       tags: nvim
     - role: vscode
       tags: vscode
-    - role: fonts
-      tags: fonts
-    - role: alacritty
-      tags: alacritty
-      vars:
-        font_size: 15
-        font: FantasqueSansM Nerd Font
-        opacity: 0.85
+    - role: ghostty
+      tags: ghostty
     - role: skhd
       tags: skhd
       when: ansible_facts['os_family'] == "Darwin"

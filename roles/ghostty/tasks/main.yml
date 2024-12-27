@@ -1,0 +1,17 @@
+- name: Install ghostty on MacOS
+  community.general.homebrew:
+    name: ghostty
+    state: present
+  when: ansible_facts['os_family'] == "Darwin"
+
+- name: Make .config directory
+  ansible.builtin.file:
+    path: ~/.config
+    state: directory
+    mode: "0755"
+
+- name: Symlink config
+  ansible.builtin.file:
+    src: "{{ ansible_env.PWD }}/roles/ghostty/files"
+    path: ~/.config/ghostty
+    state: link
