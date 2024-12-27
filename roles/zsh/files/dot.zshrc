@@ -43,8 +43,8 @@ if test -d $dev_scripts_base; then
     export PATH="$dev_scripts_base:$PATH"
     fpath+=$dev_scripts_base/completions
     alias gitdel="$dev_scripts_base/git-delete"
-    alias conf="$dev_scripts_base/project $XDG_CONFIG_HOME"
-    alias dot="$dev_scripts_base/project $HOME/dotfiles $HOME/dotfiles/roles"
+    alias conf="source $dev_scripts_base/project $XDG_CONFIG_HOME"
+    alias dot="source $dev_scripts_base/project $HOME/dotfiles $HOME/dotfiles/roles"
 fi
 # docker-compose v2 alias so that completions work
 alias docker-compose='docker compose'

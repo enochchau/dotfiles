@@ -6,6 +6,7 @@ local plugins = {
     "tpope/vim-obsession",
 
     -- themes
+    { "catppuccin/nvim", name = "catppuccin", priority = 1000 },
     "navarasu/onedark.nvim",
     "folke/tokyonight.nvim",
 

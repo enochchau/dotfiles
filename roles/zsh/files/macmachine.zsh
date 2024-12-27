@@ -17,7 +17,7 @@ alias cdgadved="cdgp ui-gen2/src/components/AdvancedEditor/"
 
 dev_scripts_base=~/code/dev-scripts
 if test -d $dev_scripts_base; then
-    alias proj="$dev_scripts_base/project $HOME/Gatsby $HOME/code $HOME/Gatsby/repo $HOME/Gatsby/code"
+    alias proj="source $dev_scripts_base/project $HOME/Gatsby $HOME/code $HOME/Gatsby/repo $HOME/Gatsby/code"
 fi
 
 gatsby_scripts_base=~/Gatsby/scripts
@@ -25,9 +25,6 @@ if test -d $gatsby_scripts_base; then
     fpath+=$gatsby_scripts_base/completions
     alias aws-sso="$gatsby_scripts_base/aws-sso"
     alias aws-login="$gatsby_scripts_base/aws-login"
-    alias killg="$gatsby_scripts_base/gatsby-kill"
-    alias rung="$gatsby_scripts_base/gatsby-run"
-    alias gatsby-worktree="$gatsby_scripts_base/tmux-worktree-add \$(git branch | grep '^  ' | sed 's/^  //' | fzf)"
 fi
 
 # opam configuration
