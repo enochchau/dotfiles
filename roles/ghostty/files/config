@@ -1,1 +1,2 @@
 theme=OneHalfDark
+keybind=global:cmd+shift+`=toggle_quick_terminal
