@@ -114,4 +114,4 @@ require("enoch.keymaps")
 require("enoch.commands")
 
 opt.bg = "dark"
-cmd.colorscheme("catppuccin")
+cmd.colorscheme("onedark")

@@ -1,2 +1,3 @@
 theme=OneHalfDark
 keybind=global:cmd+shift+`=toggle_quick_terminal
+# command=/opt/homebrew/bin/fish --login --interactive

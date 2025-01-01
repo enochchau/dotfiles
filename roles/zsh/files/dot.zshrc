@@ -108,3 +108,5 @@ esac
 # pnpm end
 
 eval "$(mise activate zsh)"
+
+bindkey -e
