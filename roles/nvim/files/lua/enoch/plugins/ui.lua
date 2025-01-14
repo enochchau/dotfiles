@@ -12,8 +12,10 @@ return {
         },
     },
     {
-        "NvChad/nvim-colorizer.lua",
+        "catgoose/nvim-colorizer.lua",
+        event = "VeryLazy",
         opts = {
+            lazy_load = true,
             filetypes = {
                 "javascript",
                 "javascriptreact",
