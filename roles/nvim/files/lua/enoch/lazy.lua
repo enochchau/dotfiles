@@ -11,17 +11,31 @@ if not vim.uv.fs_stat(lazypath) then
 end
 vim.opt.runtimepath:prepend(lazypath)
 
-require("lazy").setup("enoch.plugins", {
-    performance = {
-        rtp = {
-            disabled_plugins = {
-                "tutor",
-                "tohtml",
+if vim.g.vscode then
+    require("lazy").setup("enoch.vscode.plugins", {
+        performance = {
+            rtp = {
+                disabled_plugins = {
+                    "gzip",
+                    "matchparen",
+                    "netrwPlugin",
+                    "tarPlugin",
+                    "tohtml",
+                    "tutor",
+                    "zipPlugin",
+                },
             },
         },
-    },
-    dev = {
-        path = "~/code",
-        patterns = { "ec965" },
-    },
-})
+    })
+else
+    require("lazy").setup("enoch.plugins", {
+        performance = {
+            rtp = {
+                disabled_plugins = {
+                    "tutor",
+                    "tohtml",
+                },
+            },
+        },
+    })
+end

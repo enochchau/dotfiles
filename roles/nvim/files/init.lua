@@ -54,64 +54,66 @@ g.netrw_liststyle = 3
 g.netrw_bufsettings = "nu rnu"
 g.netrw_sort_by = "exten"
 
--- auto resize
-autocmd("VimResized", { pattern = "*", command = "wincmd =" })
+if vim.g.vscode then
+    require("enoch.lazy")
+    require("enoch.vscode.keymaps")
+else
+    -- auto resize
+    autocmd("VimResized", { pattern = "*", command = "wincmd =" })
 
--- use system clipboard
--- improved startup times by defining the unnamed clipboard
-if has("mac") == 1 then
-    g.clipboard = {
-        name = "pbcopy",
-        cache_enabled = 0,
-        copy = {
-            ["+"] = "pbcopy",
-            ["*"] = "pbcopy",
+    -- use system clipboard
+    -- improved startup times by defining the unnamed clipboard
+    if has("mac") == 1 then
+        g.clipboard = {
+            name = "pbcopy",
+            cache_enabled = 0,
+            copy = {
+                ["+"] = "pbcopy",
+                ["*"] = "pbcopy",
+            },
+            paste = {
+                ["+"] = "pbpaste",
+                ["*"] = "pbpaste",
+            },
+        }
+    elseif has("wsl") == 1 then
+        g.clipboard = {
+            cache_enabled = 0,
+            name = "win32yank",
+            copy = {
+                ["*"] = "win32yank.exe -i --crlf",
+                ["+"] = "win32yank.exe -i --crlf",
+            },
+            paste = {
+                ["*"] = "win32yank.exe -o --lf",
+                ["+"] = "win32yank.exe -o --lf",
+            },
+        }
+    end
+
+    -- Configure additional filetypes
+    vim.filetype.add({
+        extension = {
+            ["cr"] = "crystal",
+            ["mdx"] = "mdx",
+            ["pro"] = "prolog",
+            ["tf"] = "terraform",
+            ["zshrc"] = "zsh",
+            ["zshenv"] = "zsh",
+            ["applescript"] = "applescript",
         },
-        paste = {
-            ["+"] = "pbpaste",
-            ["*"] = "pbpaste",
+        filename = {
+            ["yabairc"] = "sh",
+            ["skhdrc"] = "config",
+            [".swcrc"] = "json",
+            [vim.env.XDG_CONFIG_HOME .. "/ghostty/config"] = "ini",
         },
-    }
-elseif has("wsl") == 1 then
-    g.clipboard = {
-        cache_enabled = 0,
-        name = "win32yank",
-        copy = {
-            ["*"] = "win32yank.exe -i --crlf",
-            ["+"] = "win32yank.exe -i --crlf",
-        },
-        paste = {
-            ["*"] = "win32yank.exe -o --lf",
-            ["+"] = "win32yank.exe -o --lf",
-        },
-    }
+    })
+
+    require("enoch.lazy")
+    require("enoch.keymaps")
+    require("enoch.commands")
+
+    opt.bg = "dark"
+    cmd.colorscheme("onedark")
 end
-
--- Configure additional filetypes
-vim.filetype.add({
-    extension = {
-        ["cr"] = "crystal",
-        ["mdx"] = "mdx",
-        ["pro"] = "prolog",
-        ["tf"] = "terraform",
-        ["zshrc"] = "zsh",
-        ["zshenv"] = "zsh",
-        ["applescript"] = "applescript",
-    },
-    filename = {
-        ["yabairc"] = "sh",
-        ["skhdrc"] = "config",
-        [".swcrc"] = "json",
-        [vim.env.XDG_CONFIG_HOME .. "/ghostty/config"] = "ini",
-    },
-})
-
--- Set vim.g.skip_ts_context_commentstring_module = true somewhere in your configuration to skip backwards compatibility routines and speed up loading.
-vim.g.skip_ts_context_commentstring_module = true
-
-require("enoch.lazy")
-require("enoch.keymaps")
-require("enoch.commands")
-
-opt.bg = "dark"
-cmd.colorscheme("onedark")

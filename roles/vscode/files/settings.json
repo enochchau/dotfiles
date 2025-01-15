@@ -94,8 +94,8 @@
   "terminal.integrated.fontSize": 14,
   "editor.rulers": [80],
   "update.showReleaseNotes": false,
-  "editor.fontFamily": "'FantasqueSansM Nerd Font', Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontSize": 15,
+  "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontSize": 14,
   "editor.lineNumbers": "relative",
   "editor.cursorBlinking": "solid",
   "[yaml]": {
@@ -109,5 +109,10 @@
   "window.autoDetectColorScheme": true,
   "workbench.sideBar.location": "right",
   "workbench.colorTheme": "Default Light Modern",
-  "color-highlight.markerType": "dot-after"
+  "color-highlight.markerType": "dot-after",
+  "workbench.preferredLightColorTheme": "Default Light+",
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "git.openRepositoryInParentFolders": "never"
 }
