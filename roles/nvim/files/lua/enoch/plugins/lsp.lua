@@ -59,6 +59,11 @@ local function config()
     })
 
     local servers = require("mason-lspconfig").get_installed_servers()
+    servers = vim.tbl_filter(function(value)
+        return value ~= "ts_ls"
+    end, servers)
+
+    require("lspconfig.configs").vtsls = require("vtsls").lspconfig
 
     for _, server in ipairs(servers) do
         local opts
@@ -86,6 +91,28 @@ local function config()
                     },
                 },
             }
+        elseif server == "vtsls" then
+            opts = {
+                settings = {
+                    vtsls = { autoUseWorkspaceTsdk = true },
+                },
+                root_dir = function(fname)
+                    local util = require("lspconfig.util")
+
+                    -- configure the root workspace directory
+                    -- TODO: check if this needs to work with other package managers as well
+                    if string.find(fname, "/Gatsby/") then
+                        return util.root_pattern("yarn.lock")(fname)
+                    end
+
+                    return util.root_pattern("tsconfig.json", "jsconfig.json")(
+                        fname
+                    ) or util.root_pattern(
+                        "package.json",
+                        ".git"
+                    )(fname)
+                end,
+            }
         else
             opts = {}
         end
@@ -102,6 +129,7 @@ return {
         "neovim/nvim-lspconfig",
         config = config,
         dependencies = {
+            "yioneko/nvim-vtsls",
             "b0o/schemastore.nvim",
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
