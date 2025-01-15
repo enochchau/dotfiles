@@ -97,14 +97,17 @@ local function config()
                     vtsls = { autoUseWorkspaceTsdk = true },
                 },
                 root_dir = function(fname)
-                    local util = require("lspconfig.util")
-
-                    -- configure the root workspace directory
-                    -- TODO: check if this needs to work with other package managers as well
-                    if string.find(fname, "/Gatsby/") then
-                        return util.root_pattern("yarn.lock")(fname)
+                    for dir in vim.fs.parents(fname) do
+                        if
+                            vim.fn.isdirectory(
+                                dir .. "/node_modules/typescript"
+                            ) == 1
+                        then
+                            return dir
+                        end
                     end
 
+                    local util = require("lspconfig.util")
                     return util.root_pattern("tsconfig.json", "jsconfig.json")(
                         fname
                     ) or util.root_pattern(
