@@ -1,3 +1,6 @@
 theme=OneHalfDark
 keybind=global:cmd+shift+`=toggle_quick_terminal
+font-feature=-calt
+font-feature=-liga
+font-feature=-dliga
 # command=/opt/homebrew/bin/fish --login --interactive

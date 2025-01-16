@@ -6,7 +6,6 @@
   },
   "editor.inlineSuggest.enabled": true,
   "typescript.updateImportsOnFileMove.enabled": "always",
-  "workbench.iconTheme": "material-icon-theme",
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
@@ -91,11 +90,8 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "editor.guides.highlightActiveIndentation": true,
-  "terminal.integrated.fontSize": 14,
   "editor.rulers": [80],
   "update.showReleaseNotes": false,
-  "editor.fontFamily": "Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontSize": 14,
   "editor.lineNumbers": "relative",
   "editor.cursorBlinking": "solid",
   "[yaml]": {
@@ -114,5 +110,7 @@
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
-  "git.openRepositoryInParentFolders": "never"
+  "git.openRepositoryInParentFolders": "never",
+  "editor.fontFamily": "'JetBrainsMono Nerd Font', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures":false 
 }
