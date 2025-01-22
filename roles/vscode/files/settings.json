@@ -107,10 +107,10 @@
   "workbench.colorTheme": "Default Light Modern",
   "color-highlight.markerType": "dot-after",
   "workbench.preferredLightColorTheme": "Default Light+",
-  "extensions.experimental.affinity": {
-    "asvetliakov.vscode-neovim": 1
-  },
   "git.openRepositoryInParentFolders": "never",
   "editor.fontFamily": "'JetBrainsMono Nerd Font', Menlo, Monaco, 'Courier New', monospace",
-  "editor.fontLigatures":false 
+  "editor.fontLigatures": false,
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  }
 }

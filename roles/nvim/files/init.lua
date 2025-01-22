@@ -54,30 +54,31 @@ g.netrw_liststyle = 3
 g.netrw_bufsettings = "nu rnu"
 g.netrw_sort_by = "exten"
 
-local rnu_toggle_id = vim.api.nvim_create_augroup("RelativeNumberToggle", { clear = true })
-
--- Autocmd to toggle relative number based on mode
-vim.api.nvim_create_autocmd("InsertEnter", {
-    pattern = "*",
-    callback = function()
-        vim.wo.relativenumber = false
-    end,
-    group = rnu_toggle_id
-})
-vim.api.nvim_create_autocmd("InsertLeave", {
-    pattern = "*",
-    callback = function()
-        vim.wo.relativenumber = true
-    end,
-    group = rnu_toggle_id
-})
-
 if vim.g.vscode then
     require("enoch.lazy")
     require("enoch.vscode.keymaps")
 else
     -- auto resize
     autocmd("VimResized", { pattern = "*", command = "wincmd =" })
+
+    local rnu_toggle_id =
+        vim.api.nvim_create_augroup("RelativeNumberToggle", { clear = true })
+
+    -- Autocmd to toggle relative number based on mode
+    autocmd("InsertEnter", {
+        pattern = "*",
+        callback = function()
+            vim.wo.relativenumber = false
+        end,
+        group = rnu_toggle_id,
+    })
+    autocmd("InsertLeave", {
+        pattern = "*",
+        callback = function()
+            vim.wo.relativenumber = true
+        end,
+        group = rnu_toggle_id,
+    })
 
     -- use system clipboard
     -- improved startup times by defining the unnamed clipboard
