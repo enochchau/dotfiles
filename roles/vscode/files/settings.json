@@ -112,5 +112,6 @@
   "editor.fontLigatures": false,
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
-  }
+  },
+  "workbench.preferredDarkColorTheme": "Darcula"
 }

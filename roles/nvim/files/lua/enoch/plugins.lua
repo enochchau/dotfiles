@@ -26,6 +26,7 @@ local plugins = {
     },
     "navarasu/onedark.nvim",
     "folke/tokyonight.nvim",
+    "nyoom-engineering/oxocarbon.nvim",
 
     -- additional language support
     "pearofducks/ansible-vim",
@@ -88,6 +89,17 @@ local plugins = {
         "williamboman/mason-lspconfig.nvim",
         config = true,
         dependencies = { "williamboman/mason.nvim" },
+    },
+    {
+        "OXY2DEV/markview.nvim",
+        lazy = false,
+    },
+    {
+        "OXY2DEV/helpview.nvim",
+        lazy = false,
+        dependencies = {
+            "nvim-treesitter/nvim-treesitter",
+        },
     },
 }
 
