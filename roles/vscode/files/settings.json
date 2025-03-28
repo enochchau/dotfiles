@@ -92,7 +92,6 @@
   "editor.guides.highlightActiveIndentation": true,
   "editor.rulers": [80],
   "update.showReleaseNotes": false,
-  "editor.lineNumbers": "relative",
   "editor.cursorBlinking": "solid",
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
@@ -106,12 +105,18 @@
   "workbench.sideBar.location": "right",
   "workbench.colorTheme": "Default Light Modern",
   "color-highlight.markerType": "dot-after",
-  "workbench.preferredLightColorTheme": "Default Light+",
+  "workbench.preferredLightColorTheme": "Default Dark+",
   "git.openRepositoryInParentFolders": "never",
   "editor.fontFamily": "'JetBrainsMono Nerd Font', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": false,
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
-  "workbench.preferredDarkColorTheme": "Darcula"
+  "editor.lineNumbers": "relative",
+  "github.copilot.enable": {
+    "*": true,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  }
 }
