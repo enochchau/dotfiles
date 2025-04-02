@@ -52,6 +52,7 @@ alias docker-compose='docker compose'
 alias gst='git status'
 alias gc='git commit'
 alias gb='git branch'
+alias gbcd="git for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:local) %(refname)'"
 alias gco='git checkout'
 alias gcp='git cherry-pick'
 alias gd='git diff'
