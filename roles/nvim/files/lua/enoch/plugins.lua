@@ -46,25 +46,9 @@ local plugins = {
     {
         url = "https://gitlab.com/yorickpeterse/nvim-window.git",
         opts = {
+            -- stylua: ignore
             chars = {
-                "f",
-                "j",
-                "d",
-                "k",
-                "s",
-                "l",
-                "a",
-                ";",
-                "c",
-                "m",
-                "r",
-                "u",
-                "e",
-                "i",
-                "w",
-                "o",
-                "q",
-                "p",
+                "f", "j", "d", "k", "s", "l", "a", ";", "c", "m", "r", "u", "e", "i", "w", "o", "q", "p",
             },
         },
         keys = {
