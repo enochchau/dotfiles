@@ -2,6 +2,7 @@ local command = vim.api.nvim_create_user_command
 local fn = vim.fn
 local open = require("enoch.open")
 local colorscheme = require("enoch.colorscheme")
+local myserver = require("enoch.server")
 
 command("BufClear", "%bd|e#|bd#", {})
 
@@ -42,3 +43,11 @@ command("Redir", function(ctx)
     local win = vim.api.nvim_get_current_win()
     vim.api.nvim_win_set_buf(win, buf)
 end, { nargs = "+", complete = "command" })
+
+command("StartServer", function()
+    myserver.start()
+end, {})
+
+command("StopServer", function()
+    myserver.stop()
+end, {})
