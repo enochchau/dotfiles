@@ -96,16 +96,14 @@
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "typescript.tsserver.maxTsServerMemory": 4096,
+  "typescript.tsserver.maxTsServerMemory": 16384,
   "editor.lineHeight": 1.2,
   "editor.wordWrap": "on",
   "editor.wrappingIndent": "none",
   "workbench.editor.splitSizing": "distribute",
-  "window.autoDetectColorScheme": true,
   "workbench.sideBar.location": "right",
   "workbench.colorTheme": "Default Light Modern",
   "color-highlight.markerType": "dot-after",
-  "workbench.preferredLightColorTheme": "Default Dark+",
   "git.openRepositoryInParentFolders": "never",
   "editor.fontFamily": "'JetBrainsMono Nerd Font', Menlo, Monaco, 'Courier New', monospace",
   "editor.fontLigatures": false,
@@ -114,9 +112,15 @@
   },
   "editor.lineNumbers": "relative",
   "github.copilot.enable": {
-    "*": true,
+    "*": false,
     "plaintext": false,
     "markdown": false,
     "scminput": false
+  },
+  "git.autofetch": true,
+  "window.autoDetectColorScheme": true,
+  "workbench.preferredLightColorTheme": "Default Dark Modern",
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
   }
 }
