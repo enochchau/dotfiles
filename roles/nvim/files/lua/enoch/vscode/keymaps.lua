@@ -6,13 +6,11 @@ vim.notify = vscode.notify
 --- run vscode.action
 ---@param action string
 ---@return function
-function call(action)
+local function call(action)
     return function()
         vscode.call(action)
     end
 end
-
-local opts = { noremap = true, silent = true }
 
 map("n", "K", call("editor.action.showHover"))
 map("n", "<leader>b", call("workbench.action.showAllEditors"))

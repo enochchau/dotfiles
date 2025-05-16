@@ -134,5 +134,5 @@ else
     require("enoch.commands")
 
     opt.bg = "dark"
-    cmd.colorscheme("onedark")
+    cmd.colorscheme("catppuccin-macchiato")
 end

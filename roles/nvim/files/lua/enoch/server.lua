@@ -24,7 +24,7 @@ end
 
 local function start()
     if server ~= nil then
-        server:close()
+        pcall(uv.close, server)
     end
     server = uv.new_tcp()
     server:bind("127.0.0.1", 6846)
