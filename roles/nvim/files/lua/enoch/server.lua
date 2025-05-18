@@ -1,27 +1,6 @@
 local uv = vim.uv
 local server
 
----@param str string
----@return table
-local function get_lines(str)
-    local lines = {}
-
-    for line in string.gmatch(str, "(.-)\r?\n") do
-        table.insert(lines, line)
-    end
-    return lines
-end
-
----@param lines table
----@return string
-local function join_lines(lines)
-    local s = ""
-    for _, value in ipairs(lines) do
-        s = s .. value .. "\n"
-    end
-    return s
-end
-
 local function start()
     if server ~= nil then
         pcall(uv.close, server)
@@ -37,7 +16,7 @@ local function start()
         client:read_start(function(err, chunk)
             assert(not err, err)
             if chunk then
-                local lines = get_lines(chunk)
+                local lines = vim.split(chunk, "\n")
                 local method, path, version
                 for i, line in ipairs(lines) do
                     if i == 1 then
@@ -67,7 +46,7 @@ local function start()
                     }
                 end
 
-                client:write(join_lines(response))
+                client:write(vim.iter(lines):join("\n"))
                 client:shutdown()
             else
                 client:close()
