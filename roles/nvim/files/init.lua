@@ -132,6 +132,7 @@ else
     require("enoch.lazy")
     require("enoch.keymaps")
     require("enoch.commands")
+    require("enoch.diagnostic")
 
     opt.bg = "dark"
     cmd.colorscheme("catppuccin-macchiato")
