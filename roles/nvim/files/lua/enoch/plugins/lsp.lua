@@ -1,17 +1,4 @@
 local function config()
-    local signs = {
-        Error = "󰅚 ", -- x000f015a
-        Warn = "󰀪 ", -- x000f002a
-        Info = "󰋽 ", -- x000f02fd
-        Hint = "󰌶 ", -- x000f0336
-    }
-
-    for type, icon in pairs(signs) do
-        local hl = "DiagnosticSign" .. type
-        vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = hl })
-    end
-
-    vim.diagnostic.config({ virtual_text = false })
 
     vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(ev)
