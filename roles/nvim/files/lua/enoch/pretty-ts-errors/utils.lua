@@ -7,20 +7,20 @@
 local function replace_all(text, pattern, replacement)
     local matches = vim.fn.matchlist(text, pattern)
 
-    if #matches == 0 then
-        return text
+    while #matches > 0 do
+        matches = vim.tbl_filter(function(value)
+            return string.len(value) > 0
+        end, matches)
+
+        if type(replacement) == "function" then
+            replacement = replacement(matches)
+        end
+
+        text = text:gsub(matches[1], replacement)
+        matches = vim.fn.matchlist(text, pattern)
     end
 
-    matches = vim.tbl_filter(function(value)
-        return string.len(value) > 0
-    end, matches)
-
-    if type(replacement) == "function" then
-        replacement = replacement(matches)
-    end
-
-    local result = text:gsub(matches[1], replacement)
-    return result
+    return text
 end
 
 return {

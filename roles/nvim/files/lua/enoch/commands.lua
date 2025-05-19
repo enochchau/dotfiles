@@ -56,7 +56,7 @@ command("TestReplaceAll", function()
     local replace_all = require("enoch.pretty-ts-errors.utils").replace_all
     -- equivalent function using JavaScript
     -- "hello world".replaceAll(/(lo)\s(wo)/g, (_, p1, p2) => p1+p2)
-    local res = replace_all("hello world", [[\(lo\)\s\(wo\)]], function(matches)
+    local res = replace_all("hello world hello world 1lo1wo1", [[\(lo\).\(wo\)]], function(matches)
         local p1 = matches[2]
         local p2 = matches[3]
         return p1 .. p2

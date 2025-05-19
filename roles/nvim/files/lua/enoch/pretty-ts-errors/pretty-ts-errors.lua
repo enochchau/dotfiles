@@ -42,14 +42,13 @@ end
 local function format_simple_type_block(_, code)
     return inline_code_block(code, "type")
 end
-
 ---@param message string
 ---@return string
 local function format_diagnostic_message(message)
     -- format quoted strings
     message = replace_all(
         message,
-        [[\(?:\s\)'"\(.*?\)\(?<!\\\)"'\(?:\s|:|.|$\)]],
+[=[\%(\s\)'"\(.\*?\)\(\?<!\\\)"'\%(\s|:|.|$\)]=],
         function(match_info)
             local p1 = match_info[2]
             -- Ignoring the 'format' function call as requested
@@ -60,7 +59,7 @@ local function format_diagnostic_message(message)
     -- format declare module snippet
     message = replace_all(
         message,
-        [=[['“]\(declare module \)['”]\(.*\)['“];['”]]=],
+[=[['“]\(declare module \)['”]\(.\*\)['“];['”]]=],
         function(m)
             local p1 = m[2]
             local p2 = m[3]
@@ -74,7 +73,7 @@ local function format_diagnostic_message(message)
     -- format missing props error
     message = replace_all(
         message,
-        [[\(is missing the following properties from type\s?\)'\(.*\)': \(\(?:#?\w+, \)*\(?:\(?!and\)\w+\)?\)]],
+[=[\(is missing the following properties from type\s\?\)'\(.\*\)': \(\%(#\?\w\+, \)\*\%(\(\?!and\)\w\+\)\?\)]=],
         function(m)
             local pre = m[2]
             local type_str = m[3]
@@ -99,7 +98,8 @@ local function format_diagnostic_message(message)
     -- Format type pairs
     message = replace_all(
         message,
-        [[\(types\) ['“]\(.*\)['”] and ['“]\(.*\)['”][.]?]],
+
+[=[\(types\) ['“]\(.\*?\)['”] and ['“]\(.\*?\)['”][.]\?]=],
         function(m)
             local p1 = m[2]
             local p2 = m[3]
@@ -114,7 +114,7 @@ local function format_diagnostic_message(message)
     -- Format type annotation options
     message = replace_all(
         message,
-        [[type annotation must be ['“]\(.*\)['”] or ['“]\(.*\)['”][.]?]],
+[=[type annotation must be ['“]\(.\*?\)['”] or ['“]\(.\*?\)['”][.]\?]=],
         function(m)
             local p1 = m[2]
             local p2 = m[3]
@@ -127,7 +127,7 @@ local function format_diagnostic_message(message)
 
     message = replace_all(
         message,
-        [[\(Overload \d of \d\), ['“]\(.*\)['”], ]],
+[=[\(Overload \d of \d\), ['“]\(.\*?\)['”], ]=],
         function(m)
             local p1 = m[2]
             local p2 = m[3]
@@ -138,10 +138,16 @@ local function format_diagnostic_message(message)
 
     -- format simple strings
     message =
-        replace_all(message, [[^['“]"[^"]*"['”]$]], format_typescript_block) -- Assuming format_typescript_block can handle the match directly
+        replace_all(message, 
+
+[=[\%^['“]"[^"]\*"['”]\%$]=]
+        , format_typescript_block) -- Assuming format_typescript_block can handle the match directly
 
     -- Replace module 'x' by module "x" for ts error #2307
-    message = replace_all(message, [[\(module \)'\([^"]*?\)']], function(m)
+    message = replace_all(message, 
+
+[=[\(module \)'\([^"]\*?\)']=]
+    , function(m)
         local p1 = m[2]
         local p2 = m[3]
         return p1 .. '"' .. p2 .. '"'
@@ -150,7 +156,7 @@ local function format_diagnostic_message(message)
     -- Format string types
     message = replace_all(
         message,
-        [[\(module|file|file name|imported via\) ['"“]\(.*\)['"“]\(?=[\s(.|,]|$\)]],
+[=[\(module|file|file name|imported via\) ['"“]\(.\*?\)['"“]\(\?=[\s(.|,]|$\)]=],
         function(m)
             local p1 = m[2]
             local p2 = m[3]
@@ -162,7 +168,8 @@ local function format_diagnostic_message(message)
     -- Format types
     message = replace_all(
         message,
-        [[\(type|type alias|interface|module|file|file name|class|method's|subtype of constraint\) ['“]\(.*?\)['“]\(?=[\s(.|,)]|$\)]],
+
+[=[\(type|type alias|interface|module|file|file name|class|method's|subtype of constraint\) ['“]\(.\*?\)['“]\(\?=[\s(.|,)]|$\)]=],
         function(m)
             local p1 = m[2]
             local p2 = m[3]
@@ -174,7 +181,8 @@ local function format_diagnostic_message(message)
     -- Format reversed types
     message = replace_all(
         message,
-        [[\(.*\)['“]\([^>]*\)['”] \(type|interface|return type|file|module|is \(not \)?assignable\)]],
+
+[=[\(.\*\)['“]\([^>]\*\)['”] \(type|interface|return type|file|module|is \(not \)\?assignable\)]=],
         function(m)
             local p1 = m[2]
             local p2 = m[3]
@@ -187,14 +195,15 @@ local function format_diagnostic_message(message)
     -- Format simple types that didn't captured before
     message = replace_all(
         message,
-        [=[['“]\(\(void|null|undefined|any|boolean|string|number|bigint|symbol\)\(\[\]\)?\)['”]=],
+[=[['“]\(\(void|null|undefined|any|boolean|string|number|bigint|symbol\)\(\[\]\)\?\)['”]]=],
         format_simple_type_block -- Assuming the Lua function exists and handles the match
     )
 
     -- Format some typescript key words
     message = replace_all(
         message,
-        [=[['“]\(import|export|require|in|continue|break|let|false|true|const|new|throw|await|for await|[0-9]+\)\( ?.*?\)['”]=],
+
+[=[['“]\(import|export|require|in|continue|break|let|false|true|const|new|throw|await|for await|[0-9]\+\)\( \?.\*?\)['”]]=],
         function(m)
             local p1 = m[2]
             local p2 = m[3]
@@ -205,7 +214,7 @@ local function format_diagnostic_message(message)
     -- Format return values
     message = replace_all(
         message,
-        [=[\(return|operator\) ['“]\(.*\)['”]]=],
+[=[\(return|operator\) ['“]\(.\*?\)['”]]=],
         function(m)
             local p1 = m[2]
             local p2 = m[3]
@@ -216,7 +225,7 @@ local function format_diagnostic_message(message)
     -- Format regular code blocks
     message = replace_all(
         message,
-        [[\(\w\)\@<!'\(\(?:\(?!["]\).\)*?\)'\(?!\w\)]],
+        [=[\(\w\)\@<!'\(\%(\(\?!["]\).\)\*?\)'\(\?!\w\)]=],
         function(m)
             local p1 = m[2]
             return " " .. un_styled_code_block(p1) .. " " -- Assuming unStyledCodeBlock exists and is snake_case in Lua

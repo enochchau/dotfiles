@@ -18,15 +18,29 @@ vim.diagnostic.config({
 local diagnostic_win_id = nil
 local diagnostic_buf_id = nil
 
+local manage_diag_win =
+    api.nvim_create_augroup("ManageDiagnosticWindow", { clear = true })
+local last_win = nil
+
 -- Autocommand to close the diagnostic window when the cursor moves
-api.nvim_create_autocmd("CursorMoved", {
-    group = api.nvim_create_augroup("CloseDiagnosticWindow", { clear = true }),
+api.nvim_create_autocmd("WinEnter", {
+    group = manage_diag_win,
     callback = function()
-        if diagnostic_win_id and api.nvim_win_is_valid(diagnostic_win_id) then
+        local current_win_id = vim.api.nvim_get_current_win()
+        if
+            last_win
+            and last_win == diagnostic_win_id
+            and current_win_id
+            and current_win_id ~= diagnostic_win_id
+            and diagnostic_win_id
+            and api.nvim_win_is_valid(diagnostic_win_id)
+        then
             api.nvim_win_close(diagnostic_win_id, true)
             diagnostic_win_id = nil
             diagnostic_buf_id = nil
         end
+
+        last_win = current_win_id
     end,
 })
 
@@ -87,7 +101,7 @@ local function format_diagnostic(diagnostic)
 
     local lines = { first }
     for i = 1, #message_lines do
-        table.insert(lines, "  " .. message_lines[i])
+        table.insert(lines, message_lines[i])
     end
 
     -- Simple Markdown formatting
@@ -156,8 +170,6 @@ local function show_line_diagnostics()
 
     -- Set buffer options for the floating window
     api.nvim_set_option_value("bufhidden", "wipe", { buf = buf })
-    -- api.nvim_buf_set_option(buf, "readonly", true)
-    -- api.nvim_buf_set_option(buf, "modifiable", false)
     api.nvim_set_option_value("filetype", "markdown", { buf = buf }) -- Set filetype for Markdown highlighting
 
     local diagnostic_messages, hl_positions = get_diagnostics_for_current_line()
@@ -193,27 +205,18 @@ local function show_line_diagnostics()
     -- Define window options for positioning
     ---@type vim.api.keyset.win_config
     local opts = {
-        relative = "cursor",
-        row = 1, -- Position below the cursor line
-        col = 0, -- Position at the cursor column
-        width = win_width,
-        height = win_height,
+        split = "below",
         style = "minimal",
-        border = "rounded", -- Optional: add a border
-        focusable = false, -- Prevent the window from being focused
+        height = api.nvim_get_option_value("lines", {}) * 0.25,
     }
 
     -- Open the floating window
     diagnostic_win_id = api.nvim_open_win(buf, false, opts)
+    api.nvim_buf_set_option(buf, "readonly", true)
+    api.nvim_buf_set_option(buf, "modifiable", false)
 
     api.nvim_set_option_value("wrap", true, { win = diagnostic_win_id })
-
-    -- Optional: Highlight the border
-    api.nvim_set_option_value(
-        "winhl",
-        "Normal:Normal,FloatBorder:FloatBorder",
-        { win = diagnostic_win_id }
-    )
+    api.nvim_set_current_win(diagnostic_win_id)
 end
 
 -- Expose the function via a command
