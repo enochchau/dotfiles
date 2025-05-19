@@ -72,10 +72,14 @@ local function format_diagnostic(diagnostic)
     local source = diagnostic.source or "nvim"
     local message = diagnostic.message
     if diagnostic.source == "typescript" then
-        message =
-            require("enoch.pretty-ts-errors.pretty-ts-errors").format_diagnostic_message(
-                message
-            )
+        vim.print(debug.getinfo(1, "S").source)
+        local scriptname = vim.print(debug.getinfo(1).source:match("@?(.*/)"))
+            .. "../../format-tsc-diag.js"
+        message = vim.fn.system({
+            "node",
+            scriptname,
+            message,
+        })
     end
     local message_lines = vim.split(message, "\n")
     local code = diagnostic.code
