@@ -56,7 +56,14 @@ end
 --- @return table<string> The formatted diagnostic string.
 local function format_diagnostic(diagnostic)
     local source = diagnostic.source or "nvim"
-    local message_lines = vim.split(diagnostic.message, "\n")
+    local message = diagnostic.message
+    if diagnostic.source == "typescript" then
+        message =
+            require("enoch.pretty-ts-errors.pretty-ts-errors").format_diagnostic_message(
+                message
+            )
+    end
+    local message_lines = vim.split(message, "\n")
     local code = diagnostic.code
 
     local icon_map
@@ -73,16 +80,14 @@ local function format_diagnostic(diagnostic)
 
     local icon = icon_map[diagnostic.severity]
 
-    local first =
-        string.format("%s%s *%s", icon, message_lines[1], source, code)
+    local first = string.format("%s%s", icon, source)
     if code ~= nil then
         first = first .. string.format("(%s)", code)
     end
-    first = first .. "*"
 
     local lines = { first }
-    for i = 2, #message_lines do
-        table.insert(lines, " " .. message_lines[i])
+    for i = 1, #message_lines do
+        table.insert(lines, "  " .. message_lines[i])
     end
 
     -- Simple Markdown formatting
@@ -125,7 +130,7 @@ local function get_diagnostics_for_current_line()
                     table.insert(hl_positions, {
                         hl_group,
                         { line_count, 0 },
-                        { line_count, 1 },
+                        { line_count, #line },
                     })
                 end
             end
