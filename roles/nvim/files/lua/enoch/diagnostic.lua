@@ -171,6 +171,7 @@ local function show_line_diagnostics()
 
     -- Set the content of the buffer
     api.nvim_buf_set_lines(buf, 0, -1, false, lines)
+
     for _, hl_pos in ipairs(hl_positions) do
         vim.hl.range(buf, ns_id, hl_pos[1], hl_pos[2], hl_pos[3])
     end
@@ -181,7 +182,7 @@ local function show_line_diagnostics()
         max_width = math.max(max_width, #line)
     end
     local win_height = math.min(
-        #lines,
+        #lines + 1, -- FIXME: account for word wrap when finding h/w
         math.floor(api.nvim_get_option_value("lines", {}) * 0.4)
     ) -- Limit height
     local win_width = math.min(
@@ -190,6 +191,7 @@ local function show_line_diagnostics()
     ) -- Limit width
 
     -- Define window options for positioning
+    ---@type vim.api.keyset.win_config
     local opts = {
         relative = "cursor",
         row = 1, -- Position below the cursor line
@@ -203,6 +205,8 @@ local function show_line_diagnostics()
 
     -- Open the floating window
     diagnostic_win_id = api.nvim_open_win(buf, false, opts)
+
+    api.nvim_set_option_value("wrap", true, { win = diagnostic_win_id })
 
     -- Optional: Highlight the border
     api.nvim_set_option_value(
