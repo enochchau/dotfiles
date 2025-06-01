@@ -50,12 +50,15 @@ fi
 alias docker-compose='docker compose'
 # git aliases
 alias gst='git status'
+alias gsh='git show'
+alias gshd='git dshow' # difftastic alias
 alias gc='git commit'
 alias gb='git branch'
 alias gbcd="git for-each-ref --sort=-committerdate refs/heads/ --format='%(committerdate:local) %(refname)'"
 alias gco='git checkout'
 alias gcp='git cherry-pick'
 alias gd='git diff'
+alias gdd='git ddiff' # difftastic alias
 alias gf='git fetch'
 alias gfa='git fetch --all'
 alias gl='git pull'
@@ -65,6 +68,10 @@ alias gpf='git push --force'
 alias gpsup='git push --set-upstream origin $(git rev-parse --abbrev-ref HEAD)'
 alias grb='git rebase'
 alias ga="git add"
+alias glg='git log --stat'
+alias glgp='git log --stat -p'
+alias glgpd='git dlog --stat -p' # difftastic alias
+
 # directory aliases
 alias -g ...='../..'
 alias -g ....='../../..'

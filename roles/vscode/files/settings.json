@@ -96,7 +96,7 @@
   "[yaml]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "typescript.tsserver.maxTsServerMemory": 16384,
+  "typescript.tsserver.maxTsServerMemory": 8192,
   "editor.lineHeight": 1.2,
   "editor.wordWrap": "on",
   "editor.wrappingIndent": "none",
@@ -112,15 +112,16 @@
   },
   "editor.lineNumbers": "relative",
   "github.copilot.enable": {
-    "*": false,
+    "*": true,
     "plaintext": false,
     "markdown": false,
     "scminput": false
   },
   "git.autofetch": true,
   "window.autoDetectColorScheme": true,
-  "workbench.preferredLightColorTheme": "Default Dark Modern",
   "[css]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
-  }
+  },
+  "typescript.experimental.useTsgo": false,
+  "diffEditor.maxComputationTime": 0
 }

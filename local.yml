@@ -33,6 +33,7 @@
           - stylua
           - kubectx
           - defaultbrowser
+          - difftastic
         homebrew_casks:
           - alacritty
           - linearmouse
