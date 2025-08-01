@@ -128,5 +128,6 @@
   "editor.minimap.size": "fit",
   "editor.minimap.enabled": false,
   "workbench.editor.empty.hint": "hidden",
-  "workbench.preferredLightColorTheme": "Default Light+"
+  "workbench.preferredLightColorTheme": "Default Light+",
+  "security.promptForLocalFileProtocolHandling": false
 }

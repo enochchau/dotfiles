@@ -32,6 +32,10 @@ export PATH=~/.luarocks/bin:$PATH
 export PATH="/usr/local/sbin:$PATH"
 
 # general aliases
+# Alias rg to be clickable in VS Code's terminal, only if in VS Code
+if [[ "$TERM_PROGRAM" == 'vscode' ]]; then
+  alias rg='rg --hyperlink-format=vscode'
+fi
 alias cddot="cd $DOT_FILES"
 alias cdnvim='cd ~/.config/nvim'
 alias gcol='git branch | fzf | sed '\''s/^.* //'\'' | xargs git checkout'
