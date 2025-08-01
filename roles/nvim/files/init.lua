@@ -2,9 +2,10 @@ local g = vim.g
 local opt = vim.opt
 
 opt.spelllang = "en_us"
+opt.ignorecase = true
 g.mapleader = ","
 
-if vim.g.vscode then
+if g.vscode then
     require("enoch.lazy")
     require("enoch.vscode.keymaps")
 else
@@ -25,7 +26,6 @@ else
     opt.hidden = true
     opt.updatetime = 300
     opt.smartcase = true
-    opt.ignorecase = true
     opt.sessionoptions = "blank,curdir,folds,help,tabpages,winsize"
 
     opt.swapfile = true
