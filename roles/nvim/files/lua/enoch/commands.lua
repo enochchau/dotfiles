@@ -6,10 +6,6 @@ local myserver = require("enoch.server")
 
 command("BufClear", "%bd|e#|bd#", {})
 
--- command("Format", function()
---     return (require "enoch.format").format(vim.bo.filetype)
--- end, {})
-
 command("SwapNu", function()
     vim.opt.relativenumber = not vim.opt.relativenumber._value
     return nil

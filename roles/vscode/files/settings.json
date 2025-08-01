@@ -10,7 +10,6 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode",
     "editor.tabSize": 2
   },
-  "editor.minimap.enabled": false,
   "javascript.updateImportsOnFileMove.enabled": "always",
   "vim.leader": ",",
   "vim.hlsearch": true,
@@ -123,5 +122,11 @@
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
   "typescript.experimental.useTsgo": false,
-  "diffEditor.maxComputationTime": 0
+  "diffEditor.maxComputationTime": 0,
+  "editor.minimap.renderCharacters": false,
+  "editor.minimap.showSlider": "always",
+  "editor.minimap.size": "fit",
+  "editor.minimap.enabled": false,
+  "workbench.editor.empty.hint": "hidden",
+  "workbench.preferredLightColorTheme": "Default Light+"
 }

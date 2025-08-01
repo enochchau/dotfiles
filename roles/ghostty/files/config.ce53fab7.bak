@@ -3,4 +3,3 @@ font-feature=-calt
 font-feature=-liga
 font-feature=-dliga
 # command=/opt/homebrew/bin/fish --login --interactive
-keybind = shift+enter=text:\n

@@ -4,7 +4,7 @@ MISE_LEGACY_VERSION_FILE = 0
 [tools]
 terraform = "latest"
 usage = "latest"
-node = "20"
+node = "24"
 bun = "latest"
 go = "latest"
 

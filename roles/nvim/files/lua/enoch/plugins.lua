@@ -74,17 +74,6 @@ local plugins = {
         config = true,
         dependencies = { "williamboman/mason.nvim" },
     },
-    {
-        "OXY2DEV/markview.nvim",
-        lazy = false,
-    },
-    {
-        "OXY2DEV/helpview.nvim",
-        lazy = false,
-        dependencies = {
-            "nvim-treesitter/nvim-treesitter",
-        },
-    },
 }
 
 return plugins
