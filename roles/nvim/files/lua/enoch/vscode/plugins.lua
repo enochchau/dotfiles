@@ -10,12 +10,7 @@ local plugins = {
         version = "*",
         event = "VeryLazy",
         config = true,
-    },
-    {
-        "almo7aya/openingh.nvim",
-        cmd = { "OpenInGHFile", "OpenInGHRepo" },
-        config = true,
-    },
+    }
 }
 
 return plugins
