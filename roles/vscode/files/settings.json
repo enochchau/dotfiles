@@ -72,6 +72,14 @@
     {
       "before": ["[", "d"],
       "commands": ["editor.action.marker.prevInFiles"]
+    },
+    {
+      "before": ["<leader>", "%"],
+      "commands": [
+        {
+          "command": "editor.emmet.action.matchTag"
+        }
+      ]
     }
   ],
   "editor.letterSpacing": 0.1,
