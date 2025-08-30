@@ -1,39 +1,50 @@
 local function config()
-
     vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(ev)
             local client = vim.lsp.get_client_by_id(ev.data.client_id)
+            if client == nil then
+                return
+            end
+
             local map = vim.keymap.set
             local map_opts = { noremap = true, silent = true, buffer = ev.buf }
-            local supports = client.supports_method
             local method = vim.lsp.protocol.Methods
 
             vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-            local fzf = require("fzf-lua")
-            if supports(method.textDocument_rename) then
+            if client:supports_method(method.textDocument_rename) then
                 map("n", "<leader>rn", vim.lsp.buf.rename, map_opts)
             end
-            if supports(method.textDocument_definition) then
-                map("n", "gd", fzf.lsp_definitions, map_opts)
+            if client:supports_method(method.textDocument_definition) then
+                map("n", "gd", ":Pick lsp scope='definition'<CR>", map_opts)
             end
-            if supports(method.textDocument_implementation) then
-                map("n", "gi", fzf.lsp_implementations, map_opts)
+            if client:supports_method(method.textDocument_implementation) then
+                map("n", "gi", ":Pick lsp scope='implementation'<CR>", map_opts)
             end
-            if supports(method.textDocument_typeDefinition) then
-                map("n", "gy", fzf.lsp_typedefs, map_opts)
+            if client:supports_method(method.textDocument_typeDefinition) then
+                map(
+                    "n",
+                    "gy",
+                    ":Pick lsp scope='type_definition'<CR>",
+                    map_opts
+                )
             end
-            if supports(method.textDocument_references) then
-                map("n", "gr", fzf.lsp_references, map_opts)
+            if client:supports_method(method.textDocument_references) then
+                map("n", "gr", ":Pick lsp scope='references'<CR>", map_opts)
             end
-            if supports(method.textDocument_documentSymbol) then
-                map("n", "gs", fzf.lsp_document_symbols, map_opts)
+            if client:supports_method(method.textDocument_documentSymbol) then
+                map(
+                    "n",
+                    "gs",
+                    ":Pick lsp scope='document_symbol'<CR>",
+                    map_opts
+                )
             end
-            if supports(method.textDocument_diagnostic) then
-                map("n", "ga", fzf.diagnostics_document, map_opts)
-                map("n", "gw", fzf.diagnostics_workspace, map_opts)
-            end
-            if supports(method.textDocument_codeAction) then
+
+            map("n", "ga", ":Pick diagnostic scope='current'<CR>", map_opts)
+            map("n", "gw", ":Pick diagnostic scope='all'<CR>", map_opts)
+
+            if client:supports_method(method.textDocument_codeAction) then
                 map("n", "<leader>a", vim.lsp.buf.code_action, map_opts)
                 map(
                     "x",
@@ -93,13 +104,14 @@ return {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "saghen/blink.cmp",
-            "ibhagwan/fzf-lua",
+            "nvim-mini/mini.extra",
         },
     },
     {
         "williamboman/mason-lspconfig.nvim",
         ---@type MasonLspconfigSettings
         config = {
+            automatic_enable = false,
             ensure_installed = {
                 "jsonls",
                 "cssls",

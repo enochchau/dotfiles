@@ -1,27 +1,25 @@
 ---@type LazySpec
 return {
-    "ibhagwan/fzf-lua",
-    dependencies = { "nvim-tree/nvim-web-devicons" },
+    "nvim-mini/mini.pick",
+    version = false,
+    dependencies = {
+        "nvim-mini/mini.icons",
+        { "nvim-mini/mini.extra", version = false, config = true },
+    },
     config = function()
-        local fzf = require("fzf-lua")
-        fzf.register_ui_select()
+        local MiniPick = require("mini.pick")
+        local MiniExtra = require("mini.extra")
+        MiniPick.setup()
         local map = vim.keymap.set
         local opts = { noremap = true, silent = true }
+        vim.ui.select = MiniPick.ui_select
 
-        map("n", "<C-p>", fzf.files, opts)
-        map("n", "<C-f>", fzf.live_grep, opts)
-        map("n", "<C-b>", fzf.buffers, opts)
-        map("n", "<leader>fh", fzf.help_tags, opts)
-        map("n", "z=", fzf.spell_suggest, opts)
-        map("n", "<leader>o", fzf.jumps, opts)
-        map("n", "<leader>'", fzf.marks, opts)
-        map(
-            "n",
-            "<leader>nw",
-            require("enoch.plugins.fzf.node-workspaces").node_workspaces,
-            opts
-        )
-        -- <C-m> is mapped to <CR> so they both get mapped here
-        map("n", "<C-m>", require("enoch.plugins.fzf.mru").mru, opts)
+        map("n", "<C-p>", MiniPick.builtin.files, opts)
+        map("n", "<C-f>", MiniPick.builtin.grep_live, opts)
+        map("n", "<C-b>", MiniPick.builtin.buffers, opts)
+        map("n", "<leader>fh", MiniPick.builtin.help, opts)
+        map("n", "z=", MiniExtra.pickers.spellsuggest, opts)
+        map("n", "<leader>o", ":Pick list scope='jump'<CR>", opts)
+        map("n", "<leader>'", MiniExtra.pickers.marks, opts)
     end,
 }

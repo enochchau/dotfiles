@@ -1,6 +1,14 @@
 ---@type (string | LazySpec)[]
 return {
-    "nvim-tree/nvim-web-devicons",
+    {
+        "nvim-mini/mini.icons",
+        version = false,
+        config = function()
+            local MiniIcons = require("mini.icons")
+            MiniIcons.setup()
+            MiniIcons.mock_nvim_web_devicons()
+        end,
+    },
     { "j-hui/fidget.nvim", opts = {} },
     {
         "lukas-reineke/indent-blankline.nvim",
@@ -82,7 +90,6 @@ return {
     },
     {
         "nvim-lualine/lualine.nvim",
-        dependencies = { "nvim-tree/nvim-web-devicons" },
         config = function()
             local lualine = require("lualine")
 
