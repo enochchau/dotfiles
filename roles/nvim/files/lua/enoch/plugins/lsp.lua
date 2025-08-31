@@ -109,6 +109,7 @@ return {
     },
     {
         "williamboman/mason-lspconfig.nvim",
+        dependencies = { "williamboman/mason.nvim" },
         ---@type MasonLspconfigSettings
         config = {
             automatic_enable = false,

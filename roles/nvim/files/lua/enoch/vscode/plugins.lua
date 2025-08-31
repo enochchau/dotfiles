@@ -1,16 +1,12 @@
 ---@type (string|LazySpec)[]
 local plugins = {
-    {
-        "windwp/nvim-autopairs",
-        event = "InsertEnter",
-        opts = { check_ts = true },
-    },
+    { "nvim-mini/mini.pairs", version = false, config = true },
     {
         "kylechui/nvim-surround",
         version = "*",
         event = "VeryLazy",
         config = true,
-    }
+    },
 }
 
 return plugins
