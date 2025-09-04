@@ -2,7 +2,7 @@ local prettier_fmt = { "prettierd", "prettier" }
 
 ---@type (string | LazySpec)[]
 return {
-    { "nvim-mini/mini.pairs", version = false ,config = true},
+    { "nvim-mini/mini.pairs", version = false, config = true },
     {
         "kylechui/nvim-surround",
         version = "*",
@@ -63,10 +63,6 @@ return {
         lazy = false,
     },
     {
-        "danymat/neogen",
-        config = true,
-    },
-    {
         "Darazaki/indent-o-matic",
         config = true,
     },
@@ -75,7 +71,7 @@ return {
         "saghen/blink.cmp",
         lazy = false,
         dependencies = { "rafamadriz/friendly-snippets" },
-        version = "v0.8.1",
+        version = "v1.*",
 
         ---@module 'blink.cmp'
         ---@type blink.cmp.Config
@@ -87,6 +83,6 @@ return {
                 },
             },
         },
-        opts_extend = { "sources.completion.enabled_providers" },
+        opts_extend = { "sources.default" },
     },
 }

@@ -24,9 +24,6 @@ local plugins = {
             },
         },
     },
-    "navarasu/onedark.nvim",
-    "folke/tokyonight.nvim",
-    "nyoom-engineering/oxocarbon.nvim",
 
     -- additional language support
     "pearofducks/ansible-vim",
@@ -66,7 +63,7 @@ local plugins = {
     },
 
     {
-        "williamboman/mason.nvim",
+        "mason-org/mason.nvim",
         config = true,
     },
 }
