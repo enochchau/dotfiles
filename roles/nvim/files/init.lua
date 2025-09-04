@@ -131,7 +131,7 @@ else
         },
     })
 
-    require("enoch.lazy")
+    require("enoch.deps")
     require("enoch.keymaps")
     require("enoch.commands")
     require("enoch.diagnostic")

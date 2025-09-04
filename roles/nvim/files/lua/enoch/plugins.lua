@@ -24,10 +24,10 @@ local plugins = {
             },
         },
     },
-    "navarasu/onedark.nvim",
-    "folke/tokyonight.nvim",
-    "nyoom-engineering/oxocarbon.nvim",
-
+    -- "navarasu/onedark.nvim",
+    -- "folke/tokyonight.nvim",
+    -- "nyoom-engineering/oxocarbon.nvim",
+    --
     -- additional language support
     "pearofducks/ansible-vim",
     "vim-scripts/applescript.vim",
