@@ -117,9 +117,8 @@
   "extensions.experimental.affinity": {
     "asvetliakov.vscode-neovim": 1
   },
-  "editor.lineNumbers": "relative",
   "github.copilot.enable": {
-    "*": true,
+    "*": false,
     "plaintext": false,
     "markdown": false,
     "scminput": false
@@ -143,5 +142,9 @@
   "[mdx]": {
     "editor.defaultFormatter": "unifiedjs.vscode-mdx"
   },
-  "workbench.preferredLightColorTheme": "Default Dark Modern"
+  "workbench.preferredLightColorTheme": "Default Dark Modern",
+  "[c]": {
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "editor.lineNumbers": "relative"
 }
