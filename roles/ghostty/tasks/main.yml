@@ -4,6 +4,18 @@
     state: present
   when: ansible_facts['os_family'] == "Darwin"
 
+- name: Enable ghostty COPR Repo
+  when: ansible_facts['os_family'] == "RedHat"
+  community.general.copr:
+    name: scottames/ghostty
+    state: enabled
+  become: true
+- name: Install ghostty Linux
+  when: ansible_facts['os_family'] == "RedHat"
+  ansible.builtin.package:
+    name: "ghostty"
+  become: true
+
 - name: Make .config directory
   ansible.builtin.file:
     path: ~/.config
