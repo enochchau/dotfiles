@@ -1,12 +1,3 @@
-- name: Add vfox repo
-  ansible.builtin.shell: |
-    if ! test -f /etc/apt/sources.list.d/versionfox.list; then
-      echo "deb [trusted=yes] https://apt.fury.io/versionfox/ /" | sudo tee /etc/apt/sources.list.d/versionfox.list
-      sudo apt update
-    fi
-  when: ansible_facts['os_family'] == "Debian"
-  become: true
-
 - name: Install dnf Packages
   ansible.builtin.package:
     name: "{{ dnf_pkgs }}"

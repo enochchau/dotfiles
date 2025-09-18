@@ -1,17 +1,17 @@
 - name: Dot files config
   hosts: local
-  pre_tasks:
-    - name: Update Cache
-      ansible.builtin.dnf:
-        update_cache: true
-        state: present
-      when: ansible_facts['os_family'] == "RedHat"
+#  pre_tasks:
+#    - name: Update Cache
+#      ansible.builtin.dnf:
+#        update_cache: true
+#        state: present
+#      when: ansible_facts['os_family'] == "RedHat"
   roles:
     - role: git
       tags: git
       vars:
         git_email: enoch965@gmail.com
-        git_user: ec965
+        git_user: enochchau
     - role: zsh
       tags: zsh
       vars:
@@ -22,43 +22,30 @@
       tags: devtools
       vars:
         homebrew_pkgs:
-          - ansible
           - bat
           - fd
           - fzf
           - git-delta
           - jq
-          - python
           - ripgrep
-          - stylua
-          - kubectx
-          - defaultbrowser
-          - difftastic
         homebrew_casks:
-          - alacritty
           - linearmouse
           - rectangle
-          - spaceid
         dnf_pkgs:
           - bat
           - fd-find
           - fzf
           - git-delta
           - jq
-          - podman
-          - podman-compose
-          - python
           - ripgrep
-          - wget
-          - zip
         apt_pkgs:
           - bat
           - fd-find
           - fzf
           - jq
           - ripgrep
-          - wget
-          - zip
+    - role: nvim
+      tags: nvim
     - role: mise
       tags: mise
     - role: nodejs
@@ -66,10 +53,6 @@
       vars:
         npm_global_packages:
           - prettier
-          - typescript
-          - yarn
-    - role: nvim
-      tags: nvim
     - role: vscode
       tags: vscode
     - role: ghostty
@@ -77,5 +60,5 @@
     - role: skhd
       tags: skhd
       when: ansible_facts['os_family'] == "Darwin"
-    - role: fish
-      tags: fish
+#    - role: fish
+#      tags: fish
