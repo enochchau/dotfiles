@@ -3,3 +3,11 @@
     src: "{{ ansible_env.PWD }}/roles/skhd/files"
     path: ~/.config/skhd
     state: link
+
+- name: Add homebrew Tap
+  community.general.homebrew_tap:
+    name: "jackielii/tap" 
+
+- name: Install brew packages
+  community.general.homebrew:
+    name: "jackielii/tap/skhd-zig"

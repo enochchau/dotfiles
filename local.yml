@@ -29,7 +29,6 @@
           - jq
           - ripgrep
         homebrew_casks:
-          - linearmouse
           - rectangle
         dnf_pkgs:
           - bat
