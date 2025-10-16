@@ -146,5 +146,6 @@
   "[c]": {
     "editor.defaultFormatter": "xaver.clang-format"
   },
-  "editor.lineNumbers": "relative"
+  "editor.lineNumbers": "relative",
+  "python.analysis.typeCheckingMode": "strict"
 }
