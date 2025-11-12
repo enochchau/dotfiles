@@ -1,3 +1,5 @@
 font-feature=-calt
 font-feature=-liga
 font-feature=-dliga
+keybind = shift+enter=text:\x1b\r
+keybind = cmd+f=write_scrollback_file:open

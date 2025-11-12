@@ -121,6 +121,7 @@ else
             ["tf"] = "terraform",
             ["zshrc"] = "zsh",
             ["zshenv"] = "zsh",
+            ["code-workspace"] = "json",
             ["applescript"] = "applescript",
         },
         filename = {
