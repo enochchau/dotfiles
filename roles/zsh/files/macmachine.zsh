@@ -1,5 +1,4 @@
 # Configuration specific to my MacBook
-
 # go
 export PATH="$HOME/go/bin:$PATH"
 
@@ -20,3 +19,4 @@ FZF_BASE=$(brew --prefix)/opt/fzf/shell
 source $FZF_BASE/key-bindings.zsh
 source $FZF_BASE/completion.zsh
 
+export HOMEBREW_DOWNLOAD_CONCURRENCY=auto
