@@ -56,8 +56,5 @@
       tags: vscode
     - role: ghostty
       tags: ghostty
-    - role: skhd
-      tags: skhd
-      when: ansible_facts['os_family'] == "Darwin"
 #    - role: fish
 #      tags: fish

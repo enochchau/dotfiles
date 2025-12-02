@@ -34,7 +34,11 @@ export PATH="/usr/local/sbin:$PATH"
 # general aliases
 # Alias rg to be clickable in VS Code's terminal, only if in VS Code
 if [[ "$TERM_PROGRAM" == 'vscode' ]]; then
-  alias rg='rg --hyperlink-format=vscode'
+    if command -v cursor &> /dev/null; then
+        alias rg='rg --hyperlink-format=cursor'
+    else
+        alias rg='rg --hyperlink-format=vscode'
+    fi
 fi
 alias cddot="cd $DOT_FILES"
 alias cdnvim='cd ~/.config/nvim'
@@ -103,6 +107,9 @@ antidote load
 # machine specific configuration
 if test -f $ZDOTDIR/machine.zsh; then
     source $ZDOTDIR/machine.zsh
+fi
+if test -f $ZDOTDIR/work.zsh; then
+    source $ZDOTDIR/work.zsh
 fi
 
 compinit

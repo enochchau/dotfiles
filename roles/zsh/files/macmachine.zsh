@@ -20,3 +20,4 @@ source $FZF_BASE/key-bindings.zsh
 source $FZF_BASE/completion.zsh
 
 export HOMEBREW_DOWNLOAD_CONCURRENCY=auto
+
