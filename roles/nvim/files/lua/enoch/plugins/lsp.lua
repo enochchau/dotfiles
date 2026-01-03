@@ -90,7 +90,7 @@ local function config()
         opts.capabilities =
             require("blink.cmp").get_lsp_capabilities(opts.capabilities)
 
-        require("lspconfig")[server].setup(opts)
+        vim.lsp.config(server, opts)
     end
 end
 
