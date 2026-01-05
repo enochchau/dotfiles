@@ -1,24 +1,60 @@
+local languages = { "styled", "css", "comment", "markdown_inline" }
+local highlight_disable = { "csv" }
+
 ---@type LazySpec[]
 return {
     {
         "nvim-treesitter/nvim-treesitter",
+        branch = 'main',
         build = ":TSUpdate",
         config = function()
-            vim.treesitter.language.register("markdown", "mdx")
+            -- replicate `ensure_installed`, runs asynchronously, skips existing languages
+            require('nvim-treesitter').install(languages)
 
-            require("nvim-treesitter.configs").setup({
-                ignore_install = {},
-                ensure_installed = { "styled", "css", "comment" },
-                sync_install = false,
-                auto_install = true,
-                modules = {},
+            vim.api.nvim_create_autocmd('FileType', {
+                group = vim.api.nvim_create_augroup('treesitter.setup', {}),
+                callback = function(args)
+                    local buf = args.buf
+                    local filetype = args.match
 
-                highlight = {
-                    enable = true,
-                    additional_vim_regex_highlighting = false,
-                    disable = { "csv" }
-                },
+                    if vim.tbl_contains(highlight_disable, filetype) then
+                        return
+                    end
+
+                    -- you need some mechanism to avoid running on buffers that do not
+                    -- correspond to a language (like oil.nvim buffers), this implementation
+                    -- checks if a parser exists for the current language
+                    local language = vim.treesitter.language.get_lang(filetype) or filetype
+                    if not vim.treesitter.language.add(language) then
+                        return
+                    end
+
+                    -- replicate `fold = { enable = true }`
+                    -- vim.wo.foldmethod = 'expr'
+                    -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+
+                    -- replicate `highlight = { enable = true }`
+                    vim.treesitter.start(buf, language)
+
+                    -- replicate `indent = { enable = true }`
+                    vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+
+                    -- `incremental_selection = { enable = true }` cannot be easily replicated
+                end,
             })
+            -- require("nvim-treesitter.configs").setup({
+            --     ignore_install = {},
+            --     ensure_installed = { "styled", "css", "comment", "markdown_inline" },
+            --     sync_install = false,
+            --     auto_install = true,
+            --     modules = {},
+            --
+            --     highlight = {
+            --         enable = true,
+            --         additional_vim_regex_highlighting = false,
+            --         disable = { "csv" }
+            --     },
+            -- })
         end,
     },
 
@@ -47,4 +83,8 @@ return {
             end,
         },
     },
+    {
+        "davidmh/mdx.nvim",
+        dependencies = { "nvim-treesitter/nvim-treesitter" }
+    }
 }
