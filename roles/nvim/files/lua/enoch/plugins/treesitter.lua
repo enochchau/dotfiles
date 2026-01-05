@@ -28,17 +28,17 @@ local function setup_treesitter(opts)
             if not vim.treesitter.language.add(language) then
                 return
             end
-            nvim_treesitter.install({ language })
+            nvim_treesitter.install({ language }):await(function()
+                -- replicate `fold = { enable = true }`
+                -- vim.wo.foldmethod = 'expr'
+                -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
 
-            -- replicate `fold = { enable = true }`
-            -- vim.wo.foldmethod = 'expr'
-            -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
+                -- replicate `highlight = { enable = true }`
+                vim.treesitter.start(buf, language)
 
-            -- replicate `highlight = { enable = true }`
-            vim.treesitter.start(buf, language)
-
-            -- replicate `indent = { enable = true }`
-            vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+                -- replicate `indent = { enable = true }`
+                vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
+            end)
         end,
     })
     -- require("nvim-treesitter.configs").setup({
@@ -65,7 +65,7 @@ return {
         build = ":TSUpdate",
         config = function()
             setup_treesitter({
-                ensure_installed = { "styled", "css", "comment", "markdown_inline" },
+                ensure_installed = { "styled", "css", "comment", "markdown_inline", "markdown" },
                 highlight_disable = { "csv" }
             })
         end,

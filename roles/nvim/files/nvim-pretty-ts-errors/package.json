@@ -1,0 +1,20 @@
+{
+  "name": "nvim-pretty-ts-errors",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "esbuild --bundle main.js --minify --outfile=out.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "packageManager": "pnpm@10.26.2",
+  "dependencies": {
+    "@pretty-ts-errors/formatter": "^0.1.7"
+  },
+  "devDependencies": {
+    "esbuild": "^0.27.2"
+  }
+}

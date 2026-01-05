@@ -1,8 +1,4 @@
-const {
-  formatDiagnosticMessage,
-  // this is the path to the pretty-ts-errors repo.
-  // you have to build the formatter and util packages.
-} = require("../../../../code/pretty-ts-errors/packages/formatter/dist/index.js");
+const { formatDiagnosticMessage } = require("@pretty-ts-errors/formatter");
 
 const args = process.argv.slice(2); // Get only the custom arguments
 
@@ -20,7 +16,6 @@ ${code}
       return `\`\`\`
 ${code}
 \`\`\``;
-
     }
     return `\`${code}\``;
   })
