@@ -200,7 +200,7 @@ local function show_line_diagnostics()
     local win_height = math.min(
         #lines + 1, -- FIXME: account for word wrap when finding h/w
         math.floor(api.nvim_get_option_value("lines", {}) * 0.4)
-    ) -- Limit height
+    )               -- Limit height
     local win_width = math.min(
         max_width,
         math.floor(api.nvim_get_option_value("columns", {}) * 0.6)

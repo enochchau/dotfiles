@@ -92,6 +92,9 @@ local function config()
 
         vim.lsp.config(server, opts)
     end
+
+    vim.lsp.enable(servers)
+    vim.lsp.enable("beancount-lsp-server")
 end
 
 ---@type LazySpec
