@@ -32,28 +32,11 @@ local function setup_treesitter(opts)
                 -- replicate `fold = { enable = true }`
                 -- vim.wo.foldmethod = 'expr'
                 -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-
-                -- replicate `highlight = { enable = true }`
                 vim.treesitter.start(buf, language)
-
-                -- replicate `indent = { enable = true }`
                 vim.bo[buf].indentexpr = "v:lua.require'nvim-treesitter'.indentexpr()"
             end)
         end,
     })
-    -- require("nvim-treesitter.configs").setup({
-    --     ignore_install = {},
-    --     ensure_installed = { "styled", "css", "comment", "markdown_inline" },
-    --     sync_install = false,
-    --     auto_install = true,
-    --     modules = {},
-    --
-    --     highlight = {
-    --         enable = true,
-    --         additional_vim_regex_highlighting = false,
-    --         disable = { "csv" }
-    --     },
-    -- })
 end
 
 ---@type LazySpec[]
@@ -65,7 +48,7 @@ return {
         build = ":TSUpdate",
         config = function()
             setup_treesitter({
-                ensure_installed = { "styled", "css", "comment", "markdown_inline", "markdown" },
+                ensure_installed = { "styled", "css", "comment", "markdown_inline", "markdown", 'jsdoc' },
                 highlight_disable = { "csv" }
             })
         end,

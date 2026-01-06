@@ -71,8 +71,9 @@ end
 local function format_diagnostic(diagnostic)
     local source = diagnostic.source or "nvim"
     local message = diagnostic.message
-    if diagnostic.source == "typescript" then
+    if source == "typescript" then
         local scriptname = debug.getinfo(1).source:match("@?(.*/)") .. "../../nvim-pretty-ts-errors/out.js"
+        vim.print(scriptname)
         message = vim.fn.system({
             "node",
             scriptname,
@@ -218,12 +219,12 @@ local function show_line_diagnostics()
         col = 0,
         width = width,
         height = height,
-        border = 'rounded',
         style = 'minimal'
     })
 
     api.nvim_set_option_value("wrap", true, { win = diagnostic_win_id })
     api.nvim_set_option_value("linebreak", true, { win = diagnostic_win_id })
+    vim.treesitter.start(buf, 'markdown')
 
     -- Create the auto-close trigger
     vim.api.nvim_create_autocmd({ 'CursorMoved', 'CursorMovedI' }, {
