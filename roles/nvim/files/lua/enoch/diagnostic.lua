@@ -147,7 +147,12 @@ local function get_diagnostics_for_current_line()
                     table.insert(hl_positions, {
                         hl_group,
                         { line_count, 0 },
-                        { line_count, #line },
+                        { line_count, 1 },
+                    })
+                    table.insert(hl_positions, {
+                        "Bold",
+                        { line_count, 1 },
+                        { line_count, #line }
                     })
                 end
             end

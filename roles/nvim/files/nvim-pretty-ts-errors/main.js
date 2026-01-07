@@ -33,7 +33,10 @@ function fixLists(message) {
     return listContent
       .split(/<\/?li>/)
       .filter((item) => item.trim())
-      .map((item) => `* ${item.trim()}`)
+      .map((item, idx) => {
+        let s = `* ${item.trim()}`;
+        return idx === 0 ? "\n" + s : s;
+      })
       .join("\n");
   });
 }

@@ -15,6 +15,9 @@ importers:
       esbuild:
         specifier: ^0.27.2
         version: 0.27.2
+      typescript:
+        specifier: ^5.9.3
+        version: 5.9.3
 
 packages:
 
@@ -189,6 +192,11 @@ packages:
     engines: {node: '>=10.13.0'}
     hasBin: true
 
+  typescript@5.9.3:
+    resolution: {integrity: sha512-jl1vZzPDinLr9eUt3J/t7V6FgNEw9QjvBPdysz9KfQDD41fQrC2Y4vKQdiaUpFT4bXlb1RHhLpp8wtm6M5TgSw==}
+    engines: {node: '>=14.17'}
+    hasBin: true
+
 snapshots:
 
   '@esbuild/aix-ppc64@0.27.2':
@@ -303,3 +311,5 @@ snapshots:
       '@esbuild/win32-x64': 0.27.2
 
   prettier@2.8.8: {}
+
+  typescript@5.9.3: {}
