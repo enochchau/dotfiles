@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "esbuild --bundle main.js --minify --platform=node --outfile=out.js"
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "author": "",
@@ -13,9 +12,5 @@
   "packageManager": "pnpm@10.26.2",
   "dependencies": {
     "@pretty-ts-errors/formatter": "^0.1.7"
-  },
-  "devDependencies": {
-    "esbuild": "^0.27.2",
-    "typescript": "^5.9.3"
   }
 }

@@ -65,75 +65,6 @@ local function get_default_icon_map()
     return icon_map
 end
 
--- Daemon State
-local daemon_job = nil
-local request_cache = {}
-local req_id = 0
-
-local function ensure_daemon()
-    if daemon_job then
-        return daemon_job
-    end
-
-    local scriptname = debug.getinfo(1).source:match("@?(.*/)")
-        .. "../../nvim-pretty-ts-errors/out.js"
-
-    daemon_job = vim.fn.jobstart({ "node", scriptname, "--daemon" }, {
-        on_stdout = function(_, data, _)
-            for _, line in ipairs(data) do
-                if line ~= "" then
-                    local ok, res = pcall(vim.json.decode, line)
-                    if ok and res.id then
-                        request_cache[res.id] = res.result
-                    end
-                end
-            end
-        end,
-        on_exit = function()
-            daemon_job = nil
-            request_cache = {}
-        end,
-    })
-
-    vim.api.nvim_create_autocmd("VimLeavePre", {
-        callback = function()
-            if daemon_job then
-                vim.fn.jobstop(daemon_job)
-            end
-        end,
-    })
-
-    return daemon_job
-end
-
-local function format_diagnostic_daemon(message)
-    ensure_daemon()
-    if not daemon_job then
-        return message
-    end
-
-    req_id = req_id + 1
-    local current_id = req_id
-
-    -- Encode and send
-    local payload = vim.json.encode({ id = current_id, message = message })
-    vim.fn.chansend(daemon_job, payload .. "\n")
-
-    -- Wait synchronously (up to 200ms - formatting should be fast)
-    local ok = vim.wait(200, function()
-        return request_cache[current_id] ~= nil
-    end)
-
-    if ok then
-        local res = request_cache[current_id]
-        request_cache[current_id] = nil -- cleanup
-        return res
-    else
-        -- Timeout or error
-        return message
-    end
-end
-
 --- Formats a single diagnostic into a Markdown string.
 --- @param diagnostic table The diagnostic object.
 --- @return table<string> The formatted diagnostic string.
@@ -144,9 +75,6 @@ local function format_diagnostic(diagnostic)
         local ok, formatted = pcall(vim.fn.PrettyTsFormat, message)
         if ok and formatted then
             message = formatted
-        else
-            print(">>Falling back to deamon!!!")
-            message = format_diagnostic_daemon(message)
         end
     end
     local message_lines = vim.split(message, "\n")
