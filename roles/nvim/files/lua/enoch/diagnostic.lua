@@ -141,7 +141,13 @@ local function format_diagnostic(diagnostic)
     local source = diagnostic.source or "nvim"
     local message = diagnostic.message
     if source == "typescript" then
-        message = format_diagnostic_daemon(message)
+        local ok, formatted = pcall(vim.fn.PrettyTsFormat, message)
+        if ok and formatted then
+            message = formatted
+        else
+            print(">>Falling back to deamon!!!")
+            message = format_diagnostic_daemon(message)
+        end
     end
     local message_lines = vim.split(message, "\n")
     local code = diagnostic.code

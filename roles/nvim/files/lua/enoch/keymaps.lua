@@ -19,12 +19,12 @@ map("n", "]b", ":bnext<CR>", opts)
 map("n", "[b", ":bprevious<CR>", opts)
 
 map("n", "<leader>d", function()
-    -- local success, result =
-    --     pcall(require("enoch.diagnostic").show_line_diagnostics)
-    -- if not success then
-    --     vim.print(result)
+    local success, result =
+        pcall(require("enoch.diagnostic").show_line_diagnostics)
+    if not success then
+        vim.print(result)
         vim.diagnostic.open_float()
-    -- end
+    end
 end, opts)
 
 map("n", "<leader>cdg", ":Cdg<CR>:pwd<CR>", opts)
