@@ -1,35 +1,14 @@
 const { formatDiagnosticMessage } = require("@pretty-ts-errors/formatter");
-// Helper functions (codeblock, fixLists) remain the same...
 
 module.exports = (plugin) => {
-  plugin.setOptions({ dev: true });
+  plugin.setOptions({ dev: false });
 
-  // Register a synchronous function callable from Lua/Vimscript
   plugin.registerFunction(
     "PrettyTsFormat",
     async ([message]) => {
       let result = formatDiagnosticMessage(message, codeblock);
       result = fixLists(result);
-      return result
-    },
-    { sync: false }
-  ); // 'sync: true' allows Lua to get the return value immediately
-
-  // Register a command named "HelloNode"
-  plugin.registerCommand(
-    "HelloNode",
-    async () => {
-      await plugin.nvim.outWrite("Hello from Node.js!\n");
-    },
-    { sync: false }
-  );
-
-  // Register a function that can be called from VimScript/Lua
-  plugin.registerFunction(
-    "AddNumbers",
-    async (args) => {
-      const [a, b] = args;
-      return a + b;
+      return result;
     },
     { sync: false }
   );
