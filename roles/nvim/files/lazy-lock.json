@@ -21,6 +21,7 @@
   "mini.pick": { "branch": "main", "commit": "aa242acc17683515d8f749552aebe061bced9132" },
   "nvim-colorizer.lua": { "branch": "master", "commit": "81e676d3203c9eb6e4c0ccf1eba1679296ef923f" },
   "nvim-lspconfig": { "branch": "master", "commit": "5a82e10b2df0ed31bec642c1c0344baee7c458b6" },
+  "nvim-pretty-ts-errors": { "branch": "main", "commit": "6db2124689566e89fc1d0ccfa80de2d37a158609" },
   "nvim-surround": { "branch": "main", "commit": "1098d7b3c34adcfa7feb3289ee434529abd4afd1" },
   "nvim-treesitter": { "branch": "main", "commit": "9177f2ff061627f0af0f994e3a3c620a84c0c59b" },
   "nvim-treesitter-context": { "branch": "master", "commit": "64dd4cf3f6fd0ab17622c5ce15c91fc539c3f24a" },

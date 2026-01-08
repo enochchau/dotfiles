@@ -1,8 +1,8 @@
 ---@type (string | LazySpec)[]
 local plugins = {
     {
-        dir = "~/code/nvim-pretty-ts-errors",
-        name = "pretty-ts-errors"
+        "enochchau/nvim-pretty-ts-errors",
+        build = "pnpm install",
     },
 
     -- editing
@@ -20,8 +20,8 @@ local plugins = {
                     hints = { "undercurl" },
                     warnings = { "undercurl" },
                     information = { "undercurl" },
-                }
-            }
+                },
+            },
         },
     },
 

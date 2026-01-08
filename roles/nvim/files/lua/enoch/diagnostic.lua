@@ -10,13 +10,15 @@ vim.diagnostic.config({
         },
     },
 })
+local pretty_ts_errors = require("nvim-pretty-ts-errors")
+
 -- Expose the function via a command
 vim.api.nvim_create_user_command(
     "ShowLineDiagnostics",
-    require("pretty-ts-errors").show_line_diagnostics,
+    pretty_ts_errors.show_line_diagnostics,
     { desc = "Show all diagnostics for the current line" }
 )
 
 return {
-    show_line_diagnostics = require("pretty-ts-errors").show_line_diagnostics,
+    show_line_diagnostics = pretty_ts_errors.show_line_diagnostics,
 }
