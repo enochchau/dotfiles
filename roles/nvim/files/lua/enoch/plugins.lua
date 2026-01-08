@@ -1,6 +1,9 @@
 ---@type (string | LazySpec)[]
 local plugins = {
-    -- { "zbirenbaum/copilot.lua", config = true },
+    {
+        dir = "~/code/nvim-pretty-ts-errors",
+        name = "pretty-ts-errors"
+    },
 
     -- editing
     "tpope/vim-obsession",
