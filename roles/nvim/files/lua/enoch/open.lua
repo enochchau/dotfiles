@@ -15,12 +15,12 @@ end
 --- Use treesitter to get the text of the string under the cursor
 --- Only works forlanguages that use " or ' as strings
 local function ts_string_under_cursor()
-    local ts_utils = require("nvim-treesitter.ts_utils")
-    return string.gsub(
-        vim.treesitter.get_node_text(ts_utils.get_node_at_cursor(), 0),
-        "^[\"'](.*)[\"']$",
-        "%1"
-    )
+    local node = vim.treesitter.get_node()
+    if not node then
+        return ""
+    end
+
+    return string.gsub(vim.treesitter.get_node_text(node, 0), "^[\"'](.*)[\"']$", "%1")
 end
 
 --- Open the (plugin under the cursor)'s homepage

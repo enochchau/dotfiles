@@ -4,19 +4,23 @@ local map = vim.keymap.set
 local opts = { noremap = true, silent = true }
 
 -- move wrapped line wise
-map("n", "j", "gj", opts)
-map("n", "k", "gk", opts)
+map("n", "j", "gj", { silent = true })
+map("n", "k", "gk", { silent = true })
 -- hold visual selection on tab
-map("v", ">", ">gv", opts)
-map("v", "<", "<gv", opts)
+map("v", ">", ">gv", { silent = true })
+map("v", "<", "<gv", { silent = true })
 -- resize window
-map("n", "<A-h>", "<C-w><", opts)
-map("n", "<A-j>", "<C-w>-", opts)
-map("n", "<A-k>", "<C-w>+", opts)
-map("n", "<A-l>", "<C-w>>", opts)
+map("n", "<A-h>", "<C-w><", { silent = true })
+map("n", "<A-j>", "<C-w>-", { silent = true })
+map("n", "<A-k>", "<C-w>+", { silent = true })
+map("n", "<A-l>", "<C-w>>", { silent = true })
 -- cycle buffers
-map("n", "]b", ":bnext<CR>", opts)
-map("n", "[b", ":bprevious<CR>", opts)
+map("n", "]b", ":bnext<CR>", { desc = "Next Buffer" })
+map("n", "[b", ":bprevious<CR>", { desc = "Previous Buffer" })
+map("n", "]l", ":lnext<CR>", { desc = "Next Location List item" })
+map("n", "[l", ":lprev<CR>", { desc = "Previous Location List item" })
+map("n", "]q", ":cnext<CR>", { desc = "Next Quickfix item" })
+map("n", "[q", ":cprev<CR>", { desc = "Previous Quickfix item" })
 
 map("n", "<leader>d", function()
     local success, result =
@@ -25,13 +29,22 @@ map("n", "<leader>d", function()
         vim.print(result)
         vim.diagnostic.open_float()
     end
-end, opts)
+end, { desc = "Open diagnostic float" })
+map(
+    "n",
+    "<leader>q",
+    vim.diagnostic.setloclist,
+    { desc = "Open diagnostic loclist" }
+)
 
-map("n", "<leader>cdg", ":Cdg<CR>:pwd<CR>", opts)
+map(
+    "n",
+    "<leader>cdg",
+    ":Cdg<CR>:pwd<CR>",
+    { desc = "Change pwd to nearest git root" }
+)
 map("n", "<C-n>", require("enoch.netrw").toggle_netrw, opts)
 map("n", "<C-\\>", ":vs|:term<CR>", opts)
-
-map("n", "<leader>nf", ":Neogen<CR>", opts)
 
 -- map("n", "]c", colo.cycle_colors_next, opts)
 -- map("n", "[c", colo.cycle_colors_prev, opts)
