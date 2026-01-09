@@ -28,6 +28,7 @@ return {
                 yaml = prettier_fmt,
                 markdown = prettier_fmt,
                 ["markdown.mdx"] = prettier_fmt,
+                ["mdx"] = prettier_fmt,
                 graphql = prettier_fmt,
                 handlebars = prettier_fmt,
                 bash = { "beautysh", "shellcheck" },

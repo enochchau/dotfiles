@@ -104,6 +104,10 @@ compinit -C
 # load plugins
 antidote load
 
+if [[ ! -f "$(antidote path g-plane/pnpm-shell-completion)/pnpm-shell-completion" ]]; then
+    (cd $(antidote path g-plane/pnpm-shell-completion) && ./zplug.zsh)
+fi
+
 # machine specific configuration
 if test -f $ZDOTDIR/machine.zsh; then
     source $ZDOTDIR/machine.zsh

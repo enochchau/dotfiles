@@ -2,6 +2,8 @@
 local plugins = {
     {
         "enochchau/nvim-pretty-ts-errors",
+        -- "nvim-pretty-ts-errors",
+        -- dir = "~/code/nvim-pretty-ts-errors",
         build = "pnpm install",
     },
 
