@@ -54,16 +54,6 @@ return {
         dependencies = { "williamboman/mason.nvim" },
     },
     {
-        "folke/ts-comments.nvim",
-        opts = {},
-        event = "VeryLazy",
-        enabled = vim.fn.has("nvim-0.10.0") == 1,
-    },
-    {
-        "numToStr/Comment.nvim",
-        lazy = false,
-    },
-    {
         "Darazaki/indent-o-matic",
         config = true,
     },
