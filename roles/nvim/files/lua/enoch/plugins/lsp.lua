@@ -56,7 +56,11 @@ local function config()
         end,
     })
 
-    local servers = require("mason-lspconfig").get_installed_servers()
+    local servers =
+        vim.list_extend(require("mason-lspconfig").get_installed_servers(), {
+            "beancount-lsp-server",
+            -- "tsgo"
+        })
 
     for _, server in ipairs(servers) do
         local opts
@@ -94,7 +98,6 @@ local function config()
     end
 
     vim.lsp.enable(servers)
-    vim.lsp.enable("beancount-lsp-server")
 end
 
 ---@type LazySpec
