@@ -15,7 +15,7 @@ return {
         vim.ui.select = MiniPick.ui_select
 
         map("n", "<C-p>", MiniPick.builtin.files, opts)
-        map("n", "<C-f>", MiniPick.builtin.grep_live, opts)
+        map("n", "<C-f>", MiniPick.builtin.grep, opts)
         map("n", "<C-b>", MiniPick.builtin.buffers, opts)
         map("n", "<leader>fh", MiniPick.builtin.help, opts)
         map("n", "z=", MiniExtra.pickers.spellsuggest, opts)

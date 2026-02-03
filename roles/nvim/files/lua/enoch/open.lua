@@ -20,7 +20,11 @@ local function ts_string_under_cursor()
         return ""
     end
 
-    return string.gsub(vim.treesitter.get_node_text(node, 0), "^[\"'](.*)[\"']$", "%1")
+    return string.gsub(
+        vim.treesitter.get_node_text(node, 0),
+        "^[\"'](.*)[\"']$",
+        "%1"
+    )
 end
 
 --- Open the (plugin under the cursor)'s homepage

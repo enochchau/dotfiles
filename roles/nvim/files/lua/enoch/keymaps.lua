@@ -30,12 +30,21 @@ map("n", "<leader>d", function()
         vim.diagnostic.open_float()
     end
 end, { desc = "Open diagnostic float" })
-map(
-    "n",
-    "<leader>q",
-    vim.diagnostic.setloclist,
-    { desc = "Open diagnostic loclist" }
-)
+
+-- toggle quickfix
+map("n", "<leader>q", function()
+    local qf_exists = false
+    for _, win in pairs(vim.fn.getwininfo()) do
+        if win.quickfix == 1 then
+            qf_exists = true
+        end
+    end
+    if qf_exists then
+        vim.cmd("cclose")
+    else
+        vim.cmd("copen")
+    end
+end, { desc = "Toggle Quickfix Window" })
 
 map(
     "n",

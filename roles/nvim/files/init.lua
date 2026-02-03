@@ -139,4 +139,10 @@ else
 
     opt.bg = "dark"
     cmd.colorscheme("catppuccin-macchiato")
+    -- In your init.lua
+    if vim.fn.executable("rg") == 1 then
+        -- --glob '!node_modules/*' tells ripgrep to ignore that folder
+        vim.o.grepprg = "rg --vimgrep --smart-case --glob '!node_modules/*'"
+        vim.o.grepformat = "%f:%l:%c:%m"
+    end
 end

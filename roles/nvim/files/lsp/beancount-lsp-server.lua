@@ -6,9 +6,9 @@
 
 ---@type vim.lsp.Config
 return {
-    cmd = { 'beancount-lsp-server', '--stdio' },
-    filetypes = { 'beancount', 'bean' },
-    root_markers = { '.git' },
+    cmd = { "beancount-lsp-server", "--stdio" },
+    filetypes = { "beancount", "bean" },
+    root_markers = { ".git" },
     settings = {
         beanLsp = {
             mainBeanFile = "ledger/ledger.beancount",
@@ -21,6 +21,6 @@ return {
                 enabled = true,
                 alignCurrency = false,
             },
-        }
-    }
+        },
+    },
 }
