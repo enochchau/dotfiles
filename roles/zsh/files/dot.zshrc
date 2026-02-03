@@ -133,3 +133,10 @@ esac
 eval "$(mise activate zsh)"
 
 bindkey -e
+
+## Load the edit-command-line function
+autoload -Uz edit-command-line
+zle -N edit-command-line
+
+# Bind it to a shortcut (Ctrl-x, Ctrl-e is the standard)
+bindkey '^x^e' edit-command-line
