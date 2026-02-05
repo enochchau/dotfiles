@@ -88,6 +88,10 @@ local function config()
                     },
                 },
             }
+        elseif server == "harper_ls" then
+            opts = {
+                filetypes = { "markdown", "text" },
+            }
         else
             opts = {}
         end
