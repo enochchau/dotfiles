@@ -33,9 +33,11 @@ local function setup_treesitter(opts)
                 -- replicate `fold = { enable = true }`
                 -- vim.wo.foldmethod = 'expr'
                 -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-                vim.treesitter.start(buf, language)
-                vim.bo[buf].indentexpr =
-                    "v:lua.require'nvim-treesitter'.indentexpr()"
+                if vim.api.nvim_buf_is_valid(buf) then
+                    vim.treesitter.start(buf, language)
+                    vim.bo[buf].indentexpr =
+                        "v:lua.require'nvim-treesitter'.indentexpr()"
+                end
             end)
         end,
     })
