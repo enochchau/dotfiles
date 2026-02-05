@@ -1,0 +1,11 @@
+# switch pnpm workspace directories
+local gitroot=$(git rev-parse --show-toplevel 2>/dev/null)
+if [[ ! -f "$gitroot/pnpm-workspace.yaml" ]]; then
+  echo "Not a pnpm workspace project!"
+  return 1
+fi
+
+local dir=$(pnpm ls -r --depth -1 --json | jq -r '.[].path' | fzf --height 40% --reverse --header "Select pnpm Workspace")
+if [[ -n "$dir" ]]; then
+  cd $dir
+fi
