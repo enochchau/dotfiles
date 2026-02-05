@@ -1,7 +1,6 @@
 local open = require("enoch.open")
 
 local map = vim.keymap.set
-local opts = { noremap = true, silent = true }
 
 -- move wrapped line wise
 map("n", "j", "gj", { silent = true })
@@ -46,17 +45,32 @@ map("n", "<leader>q", function()
     end
 end, { desc = "Toggle Quickfix Window" })
 
+-- toggle loclist
+map("n", "<leader>l", function()
+    local ll_exists = false
+    for _, win in pairs(vim.fn.getwininfo()) do
+        if win.quickfix == 1 then
+            ll_exists = true
+        end
+    end
+    if ll_exists then
+        vim.cmd("lclose")
+    else
+        vim.cmd("lopen")
+    end
+end, { desc = "Toggle Loclist Window" })
+
 map(
     "n",
     "<leader>cdg",
     ":Cdg<CR>:pwd<CR>",
     { desc = "Change pwd to nearest git root" }
 )
-map("n", "<C-n>", require("enoch.netrw").toggle_netrw, opts)
-map("n", "<C-\\>", ":vs|:term<CR>", opts)
+map("n", "<C-n>", require("enoch.netrw").toggle_netrw, { silent = true })
+map("n", "<C-\\>", ":vs|:term<CR>", { silent = true })
 
 -- map("n", "]c", colo.cycle_colors_next, opts)
 -- map("n", "[c", colo.cycle_colors_prev, opts)
 -- map("n", "<leader>c", colo.save_color, opts)
 
-map("n", "<leader>op", open.plugin_link, opts)
+map("n", "<leader>op", open.plugin_link, { silent = true })

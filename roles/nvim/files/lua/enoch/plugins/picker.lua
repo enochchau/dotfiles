@@ -11,15 +11,13 @@ return {
         local MiniExtra = require("mini.extra")
         MiniPick.setup()
         local map = vim.keymap.set
-        local opts = { noremap = true, silent = true }
-        vim.ui.select = MiniPick.ui_select
 
-        map("n", "<C-p>", MiniPick.builtin.files, opts)
-        map("n", "<C-f>", MiniPick.builtin.grep, opts)
-        map("n", "<C-b>", MiniPick.builtin.buffers, opts)
-        map("n", "<leader>fh", MiniPick.builtin.help, opts)
-        map("n", "z=", MiniExtra.pickers.spellsuggest, opts)
-        map("n", "<leader>o", ":Pick list scope='jump'<CR>", opts)
-        map("n", "<leader>'", MiniExtra.pickers.marks, opts)
+        map("n", "<C-p>", MiniPick.builtin.files, { silent = true })
+        map("n", "<C-f>", MiniPick.builtin.grep, { silent = true })
+        map("n", "<C-b>", MiniPick.builtin.buffers, { silent = true })
+        map("n", "<leader>fh", MiniPick.builtin.help, { silent = true })
+        map("n", "z=", MiniExtra.pickers.spellsuggest, { silent = true })
+        map("n", "<leader>o", ":Pick list scope='jump'<CR>", { silent = true })
+        map("n", "<leader>'", MiniExtra.pickers.marks, { silent = true })
     end,
 }
