@@ -47,3 +47,20 @@ end, {})
 command("StopServer", function()
     myserver.stop()
 end, {})
+
+-- Add to init.lua
+command("GitCheck", function()
+    -- Set the errorformat to match: "filename:line: message"
+    vim.opt.errorformat = "%f:%l: %m"
+
+    -- Run git diff --check and read it into the quickfix list
+    local output = vim.fn.systemlist("git diff --check")
+    vim.fn.setqflist({}, "r", { title = "Git Check", lines = output })
+
+    -- Open the quickfix window if there are errors
+    if not vim.tbl_isempty(output) then
+        vim.cmd("copen")
+    else
+        print("No whitespace errors found!")
+    end
+end, {})
