@@ -1,6 +1,8 @@
 local g = vim.g
 local opt = vim.opt
 
+vim.o.timeoutlen = 300
+
 opt.spelllang = "en_us"
 opt.ignorecase = true
 g.mapleader = ","
