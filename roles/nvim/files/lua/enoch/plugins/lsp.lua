@@ -1,58 +1,64 @@
 local function config()
     vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(ev)
+            local FzfLua = require("fzf-lua")
             local client = vim.lsp.get_client_by_id(ev.data.client_id)
             if client == nil then
                 return
             end
 
             local map = vim.keymap.set
-            local map_opts = { noremap = true, silent = true, buffer = ev.buf }
             local method = vim.lsp.protocol.Methods
 
             vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
 
-            if client:supports_method(method.textDocument_rename) then
-                map("n", "<leader>rn", vim.lsp.buf.rename, map_opts)
-            end
             if client:supports_method(method.textDocument_definition) then
-                map("n", "gd", ":Pick lsp scope='definition'<CR>", map_opts)
+                map("n", "gd", FzfLua.lsp_definitions, {
+                    silent = true,
+                    buffer = ev.buf,
+                    desc = "lsp definitions",
+                })
             end
             if client:supports_method(method.textDocument_implementation) then
-                map("n", "gi", ":Pick lsp scope='implementation'<CR>", map_opts)
+                map("n", "gri", FzfLua.lsp_implementations, {
+                    silent = true,
+                    buffer = ev.buf,
+                    desc = "lsp implementations",
+                })
             end
             if client:supports_method(method.textDocument_typeDefinition) then
-                map(
-                    "n",
-                    "gy",
-                    ":Pick lsp scope='type_definition'<CR>",
-                    map_opts
-                )
+                map("n", "grt", FzfLua.lsp_typedefs, {
+                    silent = true,
+                    buffer = ev.buf,
+                    desc = "lsp type definitions",
+                })
             end
             if client:supports_method(method.textDocument_references) then
-                map("n", "gr", ":Pick lsp scope='references'<CR>", map_opts)
-            end
-            if client:supports_method(method.textDocument_documentSymbol) then
                 map(
                     "n",
-                    "gs",
-                    ":Pick lsp scope='document_symbol'<CR>",
-                    map_opts
+                    "grr",
+                    FzfLua.lsp_references,
+                    { silent = true, buffer = ev.buf, desc = "lsp references" }
                 )
             end
-
-            map("n", "ga", ":Pick diagnostic scope='current'<CR>", map_opts)
-            map("n", "gw", ":Pick diagnostic scope='all'<CR>", map_opts)
-
-            if client:supports_method(method.textDocument_codeAction) then
-                map("n", "<leader>a", vim.lsp.buf.code_action, map_opts)
-                map(
-                    "x",
-                    "<leader>a",
-                    ":<C-U>lua vim.lsp.buf.range_code_action()<CR>",
-                    map_opts
-                )
+            if client:supports_method(method.textDocument_documentSymbol) then
+                map("n", "gO", FzfLua.lsp_document_symbols, {
+                    silent = true,
+                    buffer = ev.buf,
+                    desc = "lsp document symbols",
+                })
             end
+
+            map("n", "ga", FzfLua.diagnostics_document, {
+                silent = true,
+                buffer = ev.buf,
+                desc = "diagnostics document",
+            })
+            map("n", "gw", FzfLua.diagnostics_workspace, {
+                silent = true,
+                buffer = ev.buf,
+                desc = "diagnostics workspace",
+            })
         end,
     })
 
@@ -114,7 +120,7 @@ return {
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "saghen/blink.cmp",
-            "nvim-mini/mini.extra",
+            "ibhagwan/fzf-lua",
         },
     },
     {

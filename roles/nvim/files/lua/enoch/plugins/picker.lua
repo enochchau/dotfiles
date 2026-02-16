@@ -1,23 +1,39 @@
 ---@type LazySpec
 return {
-    "nvim-mini/mini.pick",
-    version = false,
-    dependencies = {
-        "nvim-mini/mini.icons",
-        { "nvim-mini/mini.extra", version = false, config = true },
-    },
+    "ibhagwan/fzf-lua",
+    dependencies = { "nvim-mini/mini.icons" },
+    ---@module "fzf-lua"
+    ---@type fzf-lua.Config|{}
+    opts = {},
     config = function()
-        local MiniPick = require("mini.pick")
-        local MiniExtra = require("mini.extra")
-        MiniPick.setup()
+        local FzfLua = require("fzf-lua")
+        FzfLua.setup({
+            lsp = {
+                code_actions = {
+                    prompt = "Actions> ",
+                    -- This is the secret sauce
+                    winopts = {
+                        relative = "cursor", -- Open at the cursor position
+                        row = 1, -- One line below the cursor
+                        col = 0,
+                        height = 0.25, -- Keep it short
+                        width = 0.55, -- Keep it narrow
+                        preview = {
+                            vertical = "down:70%", -- Preview shows below the list
+                            layout = "vertical",
+                        },
+                    },
+                },
+            },
+        })
         local map = vim.keymap.set
+        FzfLua.register_ui_select()
 
-        map("n", "<C-p>", MiniPick.builtin.files, { silent = true })
-        map("n", "<C-f>", MiniPick.builtin.grep, { silent = true })
-        map("n", "<C-b>", MiniPick.builtin.buffers, { silent = true })
-        map("n", "<leader>fh", MiniPick.builtin.help, { silent = true })
-        map("n", "z=", MiniExtra.pickers.spellsuggest, { silent = true })
-        map("n", "<leader>o", ":Pick list scope='jump'<CR>", { silent = true })
-        map("n", "<leader>'", MiniExtra.pickers.marks, { silent = true })
+        map("n", "<C-p>", FzfLua.files, { silent = true })
+        map("n", "<C-f>", FzfLua.grep, { silent = true })
+        map("n", "<C-b>", FzfLua.buffers, { silent = true })
+        map("n", "z=", FzfLua.spell_suggest, { silent = true })
+        map("n", "<leader>o", FzfLua.jumps, { silent = true })
+        map("n", "<leader>'", FzfLua.marks, { silent = true })
     end,
 }
