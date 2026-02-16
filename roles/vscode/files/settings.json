@@ -41,15 +41,15 @@
       "commands": ["editor.action.formatDocument"]
     },
     {
-      "before": ["<leader>", "a"],
+      "before": ["g", "r", "a"],
       "commands": ["editor.action.quickFix"]
     },
     {
-      "before": ["<leader>", "r", "n"],
+      "before": ["g", "r", "n"],
       "commands": ["editor.action.rename"]
     },
     {
-      "before": ["g", "r"],
+      "before": ["g", "r", "r"],
       "commands": ["editor.action.goToReferences"]
     },
     // move as visual lines
