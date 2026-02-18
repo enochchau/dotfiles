@@ -62,45 +62,29 @@ local function config()
         end,
     })
 
-    local servers =
-        vim.list_extend(require("mason-lspconfig").get_installed_servers(), {
-            "beancount-lsp-server",
-            -- "tsgo"
-        })
+    local servers = {
+        "lua_ls",
+        -- python
+        "ruff",
+        "ty",
+        -- english
+        "harper_ls",
+        -- webdev
+        "cssls",
+        "eslint",
+        "html",
+        "tsgo", -- "ts_ls",
+        "tailwindcss",
+        -- data ops
+        "yamlls",
+        "jsonls",
+    }
+    require("mason-lspconfig").setup({
+        ensure_installed = enabled_servers,
+    })
 
     for _, server in ipairs(servers) do
-        local opts
-        if server == "jsonls" then
-            opts = {
-                settings = {
-                    json = {
-                        schemas = require("schemastore").json.schemas(),
-                        validate = { enable = true },
-                    },
-                },
-            }
-        elseif server == "yamlls" then
-            opts = {
-                settings = {
-                    yaml = {
-                        schemaStore = {
-                            -- You must disable built-in schemaStore support if you want to use
-                            -- this plugin and its advanced options like `ignore`.
-                            enable = false,
-                            -- Avoid TypeError: Cannot read properties of undefined (reading 'length')
-                            url = "",
-                        },
-                        schemas = require("schemastore").yaml.schemas(),
-                    },
-                },
-            }
-        elseif server == "harper_ls" then
-            opts = {
-                filetypes = { "markdown", "text" },
-            }
-        else
-            opts = {}
-        end
+        local opts = {}
         opts.capabilities =
             require("blink.cmp").get_lsp_capabilities(opts.capabilities)
 
@@ -116,7 +100,7 @@ return {
         "neovim/nvim-lspconfig",
         config = config,
         dependencies = {
-            "b0o/schemastore.nvim",
+            "b0o/schemastore.nvim", -- for jsonls and yamlls in after/lsp/<SERVER>.lua
             "williamboman/mason.nvim",
             "williamboman/mason-lspconfig.nvim",
             "saghen/blink.cmp",
