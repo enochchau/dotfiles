@@ -39,7 +39,7 @@ else
     -- disable startup screen
     opt.shortmess = "I"
     -- true color
-    if has("termguicolors") then
+    if has("termguicolors") == 1 then
         opt.termguicolors = true
     end
     -- highlight all search pattern matches

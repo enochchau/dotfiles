@@ -63,7 +63,8 @@ local function config()
     })
 
     local servers = {
-        "lua_ls",
+        -- "lua_ls",
+        "emmylua_ls",
         -- python
         "ruff",
         "ty",
@@ -79,8 +80,10 @@ local function config()
         "yamlls",
         "jsonls",
     }
+
     require("mason-lspconfig").setup({
-        ensure_installed = enabled_servers,
+        ensure_installed = servers,
+        automatic_enable = false,
     })
 
     for _, server in ipairs(servers) do
