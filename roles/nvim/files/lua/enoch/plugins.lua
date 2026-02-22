@@ -30,7 +30,6 @@ local plugins = {
     -- additional language support
     "pearofducks/ansible-vim",
     "vim-scripts/applescript.vim",
-    "amadeus/vim-mjml",
 
     -- qol
     {
