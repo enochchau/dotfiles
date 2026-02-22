@@ -29,9 +29,8 @@ return {
         local map = vim.keymap.set
         FzfLua.register_ui_select()
 
-        map("n", "<C-p>", FzfLua.files, { silent = true })
+        map("n", "<C-p>", FzfLua.global, { silent = true })
         map("n", "<C-f>", FzfLua.grep, { silent = true })
-        map("n", "<leader>b", FzfLua.buffers, { silent = true })
         map("n", "z=", FzfLua.spell_suggest, { silent = true })
         map("n", "<leader>o", FzfLua.jumps, { silent = true })
         map("n", "<leader>'", FzfLua.marks, { silent = true })

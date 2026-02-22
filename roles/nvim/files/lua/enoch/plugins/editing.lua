@@ -1,5 +1,3 @@
-local prettier_fmt = { "prettierd", "prettier" }
-
 ---@type (string | LazySpec)[]
 return {
     { "nvim-mini/mini.pairs", version = false, config = true },
@@ -15,22 +13,22 @@ return {
             formatters_by_ft = {
                 lua = { "stylua" },
                 python = { "ruff_format", "black" },
-                javascript = prettier_fmt,
-                typescript = prettier_fmt,
-                typescriptreact = prettier_fmt,
-                javascriptreact = prettier_fmt,
-                css = prettier_fmt,
-                scss = prettier_fmt,
-                less = prettier_fmt,
-                html = prettier_fmt,
-                json = prettier_fmt,
-                jsonc = prettier_fmt,
-                yaml = prettier_fmt,
-                markdown = prettier_fmt,
-                ["markdown.mdx"] = prettier_fmt,
-                ["mdx"] = prettier_fmt,
-                graphql = prettier_fmt,
-                handlebars = prettier_fmt,
+                javascript = { "prettierd", "prettier" },
+                typescript = { "prettierd", "prettier" },
+                typescriptreact = { "prettierd", "prettier" },
+                javascriptreact = { "prettierd", "prettier" },
+                css = { "prettierd", "prettier" },
+                scss = { "prettierd", "prettier" },
+                less = { "prettierd", "prettier" },
+                html = { "prettierd", "prettier" },
+                json = { "prettierd", "prettier" },
+                jsonc = { "prettierd", "prettier" },
+                yaml = { "prettierd", "prettier" },
+                markdown = { "prettierd", "prettier" },
+                ["markdown.mdx"] = { "prettierd", "prettier" },
+                ["mdx"] = { "prettierd", "prettier" },
+                graphql = { "prettierd", "prettier" },
+                handlebars = { "prettierd", "prettier" },
                 bash = { "beautysh", "shellcheck" },
                 sh = { "beautysh", "shellcheck" },
                 zsh = { "beautysh" },
@@ -77,6 +75,6 @@ return {
         opts_extend = { "sources.default" },
     },
     {
-        "lewis6991/gitsigns.nvim"
-    }
+        "lewis6991/gitsigns.nvim",
+    },
 }

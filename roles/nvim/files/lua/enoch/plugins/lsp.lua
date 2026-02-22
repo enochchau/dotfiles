@@ -63,8 +63,8 @@ local function config()
     })
 
     local servers = {
-        -- "lua_ls",
-        "emmylua_ls",
+        "lua_ls",
+        -- "emmylua_ls",
         -- python
         "ruff",
         "ty",
@@ -108,23 +108,6 @@ return {
             "williamboman/mason-lspconfig.nvim",
             "saghen/blink.cmp",
             "ibhagwan/fzf-lua",
-        },
-    },
-    {
-        "mason-org/mason-lspconfig.nvim",
-        dependencies = { "mason-org/mason.nvim" },
-        ---@type MasonLspconfigSettings
-        config = {
-            automatic_enable = false,
-            ensure_installed = {
-                "jsonls",
-                "cssls",
-                "html",
-                "eslint",
-                "lua_ls",
-                "ts_ls",
-                "yamlls",
-            },
         },
     },
 }

@@ -128,8 +128,10 @@ else
             ["yabairc"] = "sh",
             ["skhdrc"] = "config",
             [".swcrc"] = "json",
-            [vim.env.XDG_CONFIG_HOME .. "/ghostty/config"] = "ini",
         },
+        pattern = {
+            ['${XDG_CONFIG_HOME}/ghostty/config'] = 'ini'
+        }
     })
 
     require("enoch.lazy")
