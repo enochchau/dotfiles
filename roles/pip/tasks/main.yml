@@ -1,3 +1,0 @@
-- name: Install pip pkgs
-  ansible.builtin.pip:
-    name: "{{ pkgs }}"

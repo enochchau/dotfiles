@@ -47,14 +47,7 @@
       tags: nvim
     - role: mise
       tags: mise
-    - role: nodejs
-      tags: nodejs
-      vars:
-        npm_global_packages:
-          - prettier
     - role: vscode
       tags: vscode
     - role: ghostty
       tags: ghostty
-#    - role: fish
-#      tags: fish
