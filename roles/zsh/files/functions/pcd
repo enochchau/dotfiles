@@ -5,7 +5,20 @@ if [[ ! -f "$gitroot/pnpm-workspace.yaml" ]]; then
   return 1
 fi
 
-local dir=$(pnpm ls -r --depth -1 --json | jq -r '.[].path' | fzf --height 40% --reverse --header "Select pnpm Workspace")
-if [[ -n "$dir" ]]; then
-  cd $dir
+# 1. Use jq to create "name <TAB> path" strings
+# 2. Tell fzf to split by TAB (\t)
+# 3. --nth 1: Only search the name
+# 4. --with-nth 1: Only SHOW the name in the list (cleaner UI)
+local selected=$(pnpm ls -r --depth -1 --json | \
+  jq -r '.[] | "\(.name // "root")\t\(.path)"' | \
+  fzf --height 40% \
+      --reverse \
+      --header "Select pnpm Workspace" \
+      --delimiter $'\t' \
+      --nth 1 )
+
+# Extract the path (the second field) from the selection
+if [[ -n "$selected" ]]; then
+  local dir=$(echo "$selected" | cut -f2)
+  cd "$dir"
 fi

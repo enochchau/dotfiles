@@ -64,3 +64,5 @@ command("GitCheck", function()
         print("No whitespace errors found!")
     end
 end, {})
+
+command("PnpmWorkspace", require("enoch.pnpm-workspace-picker").pnpm_workspace_picker, {})
