@@ -2,6 +2,10 @@ from pyinfra import host
 from pyinfra.operations import files, git, server
 from pyinfra.facts.server import Home, User
 
+import sys
+sys.path.insert(0, "..")
+from facts.user_shell import UserShell
+
 
 def setup(home_path, repo_path):
     zdotdir = f"{home_path}/.config/zsh"
@@ -55,16 +59,14 @@ def setup(home_path, repo_path):
     )
 
     # Change user shell to zsh (if not already)
-    # Use dscl on macOS to check current shell and change only if needed
-    username = host.get_fact(User)
-    server.shell(
-        name="Change user shell to zsh",
-        commands=[
-            f'current_shell=$(dscl . -read /Users/{username} UserShell | cut -d" " -f2) && '
-            f'if [ "$current_shell" != "/bin/zsh" ]; then chsh -s /bin/zsh; fi',
-        ],
-        _sudo=True,
-    )
+    current_shell = host.get_fact(UserShell)
+
+    if current_shell != "/bin/zsh":
+        server.shell(
+            name="Change user shell to zsh",
+            commands=["chsh -s /bin/zsh"],
+            _sudo=True,
+        )
 
     # Link MacMachine.zshrc
     files.link(
