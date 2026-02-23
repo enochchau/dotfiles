@@ -4,11 +4,7 @@ from pyinfra import host
 from pyinfra.facts.server import Home
 from pyinfra.operations import server
 
-from ..common import (
-    ensure_config_directory,
-    install_brew_packages,
-    symlink_config_directory,
-)
+from ..common import ensure_config_directory, symlink_config_directory
 
 
 def setup(repo_path: str) -> None:
@@ -18,9 +14,6 @@ def setup(repo_path: str) -> None:
     Args:
         repo_path: Path to the dotfiles repository.
     """
-    # Install mise on macOS
-    install_brew_packages(packages=["mise"])
-
     # Create .config directory
     ensure_config_directory()
 

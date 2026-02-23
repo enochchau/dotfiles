@@ -22,8 +22,25 @@ if not host.get_fact(Directory, repo_path):
     raise RuntimeError(f"Repository not found at {repo_path}")
 
 # Configuration
-DEVTOOLS_PACKAGES = ["bat", "fd", "fzf", "git-delta", "jq", "ripgrep"]
-DEVTOOLS_CASKS = ["rectangle"]
+DEVTOOLS_PACKAGES = [
+    "bat",
+    "difftastic",
+    "fd",
+    "ffmpeg",
+    "fzf",
+    "git-delta",
+    "jq",
+    "mise",
+    "neovim",
+    "ripgrep",
+    "tmux",
+    "uv",
+]
+DEVTOOLS_CASKS = [
+    "ghostty",
+    "linearmouse",
+    "rectangle",
+]
 
 # Git
 git_setup(

@@ -3,11 +3,7 @@
 from pyinfra import host
 from pyinfra.facts.server import Home
 
-from ..common import (
-    ensure_config_directory,
-    install_brew_casks,
-    symlink_config_directory,
-)
+from ..common import ensure_config_directory, symlink_config_directory
 
 
 def setup(repo_path: str) -> None:
@@ -17,9 +13,6 @@ def setup(repo_path: str) -> None:
     Args:
         repo_path: Path to the dotfiles repository.
     """
-    # Install ghostty on macOS
-    install_brew_casks(casks=["ghostty"])
-
     # Create .config directory
     ensure_config_directory()
 

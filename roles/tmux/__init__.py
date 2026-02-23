@@ -3,11 +3,7 @@
 from pyinfra import host
 from pyinfra.facts.server import Home
 
-from ..common import (
-    ensure_config_directory,
-    install_brew_packages,
-    symlink_config_file,
-)
+from ..common import ensure_config_directory, symlink_config_file
 
 
 def setup(repo_path: str) -> None:
@@ -17,9 +13,6 @@ def setup(repo_path: str) -> None:
     Args:
         repo_path: Path to the dotfiles repository.
     """
-    # Install tmux on macOS
-    install_brew_packages(packages=["tmux"])
-
     # Create .config/tmux directory
     ensure_config_directory(subdirs=["tmux"])
 
