@@ -7,20 +7,20 @@ from pyinfra.operations import files
 from ..common import clone_repo, install_brew_casks, install_brew_packages
 
 
-def setup(repo_path: str) -> None:
+def setup(repo_path: str, packages: list[str], casks: list[str]) -> None:
     """
     Set up development tools.
 
     Args:
         repo_path: Path to the dotfiles repository.
+        packages: List of Homebrew packages to install.
+        casks: List of Homebrew casks to install.
     """
     home_path = host.get_fact(Home)
 
     # Install brew packages and casks on macOS
-    install_brew_packages(
-        packages=["bat", "fd", "fzf", "git-delta", "jq", "ripgrep"],
-    )
-    install_brew_casks(casks=["rectangle"])
+    install_brew_packages(packages=packages)
+    install_brew_casks(casks=casks)
 
     # Create ~/code directory
     files.directory(

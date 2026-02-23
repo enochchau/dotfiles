@@ -21,6 +21,10 @@ home_path = host.get_fact(Home)
 if not host.get_fact(Directory, repo_path):
     raise RuntimeError(f"Repository not found at {repo_path}")
 
+# Configuration
+DEVTOOLS_PACKAGES = ["bat", "fd", "fzf", "git-delta", "jq", "ripgrep"]
+DEVTOOLS_CASKS = ["rectangle"]
+
 # Git
 git_setup(
     repo_path=repo_path,
@@ -43,7 +47,11 @@ nvim_setup(repo_path=repo_path)
 mise_setup(repo_path=repo_path)
 
 # Devtools
-devtools_setup(repo_path=repo_path)
+devtools_setup(
+    repo_path=repo_path,
+    packages=DEVTOOLS_PACKAGES,
+    casks=DEVTOOLS_CASKS,
+)
 
 # Ghostty
 ghostty_setup(repo_path=repo_path)
