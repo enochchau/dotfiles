@@ -1,4 +1,4 @@
-from pyinfra.facts.base import FactBase
+from pyinfra.api import FactBase
 
 
 class UserShell(FactBase):
@@ -7,10 +7,10 @@ class UserShell(FactBase):
     Uses dscl to read the UserShell attribute.
     """
 
-    default = None
+    command = "dscl . -read /Users/$(whoami) UserShell | cut -d' ' -f2"
 
-    def command(self) -> str:
-        # Get the current username first
-        username_command = "whoami"
-        # Then use dscl to get the shell
-        return "dscl . -read /Users/$(whoami) UserShell | cut -d' ' -f2"
+    def process(self, output):
+        # output is a list with one line: the shell path
+        if output:
+            return output[0].strip()
+        return None
