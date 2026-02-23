@@ -57,7 +57,8 @@ def setup(home_path, repo_path):
     # Change user shell to zsh
     server.shell(
         name="Change user shell to zsh",
-        commands=["sudo chsh -s /bin/zsh $(whoami)"],
+        commands=["chsh -s /bin/zsh $(whoami)"],
+        _sudo=True,
     )
 
     # Link MacMachine.zshrc
