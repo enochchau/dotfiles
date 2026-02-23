@@ -1,0 +1,5 @@
+# cd into repo/workspaces or any subdirectory
+local gitroot=$(git rev-parse --show-toplevel)
+if [[ -n "$gitroot" ]]; then
+    cd "$gitroot/workspaces/$1"
+fi

@@ -1,0 +1,5 @@
+#compdef cdgs
+local gitroot=$(git rev-parse --show-toplevel)
+if [[ -n "$gitroot" ]]; then
+    _arguments "1:path:_path_files -W $gitroot/services -/"
+fi

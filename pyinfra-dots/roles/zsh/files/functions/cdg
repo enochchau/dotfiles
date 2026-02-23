@@ -1,0 +1,5 @@
+# change directories into the git repo root
+local git_root=$(git rev-parse --show-toplevel)
+if [[ -n "$git_root" ]]; then
+    cd "$git_root/$1"
+fi

@@ -1,0 +1,47 @@
+[alias]
+    # Difftastic aliases
+    dlog = -c diff.external=difft log --ext-diff
+    dshow = -c diff.external=difft show --ext-diff
+    ddiff = -c diff.external=difft diff
+
+[core]
+	pager = "delta"
+
+[credential]
+	helper = "store"
+
+[delta]
+	navigate = true
+	side-by-side = true
+	syntax-theme = "Dracula"
+
+[diff]
+	colorMoved = "default"
+
+[gpg]
+	program = "gpg"
+
+[init]
+	defaultBranch = "main"
+
+[interactive]
+	diffFilter = "delta --color-only"
+
+[pager]
+	branch = false
+
+[pull]
+	rebase = true
+
+[user]
+	email = {{ git_email }}
+	name = {{ git_user }}
+
+[merge]
+	conflictstyle = diff3
+
+[sendemail]
+	smtpserver = smtp.gmail.com
+	smtpuser = enoch965@gmail.com
+	smtpencryption = tls
+	smtpserverport = 587

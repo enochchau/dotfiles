@@ -1,0 +1,2 @@
+# change git branches using fzf
+git branch | fzf --height 40% --reverse | awk '{print ($2 != "" ? $2 : $1)}' | xargs git switch
