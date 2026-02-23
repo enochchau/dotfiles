@@ -10,6 +10,12 @@ home_path = os.path.expanduser("~")
 # Import roles
 from roles.git import setup as git_setup
 from roles.zsh import setup as zsh_setup
+from roles.tmux import setup as tmux_setup
+from roles.nvim import setup as nvim_setup
+from roles.mise import setup as mise_setup
+from roles.devtools import setup as devtools_setup
+from roles.ghostty import setup as ghostty_setup
+from roles.vscode import setup as vscode_setup
 
 # Git
 git_setup(
@@ -24,22 +30,20 @@ zsh_setup(
     repo_path=repo_path,
 )
 
-# Devtools
-brew.packages(
-    packages=[
-        "bat",
-        "difftastic",
-        "fd",
-        "ffmpeg",
-        "fzf",
-        "git-delta",
-        "jq",
-        "mise",
-        "neovim",
-        "ripgrep",
-        "uv",
-    ]
-)
+# Tmux
+tmux_setup(repo_path=repo_path)
 
-# Mac apps
-brew.casks(casks=["ghostty", "linearmouse", "rectangle"])
+# Neovim
+nvim_setup(repo_path=repo_path)
+
+# Mise
+mise_setup(repo_path=repo_path)
+
+# Devtools
+devtools_setup(repo_path=repo_path)
+
+# Ghostty
+ghostty_setup(repo_path=repo_path)
+
+# VSCode
+vscode_setup(repo_path=repo_path)
