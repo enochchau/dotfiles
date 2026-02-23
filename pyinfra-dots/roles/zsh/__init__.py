@@ -59,6 +59,8 @@ def setup(home_path, repo_path):
     users = host.get_fact(Users)
     current_shell = users.get(username, {}).get("shell")
 
+    print(f"DEBUG: username={username}, current_shell={current_shell}")
+
     if current_shell != "/bin/zsh":
         server.shell(
             name="Change user shell to zsh",
