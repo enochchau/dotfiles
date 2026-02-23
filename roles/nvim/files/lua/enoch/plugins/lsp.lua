@@ -63,7 +63,6 @@ local function config()
     })
 
     local servers = {
-        "ansiblels",
         "lua_ls",
         -- "emmylua_ls",
         -- python
