@@ -1,0 +1,152 @@
+{
+  "telemetry.telemetryLevel": "off",
+  "editor.accessibilitySupport": "off",
+  "[jsonc]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.inlineSuggest.enabled": true,
+  "typescript.updateImportsOnFileMove.enabled": "always",
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "javascript.updateImportsOnFileMove.enabled": "always",
+  "vim.leader": ",",
+  "vim.hlsearch": true,
+  "vim.visualModeKeyBindings": [
+    {
+      "commands": ["editor.action.indentLines"],
+      "before": [">"]
+    },
+    {
+      "commands": ["editor.action.outdentLines"],
+      "before": ["<"]
+    }
+  ],
+  "vim.normalModeKeyBindings": [
+    {
+      "before": ["K"],
+      "commands": ["editor.action.showHover"]
+    },
+    {
+      "before": ["<leader>", "b"],
+      "commands": ["workbench.action.showAllEditors"]
+    },
+    {
+      "before": ["<leader>", "n"],
+      "commands": ["workbench.action.toggleSidebarVisibility"]
+    },
+    {
+      "before": ["<leader>", "f"],
+      "commands": ["editor.action.formatDocument"]
+    },
+    {
+      "before": ["g", "r", "a"],
+      "commands": ["editor.action.quickFix"]
+    },
+    {
+      "before": ["g", "r", "n"],
+      "commands": ["editor.action.rename"]
+    },
+    {
+      "before": ["g", "r", "r"],
+      "commands": ["editor.action.goToReferences"]
+    },
+    // move as visual lines
+    {
+      "before": ["j"],
+      "after": ["g", "j"]
+    },
+    {
+      "before": ["k"],
+      "after": ["g", "k"]
+    },
+    {
+      "before": ["g", "w"],
+      "commands": ["workbench.actions.view.problems"]
+    },
+    {
+      "before": ["]", "d"],
+      "commands": ["editor.action.marker.nextInFiles"]
+    },
+    {
+      "before": ["[", "d"],
+      "commands": ["editor.action.marker.prevInFiles"]
+    },
+    {
+      "before": ["<leader>", "%"],
+      "commands": [
+        {
+          "command": "editor.emmet.action.matchTag"
+        }
+      ]
+    }
+  ],
+  "editor.letterSpacing": 0.1,
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "editor.tabSize": 4,
+  "[javascript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.tabSize": 2
+  },
+  "diffEditor.wordWrap": "on",
+  "[json]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "editor.guides.highlightActiveIndentation": true,
+  "editor.rulers": [80],
+  "update.showReleaseNotes": false,
+  "editor.cursorBlinking": "solid",
+  "[yaml]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.tsserver.maxTsServerMemory": 8192,
+  "editor.lineHeight": 1.2,
+  "editor.wordWrap": "on",
+  "editor.wrappingIndent": "none",
+  "workbench.editor.splitSizing": "distribute",
+  "workbench.sideBar.location": "right",
+  "workbench.colorTheme": "Default Light Modern",
+  "color-highlight.markerType": "dot-after",
+  "git.openRepositoryInParentFolders": "never",
+  "editor.fontFamily": "'JetBrainsMono Nerd Font', Menlo, Monaco, 'Courier New', monospace",
+  "editor.fontLigatures": false,
+  "extensions.experimental.affinity": {
+    "asvetliakov.vscode-neovim": 1
+  },
+  "github.copilot.enable": {
+    "*": false,
+    "plaintext": false,
+    "markdown": false,
+    "scminput": false
+  },
+  "git.autofetch": true,
+  "window.autoDetectColorScheme": true,
+  "[css]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode"
+  },
+  "typescript.experimental.useTsgo": false,
+  "diffEditor.maxComputationTime": 0,
+  "editor.minimap.renderCharacters": false,
+  "editor.minimap.showSlider": "always",
+  "editor.minimap.size": "fit",
+  "editor.minimap.enabled": false,
+  "workbench.editor.empty.hint": "hidden",
+  "security.promptForLocalFileProtocolHandling": false,
+  "[python]": {
+    "editor.defaultFormatter": "charliermarsh.ruff"
+  },
+  "[mdx]": {
+    "editor.defaultFormatter": "unifiedjs.vscode-mdx"
+  },
+  "workbench.preferredLightColorTheme": "Default Dark Modern",
+  "[c]": {
+    "editor.defaultFormatter": "xaver.clang-format"
+  },
+  "editor.lineNumbers": "relative",
+  "python.analysis.typeCheckingMode": "strict",
+  "makefile.configureOnOpen": false
+}
