@@ -1,19 +1,18 @@
-update:
-	ansible-playbook --ask-become-pass -i hosts local.yml
-.PHONY: update
+.PHONY: run
+run:
+	uv run pyinfra @local deploy.py
 
-install-deps:
-	ansible-galaxy collection install -r requirements.yml
-.PHONY: install-deps
-
-tag:
-	ansible-playbook --ask-become-pass -i hosts local.yml --tags $(TAG)
-.PHONY: tags
-
-lint:
-	ansible-lint
 .PHONY: lint
+lint:
+	uv run ruff check .
 
-fmt:
-	prettier . --write
-.PHONY: fmt
+.PHONY: format
+format:
+	uv run ruff format .
+
+.PHONY: typecheck
+typecheck:
+	uv run ty check .
+
+.PHONY: check
+check: lint format typecheck

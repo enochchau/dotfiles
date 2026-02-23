@@ -1,5 +1,0 @@
-- name: Install neovim on linux
-  ansible.builtin.package:
-    name: neovim
-    state: present
-  become: true
