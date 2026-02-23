@@ -55,11 +55,9 @@ def setup(home_path, repo_path):
     )
 
     # Change user shell to zsh
-    username = host.get_fact(User)
-    server.user(
+    server.shell(
         name="Change user shell to zsh",
-        user=username,
-        shell="/bin/zsh",
+        commands=["chsh -s /bin/zsh"],
     )
 
     # Link MacMachine.zshrc
