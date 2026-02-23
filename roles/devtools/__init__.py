@@ -1,23 +1,26 @@
+"""Devtools role - installs common development tools."""
+
 from pyinfra import host
-from pyinfra.facts.server import Home, Kernel
-from pyinfra.operations import brew, files, git
+from pyinfra.facts.server import Home
+from pyinfra.operations import files
+
+from ..common import clone_repo, install_brew_casks, install_brew_packages
 
 
-def setup(repo_path):
+def setup(repo_path: str, packages: list[str], casks: list[str]) -> None:
+    """
+    Set up development tools.
+
+    Args:
+        repo_path: Path to the dotfiles repository.
+        packages: List of Homebrew packages to install.
+        casks: List of Homebrew casks to install.
+    """
     home_path = host.get_fact(Home)
 
-    # Install brew packages on macOS
-    if host.get_fact(Kernel) == "Darwin":
-        brew.packages(
-            name="Install brew packages",
-            packages=["bat", "fd", "fzf", "git-delta", "jq", "ripgrep"],
-        )
-
-        # Install casks
-        brew.casks(
-            name="Install casks",
-            casks=["rectangle"],
-        )
+    # Install brew packages and casks on macOS
+    install_brew_packages(packages=packages)
+    install_brew_casks(casks=casks)
 
     # Create ~/code directory
     files.directory(
@@ -27,9 +30,8 @@ def setup(repo_path):
     )
 
     # Clone dev-scripts repository
-    git.repo(
+    clone_repo(
+        repo_url="git@github.com:ec965/dev-scripts.git",
+        dest_path=f"{home_path}/code/dev-scripts",
         name="Clone dev-scripts repository",
-        src="git@github.com:ec965/dev-scripts.git",
-        dest=f"{home_path}/code/dev-scripts",
-        pull=True,
     )

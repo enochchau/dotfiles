@@ -1,29 +1,25 @@
+"""Tmux role - installs and configures tmux."""
+
 from pyinfra import host
-from pyinfra.facts.server import Home, Kernel
-from pyinfra.operations import brew, files
+from pyinfra.facts.server import Home
+
+from ..common import ensure_config_directory, symlink_config_file
 
 
-def setup(repo_path):
-    home_path = host.get_fact(Home)
+def setup(repo_path: str) -> None:
+    """
+    Set up tmux.
 
-    # Install tmux on macOS
-    if host.get_fact(Kernel) == "Darwin":
-        brew.packages(
-            name="Install tmux",
-            packages=["tmux"],
-        )
-
-    # Create .config directory
-    files.directory(
-        name="Create .config/tmux directory",
-        path=f"{home_path}/.config/tmux",
-        mode="0755",
-    )
+    Args:
+        repo_path: Path to the dotfiles repository.
+    """
+    # Create .config/tmux directory
+    ensure_config_directory(subdirs=["tmux"])
 
     # Symlink tmux.conf
-    files.link(
-        name="Symlink tmux.conf",
-        path=f"{home_path}/.config/tmux/tmux.conf",
-        target=f"{repo_path}/roles/tmux/files/tmux.conf",
-        force=True,
+    symlink_config_file(
+        repo_path=repo_path,
+        role_name="tmux",
+        filename="tmux.conf",
+        dest_path=f"{host.get_fact(Home)}/.config/tmux/tmux.conf",
     )

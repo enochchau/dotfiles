@@ -1,29 +1,24 @@
+"""Ghostty role - installs and configures Ghostty terminal."""
+
 from pyinfra import host
-from pyinfra.facts.server import Home, Kernel
-from pyinfra.operations import brew, files
+from pyinfra.facts.server import Home
+
+from ..common import ensure_config_directory, symlink_config_directory
 
 
-def setup(repo_path):
-    home_path = host.get_fact(Home)
+def setup(repo_path: str) -> None:
+    """
+    Set up Ghostty terminal.
 
-    # Install ghostty on macOS
-    if host.get_fact(Kernel) == "Darwin":
-        brew.casks(
-            name="Install ghostty",
-            casks=["ghostty"],
-        )
-
+    Args:
+        repo_path: Path to the dotfiles repository.
+    """
     # Create .config directory
-    files.directory(
-        name="Create .config directory",
-        path=f"{home_path}/.config",
-        mode="0755",
-    )
+    ensure_config_directory()
 
     # Symlink ghostty config directory
-    files.link(
-        name="Symlink ghostty config",
-        path=f"{home_path}/.config/ghostty",
-        target=f"{repo_path}/roles/ghostty/files",
-        force=True,
+    symlink_config_directory(
+        repo_path=repo_path,
+        role_name="ghostty",
+        dest_path=f"{host.get_fact(Home)}/.config/ghostty",
     )

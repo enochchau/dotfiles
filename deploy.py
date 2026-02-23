@@ -1,4 +1,8 @@
-import os
+"""Pyinfra deployment script for dotfiles."""
+
+from pyinfra import host
+from pyinfra.facts.files import Directory
+from pyinfra.facts.server import Home
 
 # Import roles
 from roles.devtools import setup as devtools_setup
@@ -10,8 +14,33 @@ from roles.tmux import setup as tmux_setup
 from roles.vscode import setup as vscode_setup
 from roles.zsh import setup as zsh_setup
 
-repo_path = os.path.expanduser("~/dotfiles")
-home_path = os.path.expanduser("~")
+repo_path = f"{host.get_fact(Home)}/dotfiles"
+home_path = host.get_fact(Home)
+
+# Validate repository exists
+if not host.get_fact(Directory, repo_path):
+    raise RuntimeError(f"Repository not found at {repo_path}")
+
+# Configuration
+DEVTOOLS_PACKAGES = [
+    "bat",
+    "difftastic",
+    "fd",
+    "ffmpeg",
+    "fzf",
+    "git-delta",
+    "jq",
+    "mise",
+    "neovim",
+    "ripgrep",
+    "tmux",
+    "uv",
+]
+DEVTOOLS_CASKS = [
+    "ghostty",
+    "linearmouse",
+    "rectangle",
+]
 
 # Git
 git_setup(
@@ -22,7 +51,6 @@ git_setup(
 
 # ZSH
 zsh_setup(
-    home_path=home_path,
     repo_path=repo_path,
 )
 
@@ -36,7 +64,11 @@ nvim_setup(repo_path=repo_path)
 mise_setup(repo_path=repo_path)
 
 # Devtools
-devtools_setup(repo_path=repo_path)
+devtools_setup(
+    repo_path=repo_path,
+    packages=DEVTOOLS_PACKAGES,
+    casks=DEVTOOLS_CASKS,
+)
 
 # Ghostty
 ghostty_setup(repo_path=repo_path)

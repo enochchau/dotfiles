@@ -1,10 +1,23 @@
+"""Zsh role - configures zsh shell and antidote plugin manager."""
+
 from pyinfra import host
-from pyinfra.operations import files, git, server
+from pyinfra.facts.server import Home
+from pyinfra.operations import files, server
 
 from facts.user_shell import UserShell
 
+from ..common import clone_repo, symlink_config_file
+from ..constants import SHELL_ZSH
 
-def setup(home_path, repo_path):
+
+def setup(repo_path: str) -> None:
+    """
+    Set up zsh shell with antidote plugin manager.
+
+    Args:
+        repo_path: Path to the dotfiles repository.
+    """
+    home_path = host.get_fact(Home)
     zdotdir = f"{home_path}/.config/zsh"
 
     # Create ZDOTDIR
@@ -15,50 +28,52 @@ def setup(home_path, repo_path):
     )
 
     # Link home zshenv
-    files.link(
+    symlink_config_file(
+        repo_path=repo_path,
+        role_name="zsh",
+        filename="home.zshenv",
+        dest_path=f"{home_path}/.zshenv",
         name="Link home zshenv",
-        path=f"{home_path}/.zshenv",
-        target=f"{repo_path}/roles/zsh/files/home.zshenv",
-        force=True,
     )
 
     # Link zdotdir zshenv
-    files.link(
+    symlink_config_file(
+        repo_path=repo_path,
+        role_name="zsh",
+        filename="dot.zshenv",
+        dest_path=f"{zdotdir}/.zshenv",
         name="Link zdotdir zshenv",
-        path=f"{zdotdir}/.zshenv",
-        target=f"{repo_path}/roles/zsh/files/dot.zshenv",
-        force=True,
     )
 
     # Link zshrc
-    files.link(
+    symlink_config_file(
+        repo_path=repo_path,
+        role_name="zsh",
+        filename="dot.zshrc",
+        dest_path=f"{zdotdir}/.zshrc",
         name="Link zshrc",
-        path=f"{zdotdir}/.zshrc",
-        target=f"{repo_path}/roles/zsh/files/dot.zshrc",
-        force=True,
     )
 
     # Install Antidote
-    git.repo(
+    clone_repo(
+        repo_url="https://github.com/mattmc3/antidote.git",
+        dest_path=f"{zdotdir}/antidote",
         name="Install Antidote",
-        src="https://github.com/mattmc3/antidote.git",
-        dest=f"{zdotdir}/antidote",
-        branch="HEAD",
-        pull=True,
     )
 
     # Link zsh-plugins.txt
-    files.link(
+    symlink_config_file(
+        repo_path=repo_path,
+        role_name="zsh",
+        filename="dot.zsh_plugins.txt",
+        dest_path=f"{zdotdir}/.zsh_plugins.txt",
         name="Link zsh-plugins.txt",
-        path=f"{zdotdir}/.zsh_plugins.txt",
-        target=f"{repo_path}/roles/zsh/files/dot.zsh_plugins.txt",
-        force=True,
     )
 
     # Change user shell to zsh (if not already)
     current_shell = host.get_fact(UserShell)
 
-    if current_shell != "/bin/zsh":
+    if current_shell != SHELL_ZSH:
         server.shell(
             name="Change user shell to zsh",
             commands=["chsh -s /bin/zsh"],
@@ -66,9 +81,10 @@ def setup(home_path, repo_path):
         )
 
     # Link MacMachine.zshrc
-    files.link(
+    symlink_config_file(
+        repo_path=repo_path,
+        role_name="zsh",
+        filename="macmachine.zsh",
+        dest_path=f"{zdotdir}/machine.zsh",
         name="Link MacMachine.zshrc",
-        path=f"{zdotdir}/machine.zsh",
-        target=f"{repo_path}/roles/zsh/files/macmachine.zsh",
-        force=True,
     )

@@ -1,7 +1,7 @@
 [project]
 name = "pyinfra-dots"
 version = "0.1.0"
-description = "Add your description here"
+description = "Pyinfra-based dotfiles deployment for macOS"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [

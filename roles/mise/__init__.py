@@ -1,36 +1,31 @@
+"""Mise role - installs and configures mise (version manager)."""
+
 from pyinfra import host
-from pyinfra.facts.server import Home, Kernel
-from pyinfra.operations import brew, files, server
+from pyinfra.facts.server import Home
+from pyinfra.operations import server
+
+from ..common import ensure_config_directory, symlink_config_directory
 
 
-def setup(repo_path):
-    home_path = host.get_fact(Home)
+def setup(repo_path: str) -> None:
+    """
+    Set up mise version manager.
 
-    # Install mise on macOS
-    if host.get_fact(Kernel) == "Darwin":
-        brew.packages(
-            name="Install mise",
-            packages=["mise"],
-        )
-
+    Args:
+        repo_path: Path to the dotfiles repository.
+    """
     # Create .config directory
-    files.directory(
-        name="Create .config directory",
-        path=f"{home_path}/.config",
-        mode="0755",
-    )
+    ensure_config_directory()
 
     # Symlink mise config directory
-    files.link(
-        name="Symlink mise config",
-        path=f"{home_path}/.config/mise",
-        target=f"{repo_path}/roles/mise/files",
-        force=True,
+    symlink_config_directory(
+        repo_path=repo_path,
+        role_name="mise",
+        dest_path=f"{host.get_fact(Home)}/.config/mise",
     )
 
     # Install mise shims/tools (macOS only)
-    if host.get_fact(Kernel) == "Darwin":
-        server.shell(
-            name="Install mise tools",
-            commands=["mise install"],
-        )
+    server.shell(
+        name="Install mise tools",
+        commands=["mise install"],
+    )
