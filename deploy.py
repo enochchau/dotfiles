@@ -49,6 +49,13 @@ git_setup(
     git_email="enoch965@gmail.com",
 )
 
+# Devtools
+devtools_setup(
+    repo_path=repo_path,
+    packages=DEVTOOLS_PACKAGES,
+    casks=DEVTOOLS_CASKS,
+)
+
 # ZSH
 zsh_setup(
     repo_path=repo_path,
@@ -62,13 +69,6 @@ nvim_setup(repo_path=repo_path)
 
 # Mise
 mise_setup(repo_path=repo_path)
-
-# Devtools
-devtools_setup(
-    repo_path=repo_path,
-    packages=DEVTOOLS_PACKAGES,
-    casks=DEVTOOLS_CASKS,
-)
 
 # Ghostty
 ghostty_setup(repo_path=repo_path)
