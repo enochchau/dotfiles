@@ -15,7 +15,7 @@ def setup(repo_path, **kwargs):
 ## Directory Structure
 
 ```
-pyinfra-dots/
+dotfiles/
 ├── deploy.py              # Main entry point
 └── roles/
     ├── {role}/

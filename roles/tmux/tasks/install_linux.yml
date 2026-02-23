@@ -1,5 +1,0 @@
-- name: Install tmux on Linux
-  ansible.builtin.package:
-    name: tmux
-    state: present
-  become: true

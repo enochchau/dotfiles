@@ -1,8 +1,0 @@
-# No function wrapper needed inside the file if using autoload
-local target_dir=$(git worktree list | fzf --height 40% --reverse --header "Select Worktree" | awk '{print $1}')
-
-if [ -n "$target_dir" ]; then
-    cd "$target_dir"
-    # Optional: clear the screen or print the new path
-    zle && zle reset-prompt
-fi

@@ -1,8 +1,0 @@
-#!/usr/bin/env bash
-
-input="$1"
-output="${input%.*}.mp4"
-
-echo "mov to mp4: Converting $input to $output"
-
-ffmpeg -i "$input" -vcodec h264 -acodec mp2 "$output"

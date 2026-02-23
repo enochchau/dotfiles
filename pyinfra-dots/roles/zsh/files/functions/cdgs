@@ -1,5 +1,0 @@
-# cd into repo/services or any subdirectory
-local gitroot=$(git rev-parse --show-toplevel)
-if [[ -n "$gitroot" ]]; then
-    cd "$gitroot/services/$1"
-fi

@@ -1,2 +1,0 @@
-#compdef cdrepo
-_arguments "1:path:_path_files -W ~/Gatsby/repo/ -/"

@@ -10,7 +10,7 @@ from roles.tmux import setup as tmux_setup
 from roles.vscode import setup as vscode_setup
 from roles.zsh import setup as zsh_setup
 
-repo_path = os.path.expanduser("~/dotfiles/pyinfra-dots")
+repo_path = os.path.expanduser("~/dotfiles")
 home_path = os.path.expanduser("~")
 
 # Git

@@ -1,2 +1,0 @@
-#compdef mov-to-mp4
-_arguments "1:input mov file:_files -g '*.mov'"

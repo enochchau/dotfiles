@@ -1,9 +1,0 @@
-alt + shift - b [
-  * : open -a 'Google Chrome'
-  "Google Chrome" : ~/.config/skhd/switchChromeProfile.applescript
-]
-alt + shift - f : open -a Firefox
-alt + shift - s : open -a Slack
-alt + shift - u : open -a Spotify
-alt + shift - t : ~/.config/skhd/ghostty.applescript
-alt + shift - l : ~/.config/skhd/lorem.applescript

@@ -1,2 +1,0 @@
-# change directories down using fzf
-cd $(fd --type d | fzf --height 40$)
