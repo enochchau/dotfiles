@@ -1,6 +1,5 @@
 from pyinfra import host
 from pyinfra.operations import files, git, server
-from pyinfra.facts.server import Home
 
 from facts.user_shell import UserShell
 
@@ -73,4 +72,3 @@ def setup(home_path, repo_path):
         target=f"{repo_path}/roles/zsh/files/macmachine.zsh",
         force=True,
     )
-

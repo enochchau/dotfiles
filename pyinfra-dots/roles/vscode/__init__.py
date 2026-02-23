@@ -1,6 +1,6 @@
 from pyinfra import host
+from pyinfra.facts.server import Home, Kernel
 from pyinfra.operations import files
-from pyinfra.facts.server import Kernel, Home
 
 
 def setup(repo_path):

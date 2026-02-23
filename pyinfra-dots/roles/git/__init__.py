@@ -1,7 +1,7 @@
 from pyinfra import host
-from pyinfra.operations import files, server
 from pyinfra.facts.files import File
 from pyinfra.facts.server import Home
+from pyinfra.operations import files, server
 
 
 def setup(repo_path, git_user, git_email):

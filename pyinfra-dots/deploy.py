@@ -1,17 +1,17 @@
 import os
 
-repo_path = os.path.expanduser("~/dotfiles/pyinfra-dots")
-home_path = os.path.expanduser("~")
-
 # Import roles
-from roles.git import setup as git_setup
-from roles.zsh import setup as zsh_setup
-from roles.tmux import setup as tmux_setup
-from roles.nvim import setup as nvim_setup
-from roles.mise import setup as mise_setup
 from roles.devtools import setup as devtools_setup
 from roles.ghostty import setup as ghostty_setup
+from roles.git import setup as git_setup
+from roles.mise import setup as mise_setup
+from roles.nvim import setup as nvim_setup
+from roles.tmux import setup as tmux_setup
 from roles.vscode import setup as vscode_setup
+from roles.zsh import setup as zsh_setup
+
+repo_path = os.path.expanduser("~/dotfiles/pyinfra-dots")
+home_path = os.path.expanduser("~")
 
 # Git
 git_setup(
