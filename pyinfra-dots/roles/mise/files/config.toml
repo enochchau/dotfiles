@@ -1,0 +1,10 @@
+[env]
+MISE_LEGACY_VERSION_FILE = 0
+
+[tools]
+usage = "latest"
+node = "24"
+go = "latest"
+
+[settings]
+idiomatic_version_file_enable_tools = ["node"]
