@@ -1,7 +1,3 @@
-from pyinfra import host
-from pyinfra.facts.server import Hostname
-from pyinfra.operations import brew
-from pyinfra.operations import files
 import os
 
 repo_path = os.path.expanduser("~/dotfiles/pyinfra-dots")

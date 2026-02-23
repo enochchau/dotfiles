@@ -1,9 +1,6 @@
 from pyinfra import host
 from pyinfra.operations import files, git, server
-from pyinfra.facts.server import Home, User
-
-import sys
-sys.path.insert(0, "..")
+from pyinfra.facts.server import Home
 
 from facts.user_shell import UserShell
 

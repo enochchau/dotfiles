@@ -28,8 +28,9 @@ def setup(repo_path):
         force=True,
     )
 
-    # Install mise shims/tools
-    server.shell(
-        name="Install mise tools",
-        commands=["mise install"],
-    )
+    # Install mise shims/tools (macOS only)
+    if host.get_fact(Kernel) == "Darwin":
+        server.shell(
+            name="Install mise tools",
+            commands=["mise install"],
+        )
