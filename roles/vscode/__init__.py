@@ -1,27 +1,34 @@
+"""VSCode role - configures Visual Studio Code settings (macOS only)."""
+
 from pyinfra import host
 from pyinfra.facts.server import Home, Kernel
-from pyinfra.operations import files
+
+from ..common import ensure_config_directory, symlink_config_file
 
 
-def setup(repo_path):
-    home_path = host.get_fact(Home)
+def setup(repo_path: str) -> None:
+    """
+    Set up VS Code settings (macOS only).
 
+    Args:
+        repo_path: Path to the dotfiles repository.
+    """
     # macOS only
     if host.get_fact(Kernel) != "Darwin":
         return
 
+    home_path = host.get_fact(Home)
+    vscode_path = f"{home_path}/Library/Application Support/Code/User"
+
     # Create VSCode settings directory
-    files.directory(
-        name="Create VSCode settings directory",
-        path=f"{home_path}/Library/Application Support/Code/User",
-        mode="0755",
-    )
+    ensure_config_directory()
 
     # Link VSCode settings files
     for item in ["settings.json", "keybindings.json"]:
-        files.link(
+        symlink_config_file(
+            repo_path=repo_path,
+            role_name="vscode",
+            filename=item,
+            dest_path=f"{vscode_path}/{item}",
             name=f"Link VSCode {item}",
-            path=f"{home_path}/Library/Application Support/Code/User/{item}",
-            target=f"{repo_path}/roles/vscode/files/{item}",
-            force=True,
         )

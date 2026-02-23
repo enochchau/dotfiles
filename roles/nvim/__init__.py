@@ -1,29 +1,31 @@
+"""Neovim role - installs and configures Neovim."""
+
 from pyinfra import host
-from pyinfra.facts.server import Home, Kernel
-from pyinfra.operations import brew, files
+from pyinfra.facts.server import Home
+
+from ..common import (
+    ensure_config_directory,
+    install_brew_packages,
+    symlink_config_directory,
+)
 
 
-def setup(repo_path):
-    home_path = host.get_fact(Home)
+def setup(repo_path: str) -> None:
+    """
+    Set up Neovim.
 
+    Args:
+        repo_path: Path to the dotfiles repository.
+    """
     # Install neovim on macOS
-    if host.get_fact(Kernel) == "Darwin":
-        brew.packages(
-            name="Install neovim",
-            packages=["neovim"],
-        )
+    install_brew_packages(packages=["neovim"])
 
     # Create .config directory
-    files.directory(
-        name="Create .config directory",
-        path=f"{home_path}/.config",
-        mode="0755",
-    )
+    ensure_config_directory()
 
     # Symlink nvim config directory
-    files.link(
-        name="Symlink nvim config",
-        path=f"{home_path}/.config/nvim",
-        target=f"{repo_path}/roles/nvim/files",
-        force=True,
+    symlink_config_directory(
+        repo_path=repo_path,
+        role_name="nvim",
+        dest_path=f"{host.get_fact(Home)}/.config/nvim",
     )
