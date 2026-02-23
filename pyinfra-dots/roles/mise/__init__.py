@@ -1,9 +1,11 @@
 from pyinfra import host
 from pyinfra.operations import brew, files, server
-from pyinfra.facts.server import Kernel
+from pyinfra.facts.server import Kernel, Home
 
 
 def setup(repo_path):
+    home_path = host.get_fact(Home)
+
     # Install mise on macOS
     if host.get_fact(Kernel) == "Darwin":
         brew.packages(
@@ -14,14 +16,14 @@ def setup(repo_path):
     # Create .config directory
     files.directory(
         name="Create .config directory",
-        path="~/.config",
+        path=f"{home_path}/.config",
         mode="0755",
     )
 
     # Symlink mise config directory
     files.link(
         name="Symlink mise config",
-        path="~/.config/mise",
+        path=f"{home_path}/.config/mise",
         target=f"{repo_path}/roles/mise/files",
         force=True,
     )

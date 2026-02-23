@@ -1,9 +1,11 @@
 from pyinfra import host
 from pyinfra.operations import brew, files, git
-from pyinfra.facts.server import Kernel
+from pyinfra.facts.server import Kernel, Home
 
 
 def setup(repo_path):
+    home_path = host.get_fact(Home)
+
     # Install brew packages on macOS
     if host.get_fact(Kernel) == "Darwin":
         brew.packages(
@@ -20,7 +22,7 @@ def setup(repo_path):
     # Create ~/code directory
     files.directory(
         name="Create ~/code directory",
-        path="~/code",
+        path=f"{home_path}/code",
         mode="0755",
     )
 
@@ -28,6 +30,6 @@ def setup(repo_path):
     git.repo(
         name="Clone dev-scripts repository",
         src="git@github.com:ec965/dev-scripts.git",
-        dest="~/code/dev-scripts",
+        dest=f"{home_path}/code/dev-scripts",
         pull=True,
     )
