@@ -1,6 +1,6 @@
 from pyinfra import host
 from pyinfra.operations import files, git, server
-from pyinfra.facts.server import User
+from pyinfra.facts.server import Home, User, Users
 
 
 def setup(home_path, repo_path):
@@ -54,12 +54,17 @@ def setup(home_path, repo_path):
         force=True,
     )
 
-    # Change user shell to zsh
-    server.shell(
-        name="Change user shell to zsh",
-        commands=["chsh -s /bin/zsh $(whoami)"],
-        _sudo=True,
-    )
+    # Change user shell to zsh (if not already)
+    username = host.get_fact(User)
+    users = host.get_fact(Users)
+    current_shell = users.get(username, {}).get("shell")
+
+    if current_shell != "/bin/zsh":
+        server.shell(
+            name="Change user shell to zsh",
+            commands=["chsh -s /bin/zsh"],
+            _sudo=True,
+        )
 
     # Link MacMachine.zshrc
     files.link(
