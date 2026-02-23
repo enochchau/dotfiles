@@ -1,12 +1,13 @@
 from pyinfra import host
 from pyinfra.operations import files, server
 from pyinfra.facts.files import File
-from pyinfra.facts.server import User
+from pyinfra.facts.server import Home
 
 
 def setup(repo_path, git_user, git_email):
-    gitconfig_path = "~/.gitconfig"
-    backup_path = "~/.gitconfig.bak"
+    home_path = host.get_fact(Home)
+    gitconfig_path = f"{home_path}/.gitconfig"
+    backup_path = f"{home_path}/.gitconfig.bak"
 
     # Check if gitconfig exists using pyinfra facts
     existing_gitconfig = host.get_fact(File, gitconfig_path)
