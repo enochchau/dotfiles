@@ -220,20 +220,33 @@ brew.casks(casks=["ghostty", "rectangle"])
 
 2. **Use `host.get_fact()` not `host.fact.get()`** - The correct API is `host.get_fact(FactName, *args)`.
 
-3. **Force links** - Always use `force=True` in `files.link()` to match Ansible's behavior of overwriting existing links.
+3. **Don't use `~` in paths** - pyinfra doesn't expand `~` automatically. Use the `Home` fact:
+   ```python
+   from pyinfra.facts.server import Home
+   
+   home_path = host.get_fact(Home)
+   files.directory(path=f"{home_path}/.config")
+   ```
 
-4. **Git pull** - Use `pull=True` in `git.repo()` to match Ansible's `update: true`.
+4. **Force links** - Always use `force=True` in `files.link()` to match Ansible's behavior of overwriting existing links.
 
-5. **Modes as strings** - File modes should be strings: `mode="0755"`, `mode="0644"`.
+5. **Git pull** - Use `pull=True` in `git.repo()` to match Ansible's `update: true`.
 
-6. **Path expansion** - Use `os.path.expanduser("~")` in deploy.py and pass as parameters to roles.
+6. **Modes as strings** - File modes should be strings: `mode="0755"`, `mode="0644"`.
 
-7. **Conditional imports** - For OS-specific roles, check facts at the top of the role:
+7. **Path expansion** - Use `host.get_fact(Home)` in roles instead of `os.path.expanduser("~")`.
+
+8. **Conditional imports** - For OS-specific roles, check facts at the top of the role:
    ```python
    from pyinfra.facts.server import Kernel
    
    if host.get_fact(Kernel) != "Darwin":
        return  # Skip macOS-only role
+   ```
+
+9. **Sudo usage** - Use `_sudo=True` parameter for privilege escalation:
+   ```python
+   server.shell(commands=["chsh -s /bin/zsh"], _sudo=True)
    ```
 
 ## Migration Checklist
