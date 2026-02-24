@@ -8,6 +8,9 @@ local function setup_treesitter(opts)
         "~/Numeric/fdp/vibing/workspaces/ntl/packages/tree-sitter-ntl/ntl.so"
     )
     if vim.uv.fs_stat(ntl_path) then
+        vim.opt.runtimepath:append(
+            vim.fn.expand("~/Numeric/fdp/vibing/workspaces/ntl/packages/tree-sitter-ntl")
+        )
         vim.filetype.add({
             extension = { ["ntl"] = "ntl" },
         })
