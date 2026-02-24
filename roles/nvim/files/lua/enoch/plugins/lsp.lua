@@ -86,6 +86,11 @@ local function config()
         automatic_enable = false,
     })
 
+    -- custom
+    vim.list_extend(servers, {
+        "beancount-lsp-server",
+    })
+
     for _, server in ipairs(servers) do
         local opts = {}
         opts.capabilities =

@@ -4,19 +4,6 @@
 
 ---@param opts SetupTreesitterArgs
 local function setup_treesitter(opts)
-    local ntl_path = vim.fn.expand(
-        "~/Numeric/fdp/vibing/workspaces/ntl/packages/tree-sitter-ntl/ntl.so"
-    )
-    if vim.uv.fs_stat(ntl_path) then
-        vim.opt.runtimepath:append(
-            vim.fn.expand("~/Numeric/fdp/vibing/workspaces/ntl/packages/tree-sitter-ntl")
-        )
-        vim.filetype.add({
-            extension = { ["ntl"] = "ntl" },
-        })
-        vim.treesitter.language.add("ntl", { path = ntl_path })
-    end
-
     local highlight_disable = opts.highlight_disable or {}
     local ensure_installed = opts.ensure_installed or {}
 
