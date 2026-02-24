@@ -1,4 +1,4 @@
-local ntl_root = vim.fn.expand("~/Numeric/fdp/vibing/workspaces/ntl/packages")
+local ntl_root = vim.fn.expand("~/Numeric/fdp/master/workspaces/ntl/packages")
 
 -- tree-sitter
 local parser_path = ntl_root .. "/tree-sitter-ntl"

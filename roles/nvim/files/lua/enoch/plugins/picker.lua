@@ -16,7 +16,7 @@ return {
                         relative = "cursor", -- Open at the cursor position
                         row = 1, -- One line below the cursor
                         col = 0,
-                        height = 0.25, -- Keep it short
+                        height = 0.40, -- Keep it short
                         width = 0.55, -- Keep it narrow
                         preview = {
                             vertical = "down:70%", -- Preview shows below the list
