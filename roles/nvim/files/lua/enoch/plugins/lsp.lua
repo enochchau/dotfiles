@@ -87,7 +87,7 @@ local function config()
     })
 
     -- custom
-    vim.list_extend(servers, {
+    servers = vim.list_extend(servers, {
         "beancount-lsp-server",
     })
 
