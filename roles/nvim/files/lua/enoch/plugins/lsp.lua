@@ -62,7 +62,7 @@ local function config()
         end,
     })
 
-    local servers = {
+    local esnure_installed = {
         "lua_ls",
         -- "emmylua_ls",
         -- python
@@ -82,12 +82,12 @@ local function config()
     }
 
     require("mason-lspconfig").setup({
-        ensure_installed = servers,
+        ensure_installed = esnure_installed,
         automatic_enable = false,
     })
 
     -- custom
-    servers = vim.list_extend(servers, {
+    local servers = vim.list_extend(esnure_installed, {
         "beancount-lsp-server",
     })
 

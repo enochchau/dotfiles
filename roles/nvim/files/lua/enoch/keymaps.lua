@@ -74,3 +74,5 @@ map("n", "<C-\\>", ":vs|:term<CR>", { silent = true })
 -- map("n", "<leader>c", colo.save_color, opts)
 
 map("n", "<leader>op", open.plugin_link, { silent = true })
+
+map("n", "<leader>b", ':Gitsigns blame_line<CR>', { silent = true })
