@@ -60,6 +60,10 @@ else
     g.netrw_bufsettings = "nu rnu"
     g.netrw_sort_by = "exten"
 
+    opt.shortmess:append("I") -- Removes the intro message
+    opt.shortmess:append("c") -- Don't pass messages to |ins-completion-menu|
+    opt.shortmess:append("F") -- Don't give the file info when editing a file
+
     -- auto resize
     autocmd("VimResized", { pattern = "*", command = "wincmd =" })
 
