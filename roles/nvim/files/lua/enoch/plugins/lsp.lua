@@ -87,7 +87,7 @@ local function config()
     })
 
     -- custom
-    local servers = vim.list_extend(esnure_installed, {
+    local servers = vim.list_extend(vim.deepcopy(esnure_installed), {
         "beancount-lsp-server",
     })
 

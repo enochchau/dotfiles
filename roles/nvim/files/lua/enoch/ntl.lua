@@ -2,13 +2,22 @@ local ntl_root = vim.fn.expand("~/Numeric/fdp/master/workspaces/ntl/packages")
 
 -- tree-sitter
 local parser_path = ntl_root .. "/tree-sitter-ntl"
-local parser_so = parser_path .. "/ntl.so"
-if vim.uv.fs_stat(parser_so) then
-    vim.opt.runtimepath:append(parser_path)
+if vim.uv.fs_stat(parser_path) then
     vim.filetype.add({
         extension = { ["ntl"] = "ntl" },
     })
-    vim.treesitter.language.add("ntl", { path = parser_so })
+    vim.api.nvim_create_autocmd("User", {
+        pattern = "TSUpdate",
+        callback = function()
+            require("nvim-treesitter.parsers").ntl = {
+                install_info = {
+                    path = parser_path,
+                    queries = "queries/ntl",
+                },
+                tier = 2,
+            }
+        end,
+    })
 end
 
 -- lsp
