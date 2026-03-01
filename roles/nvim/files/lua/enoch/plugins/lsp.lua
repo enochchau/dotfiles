@@ -113,7 +113,22 @@ local dependencies = {
 }
 if vim.list_contains(ensure_installed, "vtsls") then
     vim.list_extend(dependencies, {
-        "yioneko/nvim-vtsls",
+        {
+            "yioneko/nvim-vtsls",
+            dependencies = {
+                -- integrate nvim-tree to renaming files
+                {
+                    "antosha417/nvim-lsp-file-operations",
+                    dependencies = {
+                        "nvim-lua/plenary.nvim",
+                        "nvim-tree/nvim-tree.lua",
+                    },
+                    config = function()
+                        require("lsp-file-operations").setup()
+                    end,
+                },
+            },
+        },
     })
 end
 
