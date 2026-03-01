@@ -1,3 +1,24 @@
+local ensure_installed = {
+    "lua_ls",
+    -- "emmylua_ls",
+    -- python
+    "ruff",
+    "ty",
+    -- english
+    "harper_ls",
+    -- webdev
+    "cssls",
+    "eslint",
+    "html",
+    -- "tsgo",
+    -- "ts_ls",
+    "vtsls",
+    "tailwindcss",
+    -- data ops
+    "yamlls",
+    "jsonls",
+}
+
 local function config()
     vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(ev)
@@ -62,32 +83,13 @@ local function config()
         end,
     })
 
-    local esnure_installed = {
-        "lua_ls",
-        -- "emmylua_ls",
-        -- python
-        "ruff",
-        "ty",
-        -- english
-        "harper_ls",
-        -- webdev
-        "cssls",
-        "eslint",
-        "html",
-        "tsgo", -- "ts_ls",
-        "tailwindcss",
-        -- data ops
-        "yamlls",
-        "jsonls",
-    }
-
     require("mason-lspconfig").setup({
-        ensure_installed = esnure_installed,
+        ensure_installed = ensure_installed,
         automatic_enable = false,
     })
 
     -- custom
-    local servers = vim.list_extend(vim.deepcopy(esnure_installed), {
+    local servers = vim.list_extend(vim.deepcopy(ensure_installed), {
         "beancount-lsp-server",
     })
 
@@ -102,17 +104,24 @@ local function config()
     vim.lsp.enable(servers)
 end
 
+local dependencies = {
+    "b0o/schemastore.nvim", -- for jsonls and yamlls in after/lsp/<SERVER>.lua
+    "williamboman/mason.nvim",
+    "williamboman/mason-lspconfig.nvim",
+    "saghen/blink.cmp",
+    "ibhagwan/fzf-lua",
+}
+if vim.list_contains(ensure_installed, "vtsls") then
+    vim.list_extend(dependencies, {
+        "yioneko/nvim-vtsls",
+    })
+end
+
 ---@type LazySpec
 return {
     {
         "neovim/nvim-lspconfig",
         config = config,
-        dependencies = {
-            "b0o/schemastore.nvim", -- for jsonls and yamlls in after/lsp/<SERVER>.lua
-            "williamboman/mason.nvim",
-            "williamboman/mason-lspconfig.nvim",
-            "saghen/blink.cmp",
-            "ibhagwan/fzf-lua",
-        },
+        dependencies = dependencies,
     },
 }

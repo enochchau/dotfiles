@@ -1,84 +1,78 @@
-local g = vim.g
-local opt = vim.opt
+vim.o.spelllang = "en_us"
+vim.o.ignorecase = true
+vim.g.mapleader = ","
 
-opt.spelllang = "en_us"
-opt.ignorecase = true
-g.mapleader = ","
-
-if g.vscode then
+if vim.g.vscode then
     require("enoch.lazy")
     require("enoch.vscode.keymaps")
 else
-    local autocmd = vim.api.nvim_create_autocmd
-    local has = vim.fn.has
-    local cmd = vim.cmd
+    vim.o.signcolumn = "yes:1"
+    vim.o.laststatus = 3
+    vim.o.number = true
+    vim.o.relativenumber = true
+    vim.o.wrap = true
+    vim.o.encoding = "utf-8"
+    vim.o.mouse = "a"
+    vim.o.wildmenu = true
+    vim.o.showmatch = false
+    vim.o.ruler = true
+    vim.o.hidden = true
+    vim.o.updatetime = 300
+    vim.o.smartcase = true
+    vim.o.sessionoptions = "blank,curdir,folds,help,tabpages,winsize"
 
-    opt.signcolumn = "yes:1"
-    opt.laststatus = 3
-    opt.number = true
-    opt.relativenumber = true
-    opt.wrap = true
-    opt.encoding = "utf-8"
-    opt.mouse = "a"
-    opt.wildmenu = true
-    opt.showmatch = false
-    opt.ruler = true
-    opt.hidden = true
-    opt.updatetime = 300
-    opt.smartcase = true
-    opt.sessionoptions = "blank,curdir,folds,help,tabpages,winsize"
-
-    opt.swapfile = true
-    opt.writebackup = true
-    opt.backup = false
-    opt.backupcopy = "auto"
-    opt.undofile = true
+    vim.o.swapfile = true
+    vim.o.writebackup = true
+    vim.o.backup = false
+    vim.o.backupcopy = "auto"
+    vim.o.undofile = true
 
     -- color column @ 80 chars
-    opt.colorcolumn = "80"
+    vim.o.colorcolumn = "80"
     -- disable startup screen
-    opt.shortmess = "I"
+    vim.o.shortmess = "I"
     -- true color
-    if has("termguicolors") == 1 then
-        opt.termguicolors = true
+    if vim.fn.has("termguicolors") == 1 then
+        vim.o.termguicolors = true
     end
     -- highlight all search pattern matches
-    opt.hlsearch = true
-    opt.cursorline = true
+    vim.o.hlsearch = true
+    vim.o.cursorline = true
 
     -- don't enable syntax because it causes issues with lsp starting
     -- cmd.syntax "enable"
-    cmd.filetype("plugin indent on")
+    vim.cmd.filetype("plugin indent on")
 
     -- set tabs to 2 spaces
-    opt.tabstop = 2
-    opt.shiftwidth = 2
-    opt.expandtab = true
+    vim.o.tabstop = 2
+    vim.o.shiftwidth = 2
+    vim.o.expandtab = true
 
     -- netrw
-    g.netrw_liststyle = 3
-    g.netrw_bufsettings = "nu rnu"
-    g.netrw_sort_by = "exten"
+    vim.g.netrw_liststyle = 3
+    vim.g.netrw_bufsettings = "nu rnu"
+    vim.g.netrw_sort_by = "exten"
 
-    opt.shortmess:append("I") -- Removes the intro message
-    opt.shortmess:append("c") -- Don't pass messages to |ins-completion-menu|
-    opt.shortmess:append("F") -- Don't give the file info when editing a file
+    vim.o.shortmess = "IcF"
 
     -- auto resize
-    autocmd("VimResized", { pattern = "*", command = "wincmd =" })
+    vim.api.nvim_create_autocmd(
+        "VimResized",
+        { pattern = "*", command = "wincmd =" }
+    )
 
     local rnu_toggle_id =
         vim.api.nvim_create_augroup("RelativeNumberToggle", { clear = true })
 
     -- Autocmd to toggle relative number based on mode
-    autocmd("InsertEnter", {
+    vim.api.nvim_create_autocmd("InsertEnter", {
         pattern = "*",
         callback = function()
             vim.wo.relativenumber = false
         end,
         group = rnu_toggle_id,
     })
-    autocmd("InsertLeave", {
+    vim.api.nvim_create_autocmd("InsertLeave", {
         pattern = "*",
         callback = function()
             vim.wo.relativenumber = true
@@ -88,32 +82,10 @@ else
 
     -- use system clipboard
     -- improved startup times by defining the unnamed clipboard
-    if has("mac") == 1 then
-        g.clipboard = {
-            name = "pbcopy",
-            cache_enabled = 0,
-            copy = {
-                ["+"] = "pbcopy",
-                ["*"] = "pbcopy",
-            },
-            paste = {
-                ["+"] = "pbpaste",
-                ["*"] = "pbpaste",
-            },
-        }
-    elseif has("wsl") == 1 then
-        g.clipboard = {
-            cache_enabled = 0,
-            name = "win32yank",
-            copy = {
-                ["*"] = "win32yank.exe -i --crlf",
-                ["+"] = "win32yank.exe -i --crlf",
-            },
-            paste = {
-                ["*"] = "win32yank.exe -o --lf",
-                ["+"] = "win32yank.exe -o --lf",
-            },
-        }
+    if vim.fn.has("mac") == 1 then
+        vim.g.clipboard = "pbcopy"
+    elseif vim.fn.has("wsl") == 1 then
+        vim.g.clipboard = "win32yank"
     end
 
     -- Configure additional filetypes
@@ -134,8 +106,8 @@ else
             [".swcrc"] = "json",
         },
         pattern = {
-            ['${XDG_CONFIG_HOME}/ghostty/config'] = 'ini'
-        }
+            ["${XDG_CONFIG_HOME}/ghostty/config"] = "ini",
+        },
     })
 
     require("enoch.lazy")
@@ -144,8 +116,8 @@ else
     require("enoch.diagnostic")
     require("enoch.ntl")
 
-    opt.bg = "dark"
-    cmd.colorscheme("catppuccin-macchiato")
+    vim.o.bg = "dark"
+    vim.cmd.colorscheme("catppuccin-macchiato")
     -- In your init.lua
     if vim.fn.executable("rg") == 1 then
         -- --glob '!node_modules/*' tells ripgrep to ignore that folder
