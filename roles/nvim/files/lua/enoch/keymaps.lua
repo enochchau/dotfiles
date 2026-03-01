@@ -66,9 +66,7 @@ map(
     ":Cdg<CR>:pwd<CR>",
     { desc = "Change pwd to nearest git root" }
 )
-map("n", "<C-n>", function()
-    require("nvim-tree.api").tree.toggle({ find_file = true })
-end, { silent = true })
+map("n", "<C-n>", require("enoch.netrw").toggle_netrw, { silent = true })
 map("n", "<C-\\>", ":vs|:term<CR>", { silent = true })
 
 -- map("n", "]c", colo.cycle_colors_next, opts)
@@ -77,4 +75,4 @@ map("n", "<C-\\>", ":vs|:term<CR>", { silent = true })
 
 map("n", "<leader>op", open.plugin_link, { silent = true })
 
-map("n", "<leader>b", ":Gitsigns blame_line<CR>", { silent = true })
+map("n", "<leader>b", ':Gitsigns blame_line<CR>', { silent = true })
