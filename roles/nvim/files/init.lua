@@ -52,6 +52,7 @@ else
     vim.g.netrw_liststyle = 3
     vim.g.netrw_bufsettings = "nu rnu"
     vim.g.netrw_sort_by = "exten"
+    vim.g.netrw_keepdir = 0
 
     vim.o.shortmess = "IcF"
 
