@@ -21,3 +21,4 @@ source $FZF_BASE/completion.zsh
 
 export HOMEBREW_DOWNLOAD_CONCURRENCY=auto
 
+alias rm="echo -e '\e[31mWARN:\e[0m Use \e[33mtrash\e[0m instead of \e[33mrm\e[0m for removing files!'"
