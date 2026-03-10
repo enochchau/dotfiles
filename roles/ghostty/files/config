@@ -1,5 +1,3 @@
 # custom-shader = ~/.config/ghostty/shaders/tft.glsl
 # custom-shader = ~/.config/ghostty/shaders/bettercrt.glsl
 # custom-shader = ~/.config/ghostty/shaders/bloom.glsl
-
-auto-update-channel = tip
