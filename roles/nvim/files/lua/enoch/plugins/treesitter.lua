@@ -4,19 +4,6 @@
 
 ---@param opts SetupTreesitterArgs
 local function setup_treesitter(opts)
-    vim.api.nvim_create_autocmd("User", {
-        pattern = "TSUpdate",
-        callback = function()
-            require("nvim-treesitter.parsers").mdx = {
-                install_info = {
-                    url = "https://github.com/srazzak/tree-sitter-mdx",
-                    queries = 'queries'
-                },
-                tier = 2
-            }
-        end,
-    })
-
     local highlight_disable = opts.highlight_disable or {}
     local ensure_installed = opts.ensure_installed or {}
 

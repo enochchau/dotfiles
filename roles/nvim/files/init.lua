@@ -93,7 +93,7 @@ else
     vim.filetype.add({
         extension = {
             ["cr"] = "crystal",
-            ["mdx"] = "mdx",
+            ["mdx"] = "markdown",
             ["pro"] = "prolog",
             ["tf"] = "terraform",
             ["zshrc"] = "zsh",
