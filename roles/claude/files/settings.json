@@ -9,7 +9,7 @@
   "autoUpdatesChannel": "stable",
   "statusLine": {
     "type": "command",
-    "command": "sh ~/.claude/statusline-command.sh"
+    "command": "sh ~/.claude/scripts/statusline-command.sh"
   },
   "hooks": {
     "Stop": [
@@ -18,7 +18,7 @@
         "hooks": [
           {
             "type": "command",
-            "command": "sh ~/.claude/notify-stop.sh"
+            "command": "sh ~/.claude/scripts/notify-stop.sh"
           }
         ]
       }
