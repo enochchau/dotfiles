@@ -9,9 +9,9 @@ ICON="$HOME/.claude/scripts/icon.png"
 
 if command -v terminal-notifier >/dev/null 2>&1; then
   if [ -f "$ICON" ]; then
-    terminal-notifier -title "Claude Code" -message "$msg" -sound default -appIcon "$ICON"
+    terminal-notifier -title "Claude Code" -message "$msg" -sound default -contentImage "$ICON" -activate com.mitchellh.ghostty
   else
-    terminal-notifier -title "Claude Code" -message "$msg" -sound default
+    terminal-notifier -title "Claude Code" -message "$msg" -sound default -activate com.mitchellh.ghostty
   fi
 else
   # Fallback to osascript
