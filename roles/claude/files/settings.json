@@ -9,6 +9,19 @@
   "autoUpdatesChannel": "stable",
   "statusLine": {
     "type": "command",
-    "command": "sh /Users/enochchau/.claude/statusline-command.sh"
+    "command": "sh ~/.claude/statusline-command.sh"
+  },
+  "hooks": {
+    "Stop": [
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "sh ~/.claude/notify-stop.sh"
+          }
+        ]
+      }
+    ]
   }
 }

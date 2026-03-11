@@ -39,3 +39,11 @@ def setup(repo_path: str) -> None:
         dest_path=f"{home_path}/.claude/statusline-command.sh",
         name="Link statusline-command.sh"
     )
+
+    symlink_config_file(
+        repo_path=repo_path,
+        role_name="claude",
+        filename="notify-stop.sh",
+        dest_path=f"{home_path}/.claude/notify-stop.sh",
+        name="Link notify-stop.sh"
+    )
