@@ -4,6 +4,8 @@ from pyinfra import host
 from pyinfra.facts.files import Directory
 from pyinfra.facts.server import Home
 
+from roles.claude import setup as claude_setup
+
 # Import roles
 from roles.devtools import setup as devtools_setup
 from roles.ghostty import setup as ghostty_setup
@@ -15,7 +17,6 @@ from roles.vscode import setup as vscode_setup
 from roles.zsh import setup as zsh_setup
 
 repo_path = f"{host.get_fact(Home)}/dotfiles"
-home_path = host.get_fact(Home)
 
 # Validate repository exists
 if not host.get_fact(Directory, repo_path):
@@ -75,3 +76,6 @@ ghostty_setup(repo_path=repo_path)
 
 # VSCode
 vscode_setup(repo_path=repo_path)
+
+# Claude code
+claude_setup(repo_path=repo_path)
