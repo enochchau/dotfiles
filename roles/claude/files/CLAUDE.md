@@ -7,8 +7,14 @@
 
 # General
 
-- Always do a code review after completing a body of work and fix all issues before continuing.
-- How can we improve it for robustness? Is it good enough? Is there anything that's overkill?
-- Is there any missing logic or mistakes? What about testing? Is coverage good enough for high confidence?
-- Is there any dead code that can be removed?
 - When referencing source code, always provide the file and line number.
+- Always do a code review after completing a body of work and fix all issues before continuing.
+  - How can we improve it for robustness? Is it good enough? Is there anything that's overkill?
+  - Is there any missing logic or mistakes? What about testing? Is coverage good enough for high confidence?
+  - Is there any dead code that can be removed?
+
+# Agent Teams
+
+- Always evaluate a task to see if it can be done in parallel by an agent team.
+- When using an agent team, have each subagent work in it's own git worktree and merge
+  back into the main branch as they complete.
