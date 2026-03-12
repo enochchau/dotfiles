@@ -2,8 +2,8 @@
 
 - When searching for files by name, prefer using `fd` via Bash over the Glob tool.
 - When searching file contents, prefer using `rg` via Bash over the Grep tool.
-- When creating skills/commands, include a fallback for POSIX utils (`find`, `grep`, etc.) since not all systems have `rg` and `fd`.
 - Do not use `rm` to delete files, use `trash` instead to move them to trash.
+- When creating skills/commands, include a fallback for POSIX utils (`find`, `grep`, `rm`, etc.) since not all systems have `rg`, `fd`, and `trash`.
 
 # General
 
