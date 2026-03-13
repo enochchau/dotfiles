@@ -125,8 +125,8 @@ source ~/.config/zsh/.p10k.zsh
 # pnpm
 export PNPM_HOME="/Users/enochchau/.local/share/pnpm"
 case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
+    *":$PNPM_HOME:"*) ;;
+    *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
 
@@ -140,3 +140,13 @@ zle -N edit-command-line
 
 # Bind it to a shortcut (Ctrl-x, Ctrl-e is the standard)
 bindkey '^x^e' edit-command-line
+
+if (( $+commands[yazi] )); then
+    function y() {
+        local tmp="$(mktemp -t "yazi-cwd.XXXXXX")" cwd
+        command yazi "$@" --cwd-file="$tmp"
+        IFS= read -r -d '' cwd < "$tmp"
+        [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
+        rm -f -- "$tmp"
+    }
+fi
