@@ -147,6 +147,10 @@ if (( $+commands[yazi] )); then
         command yazi "$@" --cwd-file="$tmp"
         IFS= read -r -d '' cwd < "$tmp"
         [ "$cwd" != "$PWD" ] && [ -d "$cwd" ] && builtin cd -- "$cwd"
-        rm -f -- "$tmp"
+        if (( $+commands[trash] )); then
+            trash "$tmp"
+        else
+            rm -f -- "$tmp"
+        fi
     }
 fi
