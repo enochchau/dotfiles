@@ -40,3 +40,4 @@ def setup(repo_path: str) -> None:
         target=f"{role_files}/scripts",
         force=True,
     )
+

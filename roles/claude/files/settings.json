@@ -5,12 +5,6 @@
   "permissions": {
     "defaultMode": "bypassPermissions"
   },
-  "skipDangerousModePermissionPrompt": true,
-  "autoUpdatesChannel": "stable",
-  "statusLine": {
-    "type": "command",
-    "command": "sh ~/.claude/scripts/statusline-command.sh"
-  },
   "hooks": {
     "Stop": [
       {
@@ -21,7 +15,23 @@
             "command": "sh ~/.claude/scripts/notify-stop.sh"
           }
         ]
+      },
+      {
+        "matcher": "",
+        "hooks": [
+          {
+            "type": "command",
+            "command": "/Users/enochchau/code/remote-claude/.claude/hooks/notify-stop.sh",
+            "timeout": 10
+          }
+        ]
       }
     ]
-  }
+  },
+  "statusLine": {
+    "type": "command",
+    "command": "sh ~/.claude/scripts/statusline-command.sh"
+  },
+  "autoUpdatesChannel": "stable",
+  "skipDangerousModePermissionPrompt": true
 }
