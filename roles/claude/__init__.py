@@ -41,3 +41,10 @@ def setup(repo_path: str) -> None:
         force=True,
     )
 
+    symlink_config_file(
+        repo_path=repo_path,
+        role_name="claude",
+        filename="SOUL.md",
+        dest_path=f"{home_path}/.claude/SOUL.md",
+        name="Link SOUL.md"
+    )
