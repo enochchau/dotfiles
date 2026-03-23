@@ -35,6 +35,7 @@ return {
         map("n", "<leader>o", FzfLua.jumps, { silent = true })
         map("n", "<leader>'", FzfLua.marks, { silent = true })
         map("n", "<C-b>", FzfLua.buffers, { silent = true })
-        map("n", "<leader>r", FzfLua.oldfiles, { silent = true })
+        map("n", "<leaderor", FzfLua.oldfiles, { silent = true })
+        map("n", "<leader>t", FzfLua.treesitter, { silent = true })
     end,
 }
