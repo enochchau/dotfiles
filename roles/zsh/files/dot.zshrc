@@ -33,8 +33,9 @@ export PATH="/usr/local/sbin:$PATH"
 
 # general aliases
 # Alias rg to be clickable in VS Code's terminal, only if in VS Code
-if [[ "$TERM_PROGRAM" == 'vscode' ]]; then
-    if command -v cursor &> /dev/null; then
+if [[ "$TERM_PROGRAM" == "vscode" ]]; then
+    # Check if cursor exists before aliasing
+    if (( ${+commands[cursor]} )) && [[ -n "$CURSOR_AGENT" ]]; then
         alias rg='rg --hyperlink-format=cursor'
     else
         alias rg='rg --hyperlink-format=vscode'
