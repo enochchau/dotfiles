@@ -30,7 +30,7 @@
   },
   "statusLine": {
     "type": "command",
-    "command": "sh ~/.claude/scripts/statusline-command.sh"
+    "command": "bash ~/.claude/scripts/statusline-command.sh"
   },
   "autoUpdatesChannel": "stable",
   "skipDangerousModePermissionPrompt": true
