@@ -84,7 +84,7 @@ local plugins = {
                 desc = "Buffer Local Keymaps (which-key)",
             },
         },
-    },
+    }
 }
 
 return plugins
