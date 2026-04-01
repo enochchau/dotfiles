@@ -171,14 +171,14 @@ if [ -n "$used" ]; then
   tok_fmt=$(fmt_tokens "$tok_total")
   seg "$ctx_color" "${used_int}% ${DIM}(${tok_fmt})${RST}${BG_USAGE}" "$ICON_GAUGE"
 
-  water_ul=$(( ${total_output:-0} * 500 / 1000 ))
-  water_fmt=$(fmt_water "$water_ul")
-  seg "${FG_CYAN}" "${water_fmt}" "$ICON_WATER"
+  # water_ul=$(( ${total_output:-0} * 500 / 1000 ))
+  # water_fmt=$(fmt_water "$water_ul")
+  # seg "${FG_CYAN}" "${water_fmt}" "$ICON_WATER"
 
-  if [ -n "$cost" ] && [ "$cost" != "0" ]; then
-    cost_fmt=$(printf '%.2f' "$cost")
-    seg "${FG_YELLOW}" "\$${cost_fmt}" "$ICON_COST"
-  fi
+  # if [ -n "$cost" ] && [ "$cost" != "0" ]; then
+  #   cost_fmt=$(printf '%.2f' "$cost")
+  #   seg "${FG_YELLOW}" "\$${cost_fmt}" "$ICON_COST"
+  # fi
 
   line="${line} "
   group "$BG_USAGE"
@@ -188,9 +188,9 @@ fi
 if [ -n "$cwd" ]; then
   seg "${FG_CYAN}" "$(fmt_path "$cwd")" "$ICON_FOLDER"
 fi
-if [ -n "$wt_detected" ]; then
-  seg "${FG_MAGENTA}" "${wt_detected}" "$ICON_TREE"
-fi
+# if [ -n "$wt_detected" ]; then
+#   seg "${FG_MAGENTA}" "${wt_detected}" "$ICON_TREE"
+# fi
 if [ -n "$git_branch" ]; then
   seg "${FG_GREEN}" "${git_branch}" "$ICON_BRANCH"
 fi

@@ -109,7 +109,7 @@
   "editor.wrappingIndent": "none",
   "workbench.editor.splitSizing": "distribute",
   "workbench.sideBar.location": "right",
-  "workbench.colorTheme": "Default Light Modern",
+  "workbench.colorTheme": "Light Modern",
   "color-highlight.markerType": "dot-after",
   "git.openRepositoryInParentFolders": "never",
   "editor.fontFamily": "'JetBrainsMono Nerd Font', Menlo, Monaco, 'Courier New', monospace",
@@ -142,7 +142,7 @@
   "[mdx]": {
     "editor.defaultFormatter": "unifiedjs.vscode-mdx"
   },
-  "workbench.preferredLightColorTheme": "Default Dark Modern",
+  "workbench.preferredLightColorTheme": "Dark Modern",
   "[c]": {
     "editor.defaultFormatter": "xaver.clang-format"
   },
