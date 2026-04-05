@@ -80,6 +80,14 @@ local function config()
                 buffer = ev.buf,
                 desc = "diagnostics workspace",
             })
+
+            if client:supports_method(method.textDocument_documentColor) then
+                vim.lsp.document_color.enable(
+                    true,
+                    { client_id = client.id },
+                    { style = "virtual" }
+                )
+            end
         end,
     })
 

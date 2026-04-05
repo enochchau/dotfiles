@@ -27,7 +27,8 @@ return {
         end
 
         -- v4: tailwindcss listed as a dependency in package.json
-        local pkg = vim.fs.find("package.json", { path = fname, upward = true })[1]
+        local pkg =
+            vim.fs.find("package.json", { path = fname, upward = true })[1]
         if pkg then
             local ok, content = pcall(vim.fn.readblob, pkg)
             if ok and content:find('"tailwindcss"', 1, true) then

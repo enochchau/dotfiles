@@ -20,25 +20,6 @@ return {
         },
     },
     {
-        "catgoose/nvim-colorizer.lua",
-        event = "VeryLazy",
-        opts = {
-            lazy_load = true,
-            filetypes = {
-                "javascript",
-                "javascriptreact",
-                "svelte",
-                "astro",
-                "html",
-                "typescript",
-                "typescriptreact",
-                "css",
-                "scss",
-            },
-            user_default_options = { mode = "virtualtext" },
-        },
-    },
-    {
         "goolord/alpha-nvim",
         config = function()
             local alpha = require("alpha")

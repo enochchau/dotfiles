@@ -65,4 +65,8 @@ command("GitCheck", function()
     end
 end, {})
 
-command("PnpmWorkspace", require("enoch.pnpm-workspace-picker").pnpm_workspace_picker, {})
+command(
+    "PnpmWorkspace",
+    require("enoch.pnpm-workspace-picker").pnpm_workspace_picker,
+    {}
+)

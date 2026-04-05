@@ -66,7 +66,7 @@ map(
     ":Cdg<CR>:pwd<CR>",
     { desc = "Change pwd to nearest git root" }
 )
-map("n", "<C-n>", ':Lexplore<CR>', { silent = true })
+map("n", "<C-n>", ":Lexplore<CR>", { silent = true })
 map("n", "<C-\\>", ":vs|:term<CR>", { silent = true })
 
 -- map("n", "]c", colo.cycle_colors_next, opts)
@@ -75,4 +75,4 @@ map("n", "<C-\\>", ":vs|:term<CR>", { silent = true })
 
 map("n", "<leader>op", open.plugin_link, { silent = true })
 
-map("n", "<leader>b", ':Gitsigns blame_line<CR>', { silent = true })
+map("n", "<leader>b", ":Gitsigns blame_line<CR>", { silent = true })
