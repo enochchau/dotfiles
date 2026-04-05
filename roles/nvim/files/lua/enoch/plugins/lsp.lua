@@ -97,7 +97,7 @@ local function config()
                         id = "lsp." .. ev.data.client_id,
                         kind = "progress",
                         source = "vim.lsp",
-                        title = value.title,
+                        title = client.name .. ": " .. value.title,
                         status = value.kind ~= "end" and "running" or "success",
                         percent = value.percentage,
                     })
