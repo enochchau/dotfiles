@@ -125,4 +125,6 @@ else
         vim.o.grepprg = "rg --vimgrep --smart-case --glob '!node_modules/*'"
         vim.o.grepformat = "%f:%l:%c:%m"
     end
+
+    require("vim._core.ui2").enable({})
 end
