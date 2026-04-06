@@ -131,7 +131,7 @@ case ":$PATH:" in
 esac
 # pnpm end
 
-if (( $+commands[yazi] )); then
+if (( $+commands[mise] )); then
     eval "$(mise activate zsh)"
 fi
 

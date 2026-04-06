@@ -2,9 +2,10 @@
 
 from pyinfra import host
 from pyinfra.facts.files import Directory
-from pyinfra.facts.server import Home
+from pyinfra.facts.server import Home, Kernel
 
 from roles.claude import setup as claude_setup
+from roles.constants import KERNEL_DARWIN
 
 # Import roles
 from roles.devtools import setup as devtools_setup
@@ -65,7 +66,8 @@ tmux_setup(repo_path=repo_path)
 nvim_setup(repo_path=repo_path)
 
 # Mise
-mise_setup(repo_path=repo_path)
+if host.get_fact(Kernel) == KERNEL_DARWIN:
+    mise_setup(repo_path=repo_path)
 
 # Ghostty
 ghostty_setup(repo_path=repo_path)

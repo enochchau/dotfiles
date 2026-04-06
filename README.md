@@ -23,7 +23,7 @@ uv sync
 make run
 ```
 
-On NixOS, `make run` performs the same user-level deploy flow as macOS where it makes sense: it links checked-in files, clones repositories, and runs `mise install`, while naturally skipping macOS-only steps.
+On NixOS, `make run` performs the shared user-level deploy flow where it makes sense: it links checked-in files and clones repositories, while leaving application and runtime installation to Nix.
 
 ## Nix Flake
 
@@ -98,7 +98,7 @@ dotfiles/
 | `zsh` | Configures zsh and symlinks platform-specific shell files |
 | `tmux` | Installs tmux and symlinks config |
 | `nvim` | Installs Neovim and symlinks config directory |
-| `mise` | Symlinks mise config and optionally installs tools |
+| `mise` | Configures mise on macOS |
 | `devtools` | Installs common dev tools via Homebrew |
 | `ghostty` | Installs Ghostty terminal |
 | `vscode` | Symlinks VS Code settings on macOS and Linux |
@@ -110,10 +110,10 @@ By default, NixOS now follows the same imperative user-level flow as macOS for s
 - Symlink checked-in config files
 - Clone Antidote for Zsh plugins
 - Create `~/code` and clone `dev-scripts`
-- Run `mise install`
 
-The remaining skips on NixOS are the macOS-only steps:
+On NixOS, application and runtime installs should live in `configuration.nix`, so the deploy skips:
 
+- `mise` config and `mise install`
 - Homebrew package installs and casks
 - Changing the login shell with `chsh`
 
