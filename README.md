@@ -65,6 +65,8 @@ nix run .#run
 
 On NixOS, the deploy still auto-detects the platform and stays in symlink-only mode.
 
+The flake also exports the Linux C++ runtime needed by Python wheels like `gevent` and `greenlet`, which avoids `libstdc++.so.6` errors when running `pyinfra` on NixOS.
+
 ## Available Commands
 
 | Command | Description |
