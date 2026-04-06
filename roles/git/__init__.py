@@ -1,21 +1,19 @@
-"""Git role - configures git with user settings."""
+"""Git role - configures git settings."""
 
 from pyinfra import host
 from pyinfra.facts.files import File
 from pyinfra.facts.server import Home
 from pyinfra.operations import server
 
-from ..common import template_config_file
+from ..common import symlink_config_file
 
 
-def setup(repo_path: str, git_user: str, git_email: str) -> None:
+def setup(repo_path: str) -> None:
     """
     Set up Git configuration.
 
     Args:
         repo_path: Path to the dotfiles repository.
-        git_user: Git username.
-        git_email: Git email address.
     """
     home_path = host.get_fact(Home)
     gitconfig_path = f"{home_path}/.gitconfig"
@@ -31,12 +29,11 @@ def setup(repo_path: str, git_user: str, git_email: str) -> None:
             commands=[f"mv {gitconfig_path} {backup_path}"],
         )
 
-    # Template gitconfig
-    template_config_file(
+    # Symlink gitconfig from the repository.
+    symlink_config_file(
         repo_path=repo_path,
         role_name="git",
-        template_name="gitconfig",
+        filename="dot.gitconfig",
         dest_path=gitconfig_path,
-        git_user=git_user,
-        git_email=git_email,
+        name="Link gitconfig",
     )

@@ -1,10 +1,12 @@
 # pyinfra-dots
 
-Pyinfra-based dotfiles deployment for macOS.
+Pyinfra-based dotfiles deployment for macOS and NixOS.
 
 ## Overview
 
 This project uses [pyinfra](https://pyinfra.com/) to manage and deploy dotfiles. It provides an idempotent, Python-based alternative to Ansible for configuring your development environment.
+
+On macOS, the repo can also handle a few imperative setup steps. On NixOS, it automatically switches to a symlink-only mode so package management stays in Nix.
 
 ## Requirements
 
@@ -21,11 +23,20 @@ uv sync
 make run
 ```
 
+On NixOS, `make run` auto-detects the platform and only links checked-in files.
+
+If you want to force that behavior on another machine, run:
+
+```bash
+make run-symlink-only
+```
+
 ## Available Commands
 
 | Command | Description |
 |---------|-------------|
 | `make run` | Deploy dotfiles with pyinfra |
+| `make run-symlink-only` | Deploy dotfiles in symlink-only mode |
 | `make lint` | Check code with ruff |
 | `make format` | Format code with ruff |
 | `make typecheck` | Type check with ty |
@@ -54,14 +65,26 @@ dotfiles/
 
 | Role | Description |
 |------|-------------|
-| `git` | Backs up and templates `.gitconfig` |
-| `zsh` | Configures zsh, installs Antidote plugin manager |
+| `git` | Backs up and symlinks `.gitconfig` |
+| `zsh` | Configures zsh and symlinks platform-specific shell files |
 | `tmux` | Installs tmux and symlinks config |
 | `nvim` | Installs Neovim and symlinks config directory |
-| `mise` | Installs mise and tools |
+| `mise` | Symlinks mise config and optionally installs tools |
 | `devtools` | Installs common dev tools via Homebrew |
 | `ghostty` | Installs Ghostty terminal |
-| `vscode` | Symlinks VS Code settings (macOS only) |
+| `vscode` | Symlinks VS Code settings on macOS and Linux |
+
+## NixOS Behavior
+
+When the host OS is detected as NixOS, the deploy keeps only repository-managed file links and skips imperative setup.
+
+Skipped on NixOS:
+
+- Homebrew package installs and casks
+- Cloning `dev-scripts`
+- Cloning Antidote
+- Running `mise install`
+- Changing the login shell with `chsh`
 
 ## Development
 

@@ -2,6 +2,10 @@
 run:
 	uv run pyinfra @local deploy.py
 
+.PHONY: run-symlink-only
+run-symlink-only:
+	DOTFILES_MODE=symlink-only uv run pyinfra @local deploy.py
+
 .PHONY: lint
 lint:
 	uv run ruff check .

@@ -1,13 +1,14 @@
 """Zsh role - configures zsh shell and antidote plugin manager."""
 
 from pyinfra import host
-from pyinfra.facts.server import Home
+from pyinfra.facts.server import Home, Kernel
 from pyinfra.operations import files, server
 
 from facts.user_shell import UserShell
 
 from ..common import clone_repo, symlink_config_file
-from ..constants import SHELL_ZSH
+from ..constants import KERNEL_DARWIN, SHELL_ZSH
+from ..mode import is_symlink_only_mode
 
 
 def setup(repo_path: str) -> None:
@@ -19,6 +20,7 @@ def setup(repo_path: str) -> None:
     """
     home_path = host.get_fact(Home)
     zdotdir = f"{home_path}/.config/zsh"
+    kernel = host.get_fact(Kernel)
 
     # Create ZDOTDIR
     files.directory(
@@ -54,12 +56,13 @@ def setup(repo_path: str) -> None:
         name="Link zshrc",
     )
 
-    # Install Antidote
-    clone_repo(
-        repo_url="https://github.com/mattmc3/antidote.git",
-        dest_path=f"{zdotdir}/antidote",
-        name="Install Antidote",
-    )
+    if not is_symlink_only_mode():
+        # Install Antidote
+        clone_repo(
+            repo_url="https://github.com/mattmc3/antidote.git",
+            dest_path=f"{zdotdir}/antidote",
+            name="Install Antidote",
+        )
 
     # Link zsh-plugins.txt
     symlink_config_file(
@@ -70,21 +73,23 @@ def setup(repo_path: str) -> None:
         name="Link zsh-plugins.txt",
     )
 
-    # Change user shell to zsh (if not already)
-    current_shell = host.get_fact(UserShell)
+    if kernel == KERNEL_DARWIN and not is_symlink_only_mode():
+        # Change user shell to zsh on macOS if needed.
+        current_shell = host.get_fact(UserShell)
 
-    if current_shell != SHELL_ZSH:
-        server.shell(
-            name="Change user shell to zsh",
-            commands=["chsh -s /bin/zsh"],
-            _sudo=True,
-        )
+        if current_shell != SHELL_ZSH:
+            server.shell(
+                name="Change user shell to zsh",
+                commands=["chsh -s /bin/zsh"],
+                _sudo=True,
+            )
 
-    # Link MacMachine.zshrc
+    machine_file = "macmachine.zsh" if kernel == KERNEL_DARWIN else "linuxmachine.zsh"
+
     symlink_config_file(
         repo_path=repo_path,
         role_name="zsh",
-        filename="macmachine.zsh",
+        filename=machine_file,
         dest_path=f"{zdotdir}/machine.zsh",
-        name="Link MacMachine.zshrc",
+        name="Link machine.zsh",
     )

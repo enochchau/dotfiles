@@ -44,11 +44,7 @@ DEVTOOLS_CASKS = [
 ]
 
 # Git
-git_setup(
-    repo_path=repo_path,
-    git_user="enochchau",
-    git_email="enoch965@gmail.com",
-)
+git_setup(repo_path=repo_path)
 
 # Devtools
 devtools_setup(

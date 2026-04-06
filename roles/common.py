@@ -1,10 +1,13 @@
 """Common utilities for pyinfra roles."""
 
+from __future__ import annotations
+
 from pyinfra import host
 from pyinfra.facts.server import Home, Kernel
 from pyinfra.operations import brew, files
 
 from .constants import DIR_CONFIG, MODE_DIRECTORY
+from .mode import is_symlink_only_mode
 
 
 def ensure_config_directory(
@@ -46,7 +49,7 @@ def install_brew_packages(packages: list[str], name: str | None = None) -> None:
         packages: List of package names to install.
         name: Optional custom name for the operation.
     """
-    if host.get_fact(Kernel) != "Darwin":
+    if host.get_fact(Kernel) != "Darwin" or is_symlink_only_mode():
         return
 
     brew.packages(
@@ -63,7 +66,7 @@ def install_brew_casks(casks: list[str], name: str | None = None) -> None:
         casks: List of cask names to install.
         name: Optional custom name for the operation.
     """
-    if host.get_fact(Kernel) != "Darwin":
+    if host.get_fact(Kernel) != "Darwin" or is_symlink_only_mode():
         return
 
     brew.casks(
@@ -166,6 +169,9 @@ def clone_repo(
         branch: Branch to checkout. Defaults to HEAD.
         pull: Whether to pull updates if repo exists. Defaults to True.
     """
+    if is_symlink_only_mode():
+        return
+
     from pyinfra.operations import git
 
     git.repo(

@@ -46,5 +46,5 @@ def setup(repo_path: str) -> None:
         role_name="claude",
         filename="SOUL.md",
         dest_path=f"{home_path}/.claude/SOUL.md",
-        name="Link SOUL.md"
+        name="Link SOUL.md",
     )

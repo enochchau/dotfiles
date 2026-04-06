@@ -5,6 +5,7 @@ from pyinfra.facts.server import Home
 from pyinfra.operations import server
 
 from ..common import ensure_config_directory, symlink_config_directory
+from ..mode import is_symlink_only_mode
 
 
 def setup(repo_path: str) -> None:
@@ -24,7 +25,10 @@ def setup(repo_path: str) -> None:
         dest_path=f"{host.get_fact(Home)}/.config/mise",
     )
 
-    # Install mise shims/tools (macOS only)
+    if is_symlink_only_mode():
+        return
+
+    # Install mise shims/tools
     server.shell(
         name="Install mise tools",
         commands=["mise install"],
