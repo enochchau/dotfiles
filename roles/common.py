@@ -156,7 +156,7 @@ def clone_repo(
     repo_url: str,
     dest_path: str,
     name: str | None = None,
-    branch: str = "HEAD",
+    branch: str | None = None,
     pull: bool = True,
     allow_in_symlink_only_mode: bool = False,
 ) -> None:
@@ -167,7 +167,8 @@ def clone_repo(
         repo_url: Git repository URL.
         dest_path: Destination path for the repository.
         name: Optional custom name for the operation.
-        branch: Branch to checkout. Defaults to HEAD.
+        branch: Optional branch to checkout. Defaults to the repository's
+            default branch.
         pull: Whether to pull updates if repo exists. Defaults to True.
         allow_in_symlink_only_mode: Whether to allow cloning when the deploy is
             otherwise in symlink-only mode. Defaults to False.
@@ -177,10 +178,18 @@ def clone_repo(
 
     from pyinfra.operations import git
 
-    git.repo(
-        name=name or f"Clone {repo_url}",
-        src=repo_url,
-        dest=dest_path,
-        branch=branch,
-        pull=pull,
-    )
+    if branch is None:
+        git.repo(
+            name=name or f"Clone {repo_url}",
+            src=repo_url,
+            dest=dest_path,
+            pull=pull,
+        )
+    else:
+        git.repo(
+            name=name or f"Clone {repo_url}",
+            src=repo_url,
+            dest=dest_path,
+            branch=branch,
+            pull=pull,
+        )
