@@ -142,12 +142,12 @@
   "[mdx]": {
     "editor.defaultFormatter": "unifiedjs.vscode-mdx"
   },
-  "workbench.preferredLightColorTheme": "Dark Modern",
   "[c]": {
     "editor.defaultFormatter": "xaver.clang-format"
   },
   "editor.lineNumbers": "relative",
   "python.analysis.typeCheckingMode": "strict",
   "makefile.configureOnOpen": false,
-  "git.blame.editorDecoration.enabled": true
+  "git.blame.editorDecoration.enabled": true,
+  "workbench.preferredLightColorTheme": "Dark 2026"
 }
