@@ -106,10 +106,13 @@ local function config()
         end,
     })
 
-    require("mason-lspconfig").setup({
-        ensure_installed = ensure_installed,
-        automatic_enable = false,
-    })
+    local is_nix = os.getenv("NIX_PROFILES") ~= nil
+    if not is_nix then
+        require("mason-lspconfig").setup({
+            ensure_installed = ensure_installed,
+            automatic_enable = false,
+        })
+    end
 
     -- custom
     local servers = vim.list_extend(vim.deepcopy(ensure_installed), {

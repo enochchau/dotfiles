@@ -9,7 +9,9 @@ local function setup_treesitter(opts)
 
     -- replicate `ensure_installed`, runs asynchronously, skips existing languages
     local nvim_treesitter = require("nvim-treesitter")
-    nvim_treesitter.install(ensure_installed):wait(300000)
+    if vim.fn.has("nvim-0.12") == 1 then
+        nvim_treesitter.install(ensure_installed):wait(300000)
+    end
 
     vim.api.nvim_create_autocmd("FileType", {
         group = vim.api.nvim_create_augroup("treesitter.setup", {}),
