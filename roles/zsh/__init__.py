@@ -56,13 +56,14 @@ def setup(repo_path: str) -> None:
         name="Link zshrc",
     )
 
-    if not is_symlink_only_mode():
-        # Install Antidote
-        clone_repo(
-            repo_url="https://github.com/mattmc3/antidote.git",
-            dest_path=f"{zdotdir}/antidote",
-            name="Install Antidote",
-        )
+    # Antidote is required by .zshrc, so we keep cloning it even in
+    # symlink-only mode on NixOS.
+    clone_repo(
+        repo_url="https://github.com/mattmc3/antidote.git",
+        dest_path=f"{zdotdir}/antidote",
+        name="Install Antidote",
+        allow_in_symlink_only_mode=True,
+    )
 
     # Link zsh-plugins.txt
     symlink_config_file(

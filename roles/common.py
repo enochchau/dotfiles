@@ -158,6 +158,7 @@ def clone_repo(
     name: str | None = None,
     branch: str = "HEAD",
     pull: bool = True,
+    allow_in_symlink_only_mode: bool = False,
 ) -> None:
     """
     Clone or update a git repository.
@@ -168,8 +169,10 @@ def clone_repo(
         name: Optional custom name for the operation.
         branch: Branch to checkout. Defaults to HEAD.
         pull: Whether to pull updates if repo exists. Defaults to True.
+        allow_in_symlink_only_mode: Whether to allow cloning when the deploy is
+            otherwise in symlink-only mode. Defaults to False.
     """
-    if is_symlink_only_mode():
+    if is_symlink_only_mode() and not allow_in_symlink_only_mode:
         return
 
     from pyinfra.operations import git

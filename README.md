@@ -6,7 +6,7 @@ Pyinfra-based dotfiles deployment for macOS and NixOS.
 
 This project uses [pyinfra](https://pyinfra.com/) to manage and deploy dotfiles. It provides an idempotent, Python-based alternative to Ansible for configuring your development environment.
 
-On macOS, the repo can also handle a few imperative setup steps. On NixOS, it automatically switches to a symlink-only mode so package management stays in Nix.
+On macOS, the repo can also handle a few imperative setup steps. On NixOS, it automatically switches to a mostly symlink-only mode so package management stays in Nix while still cloning Antidote for Zsh plugins.
 
 ## Requirements
 
@@ -23,7 +23,7 @@ uv sync
 make run
 ```
 
-On NixOS, `make run` auto-detects the platform and only links checked-in files.
+On NixOS, `make run` auto-detects the platform, links checked-in files, and clones Antidote for Zsh.
 
 If you want to force that behavior on another machine, run:
 
@@ -63,7 +63,7 @@ make run
 nix run .#run
 ```
 
-On NixOS, the deploy still auto-detects the platform and stays in symlink-only mode.
+On NixOS, the deploy still auto-detects the platform and stays in mostly symlink-only mode.
 
 The flake also exports the Linux C++ runtime needed by Python wheels like `gevent` and `greenlet`, which avoids `libstdc++.so.6` errors when running `pyinfra` on NixOS.
 
@@ -112,13 +112,12 @@ dotfiles/
 
 ## NixOS Behavior
 
-When the host OS is detected as NixOS, the deploy keeps only repository-managed file links and skips imperative setup.
+When the host OS is detected as NixOS, the deploy keeps repository-managed file links, still clones Antidote for Zsh, and skips the rest of the imperative setup.
 
 Skipped on NixOS:
 
 - Homebrew package installs and casks
 - Cloning `dev-scripts`
-- Cloning Antidote
 - Running `mise install`
 - Changing the login shell with `chsh`
 
