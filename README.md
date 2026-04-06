@@ -31,6 +31,40 @@ If you want to force that behavior on another machine, run:
 make run-symlink-only
 ```
 
+## Nix Flake
+
+This repo also includes a `flake.nix` so a NixOS machine can bootstrap the runner without manually installing `uv` first.
+
+Enable flakes in `/etc/nixos/configuration.nix`:
+
+```nix
+{
+  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+}
+```
+
+Then apply it:
+
+```bash
+sudo nixos-rebuild switch
+```
+
+From the dotfiles checkout, you can then use either flow:
+
+```bash
+# Enter a shell with uv, Python, and make
+nix develop
+uv sync --no-dev
+make run
+```
+
+```bash
+# Or run the deploy directly via the flake app
+nix run .#run
+```
+
+On NixOS, the deploy still auto-detects the platform and stays in symlink-only mode.
+
 ## Available Commands
 
 | Command | Description |
