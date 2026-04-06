@@ -6,7 +6,7 @@ Pyinfra-based dotfiles deployment for macOS and NixOS.
 
 This project uses [pyinfra](https://pyinfra.com/) to manage and deploy dotfiles. It provides an idempotent, Python-based alternative to Ansible for configuring your development environment.
 
-On macOS, the repo can also handle a few imperative setup steps. On NixOS, it automatically switches to a mostly symlink-only mode so package management stays in Nix while still cloning Antidote for Zsh plugins.
+The deploy aims to manage your user environment imperatively on both macOS and NixOS. Platform-specific steps still stay platform-specific, so macOS handles Homebrew and `chsh`, while NixOS runs the shared user-level setup.
 
 ## Requirements
 
@@ -23,13 +23,7 @@ uv sync
 make run
 ```
 
-On NixOS, `make run` auto-detects the platform, links checked-in files, and clones Antidote for Zsh.
-
-If you want to force that behavior on another machine, run:
-
-```bash
-make run-symlink-only
-```
+On NixOS, `make run` performs the same user-level deploy flow as macOS where it makes sense: it links checked-in files, clones repositories, and runs `mise install`, while naturally skipping macOS-only steps.
 
 ## Nix Flake
 
@@ -63,7 +57,7 @@ make run
 nix run .#run
 ```
 
-On NixOS, the deploy still auto-detects the platform and stays in mostly symlink-only mode.
+On NixOS, the deploy auto-detects the platform and follows the NixOS branch directly instead of going through a separate deploy mode.
 
 The flake also exports the Linux C++ runtime needed by Python wheels like `gevent` and `greenlet`, which avoids `libstdc++.so.6` errors when running `pyinfra` on NixOS.
 
@@ -72,7 +66,6 @@ The flake also exports the Linux C++ runtime needed by Python wheels like `geven
 | Command | Description |
 |---------|-------------|
 | `make run` | Deploy dotfiles with pyinfra |
-| `make run-symlink-only` | Deploy dotfiles in symlink-only mode |
 | `make lint` | Check code with ruff |
 | `make format` | Format code with ruff |
 | `make typecheck` | Type check with ty |
@@ -112,13 +105,16 @@ dotfiles/
 
 ## NixOS Behavior
 
-When the host OS is detected as NixOS, the deploy keeps repository-managed file links, still clones Antidote for Zsh, and skips the rest of the imperative setup.
+By default, NixOS now follows the same imperative user-level flow as macOS for shared setup:
 
-Skipped on NixOS:
+- Symlink checked-in config files
+- Clone Antidote for Zsh plugins
+- Create `~/code` and clone `dev-scripts`
+- Run `mise install`
+
+The remaining skips on NixOS are the macOS-only steps:
 
 - Homebrew package installs and casks
-- Cloning `dev-scripts`
-- Running `mise install`
 - Changing the login shell with `chsh`
 
 ## Development

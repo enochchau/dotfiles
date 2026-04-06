@@ -7,7 +7,6 @@ from pyinfra.facts.server import Home, Kernel
 from pyinfra.operations import brew, files
 
 from .constants import DIR_CONFIG, MODE_DIRECTORY
-from .mode import is_symlink_only_mode
 
 
 def ensure_config_directory(
@@ -49,7 +48,7 @@ def install_brew_packages(packages: list[str], name: str | None = None) -> None:
         packages: List of package names to install.
         name: Optional custom name for the operation.
     """
-    if host.get_fact(Kernel) != "Darwin" or is_symlink_only_mode():
+    if host.get_fact(Kernel) != "Darwin":
         return
 
     brew.packages(
@@ -66,7 +65,7 @@ def install_brew_casks(casks: list[str], name: str | None = None) -> None:
         casks: List of cask names to install.
         name: Optional custom name for the operation.
     """
-    if host.get_fact(Kernel) != "Darwin" or is_symlink_only_mode():
+    if host.get_fact(Kernel) != "Darwin":
         return
 
     brew.casks(
@@ -158,7 +157,6 @@ def clone_repo(
     name: str | None = None,
     branch: str | None = None,
     pull: bool = True,
-    allow_in_symlink_only_mode: bool = False,
 ) -> None:
     """
     Clone or update a git repository.
@@ -170,12 +168,7 @@ def clone_repo(
         branch: Optional branch to checkout. Defaults to the repository's
             default branch.
         pull: Whether to pull updates if repo exists. Defaults to True.
-        allow_in_symlink_only_mode: Whether to allow cloning when the deploy is
-            otherwise in symlink-only mode. Defaults to False.
     """
-    if is_symlink_only_mode() and not allow_in_symlink_only_mode:
-        return
-
     from pyinfra.operations import git
 
     if branch is None:

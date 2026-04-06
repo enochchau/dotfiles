@@ -8,7 +8,6 @@ from facts.user_shell import UserShell
 
 from ..common import clone_repo, symlink_config_file
 from ..constants import KERNEL_DARWIN, SHELL_ZSH
-from ..mode import is_symlink_only_mode
 
 
 def setup(repo_path: str) -> None:
@@ -56,13 +55,11 @@ def setup(repo_path: str) -> None:
         name="Link zshrc",
     )
 
-    # Antidote is required by .zshrc, so we keep cloning it even in
-    # symlink-only mode on NixOS.
+    # Antidote is required by .zshrc.
     clone_repo(
         repo_url="https://github.com/mattmc3/antidote.git",
         dest_path=f"{zdotdir}/antidote",
         name="Install Antidote",
-        allow_in_symlink_only_mode=True,
     )
 
     # Link zsh-plugins.txt
@@ -74,7 +71,7 @@ def setup(repo_path: str) -> None:
         name="Link zsh-plugins.txt",
     )
 
-    if kernel == KERNEL_DARWIN and not is_symlink_only_mode():
+    if kernel == KERNEL_DARWIN:
         # Change user shell to zsh on macOS if needed.
         current_shell = host.get_fact(UserShell)
 

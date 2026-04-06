@@ -5,7 +5,6 @@ from pyinfra.facts.server import Home
 from pyinfra.operations import files
 
 from ..common import clone_repo, install_brew_casks, install_brew_packages
-from ..mode import is_symlink_only_mode
 
 
 def setup(repo_path: str, packages: list[str], casks: list[str]) -> None:
@@ -17,9 +16,6 @@ def setup(repo_path: str, packages: list[str], casks: list[str]) -> None:
         packages: List of Homebrew packages to install.
         casks: List of Homebrew casks to install.
     """
-    if is_symlink_only_mode():
-        return
-
     home_path = host.get_fact(Home)
 
     # Install brew packages and casks on macOS
