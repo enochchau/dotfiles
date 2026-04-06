@@ -37,7 +37,7 @@
             ];
 
             shellHook = lib.optionalString pkgs.stdenv.hostPlatform.isLinux ''
-              export LD_LIBRARY_PATH="${runtimeLibPath}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+              export LD_LIBRARY_PATH="${runtimeLibPath}''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
             '';
           };
         });
@@ -48,7 +48,7 @@
             pkgs.stdenv.cc.cc.lib
           ];
           linuxRuntimeSetup = lib.optionalString pkgs.stdenv.hostPlatform.isLinux ''
-            export LD_LIBRARY_PATH="${runtimeLibPath}${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
+            export LD_LIBRARY_PATH="${runtimeLibPath}''${LD_LIBRARY_PATH:+:$LD_LIBRARY_PATH}"
           '';
         in
         {
