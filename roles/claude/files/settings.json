@@ -36,6 +36,7 @@
     "typescript-lsp@claude-plugins-official": true,
     "tsgo-lsp@numeric-ai-plugins": true
   },
+  "effortLevel": "high",
   "autoUpdatesChannel": "stable",
   "skipDangerousModePermissionPrompt": true
 }
