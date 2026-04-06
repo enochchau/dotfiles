@@ -6,7 +6,7 @@ Pyinfra-based dotfiles deployment for macOS and NixOS.
 
 This project uses [pyinfra](https://pyinfra.com/) to manage and deploy dotfiles. It provides an idempotent, Python-based alternative to Ansible for configuring your development environment.
 
-The deploy aims to manage your user environment imperatively on both macOS and NixOS. Platform-specific steps still stay platform-specific, so macOS handles Homebrew and `chsh`, while NixOS runs the shared user-level setup.
+The deploy aims to manage your user environment imperatively on both macOS and NixOS. The role layout is split into `base`, `workstation`, `desktop`, and `mac_apps`, with NixOS taking the smaller base-only path and macOS using the fuller workstation/desktop setup.
 
 ## Requirements
 
@@ -23,7 +23,7 @@ uv sync
 make run
 ```
 
-On NixOS, `make run` performs the shared user-level deploy flow where it makes sense: it links checked-in files and clones repositories, while leaving application and runtime installation to Nix.
+On NixOS, `make run` applies the base config set only: Git, Zsh, tmux, and Neovim. Tooling and desktop applications should be installed through Nix.
 
 ## Nix Flake
 
@@ -77,11 +77,14 @@ The flake also exports the Linux C++ runtime needed by Python wheels like `geven
 dotfiles/
 ├── deploy.py              # Main entry point
 ├── facts/                 # Custom facts
+│   ├── system_id.py       # Detect Linux distribution ID
 │   └── user_shell.py      # Get current user's shell on macOS
 ├── roles/                 # Role definitions
+│   ├── claude/            # Claude Code configuration
 │   ├── devtools/          # Dev tools (bat, fd, fzf, etc.)
 │   ├── ghostty/           # Ghostty terminal
 │   ├── git/               # Git configuration
+│   ├── mac_apps/          # macOS desktop app installs
 │   ├── mise/              # Mise (formerly rtx)
 │   ├── nvim/              # Neovim configuration
 │   ├── tmux/              # Tmux configuration
@@ -96,26 +99,39 @@ dotfiles/
 |------|-------------|
 | `git` | Backs up and symlinks `.gitconfig` |
 | `zsh` | Configures zsh and symlinks platform-specific shell files |
-| `tmux` | Installs tmux and symlinks config |
-| `nvim` | Installs Neovim and symlinks config directory |
+| `tmux` | Symlinks tmux config |
+| `nvim` | Symlinks Neovim config directory |
+| `devtools` | Installs common dev tools on macOS and clones `dev-scripts` |
 | `mise` | Configures mise on macOS |
-| `devtools` | Installs common dev tools via Homebrew |
-| `ghostty` | Installs Ghostty terminal |
+| `ghostty` | Symlinks Ghostty config |
 | `vscode` | Symlinks VS Code settings on macOS and Linux |
+| `claude` | Symlinks Claude Code config |
+| `mac_apps` | Installs macOS desktop apps via Homebrew casks |
+
+## Role Groups
+
+- `base`: `git`, `zsh`, `tmux`, `nvim`
+- `workstation`: `devtools`, `mise`
+- `desktop`: `ghostty`, `vscode`, `claude`
+- `mac_apps`: Homebrew casks such as `ghostty`, `linearmouse`, and `rectangle`
 
 ## NixOS Behavior
 
-By default, NixOS now follows the same imperative user-level flow as macOS for shared setup:
+On NixOS, the deploy keeps only the base, server-safe config roles:
 
-- Symlink checked-in config files
-- Clone Antidote for Zsh plugins
-- Create `~/code` and clone `dev-scripts`
+- Configure Git
+- Configure Zsh and clone Antidote
+- Configure tmux
+- Configure Neovim
 
 On NixOS, application and runtime installs should live in `configuration.nix`, so the deploy skips:
 
-- `mise` config and `mise install`
-- Homebrew package installs and casks
-- Changing the login shell with `chsh`
+- `workstation`
+- `desktop`
+- `mac_apps`
+- macOS-only shell changes like `chsh`
+
+At minimum, install your shell/editor dependencies through Nix. In practice that likely includes `git`, `zsh`, `tmux`, `neovim`, `fzf`, `ripgrep`, `fd`, and `uv`.
 
 ## Development
 
