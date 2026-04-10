@@ -43,7 +43,6 @@ alias cddot="cd $DOT_FILES"
 alias cdnvim="cd $DOT_FILES/dot_config/nvim"
 alias gcol='git branch | fzf | sed '\''s/^.* //'\'' | xargs git checkout'
 alias vi="nvim"
-alias vim="nvim"
 # dev script
 dev_scripts_base=~/code/dev-scripts
 if test -d $dev_scripts_base; then
