@@ -1,0 +1,7 @@
+{{ if and (not .is_nixos) .is_darwin -}}
+#!/bin/bash
+# hash: {{ include "dot_config/mise/config.toml" | sha256sum }}
+if command -v mise &>/dev/null; then
+  mise install
+fi
+{{ end -}}

@@ -19,14 +19,11 @@ setopt long_list_jobs       # show long list format job notifications
 setopt interactivecomments  # recognize comments
 
 # load dotfiles functions, completions, and scripts
-# You can override DOT_FILES if it's cloned to a different location
-DOT_FILES=${DOT_FILES:-~/dotfiles}
-DOT_FILES_ZSH=$DOT_FILES/roles/zsh/files
-fpath=($DOT_FILES_ZSH/functions $DOT_FILES_ZSH/completions $fpath)
+fpath=($ZDOTDIR/functions $ZDOTDIR/completions $fpath)
 fpath+=${ZDOTDIR:-~}/.zsh_functions
-autoload -Uz $DOT_FILES_ZSH/functions/*(.:t)
+autoload -Uz $ZDOTDIR/functions/*(.:t)
 
-export PATH=$DOT_FILES_ZSH/scripts:$PATH
+export PATH=$ZDOTDIR/scripts:$PATH
 export PATH=~/.local/bin:$PATH
 export PATH=~/.luarocks/bin:$PATH
 export PATH="/usr/local/sbin:$PATH"
@@ -41,6 +38,7 @@ if [[ "$TERM_PROGRAM" == "vscode" ]]; then
         alias rg='rg --hyperlink-format=vscode'
     fi
 fi
+DOT_FILES=${DOT_FILES:-~/.local/share/chezmoi}
 alias cddot="cd $DOT_FILES"
 alias cdnvim='cd ~/.config/nvim'
 alias gcol='git branch | fzf | sed '\''s/^.* //'\'' | xargs git checkout'
@@ -53,7 +51,7 @@ if test -d $dev_scripts_base; then
     fpath+=$dev_scripts_base/completions
     alias gitdel="$dev_scripts_base/git-delete"
     alias conf="source $dev_scripts_base/project $XDG_CONFIG_HOME"
-    alias dot="source $dev_scripts_base/project $HOME/dotfiles $HOME/dotfiles/roles"
+    alias dot="source $dev_scripts_base/project $DOT_FILES"
 fi
 # docker-compose v2 alias so that completions work
 alias docker-compose='docker compose'

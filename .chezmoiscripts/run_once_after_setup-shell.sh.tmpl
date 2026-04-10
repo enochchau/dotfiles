@@ -1,0 +1,8 @@
+{{ if eq .chezmoi.os "darwin" -}}
+#!/bin/bash
+current_shell=$(dscl . -read /Users/$(whoami) UserShell | cut -d' ' -f2)
+if [ "$current_shell" != "/bin/zsh" ]; then
+  echo "Changing shell to zsh..."
+  sudo chsh -s /bin/zsh "$(whoami)"
+fi
+{{ end -}}

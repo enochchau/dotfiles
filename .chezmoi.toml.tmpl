@@ -1,0 +1,9 @@
+{{- $osid := .chezmoi.os -}}
+{{- if hasKey .chezmoi "osRelease" -}}
+{{-   $osid = .chezmoi.osRelease.id -}}
+{{- end -}}
+
+[data]
+  os_id = {{ $osid | quote }}
+  is_nixos = {{ eq $osid "nixos" }}
+  is_darwin = {{ eq .chezmoi.os "darwin" }}
