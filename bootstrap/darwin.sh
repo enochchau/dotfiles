@@ -11,30 +11,8 @@ if ! command -v brew &>/dev/null; then
   /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 fi
 
-installed=$(brew list)
-
-packages=(bat difftastic fd ffmpeg fzf git-delta jq mise neovim ripgrep tmux uv chezmoi)
-casks=(ghostty linearmouse rectangle)
-
-to_install=()
-for pkg in "${packages[@]}"; do
-  if ! echo "$installed" | grep -qx "$pkg"; then
-    to_install+=("$pkg")
-  fi
-done
-if [ ${#to_install[@]} -gt 0 ]; then
-  brew install "${to_install[@]}"
-fi
-
-to_install=()
-for cask in "${casks[@]}"; do
-  if ! echo "$installed" | grep -qx "$cask"; then
-    to_install+=("$cask")
-  fi
-done
-if [ ${#to_install[@]} -gt 0 ]; then
-  brew install --cask "${to_install[@]}" || true
-fi
+SCRIPT_DIR="$(cd "$(dirname "$0")" && pwd)"
+brew bundle --file="$SCRIPT_DIR/Brewfile"
 
 # dev-scripts
 mkdir -p ~/code
