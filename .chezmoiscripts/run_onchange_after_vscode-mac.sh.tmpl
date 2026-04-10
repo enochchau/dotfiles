@@ -2,8 +2,12 @@
 #!/bin/bash
 # settings: {{ include "dot_config/Code/User/settings.json" | sha256sum }}
 # keybindings: {{ include "dot_config/Code/User/keybindings.json" | sha256sum }}
+SRC_DIR="$HOME/.config/Code/User"
 VSCODE_DIR="$HOME/Library/Application Support/Code/User"
-mkdir -p "$VSCODE_DIR"
-cp ~/.config/Code/User/settings.json "$VSCODE_DIR/settings.json"
-cp ~/.config/Code/User/keybindings.json "$VSCODE_DIR/keybindings.json"
+if [ -d "$SRC_DIR" ]; then
+  mkdir -p "$VSCODE_DIR"
+  rm -f "$VSCODE_DIR/settings.json" "$VSCODE_DIR/keybindings.json"
+  cp "$SRC_DIR/settings.json" "$VSCODE_DIR/settings.json"
+  cp "$SRC_DIR/keybindings.json" "$VSCODE_DIR/keybindings.json"
+fi
 {{ end -}}

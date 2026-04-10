@@ -1,7 +1,9 @@
 {{- $osid := .chezmoi.os -}}
-{{- if hasKey .chezmoi "osRelease" -}}
+{{- if and (hasKey .chezmoi "osRelease") (hasKey .chezmoi.osRelease "id") -}}
 {{-   $osid = .chezmoi.osRelease.id -}}
 {{- end -}}
+
+sourceDir = {{ joinPath .chezmoi.homeDir "dotfiles" | quote }}
 
 [data]
   os_id = {{ $osid | quote }}
