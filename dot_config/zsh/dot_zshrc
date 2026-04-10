@@ -38,7 +38,7 @@ if [[ "$TERM_PROGRAM" == "vscode" ]]; then
         alias rg='rg --hyperlink-format=vscode'
     fi
 fi
-DOT_FILES=${DOT_FILES:-~/.local/share/chezmoi}
+DOT_FILES=${DOT_FILES:-~/dotfiles}
 alias cddot="cd $DOT_FILES"
 alias cdnvim='cd ~/.config/nvim'
 alias gcol='git branch | fzf | sed '\''s/^.* //'\'' | xargs git checkout'
