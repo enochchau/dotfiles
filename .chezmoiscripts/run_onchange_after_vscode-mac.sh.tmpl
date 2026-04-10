@@ -6,8 +6,7 @@ SRC_DIR="$HOME/.config/Code/User"
 VSCODE_DIR="$HOME/Library/Application Support/Code/User"
 if [ -d "$SRC_DIR" ]; then
   mkdir -p "$VSCODE_DIR"
-  rm -f "$VSCODE_DIR/settings.json" "$VSCODE_DIR/keybindings.json"
-  cp "$SRC_DIR/settings.json" "$VSCODE_DIR/settings.json"
-  cp "$SRC_DIR/keybindings.json" "$VSCODE_DIR/keybindings.json"
+  ln -sf "$SRC_DIR/settings.json" "$VSCODE_DIR/settings.json"
+  ln -sf "$SRC_DIR/keybindings.json" "$VSCODE_DIR/keybindings.json"
 fi
 {{ end -}}
