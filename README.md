@@ -22,7 +22,7 @@ Dotfiles managed with [chezmoi](https://www.chezmoi.io/) for macOS, Linux, and N
 2. Initialize and apply:
 
 ```bash
-chezmoi init --apply git@github.com:ec965/dotfiles.git
+chezmoi init --apply -s ~/dotfiles git@github.com:ec965/dotfiles.git
 ```
 
 ### Existing Machine
@@ -86,23 +86,23 @@ dotfiles/
 
 ## OS Behavior
 
-| | macOS | Linux | NixOS |
-|---|---|---|---|
-| git, zsh, tmux, nvim | yes | yes | yes |
-| ghostty, vscode, claude | yes | yes | no |
-| mise | yes | yes | no |
-| brew packages/casks | bootstrap script | — | — |
-| chsh | run script | — | — |
+|                         | macOS            | Linux | NixOS |
+| ----------------------- | ---------------- | ----- | ----- |
+| git, zsh, tmux, nvim    | yes              | yes   | yes   |
+| ghostty, vscode, claude | yes              | yes   | no    |
+| mise                    | yes              | yes   | no    |
+| brew packages/casks     | bootstrap script | —     | —     |
+| chsh                    | run script       | —     | —     |
 
 On NixOS, only base configs are deployed. Tools and desktop apps should be managed through `configuration.nix`.
 
 ## Run Scripts
 
-| Script | Trigger | What it does |
-|---|---|---|
-| `setup-shell` | Once | `chsh -s /bin/zsh` on macOS |
-| `mise-install` | On config change | Runs `mise install` |
-| `vscode-mac` | On settings change | Copies VSCode files to macOS path |
+| Script         | Trigger            | What it does                      |
+| -------------- | ------------------ | --------------------------------- |
+| `setup-shell`  | Once               | `chsh -s /bin/zsh` on macOS       |
+| `mise-install` | On config change   | Runs `mise install`               |
+| `vscode-mac`   | On settings change | Copies VSCode files to macOS path |
 
 ## License
 
