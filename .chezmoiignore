@@ -7,4 +7,5 @@ dot_config/ghostty/**
 dot_config/Code/**
 dot_config/mise/**
 dot_claude/**
+dot_codex/**
 {{ end }}

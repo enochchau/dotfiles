@@ -81,7 +81,8 @@ dotfiles/
 │   ├── ghostty/
 │   ├── Code/User/             # VSCode settings
 │   └── mise/
-└── dot_claude/                # Claude Code config
+├── dot_claude/                # Claude Code config
+└── dot_codex/                 # Codex config
 ```
 
 ## OS Behavior
@@ -89,7 +90,7 @@ dotfiles/
 |                         | macOS            | Linux | NixOS |
 | ----------------------- | ---------------- | ----- | ----- |
 | git, zsh, tmux, nvim    | yes              | yes   | yes   |
-| ghostty, vscode, claude | yes              | yes   | no    |
+| ghostty, vscode, claude, codex | yes       | yes   | no    |
 | mise                    | yes              | yes   | no    |
 | brew packages/casks     | bootstrap script | —     | —     |
 | chsh                    | run script       | —     | —     |

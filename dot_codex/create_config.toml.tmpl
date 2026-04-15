@@ -1,0 +1,10 @@
+model = "gpt-5.4"
+model_reasoning_effort = "high"
+personality = "pragmatic"
+project_doc_fallback_filenames = ["CLAUDE.md"]
+
+[projects."{{ .chezmoi.homeDir }}"]
+trust_level = "trusted"
+
+[shell_environment_policy]
+inherit = "core"
