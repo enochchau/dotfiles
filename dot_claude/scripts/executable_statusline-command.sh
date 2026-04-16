@@ -34,24 +34,18 @@ if [ -n "$git_common" ] && [ -n "$git_gitdir" ] && [ "$git_common" != "$git_gitd
 fi
 [ -z "$wt_detected" ] && wt_detected="$wt_name"
 
-# Colors (ANSI — maps to terminal palette)
+# --- Colors (ANSI foreground only — auto-adapts to terminal theme) ---
 RST="\033[0m"
 BOLD="\033[1m"
 DIM="\033[2m"
+REV="\033[7m"
 FG_GREEN="\033[32m"
-FG_YELLOW="\033[93m"
 FG_BLUE="\033[34m"
 FG_MAGENTA="\033[35m"
 FG_CYAN="\033[36m"
-FG_WHITE="\033[37m"
 FG_GRAY="\033[90m"
 FG_RED="\033[31m"
-REV="\033[7m"
-
-# Group backgrounds (subtle, using 256-color palette)
-BG_MODEL="\033[48;5;236m"    # dark gray
-BG_USAGE="\033[48;5;234m"    # darker gray
-BG_GIT="\033[48;5;236m"      # dark gray
+FG_YELLOW="\033[33m"
 
 # Nerdfonts (literal UTF-8, verified from nerdfonts.com/cheat-sheet)
 ICON_MODEL="󰧑"   # nf-md-brain
@@ -62,44 +56,23 @@ ICON_BRANCH="󰘬"   # nf-md-source_branch
 ICON_WATER="󰖌"   # nf-md-water
 ICON_COST=""   # nf-fa-dollar
 
-# --- Segment / Group primitives ---
-# A segment is "color content [icon]" → rendered as "icon content" in color
-# A group wraps segments in a background with │ separators
-#
-# _seg_N tracks segment count; _seg_color_N / _seg_content_N store each one.
-# This avoids arrays-in-subshells issues (group is called inline, not in $()).
+# --- Segment primitives ---
+# Segments are collected in order and joined with │ separators.
 
 _seg_N=0
+SEP="${FG_GRAY} | ${RST}"
 
 # Add a segment: seg <color> <content> [icon]
 seg() {
   local color="$1" content="$2" icon="$3"
   local rendered
   if [ -n "$icon" ]; then
-    rendered="${color}${icon} ${content}"
+    rendered="${color}${icon} ${content}${RST}"
   else
-    rendered="${color}${content}"
+    rendered="${color}${content}${RST}"
   fi
   eval "_seg_${_seg_N}=\"\${rendered}\""
   _seg_N=$((_seg_N + 1))
-}
-
-# Render accumulated segments as a group with a background color, append to $line
-# Usage: group <bg_color>
-group() {
-  [ "$_seg_N" -eq 0 ] && return
-  local bg="$1"
-  line="${line}${bg} "
-  local i=0
-  while [ "$i" -lt "$_seg_N" ]; do
-    if [ "$i" -gt 0 ]; then
-      line="${line}${FG_GRAY} │ ${bg}"
-    fi
-    eval "line=\"\${line}\${_seg_${i}}\""
-    i=$((i + 1))
-  done
-  line="${line} ${RST}"
-  _seg_N=0
 }
 
 # Format token count (e.g. 12345 -> 12.3k, 1234567 -> 1.2M)
@@ -143,23 +116,22 @@ fmt_path() {
 # --- Build statusline ---
 line=""
 
-# Vim mode badge (reverse video, stands alone before groups)
+# Vim mode badge (reverse video, stands alone before segments)
 if [ -n "$vim_mode" ]; then
   case "$vim_mode" in
     NORMAL)  mode_color="${FG_BLUE}" ;;
     INSERT)  mode_color="${FG_GREEN}" ;;
     VISUAL)  mode_color="${FG_MAGENTA}" ;;
     REPLACE) mode_color="${FG_RED}" ;;
-    *)       mode_color="${FG_WHITE}" ;;
+    *)       mode_color="" ;;
   esac
   line="${BOLD}${mode_color}${REV} ${vim_mode} ${RST} "
 fi
 
-# --- Group 1: Model ---
+# Model
 seg "${FG_BLUE}" "${model}" "${BOLD}${ICON_MODEL}"
-group "$BG_MODEL"
 
-# --- Group 2: Usage stats ---
+# Usage stats
 if [ -n "$used" ]; then
   used_int=$(printf "%.0f" "$used")
   if [ "$used_int" -ge 80 ]; then ctx_color="${FG_RED}"
@@ -169,7 +141,7 @@ if [ -n "$used" ]; then
 
   tok_total=$(( ${total_input:-0} + ${total_output:-0} ))
   tok_fmt=$(fmt_tokens "$tok_total")
-  seg "$ctx_color" "${used_int}% ${DIM}(${tok_fmt})${RST}${BG_USAGE}" "$ICON_GAUGE"
+  seg "$ctx_color" "${used_int}% ${DIM}(${tok_fmt})${RST}" "$ICON_GAUGE"
 
   # water_ul=$(( ${total_output:-0} * 500 / 1000 ))
   # water_fmt=$(fmt_water "$water_ul")
@@ -179,12 +151,9 @@ if [ -n "$used" ]; then
   #   cost_fmt=$(printf '%.2f' "$cost")
   #   seg "${FG_YELLOW}" "\$${cost_fmt}" "$ICON_COST"
   # fi
-
-  line="${line} "
-  group "$BG_USAGE"
 fi
 
-# --- Group 3: Git ---
+# Path / worktree / branch
 if [ -n "$cwd" ]; then
   seg "${FG_CYAN}" "$(fmt_path "$cwd")" "$ICON_FOLDER"
 fi
@@ -194,9 +163,13 @@ fi
 if [ -n "$git_branch" ]; then
   seg "${FG_GREEN}" "${git_branch}" "$ICON_BRANCH"
 fi
-if [ "$_seg_N" -gt 0 ]; then
-  line="${line} "
-  group "$BG_GIT"
-fi
+
+# Join all segments with separator
+i=0
+while [ "$i" -lt "$_seg_N" ]; do
+  [ "$i" -gt 0 ] && line="${line}${SEP}"
+  eval "line=\"\${line}\${_seg_${i}}\""
+  i=$((i + 1))
+done
 
 printf "%b" "$line"
