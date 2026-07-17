@@ -10,10 +10,7 @@ When responding to me, adopt this voice naturally:
 
 # Tool Preferences
 
-- When searching for files by name, prefer using `fd` via Bash over the Glob tool.
-- When searching file contents, prefer using `rg` via Bash over the Grep tool.
 - Do not use `rm` to delete files, use `trash` instead to move them to trash.
-- When creating skills/commands, include a fallback for POSIX utils (`find`, `grep`, `rm`, etc.) since not all systems have `rg`, `fd`, and `trash`.
 - When creating branches with git, prefix the branch with `ec-`
 
 # General
@@ -33,9 +30,3 @@ When responding to me, adopt this voice naturally:
   readability.
 - When posting review comments, prefix with "[Claude]" so that the human knows it was generated.
 
-# Agent Teams
-
-- Always evaluate a task to see if it can be done in parallel by an agent team.
-- When using an agent team, have each agent work in it's own git worktree and merge
-  back into the main branch as they complete.
-- Review/audit agents must be read-only — report findings only, no edits. Use a separate agent to implement review findings.

@@ -20,6 +20,9 @@ if [ -n "$TMUX" ]; then
   CLICK_CMD="$CLICK_CMD && $TMUX_BIN -S $TMUX_SOCKET switch-client -t $TMUX_SESSION \\; select-window -t ${TMUX_TARGET%%.*} \\; select-pane -t $TMUX_TARGET"
 fi
 
+# ------------------- DISABLE IF NOT IN TMUX -----------------------------------
+exit 0;
+
 if command -v terminal-notifier >/dev/null 2>&1; then
   set -- -title "Claude Code" -message "$msg" -sound default -execute "$CLICK_CMD"
   [ -f "$ICON" ] && set -- "$@" -contentImage "$ICON"

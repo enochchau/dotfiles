@@ -10,9 +10,9 @@ local ensure_installed = {
     "cssls",
     "eslint",
     "html",
-    -- "tsgo",
+    "tsgo",
     -- "ts_ls",
-    "vtsls",
+    -- "vtsls",
     "tailwindcss",
     -- data ops
     "yamlls",

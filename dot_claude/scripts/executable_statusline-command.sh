@@ -4,11 +4,13 @@
 
 input=$(cat)
 
-# Parse JSON (single jq call, tab-delimited)
-IFS=$'\t' read -r model cwd used total_input total_output cost vim_mode wt_name wt_branch \
+# Parse JSON (single jq call; unit-separator delimited — unlike tab, \x1f is
+# not IFS whitespace, so empty fields don't collapse and shift the rest)
+IFS=$'\x1f' read -r model effort cwd used total_input total_output cost vim_mode wt_name wt_branch \
   <<< "$(echo "$input" | jq -r '
   [
     .model.display_name // "?",
+    .effort.level // "",
     .workspace.current_dir // .cwd // "",
     .context_window.used_percentage // "",
     (.context_window.total_input_tokens // 0 | tostring),
@@ -17,7 +19,7 @@ IFS=$'\t' read -r model cwd used total_input total_output cost vim_mode wt_name 
     .vim.mode // "",
     .worktree.name // "",
     .worktree.branch // ""
-  ] | @tsv')"
+  ] | join("\u001f")')"
 
 # Git info (from git directly, falling back to Claude's worktree data)
 git_dir="${cwd:-$PWD}"
@@ -102,13 +104,19 @@ fmt_water() {
   fi
 }
 
-# Shorten a path (home -> ~, truncate to last 2 segments if deep)
+# Shorten a path (home -> ~, truncate to last 2 segments if deep,
+# keeping the ~/ or / root so it's clear where the path is anchored)
 fmt_path() {
   local p="$1"
   p=$(echo "$p" | sed "s|^$HOME|~|")
   local depth=$(echo "$p" | tr '/' '\n' | wc -l)
   if [ "$depth" -gt 3 ]; then
-    p="…/$(echo "$p" | rev | cut -d'/' -f1-2 | rev)"
+    local tail
+    tail=$(echo "$p" | rev | cut -d'/' -f1-2 | rev)
+    case "$p" in
+      "~"*) p="~/…/${tail}" ;;
+      *)    p="/…/${tail}" ;;
+    esac
   fi
   echo "$p"
 }
@@ -128,8 +136,12 @@ if [ -n "$vim_mode" ]; then
   line="${BOLD}${mode_color}${REV} ${vim_mode} ${RST} "
 fi
 
-# Model
-seg "${FG_BLUE}" "${model}" "${BOLD}${ICON_MODEL}"
+# Model (effort is absent when the model doesn't support reasoning effort)
+if [ -n "$effort" ]; then
+  seg "${FG_BLUE}" "${model} ${DIM}${effort}${RST}" "${BOLD}${ICON_MODEL}"
+else
+  seg "${FG_BLUE}" "${model}" "${BOLD}${ICON_MODEL}"
+fi
 
 # Usage stats
 if [ -n "$used" ]; then

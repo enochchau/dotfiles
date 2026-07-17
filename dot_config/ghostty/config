@@ -1,3 +1,4 @@
 # custom-shader = ~/.config/ghostty/shaders/tft.glsl
 # custom-shader = ~/.config/ghostty/shaders/bettercrt.glsl
 # custom-shader = ~/.config/ghostty/shaders/bloom.glsl
+# theme = dark:Catppuccin Frappe,light:Catppuccin Latte

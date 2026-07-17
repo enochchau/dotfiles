@@ -1,9 +1,6 @@
 {
-  "env": {
-    "CLAUDE_CODE_EXPERIMENTAL_AGENT_TEAMS": "1"
-  },
   "permissions": {
-    "defaultMode": "bypassPermissions"
+    "defaultMode": "auto"
   },
   "hooks": {
     "Stop": [
@@ -13,16 +10,6 @@
           {
             "type": "command",
             "command": "sh ~/.claude/scripts/notify-stop.sh"
-          }
-        ]
-      },
-      {
-        "matcher": "",
-        "hooks": [
-          {
-            "type": "command",
-            "command": "/Users/enochchau/code/remote-claude/.claude/hooks/notify-stop.sh",
-            "timeout": 10
           }
         ]
       }
@@ -36,7 +23,19 @@
     "typescript-lsp@claude-plugins-official": true,
     "tsgo-lsp@numeric-ai-plugins": true
   },
-  "effortLevel": "high",
-  "autoUpdatesChannel": "stable",
-  "skipDangerousModePermissionPrompt": true
+  "extraKnownMarketplaces": {
+    "numeric-io": {
+      "source": {
+        "source": "github",
+        "repo": "numeric-io/ai-plugins"
+      }
+    }
+  },
+  "effortLevel": "xhigh",
+  "autoUpdatesChannel": "latest",
+  "tui": "fullscreen",
+  "skipDangerousModePermissionPrompt": true,
+  "skipWorkflowUsageWarning": true,
+  "skipAutoPermissionPrompt": true,
+  "model": "claude-fable-5[1m]"
 }

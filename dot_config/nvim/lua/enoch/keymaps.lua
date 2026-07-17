@@ -22,12 +22,12 @@ map("n", "]q", ":cnext<CR>", { desc = "Next Quickfix item" })
 map("n", "[q", ":cprev<CR>", { desc = "Previous Quickfix item" })
 
 map("n", "<leader>d", function()
-    local success, result =
-        pcall(require("enoch.diagnostic").show_line_diagnostics)
-    if not success then
-        vim.print(result)
+    -- local success, result =
+    --     pcall(require("enoch.diagnostic").show_line_diagnostics)
+    -- if not success then
+    --     vim.print(result)
         vim.diagnostic.open_float()
-    end
+    -- end
 end, { desc = "Open diagnostic float" })
 
 -- toggle quickfix
