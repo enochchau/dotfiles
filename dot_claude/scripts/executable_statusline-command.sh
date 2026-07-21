@@ -22,19 +22,53 @@ IFS=$'\x1f' read -r model effort cwd used total_input total_output cost vim_mode
   ] | join("\u001f")')"
 
 # Git info (from git directly, falling back to Claude's worktree data)
+# --no-optional-locks: never take the index lock, just read state (safe to
+# run concurrently with other git processes, no risk of lock contention).
 git_dir="${cwd:-$PWD}"
-git_branch=$(git -C "$git_dir" symbolic-ref --short HEAD 2>/dev/null \
-  || git -C "$git_dir" rev-parse --short HEAD 2>/dev/null)
+git_branch=$(git --no-optional-locks -C "$git_dir" symbolic-ref --short HEAD 2>/dev/null \
+  || git --no-optional-locks -C "$git_dir" rev-parse --short HEAD 2>/dev/null)
 [ -z "$git_branch" ] && git_branch="$wt_branch"
 
 # Worktree detection (check if cwd is a linked worktree)
-git_common=$(git -C "$git_dir" rev-parse --git-common-dir 2>/dev/null)
-git_gitdir=$(git -C "$git_dir" rev-parse --git-dir 2>/dev/null)
+git_common=$(git --no-optional-locks -C "$git_dir" rev-parse --git-common-dir 2>/dev/null)
+git_gitdir=$(git --no-optional-locks -C "$git_dir" rev-parse --git-dir 2>/dev/null)
 wt_detected=""
 if [ -n "$git_common" ] && [ -n "$git_gitdir" ] && [ "$git_common" != "$git_gitdir" ]; then
   wt_detected=$(basename "$git_dir")
 fi
 [ -z "$wt_detected" ] && wt_detected="$wt_name"
+
+# Git status counts (staged / modified / untracked / ahead / behind) — a
+# single `status --porcelain=v2 --branch` call gives us everything at once,
+# instead of separate `git diff --stat` / `git rev-list` invocations.
+git_ahead=0
+git_behind=0
+git_staged=0
+git_modified=0
+git_conflicts=0
+git_untracked=0
+if [ -n "$git_branch" ]; then
+  while IFS= read -r gline; do
+    case "$gline" in
+      "# branch.ab "*)
+        ab="${gline#"# branch.ab "}"
+        git_ahead=$(echo "$ab" | awk '{print $1}' | tr -d '+')
+        git_behind=$(echo "$ab" | awk '{print $2}' | tr -d '-')
+        ;;
+      "1 "*|"2 "*)
+        xy=$(echo "$gline" | awk '{print $2}')
+        [ "${xy%?}" != "." ] && git_staged=$((git_staged + 1))
+        [ "${xy#?}" != "." ] && git_modified=$((git_modified + 1))
+        ;;
+      "u "*)
+        git_conflicts=$((git_conflicts + 1))
+        ;;
+      "? "*)
+        git_untracked=$((git_untracked + 1))
+        ;;
+    esac
+  done <<< "$(git --no-optional-locks -C "$git_dir" status --porcelain=v2 --branch --untracked-files=normal 2>/dev/null)"
+fi
 
 # --- Colors (ANSI foreground only — auto-adapts to terminal theme) ---
 RST="\033[0m"
@@ -173,7 +207,20 @@ fi
 #   seg "${FG_MAGENTA}" "${wt_detected}" "$ICON_TREE"
 # fi
 if [ -n "$git_branch" ]; then
-  seg "${FG_GREEN}" "${git_branch}" "$ICON_BRANCH"
+  is_dirty=0
+  [ "$git_staged" -gt 0 ] || [ "$git_modified" -gt 0 ] || [ "$git_untracked" -gt 0 ] || [ "$git_conflicts" -gt 0 ] && is_dirty=1
+  if [ "$is_dirty" -eq 1 ]; then branch_color="${FG_YELLOW}"; else branch_color="${FG_GREEN}"; fi
+
+  git_content="${branch_color}${git_branch}${RST}"
+  [ "${git_ahead:-0}" -gt 0 ] 2>/dev/null && git_content="${git_content} ${FG_CYAN}⇡${git_ahead}${RST}"
+  [ "${git_behind:-0}" -gt 0 ] 2>/dev/null && git_content="${git_content} ${FG_CYAN}⇣${git_behind}${RST}"
+  [ "$git_staged" -gt 0 ] && git_content="${git_content} ${FG_GREEN}+${git_staged}${RST}"
+  [ "$git_modified" -gt 0 ] && git_content="${git_content} ${FG_YELLOW}!${git_modified}${RST}"
+  [ "$git_conflicts" -gt 0 ] && git_content="${git_content} ${FG_RED}~${git_conflicts}${RST}"
+  [ "$git_untracked" -gt 0 ] && git_content="${git_content} ${FG_BLUE}?${git_untracked}${RST}"
+
+  eval "_seg_${_seg_N}=\"\${BOLD}\${ICON_BRANCH} \${git_content}\""
+  _seg_N=$((_seg_N + 1))
 fi
 
 # Join all segments with separator
