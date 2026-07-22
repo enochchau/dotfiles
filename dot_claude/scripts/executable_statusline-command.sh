@@ -38,6 +38,11 @@ if [ -n "$git_common" ] && [ -n "$git_gitdir" ] && [ "$git_common" != "$git_gitd
 fi
 [ -z "$wt_detected" ] && wt_detected="$wt_name"
 
+# Linear ticket in branch name (e.g. ec-eng-1234-fix-thing -> ENG-1234).
+# Strip the personal "ec-" prefix first so it isn't mistaken for a team key.
+LINEAR_WORKSPACE="numeric"
+linear_ticket=$(printf '%s' "${git_branch#ec-}" | grep -oE '[a-zA-Z]+-[0-9]+' | head -1 | tr '[:lower:]' '[:upper:]')
+
 # Git status counts (staged / modified / untracked / ahead / behind) — a
 # single `status --porcelain=v2 --branch` call gives us everything at once,
 # instead of separate `git diff --stat` / `git rev-list` invocations.
@@ -211,7 +216,14 @@ if [ -n "$git_branch" ]; then
   [ "$git_staged" -gt 0 ] || [ "$git_modified" -gt 0 ] || [ "$git_untracked" -gt 0 ] || [ "$git_conflicts" -gt 0 ] && is_dirty=1
   if [ "$is_dirty" -eq 1 ]; then branch_color="${FG_YELLOW}"; else branch_color="${FG_GREEN}"; fi
 
-  git_content="${branch_color}${git_branch}${RST}"
+  # If the branch references a Linear ticket, make it an OSC 8 hyperlink
+  # (cmd+click to open; needs a hyperlink-capable terminal like iTerm2/Kitty/WezTerm)
+  if [ -n "$linear_ticket" ]; then
+    ticket_url="https://linear.app/${LINEAR_WORKSPACE}/issue/${linear_ticket}"
+    git_content="\033]8;;${ticket_url}\a${branch_color}${git_branch}${RST}\033]8;;\a"
+  else
+    git_content="${branch_color}${git_branch}${RST}"
+  fi
   [ "${git_ahead:-0}" -gt 0 ] 2>/dev/null && git_content="${git_content} ${FG_CYAN}⇡${git_ahead}${RST}"
   [ "${git_behind:-0}" -gt 0 ] 2>/dev/null && git_content="${git_content} ${FG_CYAN}⇣${git_behind}${RST}"
   [ "$git_staged" -gt 0 ] && git_content="${git_content} ${FG_GREEN}+${git_staged}${RST}"
