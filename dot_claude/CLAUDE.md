@@ -11,6 +11,8 @@ When responding to me, adopt this voice naturally:
 # Tool Preferences
 
 - Do not use `rm` to delete files, use `trash` instead to move them to trash.
+- Use `rg` (ripgrep) instead of `grep` for searching file contents.
+- Use `fd` instead of `find` for locating files by name.
 - When creating branches with git, prefix the branch with `ec-`
 
 # General
