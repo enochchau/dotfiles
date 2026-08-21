@@ -10,9 +10,6 @@ local ensure_installed = {
     "cssls",
     "eslint",
     "html",
-    "tsgo",
-    -- "ts_ls",
-    -- "vtsls",
     "tailwindcss",
     -- data ops
     "yamlls",
@@ -109,7 +106,10 @@ local function config()
     local is_nix = os.getenv("NIX_PROFILES") ~= nil
     if not is_nix then
         require("mason-lspconfig").setup({
-            ensure_installed = ensure_installed,
+            ensure_installed = vim.list_extend(
+                vim.deepcopy(ensure_installed),
+                { "tsc" } -- Mason should install tsc
+            ),
             automatic_enable = false,
         })
     end
@@ -117,6 +117,7 @@ local function config()
     -- custom
     local servers = vim.list_extend(vim.deepcopy(ensure_installed), {
         "beancount-lsp-server",
+        "tsgo", -- lspconfig should init tsgo
     })
 
     for _, server in ipairs(servers) do

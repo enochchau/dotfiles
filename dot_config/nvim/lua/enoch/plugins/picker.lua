@@ -30,7 +30,7 @@ return {
         FzfLua.register_ui_select()
 
         map("n", "<C-p>", FzfLua.files, { silent = true })
-        map("n", "<C-f>", FzfLua.grep, { silent = true })
+        map("n", "<C-f>", FzfLua.live_grep, { silent = true })
         map("n", "z=", FzfLua.spell_suggest, { silent = true })
         map("n", "<leader>o", FzfLua.jumps, { silent = true })
         map("n", "<leader>'", FzfLua.marks, { silent = true })
