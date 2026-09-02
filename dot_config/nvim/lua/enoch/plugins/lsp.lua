@@ -104,8 +104,9 @@ local function config()
     })
 
     local is_nix = os.getenv("NIX_PROFILES") ~= nil
+    local mason_lspconfig = require("mason-lspconfig")
     if not is_nix then
-        require("mason-lspconfig").setup({
+        mason_lspconfig.setup({
             ensure_installed = vim.list_extend(
                 vim.deepcopy(ensure_installed),
                 { "tsc" } -- Mason should install tsc
@@ -115,7 +116,7 @@ local function config()
     end
 
     -- custom
-    local servers = vim.list_extend(vim.deepcopy(ensure_installed), {
+    local servers = vim.list_extend(vim.deepcopy(mason_lspconfig.get_installed_servers()), {
         "beancount-lsp-server",
         "tsgo", -- lspconfig should init tsgo
     })
