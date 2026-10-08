@@ -1,5 +1,7 @@
 zstyle ':antidote:bundle' use-friendly-names 'yes'
-source $ZDOTDIR/antidote/antidote.zsh
+# lazy-load antidote, it's only needed when the plugin list changes
+fpath=($ZDOTDIR/antidote/functions $fpath)
+autoload -Uz antidote
 
 # Enable Powerlevel10k instant prompt. Should stay close to the top of ~/.zshrc.
 # Initialization code that may require console input (password prompts, [y/n]
@@ -89,21 +91,25 @@ alias l='ls -lah'
 alias ll='ls -lh'
 alias la='ls -lAh'
 
-autoload -Uz compinit zrecompile promptinit
+autoload -Uz compinit promptinit
 
-# speed up compinit
-dump=$ZSH_COMPDUMP
-if [[ -s $dump(#qN.mh+24) && (! -s "$dump.zwc" || "$dump" -nt "$dump.zwc") ]]; then
-    compinit -d $ZSH_COMPDUMP
-    zrecompile $ZSH_COMPDUMP
+# speed up compinit: load the dump as is, and only check it once a day (below).
+# the age has to be read before compinit -C, which writes a dump if there is none
+fresh_dump=($ZSH_COMPDUMP(N.mh-24))
+compinit -C -d $ZSH_COMPDUMP
+
+# load plugins, antidote only has to run when the static file is out of date
+zsh_plugins=$ZDOTDIR/.zsh_plugins
+if [[ $zsh_plugins.zsh -nt $zsh_plugins.txt ]]; then
+    source $zsh_plugins.zsh
+else
+    antidote load
 fi
-compinit -C
 
-# load plugins
-antidote load
-
-if [[ ! -f "$(antidote path g-plane/pnpm-shell-completion)/pnpm-shell-completion" ]]; then
-    (cd $(antidote path g-plane/pnpm-shell-completion) && ./zplug.zsh)
+# antidote adds each plugin's directory to fpath
+pnpm_completion_dir=${fpath[(r)*pnpm-shell-completion]}
+if [[ -n $pnpm_completion_dir && ! -f $pnpm_completion_dir/pnpm-shell-completion ]]; then
+    (cd $pnpm_completion_dir && ./zplug.zsh)
 fi
 
 # machine specific configuration
@@ -114,7 +120,12 @@ if test -f $ZDOTDIR/work.zsh; then
     source $ZDOTDIR/work.zsh
 fi
 
-compinit
+# run it again now that fpath is complete, with the full check once a day
+if (( $#fresh_dump )); then
+    compinit -C -d $ZSH_COMPDUMP
+else
+    compinit -d $ZSH_COMPDUMP && touch $ZSH_COMPDUMP && zcompile $ZSH_COMPDUMP
+fi
 
 # prompt
 promptinit && prompt powerlevel10k

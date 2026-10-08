@@ -16,7 +16,8 @@ if test -d $dev_scripts_base; then
 fi
 
 # fzf keybinds and completion - must be loaded after ohmyzsh vi-mode plugin
-FZF_BASE=$(brew --prefix)/opt/fzf/shell
+# hardcoded b/c `brew --prefix` is slow
+FZF_BASE=/opt/homebrew/opt/fzf/shell
 source $FZF_BASE/key-bindings.zsh
 source $FZF_BASE/completion.zsh
 
