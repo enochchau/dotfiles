@@ -49,7 +49,7 @@ end, { desc = "Toggle Quickfix Window" })
 map("n", "<leader>l", function()
     local ll_exists = false
     for _, win in pairs(vim.fn.getwininfo()) do
-        if win.quickfix == 1 then
+        if win.loclist == 1 then
             ll_exists = true
         end
     end
