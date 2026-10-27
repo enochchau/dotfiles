@@ -27,7 +27,6 @@ if vim.uv.fs_stat(lsp_main) then
         cmd = { "node", lsp_main, "--stdio" },
         filetypes = { "ntl" },
         root_markers = { ".git" },
-        capabilities = require("blink.cmp").get_lsp_capabilities(),
     })
     vim.lsp.enable("ntl-language-server")
 end

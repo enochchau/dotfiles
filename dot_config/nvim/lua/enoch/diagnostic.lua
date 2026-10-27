@@ -1,6 +1,5 @@
 ---@type vim.diagnostic.Opts.Signs
 vim.diagnostic.config({
-    virtual_text = false,
     signs = {
         text = {
             [vim.diagnostic.severity.ERROR] = "󰅚 ", -- x000f015a

@@ -10,38 +10,18 @@ else
     vim.o.laststatus = 3
     vim.o.number = true
     vim.o.relativenumber = true
-    vim.o.wrap = true
-    vim.o.encoding = "utf-8"
     vim.o.mouse = "a"
-    vim.o.wildmenu = true
-    vim.o.showmatch = false
-    vim.o.ruler = true
-    vim.o.hidden = true
     vim.o.updatetime = 300
     vim.o.smartcase = true
     vim.o.sessionoptions = "blank,curdir,folds,help,tabpages,winsize"
 
-    vim.o.swapfile = true
-    vim.o.writebackup = true
-    vim.o.backup = false
-    vim.o.backupcopy = "auto"
     vim.o.undofile = true
 
     -- color column @ 80 chars
     vim.o.colorcolumn = "80"
-    -- disable startup screen
-    vim.o.shortmess = "I"
-    -- true color
-    if vim.fn.has("termguicolors") == 1 then
-        vim.o.termguicolors = true
-    end
-    -- highlight all search pattern matches
-    vim.o.hlsearch = true
+    -- true color, forced since auto-detection isn't guaranteed inside tmux
+    vim.o.termguicolors = true
     vim.o.cursorline = true
-
-    -- don't enable syntax because it causes issues with lsp starting
-    -- cmd.syntax "enable"
-    vim.cmd.filetype("plugin indent on")
 
     -- set tabs to 2 spaces
     vim.o.tabstop = 2
@@ -54,6 +34,7 @@ else
     vim.g.netrw_sort_by = "exten"
     vim.g.netrw_keepdir = 0
 
+    -- I: disable startup screen
     vim.o.shortmess = "IcF"
 
     -- auto resize
@@ -92,19 +73,15 @@ else
     -- Configure additional filetypes
     vim.filetype.add({
         extension = {
-            ["cr"] = "crystal",
             ["mdx"] = "markdown",
             ["pro"] = "prolog",
             ["tf"] = "terraform",
             ["zshrc"] = "zsh",
             ["zshenv"] = "zsh",
             ["code-workspace"] = "json",
-            ["applescript"] = "applescript",
         },
         filename = {
             ["yabairc"] = "sh",
-            ["skhdrc"] = "config",
-            [".swcrc"] = "json",
         },
         pattern = {
             ["${XDG_CONFIG_HOME}/ghostty/config"] = "ini",
@@ -117,13 +94,11 @@ else
     require("enoch.diagnostic")
     require("enoch.ntl")
 
-    vim.o.bg = "dark"
     vim.cmd.colorscheme("catppuccin-macchiato")
-    -- In your init.lua
     if vim.fn.executable("rg") == 1 then
         -- --glob '!node_modules/*' tells ripgrep to ignore that folder
+        -- nvim already sets grepformat to match rg --vimgrep
         vim.o.grepprg = "rg --vimgrep --smart-case --glob '!node_modules/*'"
-        vim.o.grepformat = "%f:%l:%c:%m"
     end
 
     if vim.fn.has("nvim-0.12") == 1 then

@@ -13,13 +13,6 @@ map("n", "<A-h>", "<C-w><", { silent = true })
 map("n", "<A-j>", "<C-w>-", { silent = true })
 map("n", "<A-k>", "<C-w>+", { silent = true })
 map("n", "<A-l>", "<C-w>>", { silent = true })
--- cycle buffers
-map("n", "]b", ":bnext<CR>", { desc = "Next Buffer" })
-map("n", "[b", ":bprevious<CR>", { desc = "Previous Buffer" })
-map("n", "]l", ":lnext<CR>", { desc = "Next Location List item" })
-map("n", "[l", ":lprev<CR>", { desc = "Previous Location List item" })
-map("n", "]q", ":cnext<CR>", { desc = "Next Quickfix item" })
-map("n", "[q", ":cprev<CR>", { desc = "Previous Quickfix item" })
 
 map("n", "<leader>d", function()
     -- local success, result =

@@ -49,8 +49,6 @@ local function config()
             local map = vim.keymap.set
             local method = vim.lsp.protocol.Methods
 
-            vim.bo[ev.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-
             if client:supports_method(method.textDocument_definition) then
                 map("n", "gd", FzfLua.lsp_definitions, {
                     silent = true,
@@ -123,14 +121,7 @@ local function config()
         "beancount-lsp-server",
     })
 
-    for _, server in ipairs(servers) do
-        local opts = {}
-        opts.capabilities =
-            require("blink.cmp").get_lsp_capabilities(opts.capabilities)
-
-        vim.lsp.config(server, opts)
-    end
-
+    -- blink.cmp adds its capabilities to every server via vim.lsp.config("*")
     vim.lsp.enable(servers)
 end
 
