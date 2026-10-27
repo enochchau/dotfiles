@@ -25,17 +25,23 @@ local function setup_treesitter(opts)
 
             -- you need some mechanism to avoid running on buffers that do not
             -- correspond to a language (like oil.nvim buffers), this implementation
-            -- checks if a parser exists for the current language
+            -- checks if nvim-treesitter has a parser for the language
             local language = vim.treesitter.language.get_lang(filetype)
                 or filetype
-            if not vim.treesitter.language.add(language) then
+            if
+                not vim.list_contains(nvim_treesitter.get_available(), language)
+            then
                 return
             end
             nvim_treesitter.install({ language }):await(function()
                 -- replicate `fold = { enable = true }`
                 -- vim.wo.foldmethod = 'expr'
                 -- vim.wo.foldexpr = 'v:lua.vim.treesitter.foldexpr()'
-                if vim.api.nvim_buf_is_valid(buf) then
+                -- install can fail (no network, no tree-sitter cli)
+                if
+                    vim.api.nvim_buf_is_valid(buf)
+                    and vim.treesitter.language.add(language)
+                then
                     vim.treesitter.start(buf, language)
                     vim.bo[buf].indentexpr =
                         "v:lua.require'nvim-treesitter'.indentexpr()"

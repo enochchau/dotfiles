@@ -6,7 +6,11 @@ local function start()
         pcall(uv.close, server)
     end
     server = uv.new_tcp()
-    server:bind("127.0.0.1", 6846)
+    local ok, bind_err = server:bind("127.0.0.1", 6846)
+    if not ok then
+        vim.notify("StartServer: " .. bind_err, vim.log.levels.ERROR)
+        return
+    end
     vim.ui.open("http://127.0.0.1:6846")
     server:listen(128, function(err)
         assert(not err, err)
@@ -34,6 +38,7 @@ local function start()
                         "Date: " .. os.date("!%a, %d %b %Y %H:%M:%S GMT"),
                         "Content-Type: text/plain",
                         "Cache-Control: no-store",
+                        "Connection: close",
                         "",
                         "hello world",
                     }
@@ -43,17 +48,20 @@ local function start()
                         "Server: Neovim",
                         "Date: " .. os.date("!%a, %d %b %Y %H:%M:%S GMT"),
                         "Cache-Control: no-store",
+                        "Connection: close",
+                        "Content-Length: 0",
+                        "",
+                        "",
                     }
                 end
 
-                client:write(vim.iter(lines):join("\n"))
+                client:write(table.concat(response, "\r\n"))
                 client:shutdown()
             else
                 client:close()
             end
         end)
     end)
-    uv.run()
 end
 
 local function stop()

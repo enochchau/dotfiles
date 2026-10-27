@@ -18,6 +18,26 @@ local ensure_installed = {
 }
 
 local function config()
+    vim.api.nvim_create_autocmd("LspProgress", {
+        group = vim.api.nvim_create_augroup("lsp.progress", {}),
+        callback = function(ev)
+            local client = vim.lsp.get_client_by_id(ev.data.client_id)
+            local value = ev.data.params.value
+            if client == nil or type(value) ~= "table" then
+                return
+            end
+
+            vim.api.nvim_echo({ { value.message or "done" } }, false, {
+                id = "lsp." .. client.id .. "." .. ev.data.params.token,
+                kind = "progress",
+                source = "vim.lsp",
+                title = client.name .. ": " .. (value.title or ""),
+                status = value.kind ~= "end" and "running" or "success",
+                percent = value.percentage,
+            })
+        end,
+    })
+
     vim.api.nvim_create_autocmd("LspAttach", {
         callback = function(ev)
             local FzfLua = require("fzf-lua")
@@ -86,21 +106,6 @@ local function config()
                     { style = "virtual" }
                 )
             end
-
-            vim.api.nvim_create_autocmd("LspProgress", {
-                buffer = ev.buf,
-                callback = function(ev)
-                    local value = ev.data.params.value
-                    vim.api.nvim_echo({ { value.message or "done" } }, false, {
-                        id = "lsp." .. ev.data.client_id,
-                        kind = "progress",
-                        source = "vim.lsp",
-                        title = client.name .. ": " .. value.title,
-                        status = value.kind ~= "end" and "running" or "success",
-                        percent = value.percentage,
-                    })
-                end,
-            })
         end,
     })
 

@@ -32,13 +32,8 @@ end, { desc = "Open diagnostic float" })
 
 -- toggle quickfix
 map("n", "<leader>q", function()
-    local qf_exists = false
-    for _, win in pairs(vim.fn.getwininfo()) do
-        if win.quickfix == 1 then
-            qf_exists = true
-        end
-    end
-    if qf_exists then
+    -- winid is 0 when the quickfix window isn't open in this tab
+    if vim.fn.getqflist({ winid = 0 }).winid ~= 0 then
         vim.cmd("cclose")
     else
         vim.cmd("copen")

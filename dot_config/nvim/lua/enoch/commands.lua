@@ -7,7 +7,7 @@ local myserver = require("enoch.server")
 command("BufClear", "%bd|e#|bd#", {})
 
 command("SwapNu", function()
-    vim.opt.relativenumber = not vim.opt.relativenumber._value
+    vim.o.relativenumber = not vim.o.relativenumber
     return nil
 end, {})
 
@@ -50,12 +50,14 @@ end, {})
 
 -- Add to init.lua
 command("GitCheck", function()
-    -- Set the errorformat to match: "filename:line: message"
-    vim.opt.errorformat = "%f:%l: %m"
-
     -- Run git diff --check and read it into the quickfix list
+    -- efm parses "filename:line: message" without changing 'errorformat'
     local output = vim.fn.systemlist("git diff --check")
-    vim.fn.setqflist({}, "r", { title = "Git Check", lines = output })
+    vim.fn.setqflist(
+        {},
+        "r",
+        { title = "Git Check", lines = output, efm = "%f:%l: %m" }
+    )
 
     -- Open the quickfix window if there are errors
     if not vim.tbl_isempty(output) then
