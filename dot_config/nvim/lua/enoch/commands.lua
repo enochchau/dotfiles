@@ -72,3 +72,19 @@ command(
     require("enoch.pnpm-workspace-picker").pnpm_workspace_picker,
     {}
 )
+
+command("TSToggle", function()
+    local bufnr = vim.api.nvim_get_current_buf()
+
+    if vim.treesitter.highlighter.active[bufnr] then
+        vim.treesitter.stop(bufnr)
+        vim.notify("Treesitter highlighting disabled", vim.log.levels.INFO)
+    else
+        local ok, _ = pcall(vim.treesitter.start, bufnr)
+        if ok then
+            vim.notify("Treesitter highlighting enabled", vim.log.levels.INFO)
+        else
+            vim.notify("No Treesitter parser available for this buffer", vim.log.levels.WARN)
+        end
+    end
+end, { desc = "Toggle Treesitter syntax highlighting for current buffer" })
